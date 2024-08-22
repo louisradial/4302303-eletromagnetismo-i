@@ -1,0 +1,29 @@
+\begin{exercício}{Campo elétrico na região de sobreposição de duas distribuições esféricas}{exercício7}
+    Duas esferas, cada uma com raio \(R\) e com distribuições volumétricas de carga de densidades uniformes \(+\rho\) e \(-\rho\), respectivamente, estão posicionadas de forma que se sobrepõem parcialmente, como mostra a figura abaixo.
+    \begin{center}
+        \begin{tikzpicture}
+            % Declare variables for coordinates and radius
+            \def\xshift{1.3} % Horizontal distance between the centers of the circles
+            \def\yshift{0}   % Vertical shift (if any) between the centers of the circles
+            \def\yshiftlabel{0.4}
+            \def\radius{2}    % Radius of the circles
+
+            % Draw the positive charge circle (left)
+            \fill[Sapphire!85,opacity=0.5] (-\xshift,\yshift) circle (\radius cm);
+            \node at (-\xshift,\yshift-\yshiftlabel) {\(+\)};
+            \filldraw[black] (-\xshift,\yshift) circle (2pt);
+
+            % Draw the negative charge circle (right)
+            \fill[Maroon!85,opacity=0.5] (\xshift,\yshift) circle (\radius cm);
+            \node at (\xshift,\yshift-\yshiftlabel) {\(-\)};
+            \filldraw[black] (\xshift,\yshift) circle (2pt);
+
+            % Draw the arrow representing the dipole moment
+            \draw[->,thick] (-\xshift,\yshift) -- (\xshift,\yshift) node[midway, above] {\(\vetor{d}\)};
+        \end{tikzpicture}
+    \end{center}
+    Chame o vetor que descreve o deslocamento entre os centros das esferas de \(\vetor{d}\). Calcule o campo elétrico na região de sobreposição e mostre que ele é uniforme.
+\end{exercício}
+\begin{proof}[Resolução]
+
+\end{proof}
