@@ -25,5 +25,11 @@
     Chame o vetor que descreve o deslocamento entre os centros das esferas de \(\vetor{d}\). Calcule o campo elétrico na região de sobreposição e mostre que ele é uniforme.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Seja \(\vetor{\x}_0\) a posição do ponto médio entre a reta que passa pelos centros das esferas. Pelo \cref{ex:exercício4},
+    \begin{align*}
+        \vetor{E}(\vetor{\x}) &= \frac{\rho}{3\epsilon_0}\left(\vetor{\x} - \vetor{\x}_0 + \frac12 \vetor{d}\right) + \frac{(-\rho)}{3 \epsilon_0}\left(\vetor{\x} - \vetor{\x}_0 - \frac12\vetor{d}\right)\\
+                              &= \frac{\rho}{3 \epsilon_0}\left[\left(\vetor{\x} - \vetor{\x}_0 + \frac12 \vetor{d}\right) - \left(\vetor{\x} - \vetor{\x}_0 - \frac12 \vetor{d}\right)\right]\\
+                              &= \vetor{0}
+    \end{align*}
+    é o campo elétrico no interior da região de sobreposição.
 \end{proof}
