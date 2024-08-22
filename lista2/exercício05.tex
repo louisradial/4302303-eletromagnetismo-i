@@ -2,5 +2,16 @@
     Considere uma esfera maciça de raio \(R\) carregada uniformemente tal que sua carga total é \(Q\). Calcule a força elétrica sobre o hemisfério norte da esfera.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Do \cref{ex:exercício4}, segue que
+    \begin{equation*}
+        \vetor{E}(\vetor{\x}) = \frac{Q}{4\pi \epsilon_0 R^3}\vetor{\x}
+    \end{equation*}
+    é o campo elétrico gerado pela esfera para \(\norm{\vetor{\x}} < R\). Deste modo,
+    \begin{align*}
+        \vetor{F} &= \int_0^R\dli{r} \int_0^\frac{\pi}{2} r\dli{\theta} \int_0^{2\pi} r\sin\theta \dli{\varphi} \frac{3Q^2}{16\pi \epsilon_0 R^6}r\vetor{e}_r\\
+                  &= \frac{3Q^2 \vetor{e}_z}{8\pi \epsilon_0 R^6} \int_0^R\dli{r}\int_{0}^{\frac{\pi}{2}}\dli{\theta} r^3 \sin\theta \cos\theta\\
+                  &= \frac{3Q^2 \vetor{e}_z}{4\pi \epsilon_0 R^6} \int_0^R\dli{r} r^3\\
+                  &= \frac{3Q^2}{16\pi \epsilon_0 R^2} \vetor{e}_z
+    \end{align*}
+    é a força elétrica no hemisfério norte da esfera.
 \end{proof}
