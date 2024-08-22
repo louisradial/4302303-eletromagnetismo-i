@@ -1,0 +1,22 @@
+\section*{Exercício 6}
+\begin{proposition}{Divergente de um produto vetorial de campos vetoriais suaves}{exercício6e}
+    Sejam \(\vetor{a}, \vetor{b}\) campos vetoriais diferenciáveis, então
+    \begin{equation*}
+        \nabla \cdot (\vetor{a} \times \vetor{b}) = \vetor{b} \cdot (\nabla \times \vetor{a}) - \vetor{a} \cdot (\nabla \times \vetor{b}).
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Escrevamos \(\vetor{a} = \sum_{i}a_i \vetor{e}_i\) e \(\vetor{b} = \sum_{i} b_i \vetor{e}_i\), então
+    \begin{align*}
+        \nabla \cdot (\vetor{a} \times \vetor{b})
+        &= \nabla \cdot \left(\sum_{k,i,j} \epsilon_{kij} a_i b_j \vetor{e}_k\right)\\
+        &= \sum_{k, i, j} \diffp*{(\epsilon_{kij} a_i b_j)}{x_k}\\
+        &= \sum_{k,i,j} \epsilon_{kij} \left(\diffp{a_i}{x_k}b_j + a_i\diffp{b_j}{x_k}\right)\\
+        &= \left[\sum_{j} b_j \left(\sum_{k,i} \epsilon_{jki} \diffp{a_i}{x_k}\right)\right] + \left[\sum_{i} a_i\left( \sum_{k,j} (-\epsilon_{ikj}) \diffp{b_j}{x_k}\right)\right]\\
+        &= \left[\sum_{j} b_j \left(\sum_{\ell,k,i} \delta_{j\ell}\epsilon_{\ell ki} \diffp{a_i}{x_k}\right)\right] - \left[\sum_{i} a_i\left( \sum_{\ell,k,j} \delta_{i\ell}\epsilon_{\ell kj} \diffp{b_j}{x_k}\right)\right]\\
+        &= \left[\sum_{j} b_j \left(\sum_{\ell,k,i} (\vetor{e}_j \cdot \vetor{e}_\ell)\epsilon_{\ell ki} \diffp{a_i}{x_k}\right)\right] - \left[\sum_{i} a_i\left( \sum_{\ell,k,j} (\vetor{e}_i \cdot \vetor{e}_\ell)\epsilon_{\ell kj} \diffp{b_j}{x_k}\right)\right]\\
+        &= \left(\sum_{j} b_j \vetor{e_j}\right) \cdot \left(\sum_{\ell, k,i} \epsilon_{\ell ki} \diffp{a_i}{x_k}\vetor{e}_\ell\right) - \left(\sum_{i} a_i\vetor{e}_i\right)\cdot\left(\sum_{\ell,k,j} \epsilon_{\ell kj} \diffp{b_j}{x_k}\right)\\
+        &= \vetor{b} \cdot (\nabla \times \vetor{a}) - \vetor{a} \cdot (\nabla \times\vetor{b}),
+    \end{align*}
+    como desejado.
+\end{proof}

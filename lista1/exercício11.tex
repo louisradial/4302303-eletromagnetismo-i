@@ -1,0 +1,84 @@
+\section*{Exercício 11}
+\begin{lemma}{Gradiente de uma potência da norma do vetor deslocamento}{exercício11a}
+    Para todo \(\vetor{\x'} \in \mathbb{R}^3\) e \(\alpha \in \mathbb{R}\),
+    \begin{equation*}
+        \nabla\left(\frac1{\norm{\D}^\alpha}\right) = - \alpha \frac{\D}{\norm{\D}^{2 + \alpha}}.
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    Para \(\alpha = 0\), a identidade vale trivialmente, então podemos assumir \(\alpha \neq 0\). Escrevamos \(\vetor{\x} = \sum_i x_i \vetor{e}_i\) e \(\vetor{\x'} = \sum_j x_j' \vetor{e}_j\), então
+    \begin{equation*}
+        \norm{\D}^{-\alpha} = \left(\sum_{i} (x_i - x_i')^2\right)^{-\frac{\alpha}{2}}.
+    \end{equation*}
+    Assim, temos
+    \begin{align*}
+        \diffp*{\left(\frac1{\norm{\D}^{\alpha}}\right)}{x_k}
+        &= - \frac{\alpha}{2} \left(\sum_j (x_j - x_j')^2\right)^{-\frac{\alpha}{2}-1} \diffp*{\left(\sum_i (x_i - x'_i)^2\right)}{x_k}\\
+        &= - \frac{\alpha}{2} \frac{1}{\norm{\D}^{2 + \alpha}} \left(\sum_i\diffp*{(x_i - x'_i)^2}{x_k}\right)\\
+        &= - \frac{\alpha}{2} \frac{1}{\norm{\D}^{2 + \alpha}} \left(\sum_i 2(x_i - x'_i)\diffp*{(x_i - x'_i)}{x_k}\right)\\
+        &= -  \frac{\alpha}{\norm{\D}^{2 + \alpha}} \left(\sum_i (x_i - x'_i)\delta_{ik}\right)\\
+        &= - \alpha \frac{x_k - x'_k}{\norm{\D}^{2 + \alpha}},
+    \end{align*}
+    Logo, obtemos o gradiente
+    \begin{align*}
+        \nabla\left(\frac{1}{\norm{\D}^\alpha}\right)
+        &= \sum_{k} \diffp*{\left(\frac1{\norm{\D}^{\alpha}}\right)}{x_k} \vetor{e}_k\\
+        &= -\alpha\sum_k{\frac{(x_k - x_k')}{\norm{\D}^{2 + \alpha}}}\vetor{e}_k\\
+        &= -\alpha \frac{\D}{\norm{\D}^{2 + \alpha}}.
+    \end{align*}
+    para todo \(\alpha \in \mathbb{R}\setminus\set{0}\), concluindo a demonstração.
+\end{proof}
+
+\begin{lemma}{Laplaciano de uma potência da norma do vetor deslocamento}{exercício11m}
+    Para todo \(\vetor{\x'} \in \mathbb{R}^3\),
+    \begin{equation*}
+        \nabla^2\left(\frac{1}{\norm{\D}^\alpha}\right) = \begin{cases}
+            \dfrac{\alpha^2 - \alpha}{\norm{\D}^{2 + \alpha}}, &\text{se } \alpha \in \mathbb{R} \setminus \set{1}\\
+            -4\pi  \delta(\D), &\text{se }\alpha = 1\\
+    \end{cases}.
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    Vimos que para todo campo escalar \(\phi : \mathbb{R}^3 \to \mathbb{R}\) vale \(\nabla^2 \phi = \nabla \cdot \nabla\phi\), então
+    \begin{equation*}
+        \nabla^2\left(\frac{1}{\norm{\D}^\alpha}\right) = -\alpha \nabla \cdot \left(\frac{\D}{\norm{\D}^{2+\alpha}}\right),
+    \end{equation*}
+    para todo \(\alpha \in \mathbb{R}\), pelo \cref{lem:exercício11a}.
+
+    Sabemos que
+    \begin{equation*}
+        \nabla \cdot \left(\frac{\D}{\norm{\D}^3}\right) = 4\pi \delta(\D),
+    \end{equation*}
+    logo
+    \begin{equation*}
+        \nabla^2 \left(\frac{1}{\norm{\D}^\alpha}\right) = -4\pi \delta(\D)
+    \end{equation*}
+    caso \(\alpha = 1\). Para \(\alpha \neq 1\), segue pela regra de Leibniz que
+    \begin{align*}
+        \nabla^2 \left(\frac{1}{\norm{\D}^\alpha}\right)
+        &= -\alpha \left[\frac{\nabla \cdot (\D)}{\norm{\D}^{2+\alpha}} + (\D) \cdot \nabla\left(\frac{1}{\norm{\D}^{2+\alpha}}\right)\right]\\
+        &= -\alpha \left[\frac{3}{\norm{\D}^{2 + \alpha}} + (\D) \cdot \left(-(2+\alpha)\frac{\D}{\norm{\D}^{4 + \alpha}}\right)\right],
+    \end{align*}
+    onde usamos novamente o \cref{lem:exercício11a}. Como \((\D)\cdot\D = \norm{\D}^2\), segue que
+    \begin{equation*}
+        \nabla^2\left(\frac{1}{\norm{\D}^\alpha}\right) = \frac{\alpha^2 - \alpha}{\norm{\D}^{2 + \alpha}},
+    \end{equation*}
+    para \(\alpha \neq 1\).
+\end{proof}
+\begin{corollary}
+    Para todo \(\vetor{\x'} \in \mathbb{R}^3\),
+    \begin{equation*}
+        \nabla^2\left(\frac{\rho(\vetor{\x'})}{\norm{\D}^\alpha}\right) = \begin{cases}
+            \dfrac{(\alpha^2 - \alpha)\rho(\vetor{\x'})}{\norm{\D}^{2 + \alpha}}, &\text{se } \alpha \in \mathbb{R} \setminus \set{1}\\
+            -4\pi  \rho(\vetor{\x'})\delta(\D), &\text{se }\alpha = 1\\
+    \end{cases},
+    \end{equation*}
+    onde \(\rho : \mathbb{R}^3 \to \mathbb{R}\) é um campo escalar derivável.
+\end{corollary}
+\begin{proof}
+    Para dois campos escalares \(\phi, \psi\), temos \(\nabla^2(\phi\psi) = \psi \nabla^2\phi + \phi \nabla^2\psi + 2(\nabla\phi)\cdot(\nabla \psi)\), portanto segue de \(\nabla\rho(\vetor{\x'}) = 0\) que \(\nabla^2(\rho(\vetor{\x'})\psi) = \rho(\vetor{\x'}) \nabla^2\psi\). Em particular,
+    \begin{equation*}
+        \nabla^2\left(\frac{\rho(\vetor{\x'})}{\norm{\D}^\alpha}\right) = \rho(\vetor{\x'}) \nabla^2\left(\frac{1}{\norm{\D}^\alpha}\right),
+    \end{equation*}
+    portanto o resultado segue pelo \cref{lem:exercício11m}.
+\end{proof}
