@@ -1,0 +1,51 @@
+\begin{exercício}{Campo elétrico gerado por um segmento de reta em seu eixo de simetria}{exercício1}
+    Encontre o campo elétrico em um ponto \(P\) que dista \(s\) do ponto central de um segmento de linha reta de comprimento \(2L\), que tem uma densidade linear de carga uniforme \(\lambda\), como mostra a figura abaixo.
+
+    \begin{center}
+        \begin{tikzpicture}
+        % Draw the horizontal line
+        \draw[very thick] (-2,0) -- (2,0);
+
+        % Draw the z-axis
+        \draw[thin,->] (-3,0) -- (3,0) node[anchor=north west] {$z$};
+
+        % Draw the point P and the vertical line s
+        \draw[dashed] (0,0) -- (0,2) node[anchor=south west] {$P$};
+        \filldraw (0,2) circle (1pt);
+        \node at (0.3,1) {$s$};
+
+        % Draw the labels -L and +L
+        \node at (-2,-0.3) {$-L$};
+        \node at (2,-0.3) {$+L$};
+
+        \end{tikzpicture}
+    \end{center}
+    Cheque o limite \(L \to \infty\) e obtenha explicitamente o campo elétrico gerado por um fio infinito.
+\end{exercício}
+\begin{proof}[Resolução]
+    Situando a origem no ponto central do segmento de reta, o vetor posição do ponto \(P\) é dado por \(\vetor{\x} = s\vetor{e}_s\) em coordenadas cilíndricas. Em um ponto de vetor posição \(\vetor{\x'} = z\vetor{e}_z\), temos
+    \begin{equation*}
+        \D = s\vetor{e}_s - z\vetor{e}_z
+        \quad\text{com}\quad
+        \norm{\D} = \sqrt{z^2 + s^2}.
+    \end{equation*}
+    Assim, o campo elétrico em \(P\) é dado por
+    \begin{equation*}
+        \vetor{E}(\vetor{\x}) = \frac{\lambda}{4\pi \epsilon_0} \int_{-L}^L \dli{z} \frac{s \vetor{e}_s - z\vetor{e}_z}{\left(z^2 + s^2\right)^{\frac32}}.
+    \end{equation*}
+    Pela função \(z \mapsto \frac{z}{\left(z^2 + s^2\right)^{\frac32}}\) ser ímpar e o intervalo de integração ser simétrico em torno de zero, temos
+    \begin{equation*}
+        \vetor{E}(\vetor{\x}) = \frac{\lambda s\vetor{e}_s}{4\pi \epsilon_0} \int_{-L}^L\dli{z} \left(z^2 + s^2\right)^{-\frac32}.
+    \end{equation*}
+    Com a substituição de variável \(z = s \tan \psi\), segue que
+    \begin{equation*}
+        \vetor{E}(\vetor{\x}) = \frac{\lambda \vetor{e}_s}{4\pi \epsilon_0s} \int_{-\psi_L}^{\psi_L}\dli{\psi} \cos\psi = \frac{\lambda \sin\psi_L}{2\pi \epsilon_0 s}\vetor{e}_s = \frac{\lambda L}{2\pi \epsilon_0 s\sqrt{L^2 + s^2}}\vetor{e}_s,
+    \end{equation*}
+    onde \(\psi_L = \arctan\left(\frac{L}{s}\right)\).
+
+    No limite em que \(L \to \infty\), temos \(\psi_L \to \frac{\pi}{2}\), logo
+    \begin{equation*}
+        \vetor{E}(\vetor{\x}) = \frac{\lambda}{2\pi \epsilon_0 s} \vetor{e}_s
+    \end{equation*}
+    é o campo elétrico gerado por um fio infinito.
+\end{proof}
