@@ -6,5 +6,43 @@
     em que \(A \neq 0\) e \(b > 0\) são constantes. Encontre a densidade de carga \(\rho\) e faça um gráfico de \(\rho\) em função de \(r\). Qual é a carga total desse sistema?
 \end{exercício}
 \begin{proof}[Resolução]
+    Temos
+    \begin{align*}
+        \nabla \cdot \vetor{E} &= A \exp(-br)\nabla\left(\frac1r^2\vetor{e}_r\right) + A \left(\frac{1}{r^2}\vetor{e}_r\right)\nabla[\exp(-br)]\\
+        &= 4\pi A \delta(r) \exp(-br) - \frac{bA\exp(-br)}{r^2}\\
+        &= \left[4\pi \delta(\vetor{\x}) - \frac{b \exp(-b\norm{\vetor{\x}})}{\norm{\vetor{\x}}^2}\right]A
+    \end{align*}
+    como a expressão do divergente do campo elétrico. Assim, pela Lei de Gauss, a densidade de carga é dada por
+    \begin{equation*}
+        \rho(\vetor{\x}) = \left[4\pi \delta(\vetor{\x}) - \frac{b \exp(-b\norm{\vetor{\x}})}{\norm{\vetor{\x}}^2}\right]\epsilon_0 A.
+    \end{equation*}
 
+    \begin{figure}[!h]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.8\linewidth,
+                height=0.25\textheight,
+                xmin=0.2, xmax=2,
+                ymin=-4,ymax=0.5,
+                domain=0.2:2,
+                samples=500,
+                axis lines=middle,
+                xlabel={$r$},
+                ylabel={$\rho(r)$},
+                legend pos=north east,
+                ytick=\empty,
+                xtick=\empty
+            ]
+                \addplot[thick, Mauve] {-0.2*exp(-0.2*x)/x^2};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Densidade de carga do \cref{ex:exercício8} para \(r > 0\).}
+    \end{figure}
+
+    Notemos que
+    \begin{align*}
+        Q = \int_{\mathbb{R}^3} \dln3\x \rho(\vetor{\x}) = \left[4\pi - 4\pi b \int_{0}^\infty \dli{r} \exp(-br)\right]\epsilon_0 A = 0,
+    \end{align*}
+    isto é, a carga total do sistema se anula.
 \end{proof}
