@@ -1,0 +1,24 @@
+\begin{exercício}{Campo elétrico de uma superfície cilíndrica em seu eixo de simetria}{exercício2}
+    A figura abaixo representa um sistema constituído de metade de uma superfície cilíndrica de raio de curvatura \(R\), infinitamente longa e uniformemente carregada com densidade superficial de carga \(\sigma\).
+    \begin{center}
+        \includegraphics[width=0.4\linewidth]{exercício02.png}
+    \end{center}
+    Determine o campo elétrico sobre o eixo da distribuição.
+\end{exercício}
+\begin{proof}[Resolução]
+    Situemos os eixos de coordenadas de forma que a direção axial \(\vetor{e}_z\) coincida com o eixo de simetria do cilindro, no qual a origem deste sistema de coordenadas se encontra, e que a distribuição de cargas esteja situada na região de ângulo polar \(\theta \in [\pi, 2\pi]\).
+
+    Como o cilindro é infinito, ao determinar o campo elétrico na origem do sistema de coordenadas, determinamos o campo elétrico em qualquer ponto do eixo de simetria. Desse modo, temos
+    \begin{equation*}
+        \vetor{E} = \frac{1}{4\pi \epsilon_0} \int_\pi^{2\pi} R\dli{\theta} \int_{-\infty}^{\infty} \dli{z} \sigma \frac{-R \vetor{e}_s - z\vetor{e}_z}{\left(R^2 + z^2\right)^{\frac32}}.
+    \end{equation*}
+    No \cref{ex:exercício1} determinamos esta integral em \(z\), isto é,
+    \begin{equation*}
+        \int_{\infty}^\infty \dli{z} \frac{R \vetor{e}_s + z \vetor{e}_z}{(R^2 + z^2)^{\frac32}} = \frac{2}{R},
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \vetor{E} = -\frac{\sigma}{2\pi \epsilon_0} \int_{\pi}^{2\pi} \dli{\theta} \left(\cos\theta\vetor{e}_x + \sin\theta \vetor{e}_y\right) = \frac{\sigma}{\pi \epsilon_0}\vetor{e}_y
+    \end{equation*}
+    é o campo elétrico no eixo de simetria do cilindro.
+\end{proof}
