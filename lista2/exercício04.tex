@@ -1,0 +1,39 @@
+\begin{exercício}{Campo elétrico de uma esfera com distribuição de carga isotrópica}{exercício4}
+    Encontre o campo elétrico dentro e fora de uma esfera de raio \(R\), centrada na origem, com uma densidade de carga volumétrica dependente da distância do centro da forma
+    \begin{equation*}
+     \rho(\vetor{\x}) = k \norm{\vetor{\x}}^n,
+    \end{equation*}
+    sendo \(k\) uma constante real não nula e \(n\) um inteiro positivo.
+\end{exercício}
+\begin{proof}[Resolução]
+    Sem perda de generalidade podemos determinar o campo apenas ao longo do eixo axial \(\vetor{e}_z\). Por integração direta temos
+    \begin{align*}
+        \vetor{E}(z\vetor{e}_z) &= \frac{1}{4\pi \epsilon_0} \int_{0}^R \dli{r} \int_{0}^{\pi} r\dli{\theta} \int_{0}^{2\pi} r\sin\theta \dli{\phi} kr^n\frac{z\vetor{e}_z - r\vetor{e}_r}{\left(z^2 + r^2 - 2rz \cos\theta\right)^{\frac32}}\\
+                                &= \frac{k}{4\pi \epsilon_0} \int_{0}^{R} \dli{r} \int_{0}^{\pi} \dli{\theta} \int_{0}^{2\pi} \dli{\phi} \frac{r^{2+n} \sin\theta\left[(z - r \cos \theta) \vetor{e}_z - r\sin\theta \left(\cos\phi \vetor{e}_x + \sin\phi\vetor{e}_y\right) \right]}{\left(z^2 + r^2 - 2rz \cos\theta\right)^{\frac32}}\\
+                                &= \frac{k\vetor{e}_z}{2\epsilon_0} \int_{0}^{R} \dli{r} \int_{0}^{\pi} \dli{\theta} \frac{r^{2+n} \sin\theta(z - r \cos \theta)  }{\left(z^2 + r^2 - 2rz \cos\theta\right)^{\frac32}}.
+    \end{align*}
+    Com a substituição \(\xi = z^2 + r^2 - 2rz \cos\theta\), temos \(\dl{\xi} = 2rz \sin\theta \dl{\theta}\), então
+    \begin{align*}
+        \vetor{E}(z\vetor{e}_z) &= \frac{k\vetor{e}_z}{4z \epsilon_0} \int_0^R\dli{r} \int_{(z - r)^2}^{(z+r)^2} \dli{\xi} \xi^{-\frac32} r^{1 + n} \left[z - \frac{z^2 + r^2 - \xi}{2z}\right]\\
+                                &= \frac{k\vetor{e}_z}{8z^2 \epsilon_0} \int_0^R \dli{r} r^{1 + n} \int_{(z-r)^2}^{(z+r)^2}\dli{\xi} \left[(z^2 - r^2)\xi^{-\frac32} + \xi^{-\frac12}\right]\\
+                                &= \frac{k\vetor{e}_z}{4z^2 \epsilon_0} \int_0^R \dli{r} r^{1+n} \left[(z^2 - r^2)\left(\frac{1}{\abs{z-r}} - \frac{1}{\abs{z+r}}\right) + \abs{z+r} - \abs{z - r}\right]\\
+                                &= \frac{k \vetor{e}_z}{4z^2 \epsilon_0} \int_0^R \dli{r} r^{1+n}\left[\sgn(z+r) + \sgn(z-r)\right]\left[(z + r) - (z - r)\right]\\
+                                &= \frac{k \vetor{e}_z}{2z^2 \epsilon_0} \int_0^R \dli{r} r^{2+n}\left[\sgn(z+r) + \sgn(z-r)\right].
+    \end{align*}
+    Para \(z \in (0, R)\), obtemos
+    \begin{align*}
+        \vetor{E}(z\vetor{e}_z) = \frac{k \vetor{e}_z}{z^2 \epsilon_0} \int_0^z \dli{r} r^{2+n} = \frac{kz^{1+n} \vetor{e}_z}{(3+n) \epsilon_0},
+    \end{align*}
+    enquanto que para \(z > R\) temos
+    \begin{align*}
+        \vetor{E}(z\vetor{e}_z) = \frac{k \vetor{e}_z}{z^2 \epsilon_0} \int_0^R \dli{r} r^{2+n} = \frac{k R^{3+n}\vetor{e}_z}{z^2(3+n) \epsilon_0}.
+    \end{align*}
+    Relaxando a condição sobre a orientação dos eixos, segue que
+    \begin{equation*}
+        \vetor{E}(r\vetor{e}_r) = \begin{cases}
+            \dfrac{kr^{1+n}}{(3+n)\epsilon_0}\vetor{e}_r, &\text{ se }0 < r < R\\
+            \dfrac{kR^{3+n}}{r^2(3+n)\epsilon_0}\vetor{e}_r, &\text{ se }r > R\\
+        \end{cases}
+    \end{equation*}
+    é o campo elétrico dentro e fora da esfera.
+\end{proof}
