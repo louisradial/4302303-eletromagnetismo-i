@@ -86,16 +86,17 @@
         \caption{Intensidade do campo elétrico gerado por um cabo coaxial infinito para todo \(s \neq b\).}
     \end{figure}
 
-    Notemos que \(\varrho\) descreve uma distribuição de cargas localizadas, portanto podemos utilizar que o potencial elétrico \(\phi\) se anula no infinito. Como o campo elétrico é nulo para todo \(s > b\), segue que \(\phi(s) = 0\) para todo \(s > b\). Pela continuidade do potencial, temos \(\phi(b) = 0\). Seja \(\family{\Gamma_r}{r \in [0,b]}\) uma família de caminhos simples e retilíneos que começam em algum ponto da casca cilíndrica, com direção radial, indexados pela distância ao eixo do cabo \(s = r \in [0, b]\) de seu ponto de término. O potencial \(\phi(r)\) em algum ponto no cilindro de raio \(r\) é, portanto,
+    Seja \(\family{\Gamma_r}{r \in \mathbb{R}^+}\) uma família de caminhos simples e retilíneos que começam em algum ponto tal que do eixo de simetria \(s = 0\), com direção radial, indexados pela distância ao eixo do cabo \(s = r \in \mathbb{R}^+\) de seu ponto de término. O potencial \(\phi(r)\) em algum ponto no cilindro de raio \(r\) é, portanto,
     \begin{equation*}
-        \phi(r) = -\int_{\Gamma_r} \vetor{E}\cdot \dl{\vetor{\ell}}.
+        \phi(r)  = \phi_0 -\int_{\Gamma_r} \vetor{E}\cdot \dl{\vetor{\ell}}.
     \end{equation*}
-    Para \(r \in (a, b]\), temos
+    Para \(r \in [0, a)\), temos
     \begin{equation*}
-        \phi(r) = -\int_b^r \dli{s}\frac{\rho a^2}{2 \epsilon_0 s} = \frac{\rho a^2}{2 \epsilon_0} \ln\left(\frac{b}{r}\right),
+        \phi(r) = \phi_0 -\int_{0}^{r} \dli{s} \frac{\rho s}{2 \epsilon_0}= \phi_0 - \frac{\rho r^2}{4 \epsilon_0},
     \end{equation*}
-    e concluímos \(\phi(a) = \frac{\rho a^2}{2 \epsilon_0}\ln\left(\frac{b}{a}\right)\) por continuidade. Para \(r \in [0,a)\), segue que
+    e em particular vale \(\phi(a) = \phi_0 - \frac{\rho a^2}{4 \epsilon_0}\), por conta da continuidade do potencial. Para \(r \in [a, b)\), temos
     \begin{equation*}
-        \phi(r) = \phi(a)-\int_a^r \dli{s}\frac{\rho s}{2 \epsilon_0} = \phi(a) = \frac{\rho a^2}{2 \epsilon_0}\ln\left(\frac{b}{a}\right) - \frac{\rho (r^2 - a^2)}{4 \epsilon_0}.
+        \phi(r) = \phi(a) - \int_a^r \dli{s}\frac{\rho a^2}{2 \epsilon_0 s} = \phi_0 - \frac{\rho a^2}{4 \epsilon_0} - \frac{\rho a^2}{2 \epsilon_0} \ln\left(\frac{r}{a}\right),
     \end{equation*}
+    e concluímos \(\phi(b) = \phi_0 - \frac{\rho a^2}{4 \epsilon_0} - \frac{\rho a^2}{2 \epsilon_0}\ln\left(\frac{b}{a}\right)\) por continuidade. Para \(r > b\) segue que \(\phi(r) = \phi(b)\), uma vez que o campo elétrico se anula.
 \end{proof}
