@@ -10,5 +10,92 @@
 \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+    Utilizemos um sistema de coordenadas cilíndricas coaxial ao eixo de simetria do cabo. Seja
+    \begin{equation*}
+        \varrho(\vetor{\x}) = \begin{cases}
+            \rho,&\text{se }s \leq a\\
+            \sigma \delta(s - b),&\text{se }s > a
+        \end{cases}
+    \end{equation*}
+    a distribuição volumétrica de cargas do cabo coaxial, onde \(\sigma\) é a densidade superficial na casca cilíndrica de raio \(b\). Seja \(\family{\Omega_R}{R \in \mathbb{R}^+} \subset \mathbb{R}^3\) uma família de volumes cilíndricos de altura \(h\) centrados na origem e coaxiais ao cabo, indexados pelo raio \(R > 0\). A carga total \(Q(R)\) contida no cilindro \(\Omega_R\) é dada por
+    \begin{align*}
+        Q(R) = \int_{\Omega_R}\dln3\x \varrho(\vetor{\x}),
+    \end{align*}
+    logo
+    \begin{equation*}
+        Q(R) = \begin{cases}
+            \rho \pi h R^2, &\text{se }R \leq a\\
+            \rho \pi h a^2, &\text{se }a < R < b\\
+            \rho \pi h a^2 + 2 \pi b h\sigma, &\text{se }R > b,
+        \end{cases}
+    \end{equation*}
+    como facilmente se constata. Para que o cabo seja neutro, devemos ter
+    \begin{equation*}
+        \sigma = -\frac{a^2}{2b}\rho,
+    \end{equation*}
+    de modo que \(Q(R) = 0\) para todo \(R \geq b\).
 
+    Consideremos o campo elétrico gerado pelo cabo coaxial \(\vetor{E}\). Escrevamos \(\vetor{E} = E(s, \theta, z)\vetor{u}\), onde \(E\) é a intensidade do campo elétrico e \(\vetor{u}\) é um campo vetorial adimensional unitário que fornece a direção e sentido do campo elétrico em um dado ponto, exceto nos pontos em que \(E = 0\), se houver. Note que devemos ter
+    \begin{equation*}
+        \diffp{E}{z} = \diffp{E}{\theta} = 0,
+    \end{equation*}
+    por conta da invariância por rotações ao redor de \(\vetor{e}_z\) e por translações na direção axial. Ainda, \todo[é necessário que \(\vetor{u} = \vetor{e}_s\) em todo ponto, por conta da simetria cilíndrica.] Concluímos, portanto, que o campo elétrico é da forma \(\vetor{E} = E(s) \vetor{e}_s\).
+
+    Pela lei de Gauss, temos
+    \begin{equation*}
+        \oint_{\partial \Omega_R} \vetor{E}\cdot \vetor{n} \dl{S} = \frac{1}{\epsilon_0} \int_{\Omega_R}\dln3\x \varrho(\vetor{\x}) \implies 2\pi R h E(R) = \frac{Q(R)}{\epsilon_0},
+    \end{equation*}
+    para todo \(R > 0\) com \(R \neq b\). Desse modo,
+    \begin{equation*}
+        E(R) = \begin{cases}
+            \dfrac{\rho R}{2 \epsilon_0},&\text{se }R \leq a\\
+            \dfrac{\rho a^2}{2 \epsilon_0 R}, &\text{se }a < R < b\\
+            0,&\text{se }R > b
+        \end{cases}
+    \end{equation*}
+    descreve a intensidade do campo elétrico em todo o espaço, exceto na casca cilíndrica \(R = b\).
+
+    \begin{figure}[!ht]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.8\linewidth,
+                height=0.2\textheight,
+                xmin=0, xmax=4.11,
+                ymin=-0.01,ymax=2.41,
+                domain=0:5,
+                samples=500,
+                axis lines=middle,
+                xlabel={\(s\)},
+                ylabel={\(\norm{\vetor{E}}\)},
+                legend pos=north east,
+                ytick={0,4/3,2},
+                yticklabels={0,\(\frac{\rho a^2}{2 \epsilon_0 b}\), \(\frac{\rho a}{2 \epsilon_0}\)},
+                xtick={0, 2, 3},
+                xticklabels={0, \(a\), \(b\)},
+                % grid=both,
+                % grid style={line width=.1pt, draw=Surface0},
+                % major grid style={line width=.2pt,draw=Overlay2},
+                % minor tick num=3,
+            ]
+                \addplot[thick, Mauve] {x < 2 ? x : (x < 3 ? 4/x : 0)};
+                \addplot[thick, dashed] {2};
+                \addplot[thick, dashed] {4/3};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Intensidade do campo elétrico gerado por um cabo coaxial infinito para todo \(s \neq b\).}
+    \end{figure}
+
+    Notemos que \(\varrho\) descreve uma distribuição de cargas localizadas, portanto podemos utilizar que o potencial elétrico \(\phi\) se anula no infinito. Como o campo elétrico é nulo para todo \(s > b\), segue que \(\phi(s) = 0\) para todo \(s > b\). Pela continuidade do potencial, temos \(\phi(b) = 0\). Seja \(\family{\Gamma_r}{r \in [0,b]}\) uma família de caminhos simples e retilíneos que começam em algum ponto da casca cilíndrica, com direção radial, indexados pela distância ao eixo do cabo \(s = r \in [0, b]\) de seu ponto de término. O potencial \(\phi(r)\) em algum ponto no cilindro de raio \(r\) é, portanto,
+    \begin{equation*}
+        \phi(r) = -\int_{\Gamma_r} \vetor{E}\cdot \dl{\vetor{\ell}}.
+    \end{equation*}
+    Para \(r \in (a, b]\), temos
+    \begin{equation*}
+        \phi(r) = -\int_b^r \dli{s}\frac{\rho a^2}{2 \epsilon_0 s} = \frac{\rho a^2}{2 \epsilon_0} \ln\left(\frac{b}{r}\right),
+    \end{equation*}
+    e concluímos \(\phi(a) = \frac{\rho a^2}{2 \epsilon_0}\ln\left(\frac{b}{a}\right)\) por continuidade. Para \(r \in [0,a)\), segue que
+    \begin{equation*}
+        \phi(r) = \phi(a)-\int_a^r \dli{s}\frac{\rho s}{2 \epsilon_0} = \phi(a) = \frac{\rho a^2}{2 \epsilon_0}\ln\left(\frac{b}{a}\right) - \frac{\rho (r^2 - a^2)}{4 \epsilon_0}.
+    \end{equation*}
 \end{proof}
