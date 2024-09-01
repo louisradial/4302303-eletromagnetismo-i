@@ -26,14 +26,35 @@
     \begin{equation*}
         u_1 = \frac12 \epsilon_0 \norm{\vetor{E}_1}^2,\quad
         u_2 = \frac12 \epsilon_0 \norm{\vetor{E}_2}^2,\quad\text{e}\quad
-        u_\mathrm{int} = \epsilon_0 \inner{\vetor{E}_1}{\vetor{E}_2}
+        u_\mathrm{int} = \epsilon_0 \vetor{E}_1\cdot\vetor{E}_2
     \end{equation*}
-    as densidades de auto-energia de \(\vetor{E}_1\) e de \(\vetor{E}_2\) e densidade de energia interação entre \(\vetor{E}_1\) e \(\vetor{E}_2\), respectivamente, temos \(u = u_1 + u_2 + u_\mathrm{int}\). A densidade de energia de interação é dada por
+    as densidades de auto-energia de \(\vetor{E}_1\) e de \(\vetor{E}_2\) e densidade de energia interação entre \(\vetor{E}_1\) e \(\vetor{E}_2\), respectivamente, temos \(u = u_1 + u_2 + u_\mathrm{int}\).
+
+    % % Para um dia de chuva %
+    % A densidade de energia de interação é dada por
+    % \begin{equation*}
+    %     u_\mathrm{int}(\vetor{\x}) = \frac{q_1q_2}{16\pi^2 \epsilon_0} \frac{\inner{\vetor{\x} - \vetor{\x}_1}{\vetor{\x} - \vetor{\x}_2}}{\norm{\vetor{\x}- \vetor{\x}_1}^3 \norm{\vetor{\x} - \vetor{\x}_2}^3},
+    % \end{equation*}
+    % portanto definindo \(\vetor{\x}_0 = \frac12 (\vetor{\x}_1 + \vetor{\x}_2)\) e \(\vetor{\xi} = \frac12 (\vetor{\x}_1 - \vetor{\x}_2)\), temos
+    % \begin{equation*}
+    %     u_\mathrm{int}(\vetor{\x}) = \frac{q_1q_2}{16\pi^2 \epsilon_0}\frac{\norm{\vetor{\x} - \vetor{\x}_0}^2 - \norm{\vetor{\xi}}^2}{\norm{\vetor{\x} - \vetor{\x}_0 + \vetor{\xi}}^3\norm{\vetor{\x} - \vetor{\x}_0 - \vetor{\xi}}^3}.
+    % \end{equation*}
+
+    Notemos que
     \begin{equation*}
-        u_\mathrm{int}(\vetor{\x}) = \frac{q_1q_2}{16\pi^2 \epsilon_0} \frac{\inner{\vetor{\x} - \vetor{\x}_1}{\vetor{\x} - \vetor{\x}_2}}{\norm{\vetor{\x}- \vetor{\x}_1}^3 \norm{\vetor{\x} - \vetor{\x}_2}^3},
+        \vetor{E}_1\cdot\vetor{E}_2 = \phi_2 \nabla \cdot \vetor{E}_1 - \nabla \cdot (\phi_2 \vetor{E}_1),
     \end{equation*}
-    portanto definindo \(\vetor{\x}_0 = \frac12 (\vetor{\x}_1 + \vetor{\x}_2)\) e \(\vetor{\xi} = \frac12 (\vetor{\x}_1 - \vetor{\x}_2)\), temos
+    onde \(\phi_2\) é o potencial eletrostático considerando apenas a carga \(q_2\),
     \begin{equation*}
-        u_\mathrm{int}(\vetor{\x}) = \frac{q_1q_2}{16\pi^2 \epsilon_0}\frac{\norm{\vetor{\x} - \vetor{\x}_0}^2 - \norm{\vetor{\xi}}^2}{\norm{\vetor{\x} - \vetor{\x}_0 + \vetor{\xi}}^3\norm{\vetor{\x} - \vetor{\x}_0 - \vetor{\xi}}^3}.
+        \phi_2(\vetor{\x}) = \frac{q_2}{4\pi \epsilon_0 \norm{\vetor{\x} - \vetor{\x}_2}}.
     \end{equation*}
+    Seja \(\Omega_R\) um volume esférico de raio \(R > 0\) com \(R \gg \norm{\vetor{\x}_1 - \vetor{\x}_2}\), então a energia de interação contida em \(\Omega_R\) é
+    \begin{equation*}
+        U_\mathrm{int}(\Omega_R) = \int_{\Omega_R} \dln3\x u_{\mathrm{int}}(\vetor{\x}) = \int_{\Omega_R}\dln3\x \phi_2(\vetor{\x}) q_1 \delta(\vetor{\x} - \vetor{\x}_1) - \int_{\partial \Omega_R} \dli{a} \vetor{n} \cdot \phi_2(\vetor{\x})\vetor{E}_1(\vetor{\x}).
+    \end{equation*}
+    Notemos que \(\phi_2 \vetor{E}_1\cdot\vetor{n}\simeq R^{-3}\), portanto quando tomamos o limite \(R \to \infty\), obtemos
+    \begin{equation*}
+        U_\mathrm{int} = q_1 \phi_2(\vetor{\x}_1) = \frac{q_1q_2}{4\pi \epsilon_0 \norm{\vetor{\x_1} - \vetor{\x}_2}},
+    \end{equation*}
+    isto é, \(U_\mathrm{int} = W\).
 \end{proof}
