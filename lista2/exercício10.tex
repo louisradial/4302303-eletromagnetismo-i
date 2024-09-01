@@ -1,9 +1,9 @@
-\begin{exercício}{}{exercício10}
+\begin{exercício}{Energia de interação e energia armazenada na configuração}{exercício10}
     Considere duas cargas pontuais \(q_1\) e \(q_2\), localizadas nos pontos \(\vetor{\x}_1\) e \(\vetor{\x}_2\). Não há mais nenhuma outra carga no espaço. Obtenha a energia eletrostática associada à interação entre as cargas, \(W\), relacionando-a com o trabalho realizado para construir a configuração.
 
     A seguir, nosso objetivo é calcular a energia total armazenada na configuração através da expressão geral
     \begin{equation*}
-        U_E = \frac12 \epsilon_0 \int\dln3x\norm{\vetor{E}}^2
+        U_E = \frac12 \epsilon_0 \int_{\mathbb{R}^3}\dln3x\norm{\vetor{E}}^2
     \end{equation*}
     onde \(\vetor{E} = \vetor{E}_1 + \vetor{E}_2\), e compará-la com o seu cálculo anterior. Você deve lembrar das aulas que essa integral não converge para campos de cargas pontuais. Porém, antes de avaliar a integral explicitamente, mostre que \(U_E\) pode ser reorganizado como
     \begin{equation*}
@@ -12,5 +12,28 @@
     em que \(U_1\) e \(U_2\) são as energias eletrostáticas associadas apenas aos campos \(\vetor{E}_1\) e \(\vetor{E}_2\), individualmente, e \(U_{\mathrm{int}}\) é um termo de interação envolvendo produtos cruzados entre os dois campos. Prove que, ao contrário de \(U_1\) e \(U_2\), \(U_\mathrm{int}\) converge e é exatamente igual à \(W\). Interprete fisicamente.
 \end{exercício}
 \begin{proof}[Resolução]
+    Dada uma carga \(q_1\) na posição \(\vetor{\x}_1\), o trabalho necessário para colocar a carga \(q_2\) na posição \(\vetor{\x}_2\) é dado por
+    \begin{equation*}
+        W = - q_2 \int_\infty^{\vetor{\x}_2} \vetor{E}_1 \cdot \dl{\vetor{\ell}} = \frac{q_1q_2}{4\pi \epsilon_0 \norm{\vetor{\x}_1 - \vetor{\x}_2}},
+    \end{equation*}
+    notando que o mesmo resultado seria obtido se começássemos com a carga \(q_2\) na posição \(\vetor{\x}_2\) e desejássemos colocar a carga \(q_1\) na posição \(\vetor{\x}_1\).
 
+    Consideremos agora a densidade de energia da configuração,
+    \begin{equation*}
+        u = \frac12 \epsilon_0 \norm{\vetor{E}}^2,
+    \end{equation*}
+    onde o campo elétrico é dada pela superposição \(\vetor{E} = \vetor{E}_1 + \vetor{E}_2\). Assim, sendo
+    \begin{equation*}
+        u_1 = \frac12 \epsilon_0 \norm{\vetor{E}_1}^2,\quad
+        u_2 = \frac12 \epsilon_0 \norm{\vetor{E}_2}^2,\quad\text{e}\quad
+        u_\mathrm{int} = \epsilon_0 \inner{\vetor{E}_1}{\vetor{E}_2}
+    \end{equation*}
+    as densidades de auto-energia de \(\vetor{E}_1\) e de \(\vetor{E}_2\) e densidade de energia interação entre \(\vetor{E}_1\) e \(\vetor{E}_2\), respectivamente, temos \(u = u_1 + u_2 + u_\mathrm{int}\). A densidade de energia de interação é dada por
+    \begin{equation*}
+        u_\mathrm{int}(\vetor{\x}) = \frac{q_1q_2}{16\pi^2 \epsilon_0} \frac{\inner{\vetor{\x} - \vetor{\x}_1}{\vetor{\x} - \vetor{\x}_2}}{\norm{\vetor{\x}- \vetor{\x}_1}^3 \norm{\vetor{\x} - \vetor{\x}_2}^3},
+    \end{equation*}
+    portanto definindo \(\vetor{\x}_0 = \frac12 (\vetor{\x}_1 + \vetor{\x}_2)\) e \(\vetor{\xi} = \frac12 (\vetor{\x}_1 - \vetor{\x}_2)\), temos
+    \begin{equation*}
+        u_\mathrm{int}(\vetor{\x}) = \frac{q_1q_2}{16\pi^2 \epsilon_0}\frac{\norm{\vetor{\x} - \vetor{\x}_0}^2 - \norm{\vetor{\xi}}^2}{\norm{\vetor{\x} - \vetor{\x}_0 + \vetor{\xi}}^3\norm{\vetor{\x} - \vetor{\x}_0 - \vetor{\xi}}^3}.
+    \end{equation*}
 \end{proof}
