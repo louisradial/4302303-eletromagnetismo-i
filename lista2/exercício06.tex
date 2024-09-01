@@ -35,11 +35,11 @@
     \end{equation*}
     de modo que \(Q(R) = 0\) para todo \(R \geq b\).
 
-    Consideremos o campo elétrico gerado pelo cabo coaxial \(\vetor{E}\). Escrevamos \(\vetor{E} = E(s, \theta, z)\vetor{u}\), onde \(E\) é a intensidade do campo elétrico e \(\vetor{u}\) é um campo vetorial adimensional unitário que fornece a direção e sentido do campo elétrico em um dado ponto, exceto nos pontos em que \(E = 0\), se houver. Note que devemos ter
+    Consideremos o potencial eletrostático \(\phi = \phi(s, \theta, z)\). Pela simetria de translação na direção do eixo do cabo e pela rotação ao redor deste eixo devemos ter
     \begin{equation*}
-        \diffp{E}{z} = \diffp{E}{\theta} = 0,
+        \diffp{\phi}{z} = \diffp{\phi}{\theta} = 0,
     \end{equation*}
-    por conta da invariância por rotações ao redor de \(\vetor{e}_z\) e por translações na direção axial. Ainda, \todo[é necessário que \(\vetor{u} = \vetor{e}_s\) em todo ponto, por conta da simetria cilíndrica.] Concluímos, portanto, que o campo elétrico é da forma \(\vetor{E} = E(s) \vetor{e}_s\).
+    donde segue que \(\phi = \phi(s)\). Concluímos, portanto, que o campo elétrico é dado por \(\vetor{E} = -\diffp{\phi}{s} \vetor{e}_s\), e podemos escrever \(\vetor{E} = E(s) \vetor{e}_s,\) onde \(E\) é a intensidade do campo.
 
     Pela lei de Gauss, temos
     \begin{equation*}
@@ -53,7 +53,14 @@
             0,&\text{se }R > b
         \end{cases}
     \end{equation*}
-    descreve a intensidade do campo elétrico em todo o espaço, exceto na casca cilíndrica \(R = b\).
+    descreve a intensidade do campo elétrico em todo o espaço, exceto na casca cilíndrica \(R = b\). Isto é, o campo elétrico é dado por
+    \begin{equation*}
+        \vetor{E}(s \vetor{e}_s + z \vetor{e}_z) = \begin{cases}
+            \dfrac{\rho s}{2 \epsilon_0}\vetor{e}_s,&\text{se }s \leq a\\
+            \dfrac{\rho a^2}{2 \epsilon_0 s}\vetor{e}_s, &\text{se }a < s < b\\
+            \vetor{0},&\text{se }s > b.
+        \end{cases}
+    \end{equation*}
 
     \begin{figure}[!ht]
         \centering
@@ -137,9 +144,27 @@
     \begin{equation*}
         \phi(s) = \begin{cases}
             \phi_0 - \dfrac{\rho s^2}{4 \epsilon_0}, &\text{se }s \in [0,a)\\
-            \phi_0 - \dfrac{\rho a^2}{2 \epsilon_0}\left(\dfrac{1}{2} - \ln\left[\dfrac{s}{a}\right)\right], &\text{se }s\in[a,b]\\
-            \phi_0 - \dfrac{\rho a^2}{2 \epsilon_0}\left[\dfrac{1}{2} - \ln\left(\dfrac{b}{a}\right)\right], &\text{se }s\in(b, \infty)
+            \phi_0 - \dfrac{\rho a^2}{2 \epsilon_0}\left[\dfrac{1}{2} + \ln\left(\dfrac{s}{a}\right)\right], &\text{se }s\in[a,b]\\
+            \phi_0 - \dfrac{\rho a^2}{2 \epsilon_0}\left[\dfrac{1}{2} + \ln\left(\dfrac{b}{a}\right)\right], &\text{se }s\in(b, \infty)
         \end{cases}
     \end{equation*}
     e em particular temos \(\phi(b) - \phi(a) = - \frac{\rho a^2}{2 \epsilon_0} \ln\left(\frac{b}{a}\right)\).
+
+    A densidade de energia eletrostática armazenada na configuração é dada por
+    \begin{equation*}
+        u = \frac12 \epsilon_0 \norm{E}^2 = \begin{cases}
+            \frac{\rho^2 s^2}{8\epsilon_0}, & \text{se }s \in [0, a]\\
+            \frac{\rho^2 a^4}{8 \epsilon_0 s^2}, &\text{se }s \in (a, b)\\
+            0, &\text{se }s \in (b, \infty).
+        \end{cases}
+    \end{equation*}
+    Desse modo, a energia \(U_{\ell}\) armazenada em um volume \(\Sigma_\ell = \setc*{\vetor{\x} \in \mathbb{R}^3}{\inner{\vetor{e}_z}{\vetor{\x}} \in [0, \ell]}\subset \mathbb{R}^3\) é
+    \begin{equation*}
+        U_{\ell} = \int_{\Sigma_\ell}\dln3x u = 2\pi \ell \int_{0}^\infty \dli{s} su = \frac{2\pi \ell \rho^2}{8 \epsilon_0}\left( \int_0^a \dli{s} s^3 + \int_a^b \dli{s} a^4s^{-1}\right) = \frac{\pi \ell \rho^2a^4}{4 \epsilon_0}\left[\frac{1}{4} + \ln\left(\frac{b}{a}\right)\right].
+    \end{equation*}
+    Concluímos, portanto, que
+    \begin{equation*}
+        \frac{U_\ell}{\ell} = \frac{\pi\rho^2a^4}{4 \epsilon_0}\left[\frac{1}{4} + \ln\left(\frac{b}{a}\right)\right]
+    \end{equation*}
+    é a energia eletrostática armazenada na configuração por unidade de comprimento do cabo.
 \end{proof}
