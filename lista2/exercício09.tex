@@ -76,8 +76,9 @@
         \langle \norm{\vetor{\x}_e} \rangle = \frac{1}{-q_e} \int_{\mathbb{R}^3} \dln3\x \norm{\vetor{\x}} \rho_e(\vetor{\x})
         &= \int_0^\infty \dli{r} \frac{4r^3}{a_0^3}\exp\left(-\frac{2r}{a_0}\right)\\
         &= \frac14a_0 \int_0^\infty \dli\xi \xi^3 e^{-\xi}\\
-        &= \frac14a_0 \diffp*[3]{\left(\int_0^\infty \dli\xi e^{-\beta \xi}\right)}{\beta}[\beta = 1]\\
-        &= \frac14a_0 \diff*[3]{\beta^{-1}}{\beta}[\beta = 1]= \frac32a_0,
+        &= -\frac14a_0 \diffp*[3]{\left(\int_0^\infty \dli\xi e^{-\beta \xi}\right)}{\beta}[\beta = 1]\\
+        &= -\frac14a_0 \diff*[3]{\beta^{-1}}{\beta}[\beta = 1]\\
+        &= \frac32a_0,
     \end{align*}
-    de forma que podemos interpretar a a distribuição de carga \(\rho_e\) como uma partícula de carga \(-q_e\) não localizada mas com valor esperado de sua distância à carga \(+q_e\) igual a \(\frac32 a_0\).
+    de forma que podemos interpretar a a distribuição de carga \(\rho_e\) como uma partícula de carga \(-q_e\) não localizada mas com valor esperado de sua distância à carga \(+q_e\) igual a \(\frac32 a_0\). Concluímos, portanto, que as densidades de carga \(q_e \delta(\vetor{\x})\) e \(\rho_e\) correspondem ao próton do núcleo do átomo de hidrogênio e ao elétron do átomo de hidrogênio.
 \end{proof}
