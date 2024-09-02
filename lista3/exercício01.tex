@@ -1,0 +1,40 @@
+\begin{exercício}{Teorema da reciprocidade de Green}{exercício1}
+    Considere uma cavidade de forma arbitrária completamente cercada por um conjunto de estruturas condutoras, todas de formas também arbitrárias. Chame o volume da cavidade de \(\Omega\) e sua superfície (isto é, a fronteira entre a cavidade e a coleção de condutores) de \(\partial \Omega\). A figura abaixo mostra a ideia do arranjo, em que cada um dos condutores (cada um representado por uma cor) é mantido em seu próprio potencial, denotados por \(\phi_n\).
+
+    \begin{center}
+        \begin{tikzpicture}[scale=0.7]
+        \foreach \i/\col in {1/Pink, 2/Mauve, 3/Sky, 4/Teal, 5/Red, 6/Yellow, 7/Lavender} {
+            \fill[\col!50] (90+\i*360/7:4cm) -- (90+\i*360/7+360/7:4cm) --
+                        (90+\i*360/7+360/7:2cm) -- (90+\i*360/7:2cm) -- cycle;
+        }
+
+        \fill[Overlay2!5] (0,0) circle (2cm);
+        \draw[dashed] (0,0) circle (2cm);
+
+        % Labels for the outer segments
+        \node at (90+1*360/7+360/14:3cm) {$\phi_1$};
+        \node at (90+2*360/7+360/14:3cm) {$\phi_2$};
+        \node at (90+3*360/7+360/14:3cm) {$\phi_3$};
+        \node at (90+4*360/7+360/14:3cm) {$\phi_4$};
+        \node at (90+5*360/7+360/14:3cm) {$\phi_5$};
+        \node at (90+6*360/7+360/14:3cm) {$\phi_6$};
+        \node at (90+7*360/7+360/14:3cm) {$\phi_7$};
+
+        \node at (0,0) {$\Omega$};
+        \node at (1.5,0.6) {$\partial \Omega$};
+        \end{tikzpicture}
+    \end{center}
+    Suponha que não haja contato elétrico entre os condutores. Considere agora \emph{duas} situações distintas:
+    \begin{enumerate}[label=(\alph*)]
+        \item os potenciais dos condutores são tais que o potencial é uma função \(\phi(\vetor{\x})\) em \(\partial \Omega\) e existe tanto uma densidade de carga \(\rho(\vetor{\x})\) no interior de \(\Omega\) quanto uma densidade superficial \(\sigma\) em \(\partial \Omega\).
+        \item os potenciais dos condutores são tais que o potencial é uma função \(\tilde{\phi}(\vetor{\x})\) em \(\partial \Omega\) e existe tanto uma densidade de carga \(\tilde{\rho}(\vetor{\x})\) no interior de \(\Omega\) quanto uma densidade superficial de carga \(\tilde{\sigma}\) em \(\partial \Omega\).
+    \end{enumerate}
+    Em outras palavras, as situações (a) e (b) representam dois problemas de condições de contorno diferentes, com distribuições de cargas diferentes, sobre a \emph{mesma} estrutura (isto é, mesmo domínio; mesmo \(\Omega\) e \(\partial \Omega\)). Prove que
+    \begin{equation*}
+        \int_{\Omega}\dln3\x \phi(\vetor{\x}) \tilde{\rho}(\vetor{\x}) + \oint_{\partial \Omega}\dli{a} \phi(\vetor{\x})\tilde{\sigma}(\vetor{\x}) = \int_{\Omega}\dln3x\x \tilde{\phi}(\vetor{\x})\rho(\vetor{\x}) + \oint_{\partial \Omega} \dli{a} \tilde{\phi}(\vetor{\x})\sigma(\vetor{\x}),
+    \end{equation*}
+    igualdade por sua vez conhecida como teorema da reciprocidade de Green.
+\end{exercício}
+\begin{proof}[Resolução]
+
+\end{proof}
