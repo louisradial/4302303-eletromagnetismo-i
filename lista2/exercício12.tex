@@ -1,4 +1,4 @@
-\begin{exercício}{}{exercício12}
+\begin{exercício}{Densidade superfícial de força em um condutor}{exercício12}
     Considere um condutor carregado cujo formato é arbitrário. A densidade de carga sobre os pontos de sua superfície é \(\sigma(\vetor{\x})\). Mostre que a força elétrica por unidade de área sobre um elemento de carga localizado em \(\vetor{\x}\), devido a todo o restante da superfície, é dado por
     \begin{equation*}
         \vetor{f}(\vetor{x}) = \frac{\sigma(\vetor{\x})^2}{2 \epsilon_0}\vetor{n},
@@ -6,5 +6,13 @@
     onde \(\vetor{n}\) é a normal à superfície no ponto \(\vetor{\x}\).
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Consideremos um elemento de área \(\delta S\) no ponto \(\vetor{\x}\). Neste ponto, o campo elétrico resultante devido à configuração é \(\vetor{E}(\vetor{\x}) = \frac{\sigma(\vetor{\x})}{\epsilon_0}\vetor{n}\). Escrevamos \(\vetor{E} = \vetor{E}_{\delta S} + \vetor{E}_{\mathrm{resto}}\), onde \(\vetor{E}_{\delta S}\) é a contribuição do campo devido ao elemento de área e \(\vetor{E}_\mathrm{resto}\) é a contribuição devido ao restante da superfície do condutor. Aproximemos \(\delta S\) a um plano, de modo que o campo \(\vetor{E}_{\delta S}\) em um ponto \(\vetor{\x} + \varepsilon \vetor{n}\) da vizinhança de \(\delta S\) seja dado por
+    \begin{equation*}
+        \vetor{E}_{\delta S}(\vetor{\x} + \varepsilon \vetor{n}) = \frac{\sigma}{2 \epsilon_0} \sgn(\varepsilon) \vetor{n},
+    \end{equation*}
+    pelo \cref{ex:exercício3}. Como o campo resultante é nulo no interior do condutor, \(\varepsilon < 0\), devemos ter \(\vetor{E}_\mathrm{resto}(\vetor{\x} + \varepsilon \vetor{n}) = \frac{\sigma}{2 \epsilon_0}\vetor{n}\). Assim, a força por unidade de área em \(\delta S\) é dada por
+    \begin{equation*}
+        \vetor{f}(\vetor{\x}) = \sigma(\vetor{\x}) \vetor{E}_\mathrm{resto}(\vetor{\x}) = \frac{\sigma(\vetor{\x})^2}{2 \epsilon_0}\vetor{n},
+    \end{equation*}
+    como desejado.
 \end{proof}
