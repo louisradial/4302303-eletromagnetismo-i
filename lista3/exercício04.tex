@@ -6,5 +6,37 @@
     em que \(\phi_0\) e \(\alpha\) são constantes reais e positivas. Encontre o potencial em todos os pontos do eixo \(z\) para \(z > 0\).
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Sejam
+    \begin{equation*}
+        \Omega = \setc{\vetor{\x} \in \mathbb{R}^3}{\inner{\vetor{e}_z}{\vetor{\x}} > 0}
+        \quad\text{e}\quad
+        \Sigma = \setc{\vetor{\x} \in \mathbb{R}^3}{\inner{\vetor{u}}{\vetor{\x}} = 0}.
+    \end{equation*}
+    A solução para a equação de Laplace em \(\Omega\) com condição de contorno \(\phi(\vetor{\x}) = \phi_P(\inner{\vetor{e}_x}{\vetor{\x}}, \inner{\vetor{e}_y}{\vetor{\x}})\) para todo \(\vetor{\x} \in \Sigma\) é dada por
+    \begin{align*}
+        \phi(\vetor{\x}) &= -\frac1{4\pi} \oint_{\partial \Omega} \dli{a'} \phi(\vetor{\x'}) \diffp{G_D(\vetor{\x}, \vetor{\x'})}{n'}\\
+                         &= -\frac1{4\pi} \int_{\Sigma} \dli{a'} \phi(\vetor{\x'}) \vetor{n'} \cdot \nabla'\left(\frac{1}{\norm{\D}} - \frac{1}{\norm{\vetor{\x} - \vetor{\x'} + 2\inner{\vetor{e}_z}{\vetor{\x'}}\vetor{e}_z}}\right)\\
+                         &=-\frac1{4\pi} \int_{\Sigma} \dli{a'} \phi(\vetor{\x'}) \left[\frac{\inner{\vetor{n'}}{\D}}{\norm{\D}^3} -\vetor{n'}\cdot \nabla'\left(\frac{1}{\norm{\vetor{\x} - \vetor{\x'} + 2\inner{\vetor{e}_z}{\vetor{\x'}}\vetor{e}_z}}\right)\right],
+    \end{align*}
+    para todo \(\vetor{\x} \in \Omega\). Computemos a derivada direcional utilizando coordenadas cartesianas
+    \begin{align*}
+        \diffp*{\left(\frac{1}{\norm{\vetor{\x} - \vetor{\x'} + 2\inner{\vetor{e}_z}{\vetor{\x'}}\vetor{e}_z}}\right)}{z'}
+        &= \diffp*{\left[(x - x')^2 + (y - y')^2 + (z + z')^2\right]^{-\frac12}}{z'}\\
+        &= -\frac{z + z'}{\norm{\vetor{\x} - \vetor{\x'} + 2\inner{\vetor{e}_z}{\vetor{\x'}}\vetor{e}_z}^3},
+    \end{align*}
+    logo
+    \begin{equation*}
+        \vetor{n'} \cdot \nabla'\left(\frac{1}{\norm{\vetor{\x} - \vetor{\x'} + 2\inner{\vetor{e}_z}{\vetor{\x'}}\vetor{e}_z}}\right) = \frac{\inner{\vetor{e}_z}{\vetor{\x} - \vetor{\x'}+ 2\inner{\vetor{e_z}}{\vetor{\x'}}}}{\norm{\vetor{\x} - \vetor{\x'} + 2\inner{\vetor{e}_z}{\vetor{\x'}}\vetor{e}_z}^3}.
+    \end{equation*}
+    Assim,
+    \begin{align*}
+        \phi(x \vetor{e}_x + y \vetor{e}_y + z \vetor{e}_z)
+        &= -\frac1{4\pi} \int_{\Sigma} \dli{a'} \phi(\vetor{\x'}) \left(\frac{\inner{\vetor{n'}}{\D}}{\norm{\D}^3} -\frac{\inner{\vetor{e_z}}{\vetor{\x} + \vetor{\x'}}}{\norm{\vetor{\x} - \vetor{\x'} + 2\inner{\vetor{e}_z}{\vetor{\x'}}\vetor{e}_z}^3}\right)\\
+        &= \frac{\phi_0 z}{2\pi} \int_{\mathbb{R}} \dli{x'} \int_{\mathbb{R}} \dli{y'} \frac{\exp\left(-\frac{x'^2 + y'^2}{2 \alpha^2}\right)}{\left[(x - x')^2 + (y-y')^2 + z^2\right]^{\frac32}}
+    \end{align*}
+    é o potencial para todo \((x,y,z) \in \Omega\). Em particular,
+    \begin{equation*}
+        \phi(z \vetor{e}_z) = \phi_0 z \int_0^\infty \dli{r} \frac{r}{\left(r^2 + z^2\right)^{\frac32}} \exp\left(-\frac{r^2}{2 \alpha^2}\right)
+    \end{equation*}
+    é o potencial ao longo do eixo \(z\).
 \end{proof}
