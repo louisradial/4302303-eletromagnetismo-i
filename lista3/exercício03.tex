@@ -1,6 +1,36 @@
-\begin{exercício}{}{exercício3}
-    Uma carga pontual \(q\) é posicionada a uma distância \(a\) acima de um plano condutor aterrado. Encontre o potencial em todo o espaço. Utiliza sua resposta para encontrar a função de Green \(G_D(\vetor{\x}, \vetor{\x'})\) específica para essa superfície de contorno.
+\begin{exercício}{Problema clássico do método das imagens}{exercício3}
+    Uma carga pontual \(q\) é posicionada a uma distância \(a\) acima de um plano condutor aterrado. Encontre o potencial em todo o espaço. Utilize sua resposta para encontrar a função de Green \(G_D(\vetor{\x}, \vetor{\x'})\) específica para essa superfície de contorno.
 \end{exercício}
 \begin{proof}[Resolução]
+    Sejam \(\vetor{u}\) um versor ortogonal ao plano fixo,
+    \begin{equation*}
+        \Omega_+ = \setc{\vetor{\x} \in \mathbb{R}^3}{\inner{\vetor{u}}{\vetor{\x}} > 0},\quad
+        \Omega_- = \setc{\vetor{\x} \in \mathbb{R}^3}{\inner{\vetor{u}}{\vetor{\x}} < 0},\quad\text{e}\quad
+        \Sigma = \setc{\vetor{\x} \in \mathbb{R}^3}{\inner{\vetor{u}}{\vetor{\x}} = 0}.
+    \end{equation*}
+    Notemos temos o problema de Dirichlet trivial em \(\Omega_-\), portanto \(\phi(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \Omega_- \cup \Sigma\). Em \(\Omega_+\), temos o problema de Dirichlet \(\phi(\x) = 0\) para todo \(\vetor{\x} \in \partial \Omega_+\) com \(\rho(\vetor{\x}) = q \delta(\vetor{\x} - a\vetor{u})\) para todo \(\vetor{\x} \in \Omega_+\). Sendo \(G_D(\vetor{\x}, \vetor{\x'})\) a função de Green para essa superfície de contorno, temos
+    \begin{align*}
+        \phi(\vetor{\x}) &= \frac{1}{4\pi \epsilon_0} \int_{\Omega_+} \dln3{\x'} \rho(\vetor{\x'})G_D(\vetor{\x}, \vetor{\x'}) - \frac1{4\pi} \oint_{\partial \Omega_+} \dli{a'} \phi(\vetor{\x'})\diffp{G_D(\vetor{\x}, \vetor{\x'})}{n'}\\
+                         &=  \frac{q}{4\pi \epsilon_0} G_D(\vetor{\x}, a \vetor{u})
+    \end{align*}
+    como a solução formal para a equação de Poisson em \(\Omega_+\) com estas condições de contorno.
 
+    Consideremos agora o problema auxiliar em que o plano condutor está ausente, mas com a presença de uma carga \(-q\) em \(a \vetor{u} - 2\inner{\vetor{u}}{a\vetor{u}}\vetor{u} = -a \vetor{u}\). O potencial \(\tilde{\phi}\) neste problema auxiliar é dado por
+    \begin{equation*}
+        \tilde{\phi}(\vetor{\x}) = \frac{q}{4\pi \epsilon_0} \left(\frac{1}{\norm{\vetor{\x} - a \vetor{u}}} - \frac{1}{\norm{\vetor{\x} + a\vetor{u}}}\right),
+    \end{equation*}
+    logo temos que \(\tilde{\phi}(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \Sigma\). Para todo \(\vetor{\x} \in \Omega_+\), há \(\tilde{\rho}(\vetor{\x}) = q \delta(\vetor{\x} - a\vetor{u})\).
+
+    Pela unicidade de soluções para o problema de Dirichlet, o potencial
+    \begin{equation*}
+        \phi(\vetor{\x}) = \begin{cases}
+            0,&\text{se }\vetor{\x} \in \Omega_- \cup \Sigma\\
+            \dfrac{q}{4\pi \epsilon_0} \left(\dfrac{1}{\norm{\vetor{\x} - a \vetor{u}}} - \dfrac{1}{\norm{\vetor{\x} + a\vetor{u}}}\right),&\text{se }\vetor{\x} \in \Omega_+
+        \end{cases}
+    \end{equation*}
+    é a solução para a equação de Poisson considerada. Por conseguinte, segue que
+    \begin{equation*}
+        G_D(\vetor{\x}, \vetor{\x'}) = \frac{1}{\norm{\D}} - \frac{1}{\norm{\vetor{\x} - \vetor{\x'} + 2\inner{\vetor{u}}{\vetor{\x'}}\vetor{u}}}
+    \end{equation*}
+    é a função de Green para esta superfície de contorno.
 \end{proof}
