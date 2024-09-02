@@ -1,7 +1,7 @@
-\begin{exercício}{}{exercício13}
+\begin{exercício}{Modificação da Lei de Coulomb}{exercício13}
     Suponha que, ao invés da Lei de Coulomb, novos experimento extremamente precisos relevaram que força elétrica entre duas cargas pontuais \(q_1\) e \(q_2\) em repouso é, de fato;
     \begin{equation*}
-        \vetor{F}_{1(2)} = \left(1 - \sqrt{a \norm{\D}}\right)\frac{q_1q_2}{4\pi \epsilon_0} \frac{\D}{\norm{\D}^3},
+        \vetor{F}_{1(2)} = \left(1 - \alpha\sqrt{\norm{\D}}\right)\frac{q_1q_2}{4\pi \epsilon_0} \frac{\D}{\norm{\D}^3},
     \end{equation*}
     em que \(\alpha > 0\) e \(\vetor{F}_{2(1)} = -\vetor{F}_{1(2)}\). A tarefa aqui é reconstruir as Leis fundamentais da Eletrostática, supondo que ainda é válido o Princípio da Superposição.
     \begin{enumerate}[label=(\alph*)]
@@ -9,9 +9,61 @@
         \item Calcule \(\nabla \cdot \vetor{E}\) diretamente a partir da expressão integral obtida no item (a). Compare com o que deveria ser a partir da Lei de Coulomb.
         \item Considere uma carga pontual e um plano contendo essa carga (para facilitar, você pode colocar a carga na origem e considerar o plano \(xy\)). Escolha uma curva fechada \(\Gamma\) sobre o plano em torno dessa carga e calcule \(\oint_\Gamma \vetor{E}\cdot \dl{\vetor{\ell}}\). Compare com o resultado obtido a partir da Lei de Coulomb.
         \item Este novo campo elétrico admite um potencial escalar, de forma que podemos escrever \(\vetor{E} = - \nabla\phi\)? A partir disso, estude o rotacional de \(\vetor{E}\).
-        \item Por fim, considere novamente uma carga pontual e calcule o fluxo \(\oint_\Sigma \vetor{E}\cdot \vetor{n}\dl{S}\), onde \(\Sigma\) é uma superfície esférica de raio \(R\) centrada na posição da carga. Compare com a Lei de Gauss da Eletrostática usual, baseada na Lei de Coulomb. Esse resultado é compatível com o que você obteve para \(\nabla\cdot \vetor{E}\) no item (b)?
+        \item Por fim, considere novamente uma carga pontual e calcule o fluxo \(\oint_\Sigma \vetor{E}\cdot \vetor{n}\dl{a}\), onde \(\Sigma\) é uma superfície esférica de raio \(R\) centrada na posição da carga. Compare com a Lei de Gauss da Eletrostática usual, baseada na Lei de Coulomb. Esse resultado é compatível com o que você obteve para \(\nabla\cdot \vetor{E}\) no item (b)?
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+    O campo elétrico \(\vetor{E}\) de uma carga pontual \(q\) na posição \(\tilde{\vetor{\x}}\) será dado por
+    \begin{equation*}
+        \vetor{E}(\vetor{\x}) = \frac{q}{4\pi \epsilon_0} \left(1 - \alpha\sqrt{\norm{\vetor{\x} - \tilde{\vetor{\x}}}}\right) \frac{\vetor{\x} - \tilde{\vetor{\x}}}{\norm{\vetor{\x} - \tilde{\vetor{\x}}}^3},
+    \end{equation*}
+    de modo que a força em uma carga \(Q\) na posição \(\vetor{\x}\) devido a \(q\) é \(\vetor{F} = Q \vetor{E}(\vetor{\x})\). Assumindo a validade do princípio de superposição, estendemos a definição do campo elétrico para uma distribuição \(\rho(\vetor{\x})\) de cargas, então
+    \begin{equation*}
+        \vetor{E}(\vetor{\x}) = \frac{1}{4\pi \epsilon_0} \int_{\mathbb{R}^3} \dln3{\x'}\rho(\vetor{\x'})\left(1 - \alpha\sqrt{\norm{\D}} \right)\frac{\D}{\norm{\D}^3}
+    \end{equation*}
+    é a expressão integral para o campo elétrico, e verifica-se facilmente que \(\rho(\vetor{\x}) = q \delta(\vetor{\x} - \tilde{\vetor{\x}})\) recupera a expressão para uma carga pontual.
 
+    Recordemos que
+    \begin{equation*}
+        \nabla \cdot \left(\frac{\D}{\norm{\D}^{1+\kappa}}\right) = \begin{cases}
+            \dfrac{2 - \kappa}{\norm{\D}^{\kappa + 1}},& \text{se }\kappa \neq 2\\
+            4\pi \delta(\vetor{\x} - \vetor{\x'}),& \text{se }\kappa = 2.
+        \end{cases}
+    \end{equation*}
+    O divergente do campo elétrico é dado por
+    \begin{align*}
+        \nabla \cdot \vetor{E}(\vetor{\x}) &= \frac{1}{4\pi \epsilon_0} \int_{\mathbb{R}^3} \dln3{\x'} \rho(\vetor{\x'}) \left[\nabla\cdot\left(\frac{\D}{\norm{\D}^3}\right) - \alpha \nabla\cdot\left(\frac{\D}{\norm{\D}^{\frac52}}\right)\right]\\
+                                           &= \frac{\rho(\vetor{\x})}{\epsilon_0} - \frac{\alpha}{8\pi \epsilon_0} \int_{\mathbb{R}^3}\dln3{\x'} \frac{\rho(\vetor{\x'})}{\norm{\D}^{\frac52}},
+    \end{align*}
+    portanto vemos que a correção à lei de Gauss é proporcional à \(\alpha\).
+
+    Consideremos a carga pontual novamente e um caminho circular fechado \(\Gamma\) centrado na posição da carga. Como o campo é radial e depende apenas da distância à carga, é evidente que \(\oint_{\Gamma} \vetor{E}\cdot\dl{\ell} = 0\), portanto não podemos descartar a possibilidade de que o campo é conservativo. De fato, consideremos
+    \begin{equation*}
+        \nabla\left(\frac{1}{\norm{\D}^\kappa}\right) = - \kappa\frac{\D}{\norm{\D}^{\kappa + 2}}
+    \end{equation*}
+    para todo \(\kappa \in \mathbb{R}\), então
+    \begin{align*}
+        \vetor{E}(\vetor{\x}) &= \frac{1}{4\pi \epsilon_0} \int_{\mathbb{R}^3} \dln3{\x'}\rho(\vetor{\x'})\left(1 - \alpha\sqrt{\norm{\D}} \right)\frac{\D}{\norm{\D}^3}\\
+                              &= \frac{1}{4\pi \epsilon_0} \int_{\mathbb{R}^3} \dln3{\x'}\rho(\vetor{\x'})\nabla\left(-\frac{1}{\norm{\D}} - \frac{2\alpha}{\sqrt{\norm{\D}}} \right)\\
+                              &= - \nabla\left[\frac{1}{4\pi \epsilon_0} \int_{\mathbb{R}^3} \dln3{\x'}\rho(\vetor{\x'})\left(\frac{1}{\norm{\D}} + \frac{2\alpha}{\sqrt{\norm{\D}}} \right)\right].
+    \end{align*}
+    Isto é, existe um potencial escalar \(\phi\), dado por
+    \begin{equation*}
+        \phi(\vetor{\x}) = \frac{1}{4\pi \epsilon_0} \int_{\mathbb{R}^3} \dln3{\x'}\rho(\vetor{\x'})\left(\frac{1}{\norm{\D}} + \frac{2\alpha}{\sqrt{\norm{\D}}} \right),
+    \end{equation*}
+    tal que \(\vetor{E} = -\nabla \phi\), portanto concluímos que \(\vetor{E}\) é um campo irrotacional.
+
+    Consideremos mais uma vez a carga pontual e uma superfície \(\Sigma\) esférica de raio \(R\) centrada na posição da carga e seja \(\Omega\) a região delimitada por \(\Sigma\) que contém a carga. O fluxo do campo elétrico por \(\Sigma\) é
+    \begin{equation*}
+        \Phi = \oint_\Sigma \dli{a} \vetor{n} \cdot \vetor{E}(\vetor{\x}) = \frac{q}{\epsilon_0}\left(1 - \alpha \sqrt{R}\right).
+    \end{equation*}
+    No caso desta carga pontual na posição \(\tilde{\vetor{\x}}\), o divergente do campo elétrico é dado por
+    \begin{equation*}
+        \nabla \cdot \vetor{E}(\vetor{\x}) = \frac{q \delta(\vetor{\x} - \tilde{\vetor{\x}})}{\epsilon_0} - \frac{\alpha q}{8\pi \epsilon_0} \int_{\mathbb{R}^3} \dln3{\x'} \frac{\delta(\vetor{\x'} - \tilde{\vetor{\x}})}{\norm{\D}^{\frac52}} = \frac{q}{\epsilon_0}\left[\delta(\vetor{\x} - \tilde{\vetor{\x}}) - \frac{\alpha}{8\pi \norm{\vetor{\x} - \tilde{\vetor{\x}}}^{\frac52}}\right].
+    \end{equation*}
+    Integrando o divergente em \(\Omega\), temos
+    \begin{equation*}
+        \int_{\Omega} \dln3{\x} \nabla \cdot \vetor{E}(\vetor{\x}) = \frac{q}{\epsilon_0} \left(1 - \frac{\alpha}{2}\int_{0}^{R}\dli{r} r^{-\frac12}\right) = \frac{q}{\epsilon_0} \left(1 - \alpha \sqrt{R}\right) = \Phi,
+    \end{equation*}
+    como esperado.
 \end{proof}
