@@ -26,8 +26,8 @@
     \end{center}
     Suponha que não haja contato elétrico entre os condutores. Considere agora \emph{duas} situações distintas:
     \begin{enumerate}[label=(\alph*)]
-        \item os potenciais dos condutores são tais que o potencial é uma função \(\phi(\vetor{\x})\) em \(\partial \Omega\) e existe tanto uma densidade de carga \(\rho(\vetor{\x})\) no interior de \(\Omega\) quanto uma densidade superficial \(\sigma\) em \(\partial \Omega\).
-        \item os potenciais dos condutores são tais que o potencial é uma função \(\tilde{\phi}(\vetor{\x})\) em \(\partial \Omega\) e existe tanto uma densidade de carga \(\tilde{\rho}(\vetor{\x})\) no interior de \(\Omega\) quanto uma densidade superficial de carga \(\tilde{\sigma}\) em \(\partial \Omega\).
+        \item os potenciais dos condutores são tais que o potencial é uma função \(\phi(\vetor{\x})\) em \(\partial \Omega\) e existe tanto uma densidade de carga \(\rho(\vetor{\x})\) no interior de \(\Omega\) quanto uma densidade superficial de carga \(\sigma(\vetor{\x})\) em \(\partial \Omega\).
+        \item os potenciais dos condutores são tais que o potencial é uma função \(\tilde{\phi}(\vetor{\x})\) em \(\partial \Omega\) e existe tanto uma densidade de carga \(\tilde{\rho}(\vetor{\x})\) no interior de \(\Omega\) quanto uma densidade superficial de carga \(\tilde{\sigma}(\vetor{\x})\) em \(\partial \Omega\).
     \end{enumerate}
     Em outras palavras, as situações (a) e (b) representam dois problemas de condições de contorno diferentes, com distribuições de cargas diferentes, sobre a \emph{mesma} estrutura (isto é, mesmo domínio; mesmo \(\Omega\) e \(\partial \Omega\)). Prove que
     \begin{equation*}
@@ -36,5 +36,28 @@
     igualdade por sua vez conhecida como teorema da reciprocidade de Green.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Os potenciais \(\phi(\vetor{\x})\) e \(\tilde{\phi}(\vetor{\x})\) satisfazem as equações de Poisson
+    \begin{equation*}
+        \nabla^2 \phi(\vetor{\x}) =-\frac{1}{\epsilon_0}\rho(\vetor{\x})
+        \quad\text{e}\quad
+        \nabla^2 \tilde{\phi}(\vetor{\x}) =-\frac{1}{\epsilon_0}\tilde{\rho}(\vetor{\x})
+    \end{equation*}
+    para todo \(\vetor{\x} \in \Omega\). Ainda, como condutores são equipotenciais, segue que as derivadas direcionais dos potenciais na direção da normal da superfície \(\partial \Omega\) são
+    \begin{equation*}
+        \diffp{\phi(\vetor{\x})}{n} = \frac{1}{\epsilon_0}\sigma(\vetor{\x})
+        \quad\text{e}\quad
+        \diffp{\tilde{\phi}(\vetor{\x})}{n} = \frac{1}{\epsilon_0}\tilde{\sigma}(\vetor{\x})
+    \end{equation*}
+    para todo \(\vetor{\x} \in \partial \Omega\). Utilizando a segunda identidade de Green, obtemos
+    \begin{align*}
+        \int_{\Omega} \dln3\x \left[\phi(\vetor{\x})\tilde{\rho}(\vetor{\x}) - \tilde{\phi}(\vetor{\x})\rho(\vetor{\x})\right]
+        &= \epsilon_0\int_{\Omega} \dln3\x \left[\tilde{\phi}(\vetor{\x})\nabla^2\phi(\vetor{\x})-\phi(\vetor{\x})\nabla^2\tilde{\phi}(\vetor{\x})\right]\\
+        &= \epsilon_0 \oint_{\partial \Omega}\dli{a} \left[\tilde{\phi}(\vetor{\x})\diffp{\phi(\vetor{\x})}{n} - \phi(\vetor{\x}) \diffp{\tilde{\phi}(\vetor{\x})}{n} \right]\\
+        &= \oint_{\partial \Omega} \dli{a} \left[\tilde{\phi}(\vetor{\x}) \sigma(\vetor{\x}) - \phi(\vetor{\x}) \tilde{\sigma}(\vetor{\x})\right].
+    \end{align*}
+    Reorganizando os termos, segue que
+    \begin{equation*}
+        \int_{\Omega}\dln3\x \phi(\vetor{\x}) \tilde{\rho}(\vetor{\x}) + \oint_{\partial \Omega}\dli{a} \phi(\vetor{\x})\tilde{\sigma}(\vetor{\x}) = \int_{\Omega}\dln3\x \tilde{\phi}(\vetor{\x})\rho(\vetor{\x}) + \oint_{\partial \Omega} \dli{a} \tilde{\phi}(\vetor{\x})\sigma(\vetor{\x}),
+    \end{equation*}
+    como desejado.
 \end{proof}
