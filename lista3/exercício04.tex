@@ -39,4 +39,13 @@
         \phi(z \vetor{e}_z) = \phi_0 z \int_0^\infty \dli{r} \frac{r}{\left(r^2 + z^2\right)^{\frac32}} \exp\left(-\frac{r^2}{2 \alpha^2}\right)
     \end{equation*}
     é o potencial ao longo do eixo \(z\).
+
+    Consideremos a mudança de variáveis \(2 \alpha^2\xi^2 = r^2 + z^2\), então
+    \begin{align*}
+        \phi(z \vetor{e}_z) &= \phi_0 \frac{z}{\alpha \sqrt{2}} \exp\left(\frac{z^2}{2 \alpha^2}\right) \int_{\frac{z}{\alpha \sqrt{2}}}^\infty \dli{\xi} \xi^{-2} \exp\left(-\xi^2\right)\\
+                            &= \phi_0 \frac{z}{\alpha \sqrt{2}} \exp\left(\frac{z^2}{2 \alpha^2}\right) \left\{\left[-\xi^{-1}\exp\left(-\xi^2\right)\right]_{\frac{z}{\alpha \sqrt{2}}}^\infty - 2\int_{\frac{z}{\alpha \sqrt{2}}}^\infty \dli{\xi}\exp(-\xi^2)\right\}\\
+                            &= \phi_0  \frac{z}{\alpha \sqrt{2}} \exp\left(\frac{z^2}{2 \alpha^2}\right)\left[\frac{\alpha \sqrt{2}}{z}\exp\left(-\frac{z^2}{2 \alpha^2}\right) - \sqrt{\pi}\operatorname{erfc}\left(\frac{z}{\alpha\sqrt{2}}\right)\right]\\
+                            &= \phi_0 \left[1 - \sqrt{\frac{\pi z^2}{2 \alpha^2}} \exp\left(\frac{z^2}{2 \alpha^2}\right)\operatorname{erfc}\left(\frac{z}{\alpha\sqrt{2}}\right)\right],
+    \end{align*}
+    onde \(\operatorname{erfc}\) é a função de erro complementar \(\operatorname{erfc}(x) = \frac{2}{\sqrt{\pi}}\int_x^\infty \dli{t} \exp(-t^2)\).
 \end{proof}
