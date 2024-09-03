@@ -2,7 +2,7 @@
     Considere uma cavidade de forma arbitrária completamente cercada por um conjunto de estruturas condutoras, todas de formas também arbitrárias. Chame o volume da cavidade de \(\Omega\) e sua superfície (isto é, a fronteira entre a cavidade e a coleção de condutores) de \(\partial \Omega\). A figura abaixo mostra a ideia do arranjo, em que cada um dos condutores (cada um representado por uma cor) é mantido em seu próprio potencial, denotados por \(\phi_n\).
 
     \begin{center}
-        \begin{tikzpicture}[scale=0.7]
+        \begin{tikzpicture}[scale=0.5]
         \foreach \i/\col in {1/Pink, 2/Mauve, 3/Sky, 4/Teal, 5/Red, 6/Yellow, 7/Lavender} {
             \fill[\col!50] (90+\i*360/7:4cm) -- (90+\i*360/7+360/7:4cm) --
                         (90+\i*360/7+360/7:2cm) -- (90+\i*360/7:2cm) -- cycle;
@@ -21,7 +21,7 @@
         \node at (90+7*360/7+360/14:3cm) {$\phi_7$};
 
         \node at (0,0) {$\Omega$};
-        \node at (1.5,0.6) {$\partial \Omega$};
+        \node at (1.4,0.5) {$\partial \Omega$};
         \end{tikzpicture}
     \end{center}
     Suponha que não haja contato elétrico entre os condutores. Considere agora \emph{duas} situações distintas:

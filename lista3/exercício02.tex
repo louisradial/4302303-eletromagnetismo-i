@@ -43,5 +43,40 @@
     Este é um problema complicado, pois não sabemos exatamente de que forma essas cargas se distribuem. Em outras palavras, não sabemos de antemão escrever as funções \(\sigma_1(x,y)\) e \(\sigma_2(x,y)\), e as cargas totais são as integrais dessas funções sobre as respectivas superfícies. Vamos então explorar a estratégia de considerar um \emph{problema auxiliar}, em que não há cargas pontuais na região entre os condutores e o condutor 2 está mantido a um potencial \(\phi_0 \neq 0\), como mostra a figura acima. Nesse caso, encontre o potencial em todo o espaço e as densidades de carga \(\sigma_1(x,y)\) e \(\sigma_2(x,y)\) nas superfícies dos condutores 1 e 2, respectivamente. Em seguida, utilize o \cref{ex:exercício1} para resolver o problema original.
 \end{exercício}
 \begin{proof}[Resolução]
+    No problema auxiliar, notemos que o potencial \(\tilde{\phi}(\vetor{\x})\) deve ser invariante por translações no plano \(xy\), portanto só pode ter dependência em \(z\). Com esta motivação, verifica-se que
+    \begin{equation*}
+        \tilde{\phi}(x \vetor{e}_x + y\vetor{e}_y + z\vetor{e}_z) = \begin{cases}
+            \phi_0,&\text{se }z \geq d\\
+            \frac{z}{d}\phi_0,&\text{se }0 < z < d\\
+            0,&\text{se }z\leq 0
+        \end{cases}
+    \end{equation*}
+    satisfaz a equação de Laplace e as condições de contorno. Pela unicidade de soluções, este é o potencial em todo o espaço para o problema auxiliar. Desse modo, as densidades superficiais de carga nos condutores 1 e 2 são dadas por
+    \begin{equation*}
+        \tilde{\sigma}_1 = -\frac{\epsilon_0 \phi_0}{d}
+        \quad\text{e}\quad
+        \tilde{\sigma}_2 = \frac{\epsilon_0 \phi_0}{d}.
+    \end{equation*}
 
+    Sejam
+    \begin{equation*}
+        \Omega = \setc{(x,y,z) \in \mathbb{R}^3}{z \in (0, d)},
+        \quad
+        \Sigma_1 = \setc{(x,y,z) \in \mathbb{R}^3}{z = 0},
+        \quad\text{e}\quad
+        \Sigma_2 = \setc{(x,y,z) \in \mathbb{R}^3}{z = d},
+    \end{equation*}
+    então pelo \cref{ex:exercício1}, segue que
+    \begin{equation*}
+        \int_{\Omega}\dln3\x \phi(\vetor{\x}) \tilde{\rho}(\vetor{\x}) + \oint_{\Sigma_1 \cup \Sigma_2}\dli{a} \phi(\vetor{\x})\tilde{\sigma}(\vetor{\x}) = \int_{\Omega}\dln3\x \tilde{\phi}(\vetor{\x})\rho(\vetor{\x}) + \oint_{\Sigma_1 \cup \Sigma_2} \dli{a} \tilde{\phi}(\vetor{\x})\sigma(\vetor{\x}).
+    \end{equation*}
+    Como \(\tilde{\rho}(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \Omega\) e \(\phi(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \Sigma_1 \cup \Sigma_2\), a carga total induzida na superfície do condutor 2 é
+    \begin{equation*}
+        \oint_{\Sigma_2} \dli{a} \sigma(\vetor{\x}) = -\int_{\Omega}\dln3x \frac{z}{d} q \delta(\vetor{\x} - a\vetor{e}_z) = -\frac{a}{d}q.
+    \end{equation*}
+    Por fim, concluímos pela lei de Gauss que
+    \begin{equation*}
+        \oint_{\Sigma_1} \dli{a} \sigma(\vetor{\x}) = -q + \frac{a}{d}q
+    \end{equation*}
+    é a carga total induzida na superfície do condutor 1.
 \end{proof}
