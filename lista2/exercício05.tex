@@ -8,10 +8,11 @@
     \end{equation*}
     é o campo elétrico gerado pela esfera para \(\norm{\vetor{\x}} < R\). Deste modo,
     \begin{align*}
-        \vetor{F} &= \int_0^R\dli{r} \int_0^\frac{\pi}{2} r\dli{\theta} \int_0^{2\pi} r\sin\theta \dli{\varphi} \frac{3Q^2}{16\pi \epsilon_0 R^6}r\vetor{e}_r\\
-                  &= \frac{3Q^2 \vetor{e}_z}{8\pi \epsilon_0 R^6} \int_0^R\dli{r}\int_{0}^{\frac{\pi}{2}}\dli{\theta} r^3 \sin\theta \cos\theta\\
-                  &= \frac{3Q^2 \vetor{e}_z}{4\pi \epsilon_0 R^6} \int_0^R\dli{r} r^3\\
-                  &= \frac{3Q^2}{16\pi \epsilon_0 R^2} \vetor{e}_z
+        \vetor{F} &= \int_0^R\dli{r} \int_0^\frac{\pi}{2} r\dli{\theta} \int_0^{2\pi} r\sin\theta \dli{\varphi} \frac{3Q}{4\pi R^3}\cdot\frac{Q}{4\pi \epsilon_0 R^3}r\vetor{e}_r\\
+                  &= \frac{3Q^2}{16\pi^2 \epsilon_0 R^6}\int_{0}^{R} \dli{r} r^3\int_0^{\frac{\pi}{2}}\dli{\theta} \sin\theta \int_0^{2\pi} \dli{\varphi} \left(\cos\varphi \sin\theta \vetor{e}_x + \sin\varphi\sin\theta \vetor{e}_y + \cos\theta\vetor{e}_z\right)\\
+                  &= \frac{3Q^2}{8\pi \epsilon_0 R^6} \left(\int_0^R\dli{r} r^3\right)\left(\int_{0}^{\frac{\pi}{2}}\dli{\theta} \sin\theta \cos\theta\right) \vetor{e}_z\\
+                  &= \frac{3Q^2}{16\pi \epsilon_0 R^6} \left(\int_0^R\dli{r} r^3\right)\vetor{e}_z\\
+                  &= \frac{3Q^2}{64\pi \epsilon_0 R^2} \vetor{e}_z
     \end{align*}
     é a força elétrica no hemisfério norte da esfera.
 \end{proof}
