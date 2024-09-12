@@ -1,6 +1,90 @@
-\begin{exercício}{}{exercício5}
+\begin{exercício}{Carga exterior e esfera condutora aterrada}{exercício5}
     Uma carga pontual \(q\) é colocada a uma distância \(d\) do centro de uma esfera condutora de raio \(R < d\). Encontre o potencial elétrico em todo o espaço, assumindo que a esfera condutora está aterrada. Obtenha a densidade de carga e a carga total induzida na superfície da esfera condutora. Calcule a força elétrica sobre a carga pontual. Você é capaz de encontrar a função de Green \(G_D(\vetor{\x}, \vetor{\x'})\) para esse problema? Alguma das repostas mudaria caso a esfera condutora fosse substituída por uma casca esférica condutora?
 \end{exercício}
 \begin{proof}[Resolução]
+    Sejam \(\Omega = \setc{\vetor{\x} \in \mathbb{R}^3}{\norm{\vetor{\x}} > R}\) e \(\Sigma = \setc{\vetor{\x} \in \mathbb{R}^3}{\norm{\vetor{\x}} < R}\) as regiões exterior e interior à superfície do condutor \(\partial \Sigma = \setc{\vetor{\x} \in \mathbb{R}^3}{\norm{\vetor{\x}} = R}\). Sendo \(\vetor{\x}_q \in \Omega\) a posição da carga \(q\) com \(\norm{\vetor{\x}_q} = d\), a distribuição de cargas é dada por
+    \begin{equation*}
+        \rho(\vetor{\x}) = \begin{cases}
+            0,&\text{se }\vetor{\x} \in \Sigma\\
+            q \delta(\vetor{\x} - \vetor{\x}_q),&\text{se }\vetor{\x}\in \Omega
+        \end{cases}
+    \end{equation*}
+    e em \(\partial \Sigma\) há uma densidade superficial de carga \(\sigma\) induzida na superfície do condutor. Notemos que o potencial satisfaz a equação de Laplace em \(\Sigma\), com condição de contorno \(\phi(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \partial\Sigma\), logo \(\phi(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \Sigma \cup \partial \Sigma\). Em \(\Omega\), o potencial satisfaz a equação de Poisson para a distribuição de cargas \(q \delta(\vetor{\x} - \vetor{\x}_q)\), com condições de contorno \(\phi(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \partial\Sigma\) e \(\phi(\vetor{\x}) \to 0\) conforme \(\norm{\vetor{\x}} \to \infty\).
 
+    Com o intuito de utilizar a unicidade de soluções para a equação de Poisson com condições de contorno de Dirichlet, consideremos o problema auxiliar em que há duas cargas \(q\) e \(\tilde{q}\) nas posições \(\vetor{\x}_q\) e \(\vetor{\x}_{\tilde{q}}\) com \(\vetor{\x}_{\tilde{q}} \in \Sigma\), de modo que a distribuição de cargas em \(\Omega\) seja a mesma. Desejamos determinar \(\tilde{q}\) e \(\vetor{\x}_{\tilde{q}}\) de modo que o potencial em \(\partial \Sigma\) se anule, obtendo assim a solução para a equação de Poisson considerada. Sejam \(r = \norm{\vetor{\x}}\), \(\tilde{d} = \norm{\vetor{\x}_{\tilde{q}}}\), \(\gamma\) o ângulo planar entre \(\vetor{\x}\) e \(\vetor{\x}_q\), e \(\tilde{\gamma}\) o ângulo planar entre \(\vetor{\x}\) e \(\vetor{\x}_{\tilde{q}}\), então
+    \begin{align*}
+        \phi(\vetor{\x}) &= \frac{1}{4\pi \epsilon_0} \left(\frac{q}{\sqrt{r^2 + d^2 - 2rd \cos \gamma}} + \frac{\tilde{q}}{\sqrt{r^2 + \tilde{d}^2 - 2r\tilde{d} \cos\tilde{\gamma}}}\right)\\
+                         &= \frac{1}{4\pi \epsilon_0} \left[\frac{q}{d\sqrt{1 + \left(\frac{r}{d}\right)^2 - 2 \left(\frac{r}{d}\right)\cos \gamma}} + \frac{\tilde{q}}{r\sqrt{1 + \left(\frac{\tilde{d}}{r}\right)^2 - 2 \left(\frac{\tilde{d}}{r}\right)\cos\tilde{\gamma}}}\right]
+    \end{align*}
+    é o potencial para o problema auxiliar. Por inspeção, vemos que
+    \begin{equation*}
+        \tilde{q} = - \frac{R}{d}q,
+        \quad
+        \tilde{d} = \frac{R^2}{d},
+        \quad\text{e}\quad
+        \tilde{\gamma} = \gamma
+    \end{equation*}
+    satisfazem \(\phi(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \partial \Sigma\), como desejado. Isto é, \(\vetor{\x}_{\tilde{q}} = \frac{R^2}{\norm{\vetor{\x}_q}^2}\vetor{\x}_q\) e o potencial é dado por
+    \begin{equation*}
+        \phi(\vetor{\x}) = \frac{q}{4\pi \epsilon_0} \left(\frac{1}{\norm{\vetor{\x} - \vetor{\x}_q}} - \frac{R}{\norm{\vetor{\x}_q}\norm*{\vetor{\x} - \frac{R^2}{\norm{\vetor{\x}_q}^2}\vetor{\x}_q}}\right)
+    \end{equation*}
+    para todo \(\vetor{\x} \in \mathbb{R}^3\) no problema auxiliar. Em particular esta expressão é válida para todo \(\vetor{\x} \in \Omega\) e satisfaz as condições de contorno do problema original, portanto podemos concluir que
+    \begin{equation*}
+        \phi(\vetor{\x}) = \begin{cases}
+            \frac{q}{4\pi \epsilon_0} \left(\frac{1}{\norm{\vetor{\x} - \vetor{\x}_q}} - \frac{R}{\norm{\vetor{\x}_q}\norm*{\vetor{\x} - \frac{R^2}{\norm{\vetor{\x}_q}^2}\vetor{\x}_q}}\right),&\text{se }\vetor{\x} \in \Omega\\
+            0, &\text{se } \vetor{\x}\in \Sigma \cup \partial \Sigma
+        \end{cases}
+    \end{equation*}
+    é o potencial do problema original pela unicidade de soluções para a equação de Poisson.
+
+    Sendo \(G_D(\vetor{\x}, \vetor{\x'})\) a função de Green para essa superfície de contorno, temos
+    \begin{align*}
+        \phi(\vetor{\x}) &= \frac{1}{4\pi \epsilon_0}\int_{\Omega} \dln3{\x'} \rho(\vetor{\x'})G_D(\vetor{\x}, \vetor{\x'}) - \frac1{4\pi}\oint_{\partial \Omega}\dln2{\x'} \phi(\vetor{\x'})\diffp{G_D(\vetor{\x}, \vetor{\x'})}{n'}\\
+                         &= \frac{q}{4\pi \epsilon_0} \int_{\Omega} \dln3{\x'} \delta(\vetor{\x'}-\vetor{\x}_q)G_D(\vetor{\x}, \vetor{\x'})\\
+                         &= \frac{q}{4\pi \epsilon_0} G_D(\vetor{\x}, \vetor{\x}_q).
+    \end{align*}
+    Assim, concluímos que
+    \begin{equation*}
+        G_D(\vetor{\x}, \vetor{\x'}) = \frac{1}{\norm{\vetor{\x} - \vetor{\x'}}} - \frac{R}{\norm{\vetor{\x'}}\norm*{\vetor{\x} - \frac{R^2}{\norm{\vetor{\x'}}^2}\vetor{\x'}}},
+        \quad\text{com}\quad
+        \norm{\vetor{\x'}} > R,
+    \end{equation*}
+    é a função de Green para essa superfície de contorno.
+
+    Para determinar a densidade de carga induzida na superfície do condutor, orientemos o eixo \(z\) de acordo com a posição da carga \(q\). Temos
+    \begin{align*}
+        \diffp{\phi}{r}[r=R^+] &= \frac{q}{4\pi \epsilon_0} \diffp*{\left(\frac{1}{\sqrt{r^2 + d^2 - 2rd \cos\theta}} - \frac{R}{d\sqrt{r^2 + \frac{R^4}{d^2} - 2 \frac{rR^2}{d}\cos\theta}}\right)}{r}[r=R]\\
+                               &= -\frac{q}{4\pi \epsilon_0} \left[\frac{r - d\cos\theta}{(r^2 + d^2 - 2rd\cos\theta)^{\frac32}} - \frac{R\left(r - \frac{R^2}{d}\cos\theta\right)}{d\left(r^2 + \frac{R^4}{d^2} - 2\frac{rR^2}{d}\cos\theta\right)^{\frac32}}\right]_{r=R}\\
+                               &= -\frac{q}{4\pi \epsilon_0} \left[\frac{R - d\cos\theta}{(R^2 + d^2 - 2Rd\cos\theta)^{\frac32}} - \frac{R^2\left(d - R\cos\theta\right)}{d^2\left(\frac{R^2}{d^2}\right)^{\frac32}\left(d^2 + R^2 - 2Rd\cos\theta\right)^{\frac32}}\right]\\
+                               &= -\frac{q}{4\pi \epsilon_0 (R^2 + d^2 - 2Rd \cos\theta)^{\frac32}}\left[R - d \cos\theta - \frac{R^2d^3(d - R\cos\theta)}{d^2R^3}\right]\\
+                               &= \frac{(d^2 - R^2)q}{4\pi \epsilon_0 R(R^2 + d^2 - 2Rd \cos\theta)^{\frac32}},
+    \end{align*}
+    portanto a distribuição de cargas na superfície do condutor é
+    \begin{equation*}
+        \sigma = -\frac{(d^2 - R^2)q}{4\pi R(R^2 + d^2 - 2Rd \cos\theta)^{\frac32}}.
+    \end{equation*}
+    Assim, a carga total \(Q\) induzida é
+    \begin{align*}
+        Q = \int_0^\pi R\dli{\theta} \int_0^{2\pi} R\sin\theta \dli{\varphi} \sigma(\theta, \varphi)
+        &= -\frac{(d^2 - R^2)Rq}{2}\int_0^\pi \dli{\theta} \frac{\sin\theta}{(R^2 + d^2 - 2Rd\cos\theta)^{\frac32}}\\
+        &= \frac{(d^2 - R^2)q}{4d}\int_{(d + R)^2}^{(d - R)^2} \dli{\xi} \xi^{-\frac32}\\
+        &= -\frac{(d^2 - R^2)q}{2d} \left(\frac{1}{d - R} - \frac{1}{d + R}\right)\\
+        &= -\frac{R}{d}q,
+    \end{align*}
+    que é igual à carga \(\tilde{q}\) determinada no método das imagens. Ainda, a força elétrica devido à distribuição de cargas induzidas na carga \(q\) é dada por
+    \begin{align*}
+        \vetor{F} &= -\frac{q^2(d^2 - R^2)}{16\pi^2\epsilon_0 R}\int_0^\pi R\dli{\theta}\int_0^{2\pi}R\sin\theta \dli\varphi \frac{-R\cos\varphi\sin\theta \vetor{e}_x - R \sin\varphi\sin\theta \vetor{e}_y + (d - R\cos\theta)\vetor{e}_z}{(R^2 + d^2 - 2Rd \cos \theta)^3}\\
+                  &= - \frac{q^2(d^2 - R^2)R}{8\pi \epsilon_0} \int_0^\pi \dli{\theta} \frac{(d - R\cos\theta)\sin\theta}{(R^2 + d^2 - 2Rd \cos\theta)^3}\vetor{e}_z\\
+                  &= - \frac{q^2(d^2 - R^2)}{32\pi d^2 \epsilon_0} \int_{(d - R)^2}^{(d + R)^2}\dli{\xi} \frac{d^2 - R^2 + \xi}{\xi^3}\vetor{e}_z\\
+                  &= \frac{q^2(d^2 - R^2)}{32\pi d^2 \epsilon_0} \left[\frac{d^2 - R^2+2\xi}{2\xi^2}\right]_{(d - R)^2}^{(d + R)^2}\vetor{e}_z\\
+                  &= \frac{q^2(d^2 - R^2)}{64\pi d^2 \epsilon_0} \left[\frac{3d + R}{(d + R)^3} - \frac{3d - R}{(d - R)^3}\right]\vetor{e}_z\\
+                  &= \frac{q^2}{64\pi d^2 \epsilon_0} \frac{(3d + R)(d - R)^3 - (3d - R)(d + R)^3}{(d^2 - R^2)^2}\vetor{e}_z\\
+                  &= -\frac{q^2}{64\pi d^2 \epsilon_0} \frac{16d^3 R}{(d^2 - R^2)^2}\vetor{e}_z\\
+                  &= - \frac{q^2 dR}{4\pi \epsilon_0 (d^2 - R^2)^2 }\vetor{e}_z.
+    \end{align*}
+    Em termos da geometria do problema,
+    \begin{equation*}
+        \vetor{F} = -\frac{q^2 R}{4\pi \epsilon_0 (\norm{\vetor{\x}_q}^2 - R^2)^2}\vetor{\x}_q
+    \end{equation*}
+    é a força na carga externa ao condutor devido às cargas induzidas na superfície esférica.
 \end{proof}
