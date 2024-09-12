@@ -1,6 +1,25 @@
-\begin{exercício}{}{exercício7}
+\begin{exercício}{Carga externa e esfera condutora isolada}{exercício7}
     Uma carga pontual \(q\) é colocada a uma distância \(d\) do centro de uma esfera condutora de raio \(R < d\). Encontre o potencial elétrico em todo o espaço, assumindo que a esfera condutora está isolada e possui uma carga total \(Q\). Obtenha a densidade de carga e a carga total na esfera condutora. Calcule a força elétrica sobre a carga pontual.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Sejam \(\Omega\) e \(\Sigma\) as regiões exterior e interior à superfície do condutor \(\partial \Sigma\) como no \cref{ex:exercício5}. Como a esfera condutora é uma região equipotencial, o potencial é \(\phi(\vetor{\x}) = \phi_0\) para todo \(\vetor{\x} \in \Sigma \cup \partial \Sigma\), para algum \(\phi_0 \in \mathbb{R}\) a ser determinado pela carga total \(Q\). Pelo \cref{ex:exercício6}, temos que a carga total na superfície do condutor é
+    \begin{equation*}
+        Q = 4\pi \epsilon_0 \phi_0 R - \frac{R}{d}q,
+    \end{equation*}
+    logo o potencial no condutor é dado por \(\phi_0 = \frac{Q + \frac{R}{d}q}{4\pi \epsilon_0 R}\) e temos
+    \begin{equation*}
+        \phi(\vetor{\x}) = \begin{cases}
+            \frac{1}{4\pi \epsilon_0} \left(\dfrac{q}{\norm{\vetor{\x} - \vetor{\x}_q}} - \dfrac{\frac{R}{\norm{\vetor{\x}_q}}q}{\norm*{\vetor{\x} - \frac{R^2}{\norm{\vetor{\x}_q}^2}\vetor{\x}_q}}+ \dfrac{Q + \frac{R}{\norm{\vetor{\x}_q}}q}{\norm{\vetor{\x}}}\right) ,&\text{se }\vetor{\x} \in \Omega\\
+            \dfrac{Q + \frac{R}{\norm{\vetor{\x}_q}}q}{4 \pi \epsilon_0 R}, &\text{se } \vetor{\x}\in \Sigma \cup \partial \Sigma
+        \end{cases}
+    \end{equation*}
+    como a expressão para o potencial em todo o espaço, em que \(\vetor{\x}_q\) é a posição da carga pontual. Substituindo \(\phi_0\) nas demais expressões obtidas no \cref{ex:exercício6}, temos que
+    \begin{equation*}
+        \sigma = \frac{Q + \frac{R}{d}q}{4\pi R^2}-\frac{(d^2 - R^2)q}{4\pi R(R^2 + d^2 - 2Rd \cos\theta)^{\frac32}}
+    \end{equation*}
+    é a densidade superficial de carga na superfície do condutor e que
+    \begin{equation*}
+        \vetor{F} = \frac{q}{4\pi \epsilon_0}\left[\frac{Q + \frac{R}{\norm{\vetor{\x}_q}}q}{\norm{\vetor{\x}_q}^3}-\frac{q R}{(\norm{\vetor{\x}_q}^2 - R^2)^2}\right]\vetor{\x}_q
+    \end{equation*}
+    é a força na carga pontual devido às cargas induzidas na superfície condutora.
 \end{proof}
