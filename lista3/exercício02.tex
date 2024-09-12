@@ -68,15 +68,15 @@
     \end{equation*}
     então pelo \cref{ex:exercício1}, segue que
     \begin{equation*}
-        \int_{\Omega}\dln3\x \phi(\vetor{\x}) \tilde{\rho}(\vetor{\x}) + \oint_{\Sigma_1 \cup \Sigma_2}\dli{a} \phi(\vetor{\x})\tilde{\sigma}(\vetor{\x}) = \int_{\Omega}\dln3\x \tilde{\phi}(\vetor{\x})\rho(\vetor{\x}) + \oint_{\Sigma_1 \cup \Sigma_2} \dli{a} \tilde{\phi}(\vetor{\x})\sigma(\vetor{\x}).
+        \int_{\Omega}\dln3\x \phi(\vetor{\x}) \tilde{\rho}(\vetor{\x}) + \oint_{\Sigma_1 \cup \Sigma_2}\dln2\x \phi(\vetor{\x})\tilde{\sigma}(\vetor{\x}) = \int_{\Omega}\dln3\x \tilde{\phi}(\vetor{\x})\rho(\vetor{\x}) + \oint_{\Sigma_1 \cup \Sigma_2} \dln2\x \tilde{\phi}(\vetor{\x})\sigma(\vetor{\x}).
     \end{equation*}
     Como \(\tilde{\rho}(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \Omega\) e \(\phi(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \Sigma_1 \cup \Sigma_2\), a carga total induzida na superfície do condutor 2 é
     \begin{equation*}
-        \oint_{\Sigma_2} \dli{a} \sigma(\vetor{\x}) = -\int_{\Omega}\dln3x \frac{z}{d} q \delta(\vetor{\x} - a\vetor{e}_z) = -\frac{a}{d}q.
+        \oint_{\Sigma_2} \dln2\x \sigma(\vetor{\x}) = -\int_{\Omega}\dln3x \frac{z}{d} q \delta(\vetor{\x} - a\vetor{e}_z) = -\frac{a}{d}q.
     \end{equation*}
     Por fim, concluímos pela lei de Gauss que
     \begin{equation*}
-        \oint_{\Sigma_1} \dli{a} \sigma(\vetor{\x}) = -q + \frac{a}{d}q
+        \oint_{\Sigma_1} \dln2\x \sigma(\vetor{\x}) = -q + \frac{a}{d}q
     \end{equation*}
     é a carga total induzida na superfície do condutor 1.
 \end{proof}

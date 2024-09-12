@@ -31,7 +31,7 @@
     \end{enumerate}
     Em outras palavras, as situações (a) e (b) representam dois problemas de condições de contorno diferentes, com distribuições de cargas diferentes, sobre a \emph{mesma} estrutura (isto é, mesmo domínio; mesmo \(\Omega\) e \(\partial \Omega\)). Prove que
     \begin{equation*}
-        \int_{\Omega}\dln3\x \phi(\vetor{\x}) \tilde{\rho}(\vetor{\x}) + \oint_{\partial \Omega}\dli{a} \phi(\vetor{\x})\tilde{\sigma}(\vetor{\x}) = \int_{\Omega}\dln3\x \tilde{\phi}(\vetor{\x})\rho(\vetor{\x}) + \oint_{\partial \Omega} \dli{a} \tilde{\phi}(\vetor{\x})\sigma(\vetor{\x}),
+        \int_{\Omega}\dln3\x \phi(\vetor{\x}) \tilde{\rho}(\vetor{\x}) + \oint_{\partial \Omega}\dln2\x \phi(\vetor{\x})\tilde{\sigma}(\vetor{\x}) = \int_{\Omega}\dln3\x \tilde{\phi}(\vetor{\x})\rho(\vetor{\x}) + \oint_{\partial \Omega} \dln2\x \tilde{\phi}(\vetor{\x})\sigma(\vetor{\x}),
     \end{equation*}
     igualdade por sua vez conhecida como teorema da reciprocidade de Green.
 \end{exercício}
@@ -52,12 +52,12 @@
     \begin{align*}
         \int_{\Omega} \dln3\x \left[\phi(\vetor{\x})\tilde{\rho}(\vetor{\x}) - \tilde{\phi}(\vetor{\x})\rho(\vetor{\x})\right]
         &= \epsilon_0\int_{\Omega} \dln3\x \left[\tilde{\phi}(\vetor{\x})\nabla^2\phi(\vetor{\x})-\phi(\vetor{\x})\nabla^2\tilde{\phi}(\vetor{\x})\right]\\
-        &= \epsilon_0 \oint_{\partial \Omega}\dli{a} \left[\tilde{\phi}(\vetor{\x})\diffp{\phi(\vetor{\x})}{n} - \phi(\vetor{\x}) \diffp{\tilde{\phi}(\vetor{\x})}{n} \right]\\
-        &= \oint_{\partial \Omega} \dli{a} \left[\tilde{\phi}(\vetor{\x}) \sigma(\vetor{\x}) - \phi(\vetor{\x}) \tilde{\sigma}(\vetor{\x})\right].
+        &= \epsilon_0 \oint_{\partial \Omega}\dln2\x \left[\tilde{\phi}(\vetor{\x})\diffp{\phi(\vetor{\x})}{n} - \phi(\vetor{\x}) \diffp{\tilde{\phi}(\vetor{\x})}{n} \right]\\
+        &= \oint_{\partial \Omega} \dln2\x \left[\tilde{\phi}(\vetor{\x}) \sigma(\vetor{\x}) - \phi(\vetor{\x}) \tilde{\sigma}(\vetor{\x})\right].
     \end{align*}
     Reorganizando os termos, segue que
     \begin{equation*}
-        \int_{\Omega}\dln3\x \phi(\vetor{\x}) \tilde{\rho}(\vetor{\x}) + \oint_{\partial \Omega}\dli{a} \phi(\vetor{\x})\tilde{\sigma}(\vetor{\x}) = \int_{\Omega}\dln3\x \tilde{\phi}(\vetor{\x})\rho(\vetor{\x}) + \oint_{\partial \Omega} \dli{a} \tilde{\phi}(\vetor{\x})\sigma(\vetor{\x}),
+        \int_{\Omega}\dln3\x \phi(\vetor{\x}) \tilde{\rho}(\vetor{\x}) + \oint_{\partial \Omega}\dln2\x \phi(\vetor{\x})\tilde{\sigma}(\vetor{\x}) = \int_{\Omega}\dln3\x \tilde{\phi}(\vetor{\x})\rho(\vetor{\x}) + \oint_{\partial \Omega} \dln2\x \tilde{\phi}(\vetor{\x})\sigma(\vetor{\x}),
     \end{equation*}
     como desejado.
 \end{proof}

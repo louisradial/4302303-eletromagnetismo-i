@@ -10,7 +10,7 @@
     \end{equation*}
     Notemos temos o problema de Dirichlet trivial em \(\Omega_-\), portanto \(\phi(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \Omega_- \cup \Sigma\). Em \(\Omega_+\), temos o problema de Dirichlet \(\phi(\x) = 0\) para todo \(\vetor{\x} \in \partial \Omega_+\) com \(\rho(\vetor{\x}) = q \delta(\vetor{\x} - a\vetor{u})\) para todo \(\vetor{\x} \in \Omega_+\). Sendo \(G_D(\vetor{\x}, \vetor{\x'})\) a função de Green para essa superfície de contorno, temos
     \begin{align*}
-        \phi(\vetor{\x}) &= \frac{1}{4\pi \epsilon_0} \int_{\Omega_+} \dln3{\x'} \rho(\vetor{\x'})G_D(\vetor{\x}, \vetor{\x'}) - \frac1{4\pi} \oint_{\partial \Omega_+} \dli{a'} \phi(\vetor{\x'})\diffp{G_D(\vetor{\x}, \vetor{\x'})}{n'}\\
+        \phi(\vetor{\x}) &= \frac{1}{4\pi \epsilon_0} \int_{\Omega_+} \dln3{\x'} \rho(\vetor{\x'})G_D(\vetor{\x}, \vetor{\x'}) - \frac1{4\pi} \oint_{\partial \Omega_+} \dln2{\x'} \phi(\vetor{\x'})\diffp{G_D(\vetor{\x}, \vetor{\x'})}{n'}\\
                          &=  \frac{q}{4\pi \epsilon_0} G_D(\vetor{\x}, a \vetor{u})
     \end{align*}
     como a solução formal para a equação de Poisson em \(\Omega_+\) com estas condições de contorno.
