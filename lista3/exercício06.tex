@@ -1,6 +1,56 @@
-\begin{exercício}{}{exercício6}
+\begin{exercício}{Carga externa e esfera condutora mantida a potencial constante}{exercício6}
     Uma carga pontual \(q\) é colocada a uma distância \(d\) do centro de uma esfera condutora de raio \(R < d\). Encontre o potencial elétrico em todo o espaço, assumindo que a esfera condutora está mantida a um potencial \(\phi_0\). Obtenha a densidade de carga e a carga total na esfera condutora. Calcule a força elétrica sobre a carga pontual.
 \end{exercício}
 \begin{proof}[Resolução]
+    Mantenhamos a notação do \cref{ex:exercício5} e consideremos o problema auxiliar em que a carga \(q\) está ausente. Nesta situação o potencial \(\tilde{\phi}\) satisfaz a equação de Laplace em \(\Omega\), com as condições de contorno de que \(\tilde{\phi}(\vetor{\x}) = \phi_0\) para todo \(\vetor{\x} \in \partial \Sigma\) e de que \(\tilde{\phi}(\vetor{\x}) \to 0\) conforme \(\norm{\vetor{\x}}\to \infty\). Por conta da simetria esférica, devemos ter \(\tilde{\phi}(\vetor{\x}) = \tilde{\phi}(\norm{\vetor{\x}})\), então em coordenadas esféricas temos
+    \begin{equation*}
+        \nabla^2\tilde{\phi} = \frac1{r^2} \diff*{\left(r^2 \diff{\tilde{\phi}}{r}\right)}{r} = \frac{2}{r}\diff{\tilde{\phi}}{r} + \diff[2]{\tilde{\phi}}{r} = 0.
+    \end{equation*}
+    A solução geral para esta equação diferencial é
+    \begin{equation*}
+        \tilde{\phi}(r) = \frac{\alpha}{r} + \beta,
+    \end{equation*}
+    portanto sabemos das condições de contorno que \(\beta = 0\) e que \(\alpha = \phi_0 R\), logo
+    \begin{equation*}
+        \tilde{\phi}(\vetor{\x}) = \frac{\phi_0 R}{\norm{\vetor{\x}}}
+    \end{equation*}
+    é o potencial para todo \(\vetor{\x} \in \Omega\). Como em \(\Sigma\) o potencial satisfaz a equação de Laplace com condição de contorno \(\tilde{\phi}(\vetor{\x}) = \phi_0\) para todo \(\vetor{\x} \in \partial \Sigma\), segue que \(\tilde{\phi}(\vetor{\x}) = \phi_0\) para todo \(\vetor{\x} \in \Sigma\), logo
+    \begin{equation*}
+        \tilde{\phi}(\vetor{\x}) = \begin{cases}
+            \frac{\phi_0R}{\norm{\vetor{\x}}}, & \text{se } \vetor{\x} \in \Omega\\
+            \phi_0, &\text{se }\vetor{\x} \in \Sigma \cup \partial \Sigma
+        \end{cases}
+    \end{equation*}
+    é o potencial para o problema auxiliar. Ainda, a densidade superficial de cargas \(\tilde{\sigma}\) na superfície do condutor é
+    \begin{equation*}
+        \tilde{\sigma} = - \epsilon_0\diffp{\tilde{\phi}}{r}[r=R^+] = \frac{\epsilon_0\phi_0}{R},
+    \end{equation*}
+    portanto a carga total é \(\tilde{Q} = 4\pi \epsilon_0 \phi_0 R\). O campo elétrico é dado por
+    \begin{equation*}
+        \tilde{\vetor{E}} = \begin{cases}
+            \frac{\phi_0 R}{\norm{\vetor{\x}}^3}\vetor{\x},&\text{se }\vetor{\x} \in \Omega\\
+            0,&\text{se }\vetor{\x} \in \Sigma
+        \end{cases}
+    \end{equation*}
 
+    No problema original, consideremos a superposição do potencial para o problema auxiliar e o potencial obtido para o aterramento no \cref{ex:exercício5}, isto é
+    \begin{equation*}
+        \phi(\vetor{\x}) = \begin{cases}
+            \frac{q}{4\pi \epsilon_0} \left(\frac{1}{\norm{\vetor{\x} - \vetor{\x}_q}} - \frac{R}{\norm{\vetor{\x}_q}\norm*{\vetor{\x} - \frac{R^2}{\norm{\vetor{\x}_q}^2}\vetor{\x}_q}}\right) + \frac{\phi_0 R}{\norm{\vetor{\x}}},&\text{se }\vetor{\x} \in \Omega\\
+            \phi_0, &\text{se } \vetor{\x}\in \Sigma \cup \partial \Sigma.
+        \end{cases}
+    \end{equation*}
+    Notemos que o potencial proposto satisfaz a equação de Laplace em \(\Sigma\) com condição de contorno \(\phi(\vetor{\x}) = \phi_0\) para todo \(\vetor{\x} \in \partial \Sigma\) e satisfaz a equação de Poisson em \(\Omega\) com a condição de contorno adicional \(\phi(\vetor{\x}) \to 0\) conforme \(\norm{\vetor{\x}} \to \infty\). Pela unicidade de soluções para a equação de Poisson, este é o potencial em todo o espaço para o problema original. Assim, podemos concluir que
+    \begin{equation*}
+        \sigma = \frac{\phi_0 \epsilon_0}{R}-\frac{(d^2 - R^2)q}{4\pi R(R^2 + d^2 - 2Rd \cos\theta)^{\frac32}}
+    \end{equation*}
+    é a densidade superficial de carga induzida na superfície do condutor, com carga total
+    \begin{equation*}
+        Q = 4\pi \epsilon_0 \phi_0 R - \frac{R}{d}q
+    \end{equation*}
+    e que
+    \begin{equation*}
+        \vetor{F} = \left[\frac{\phi_0R}{\norm{\vetor{\x}_q}^3}-\frac{q^2 R}{4\pi \epsilon_0 (\norm{\vetor{\x}_q}^2 - R^2)^2}\right]\vetor{\x}_q
+    \end{equation*}
+    é a força na carga pontual devido às cargas induzidas na superfície condutora.
 \end{proof}
