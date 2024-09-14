@@ -1,0 +1,31 @@
+\begin{exercício}{Potencial entre placas condutoras aterradas}{exercício3}
+    Duas placas metálicas infinitas e aterradas estão paralelas ao plano \(xz\), uma em \(y = 0\), e a outra em \(y = a\), como mostra a figura abaixo.
+    \begin{center}
+        \begin{tikzpicture}
+            % Axes
+            \draw[->] (0,0,0) -- (5,0,0) node[below] {$x$}; % x-axis
+            \draw[->] (0,0,0) -- (0,3,0) node[left] {$y$}; % y-axis
+            \draw[->] (0,0,0) -- (0,0,3) node[below right] {$z$}; % z-axis
+
+            % Blue wall at x=0 (for 0 <= y <= a, and entire z axis) with horizontal gradient
+            \shade[shading=axis, bottom color=Overlay1, top color=Overlay1, middle color = Lavender!55!Text, opacity=0.7, shading angle = 45]
+            (0,0,-2) -- (0,2,-2) -- (0,2,2) -- (0,0,2) -- cycle;
+            \draw (-0.5,0.5,1) node[left] {$\phi_0(y)$};
+
+            % Half-plane at y=0 (for x >= 0 and entire z axis)
+            \draw[fill=Overlay0, opacity=0.7] (0,0,-2) -- (4,0,-2) -- (4,0,2) -- (0,0,2) -- cycle;
+            \draw (3,0.3,1) node[below] {$\phi = 0$};
+
+            % Half-plane at y=a (for x >= 0 and entire z axis)
+            \draw[fill=Overlay0, opacity=0.7] (0,2,-2) -- (4,2,-2) -- (4,2,2) -- (0,2,2) -- cycle;
+            \draw (3,2.3,1) node[above right] {$\phi = 0$};
+
+            % Mark at y=a
+            \draw (0,2,0) node[left] {$a$};
+        \end{tikzpicture}
+    \end{center}
+    A extremidade esquerda, em \(x = 0\), está fechada por uma faixa infinita isolada das duas placas e mantida a um potencial específico \(\phi_0(y)= \phi_0 \sin\left(\frac{\pi}{a}y\right)\). Encontre o potencial em toda região compreendida entre as placas.
+\end{exercício}
+\begin{proof}[Resolução]
+
+\end{proof}
