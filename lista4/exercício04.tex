@@ -2,5 +2,31 @@
     Um tubo retangular que corre paralelo ao eixo \(z\) tem três lados de metal aterrados, em \(y=0,\) \(y = a\), e \(x= 0.\) O quarto lado, em \(x = b\), é mantido a um potencial específico \(\phi_0(y)\). Determine o potencial no interior do tubo e aplique o resultado para o caso em que \(\phi_0(y)\) é constante.
 \end{exercício}
 \begin{proof}[Resolução]
+    Como o potencial deve ser invariante por translações no eixo \(z\), segue que \(\phi = \phi(x,y)\). Escrevendo \(\phi(x,y) = X(x)Y(y)\) e repetindo os mesmos argumentos do \cref{ex:exercício3}, segue que as soluções não triviais para \(X\) e \(Y\) são
+    \begin{equation*}
+        X(x) = A \cosh(\kappa x) + B \sinh(\kappa x)\quad\text{e}\quad Y(y) = C \cos(\kappa y) + D \sin(\kappa y)
+    \end{equation*}
+    para algum \(\kappa \in \mathbb{R}\setminus\set{0}\). Do aterramento dos lados em \(x = 0\) e \(y = 0\), segue que \(A = C = 0\), e do aterramento do lado \(y = a\), temos \(\kappa = \frac{\pi}{a}n,\) para todo \(n \in \mathbb{N}\). Assim, o potencial é da forma
+    \begin{equation*}
+        \phi(x,y) = \sum_{n \in \mathbb{N}} \alpha_n \sinh\left(\frac{n \pi x}{a}\right) \sin\left(\frac{n \pi y}{a}\right)
+    \end{equation*}
+    para todo \((x,y) \in [0,b] \times [0,a]\), com \(\alpha_n \in \mathbb{R}\) para todo \(n \in \mathbb{N}\). Como em \(x = b\) o potencial é dado por \(\phi_0(y)\), temos
+    \begin{equation*}
+        \alpha_n = \frac{2}{a\sinh\left(\frac{n \pi b}{a}\right)} \int_0^a \dli{\xi} \phi_0(\xi)\sin\left(\frac{n \pi \xi}{a}\right)
+    \end{equation*}
+    para todo \(n \in \mathbb{N}\), de modo que
+    \begin{equation*}
+        \phi(x, y) = \frac{2}{a}\sum_{n \in \mathbb{N}} \frac{\int_0^a \dli\xi \phi_0(\xi) \sin \left(\frac{n \pi \xi}{a}\right)}{\sinh\left(\frac{n \pi b}{a}\right)}\sinh\left(\frac{n \pi x}{a}\right) \sin\left(\frac{n \pi y}{a}\right)
+    \end{equation*}
+    é o potencial no interior do tubo.
 
+    No caso particular de um potencial constante \(\phi_0(y) = \phi_0\), temos
+    \begin{equation*}
+        \alpha_n = \frac{2}{a \sinh\left(\frac{n \pi b}{a}\right)}\int_0^a \dli{\xi} \phi_0(\xi)\sin\left(\frac{n \pi \xi}{a}\right) = \frac{2[1 - (-1)^{n}] \phi_0}{n \pi\sinh\left(\frac{n \pi b}{a}\right)}.
+    \end{equation*}
+    Desse modo, os coeficientes pares se anulam e o potencial é dado por
+    \begin{equation*}
+        \phi(x,y) = \frac{4\phi_0}{\pi} \sum_{n \in \mathbb{N}} \frac{\sinh\left[\frac{(2n - 1)\pi x}{a}\right]\sin\left[\frac{(2n - 1)\pi y}{a}\right]}{(2n - 1)\sinh\left[\frac{(2n -1)\pi b}{a}\right]}
+    \end{equation*}
+    para todo \((x,y) \in [0,b]\times[0,a]\).
 \end{proof}
