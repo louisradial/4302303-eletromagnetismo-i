@@ -1,10 +1,40 @@
 \begin{exercício}{Teorema do valor médio da eletrostática}{exercício1}
-    Mostre que em um aberto \(\Sigma\subset \mathbb{R}^3\) sem cargas, para todo \(\vetor{\x} \in \Sigma\) vale
+    Mostre que em um aberto \(\Sigma\subset \mathbb{R}^3\) sem cargas, para todo \(\vetor{\tilde{\x}} \in \Sigma\) vale
     \begin{equation*}
-        \phi(\vetor{\x}) = \frac{\oint_{\partial \Omega}\dln2{\x'} \phi(\vetor{\x'})}{\oint_{\partial \Omega} \dln2{\x'}},
+        \phi(\vetor{\tilde{\x}}) = \frac{\oint_{\partial \Omega}\dln2{\x'} \phi(\vetor{\x'})}{\oint_{\partial \Omega} \dln2{\x'}},
     \end{equation*}
-    onde \(\Omega\) é qualquer região esférica centrada em \(\vetor{\x}\) e contida em \(\Sigma\).
+    onde \(\Omega\) é qualquer região esférica centrada em \(\vetor{\tilde{\x}}\) e contida em \(\Sigma\).
 \end{exercício}
 \begin{proof}[Resolução]
+    Como \(\Sigma\) é um aberto, para todo \(\vetor{\tilde{\x}} \in \Sigma\) existem esferas centradas em \(\vetor{\tilde{\x}}\) contidas em \(\Sigma\). Sem perda de generalidade, podemos tomar \(\vetor{\tilde{\x}}\) como a origem do sistema de coordenadas, então
+    \begin{equation*}
+        G_D(\vetor{\x}, \vetor{\x'}) = \begin{cases}
+            \dfrac{1}{\norm{\vetor{\x}-\vetor{\x'}}} - \dfrac{R}{\norm{\vetor{\x'}}\norm*{\vetor{\x} - \frac{R^2}{\norm{\vetor{\x'}}}\vetor{\x'}}},&\text{se }\vetor{\x'} \neq \vetor{0}\\
+            \dfrac{1}{\norm{\vetor{\x}-\vetor{\x'}}} - \dfrac{1}{R},&\text{se }\vetor{\x'} = \vetor{0}
+        \end{cases}
+    \end{equation*}
+    é a função de Green para uma superfície esférica de raio \(R > 0\), centrada em \(\vetor{\tilde{\x}}\) e contida em \(\Sigma\).
 
+    Seja \(\Omega \subset \Sigma\) uma região esférica centrada em \(\tilde{\x}\) de raio \(R\). Como o potencial satisfaz a equação de Laplace no \(\Omega\), temos
+    \begin{equation*}
+        \phi(\vetor{\x}) = - \frac1{4\pi} \oint_{\partial \Omega} \dln2{\x'} \phi(\vetor{\x'}) \diffp{G_D(\vetor{\x}, \vetor{\x'})}{n'}
+    \end{equation*}
+    pela solução formal da equação de Poisson para todo \(\vetor{\x} \in \Omega\). Utilizando coordenadas esféricas e definindo \(\gamma\) como o ângulo planar entre \(\vetor{\x} = r \vetor{e}_r\) e \(\vetor{\x'} = r' \vetor{e}_{r'}\), temos
+    \begin{align*}
+        \diffp{G_D(\vetor{\x}, \vetor{\x'})}{n'}
+        &= \diffp*{\left[\frac{1}{\sqrt{r^2 + r'^2 - 2r r' \cos \gamma}}-\frac{R}{r'\sqrt{r^2 + \frac{R^4}{r'^2} - 2\frac{rR^2}{r'}\cos \gamma}}\right]}{r'}[r'=R^-]\\
+        &= -\frac{R - r\cos \gamma}{(r^2 + R^2 - 2r R \cos \gamma)^{\frac32}} + \frac{R(Rr^2 - rR^2 \cos \gamma)}{(R^2r^2 + R^4 - 2rR^3 \cos \gamma)^{\frac32}}\\
+        &= \frac{r \cos \gamma - R + \frac{r^2}{R} - r\cos \gamma}{(r^2 + R^2 - 2rR \cos \gamma)^{\frac32}}\\
+        &= \frac{r^2 - R^2}{R\left(r^2 + R^2 - 2rR \cos \gamma\right)^{\frac32}}\\
+        &= \frac{\norm{\vetor{\x}} - R^2}{R\norm{\D}^3}
+    \end{align*}
+    portanto
+    \begin{equation*}
+        \phi(\vetor{\x}) = \frac{R^2 - \norm{\vetor{\x}}^2}{4\pi R} \oint_{\partial \Omega} \dln2{\x'} \frac{\phi(\vetor{\x'})}{\norm{\D}^3}
+    \end{equation*}
+    para todo \(\vetor{\x} \in \Omega\). Em particular para \(\vetor{\x} = \vetor{\tilde{\x}}\), temos
+    \begin{equation*}
+        \phi(\vetor{\tilde{\x}}) = \frac{R^2}{4\pi R} \oint_{\partial\Omega} \dln2{\x'}\frac{\phi(\vetor{\x'})}{R^3} = \frac{1}{4\pi R^2}\oint_{\partial\Omega} \dln2{\x'} \phi(\vetor{\x'}) = \frac{\oint_{\partial\Omega} \dln2{\x'} \phi(\vetor{\x'})}{\oint_{\partial\Omega} \dln2{\x'}},
+    \end{equation*}
+    como desejado.
 \end{proof}
