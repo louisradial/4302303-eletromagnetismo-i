@@ -27,5 +27,54 @@
     A extremidade esquerda, em \(x = 0\), está fechada por uma faixa infinita isolada das duas placas e mantida a um potencial específico \(\phi_0(y)= \phi_0 \sin\left(\frac{\pi}{a}y\right)\). Encontre o potencial em toda região compreendida entre as placas.
 \end{exercício}
 \begin{proof}[Resolução]
+    Sejam
+    \begin{equation*}
+        \Omega = \setc*{(x,y,z) \in \mathbb{R}^3}{x > 0 \land y \in (0,a)}
+    \end{equation*}
+    a região entre as placas,
+    \begin{equation*}
+        \Sigma = \setc*{(x,y,z) \in \mathbb{R}^3}{x > 0 \land y \in \set{0,a}}
+    \end{equation*}
+    as placas aterradas e
+    \begin{equation*}
+        \Pi = \setc*{(x,y,z) \in \mathbb{R}^3}{x = 0 \land y \in [0,a]}
+    \end{equation*}
+    a placa mantida ao potencial \(\phi_0\). Devemos resolver a equação de Laplace em \(\Omega\) com condições de contorno \(\phi = 0\) em \(\Sigma\), \(\phi = \phi_0\) em \(\Pi\), e que \(\phi \to 0\) no infinito. Notemos que o sistema é invariante por translações no eixo \(z\), portanto temos \(\phi = \phi(x,y)\).
 
+    Escrevamos \(\phi(x, y) = X(x)Y(y)\), então
+    \begin{equation*}
+        \nabla^2\phi = 0 \implies \frac{1}{X}\diff[2]{X}{x} = -\frac{1}{Y}\diff[2]{Y}{y}
+    \end{equation*}
+    Como o lado esquerdo é função apenas de \(x\) e o lado direito apenas de \(y\), deve existir  \(\lambda \in \mathbb{R}\) tal que
+    \begin{equation*}
+        \diff[2]{X}{x} + \lambda X = 0,\quad\text{e}\quad
+        \diff[2]{Y}{y} - \lambda Y = 0,
+    \end{equation*}
+    Consideremos \(\lambda = 0\), então \(Y(y) = Ay + B\). Das condições de contorno para \(\Sigma\), temos \(A = B = 0\), isto é, devemos ter \(\lambda \neq 0\) para que a solução seja não trivial. Para \(\lambda > 0\), temos \(Y(y) = A \cosh(\sqrt{\lambda}y) + B \sinh(\sqrt{\lambda}y)\), e concluímos novamente que \(A = B = 0\). Portanto, existe \(\kappa \in \mathbb{R}\setminus\set{0}\) tal que \(\lambda = -\kappa^2\), caso para o qual temos
+    \begin{equation*}
+        Y(y) = A \cos(\kappa y) + B \sin(\kappa y)
+        \quad\text{e}\quad
+        X(x) = C e^{\kappa x} + D e^{-\kappa x},
+    \end{equation*}
+    onde \(A, B, C, D \in \mathbb{R}\) são constantes não todas nulas. Da condição de contorno para \(y = 0\), segue que \(A = 0\), e portanto, para que a condição de contorno em \(y = a\) seja satisfeita de maneira não trivial, devemos ter
+    \begin{equation*}
+        \kappa = \frac{n\pi}{a},
+    \end{equation*}
+    com \(n \in \mathbb{N}\). Como o potencial se anula no infinito, devemos ter \(C = 0\), caso contrário a solução não seria sequer limitada. Concluímos portanto que o potencial é da forma
+    \begin{equation*}
+        \phi(x,y) = \sum_{n \in \mathbb{N}} \alpha_n \sin\left(\frac{\pi n y}{a}\right) \exp\left(- \frac{\pi n x}{a}\right).
+    \end{equation*}
+    Da condição de contorno em \(\Pi\), temos
+    \begin{equation*}
+        \phi_0(y) = \sum_{n\in \mathbb{N}} \alpha_n \sin\left(\frac{\pi n y}{a}\right) \implies \alpha_n = \frac{2}{a}\int_0^a \dli{\xi} \sin\left(\frac{n \pi \xi}{a}\right) \phi_0(\xi)
+    \end{equation*}
+    da ortogonalidade da família de funções seno. Como \(\phi_0(y) = \phi_0\sin\left(\frac{\pi}{a}y\right)\), temos
+    \begin{equation*}
+        \alpha_n = \phi_0 \delta_{n1},
+    \end{equation*}
+    isto é,
+    \begin{equation*}
+        \phi(x,y) = \phi_0 \sin\left(\frac{\pi y}{a}\right)\exp\left(-\frac{\pi x}{a}\right)
+    \end{equation*}
+    é o potencial em \(\overline\Omega\).
 \end{proof}
