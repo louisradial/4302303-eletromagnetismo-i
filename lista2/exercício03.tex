@@ -7,7 +7,7 @@
         \vetor{E}(\vetor{\x}) &= \frac1{4\pi \epsilon_0} \int_0^R\dli{s} \int_0^{2\pi} s\dli{\theta} \sigma\frac{z\vetor{e}_z - s\left(\cos\theta \vetor{e}_x + \sin\theta \vetor{e}_y\right)}{\left(z^2 + s^2\right)^{\frac32}}\\
                               &= \frac{z \sigma\vetor{e}_z}{2\epsilon_0} \int_0^R s\dl{s} \left(z^2 + s^2\right)^{-\frac32}\\
                               &= \frac{z \sigma}{2 \epsilon_0}\left[\frac1{\abs{z}} - \frac1{\sqrt{z^2 + R^2}}\right]\vetor{e}_z\\
-                              &= \frac{\sigma}{2 \epsilon_0}\left[\sgn{z} - \frac{z}{z^2 + R^2}\right]\vetor{e}_z.
+                              &= \frac{\sigma}{2 \epsilon_0}\left[\sgn{z} - \frac{z}{\sqrt{z^2 + R^2}}\right]\vetor{e}_z.
     \end{align*}
     No limite \(R \to \infty\), temos \(\vetor{E} = \frac{\sigma}{2 \epsilon_0} \sgn(z)\vetor{e}_z\), que é o campo elétrico gerado por um plano infinito uniformemente carregado.
 \end{proof}
