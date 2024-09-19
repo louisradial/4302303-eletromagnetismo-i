@@ -6,5 +6,36 @@
    onde \(C_\ell = \int_{0}^\pi \sin\theta\dli{\theta}\phi_0(\theta)P_\ell(\cos\theta)\).
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Da solução geral para a equação de Laplace com simetria azimutal, temos
+    \begin{equation*}
+        \phi(r, \theta) = \begin{cases}
+            \sum_{\ell = 0}^\infty \left(A_\ell r^\ell + B_\ell r^{-\ell -1}\right)P_\ell(\cos\theta), &\text{se } r < R\\
+            \phi_0(\theta), &\text{se } r = R\\
+            \sum_{\ell = 0}^\infty \left(\tilde{A}_\ell r^\ell + \tilde{B}_\ell r^{-\ell -1}\right)P_\ell(\cos\theta), &\text{se } r > R,
+        \end{cases}
+    \end{equation*}
+    onde \(A_\ell, B_\ell, \tilde{A}_\ell, \tilde{B}_\ell\) são constantes reais. Como o potencial se anula no infinito e deve ser bem definido na origem, sabemos que \(B_\ell = \tilde{A}_\ell = 0\) para todo \(\ell \in \mathbb{N}_0\). Da continuidade do potencial, temos
+    \begin{equation*}
+        \sum_{\ell = 0}^\infty A_\ell R^\ell P_\ell(\cos\theta) = \sum_{\ell = 0}^\infty \tilde{B}_\ell R^{- \ell - 1}P_\ell(\cos\theta) \implies A_\ell R^{2\ell + \ell} = \tilde{B}_\ell,
+    \end{equation*}
+    e
+    \begin{equation*}
+        \sum_{\ell = 0}^\infty A_\ell R^\ell P_\ell(\cos\theta) = \phi_0(\theta) \implies A_\ell = \frac{2\ell + 1}{2R^\ell} \int_0^\pi \sin\psi\dli{\psi} \phi_0(\psi) P_\ell(\cos\psi) = \frac{2\ell + 1}{2R^\ell} C_\ell,
+    \end{equation*}
+    para todo \(\ell \in \mathbb{N}_0\). Assim,
+    \begin{equation*}
+        \phi(r, \theta) = \begin{cases}
+            \sum_{\ell = 0}^\infty \frac{2\ell + 1}{2}\left(\frac{r}{R}\right)^\ell C_\ell P_\ell(\cos\theta), &\text{se } r < R\\
+            \phi_0(\theta), &\text{se } r = R\\
+            \sum_{\ell = 0}^\infty \frac{2\ell + 1}{2}\left(\frac{R}{r}\right)^{\ell + 1}C_\ell P_\ell(\cos\theta), &\text{se } r > R,
+        \end{cases}
+    \end{equation*}
+    é o potencial em todo o espaço e
+    \begin{align*}
+        \sigma &= \epsilon_0 \left(- \diffp{\phi}{r}[r=R^+] + \diffp{\phi}{r}[r = R^-]\right)\\
+               &= \epsilon_0 \left[\sum_{\ell = 0}^\infty \frac{(2\ell + 1)(\ell + 1)}{2R}C_\ell P_\ell(\cos\theta) + \sum_{\ell = 0}^\infty \frac{(2\ell + 1)\ell}{2R} C_\ell P_\ell(\cos\theta)\right]\\
+               &= \frac{\epsilon_0}{2R}\sum_{\ell = 0}^\infty \left[(2\ell + 1)(\ell + 1) + (2\ell + 1)\ell\right]C_\ell P_\ell(\cos\theta)\\
+               &= \frac{\epsilon_0}{2R}\sum_{\ell = 0}^\infty (2\ell + 1)^2C_\ell P_\ell(\cos\theta)
+    \end{align*}
+    é a densidade superficial de carga na esfera.
 \end{proof}
