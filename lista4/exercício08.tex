@@ -10,15 +10,15 @@
     \begin{equation*}
         \frac{s^2}{R(s)} \diff[2]{R}{s} + \frac{s}{R(s)} \diff{R}{s} = - \frac{1}{\Xi(\theta)} \diff[2]{\Xi}{\theta}.
     \end{equation*}
-    Como o lado esquerdo é função só de \(s\) e o lado esquerdo é função só de \(\theta\), ambos devem ser constantes, isto é, existe \(m\in \mathbb{R}\) constante tal que
+    Como o lado esquerdo é função só de \(s\) e o lado esquerdo é função só de \(\theta\), ambos devem ser constantes, isto é, existe \(\lambda\in \mathbb{R}\) constante tal que
     \begin{equation*}
-        s^2 \diff[2]{R}{s} + s\diff{R}{s} - m R(s) = 0 \quad\text{e}\quad \diff[2]{\Xi}{\theta} + m \Xi(\theta) = 0.
+        s^2 \diff[2]{R}{s} + s\diff{R}{s} - \lambda R(s) = 0 \quad\text{e}\quad \diff[2]{\Xi}{\theta} + \lambda \Xi(\theta) = 0.
     \end{equation*}
-    Como \(\Xi\) deve ser periódica, devemos ter \(m > 0\), caso contrário haveria apenas a solução trivial. Ainda, seu período deve ser \(2\pi\), donde concluímos que \(m \in \mathbb{N}\) e então
+    Como \(\Xi\) deve ser periódica, devemos ter \(\lambda \geq 0\), caso contrário haveria apenas a solução trivial. Notemos que para \(\lambda = 0\), temos a solução constante \(\Xi_0(\theta) = a_0\) e a solução para \(R\) é da forma \(R_0(s) = c_0 \ln s + d_0\). Para \(\lambda > 0\) podemos escrever \(\lambda = m^2\), o período de \(\Xi\) deve ser \(2\pi\), donde concluímos que
     \begin{equation*}
-        \Xi_m(\theta) = a_m\cos(m\theta) + b_m \sin(m\theta).
+        \Xi_m(\theta) = a_m\cos(m\theta) + b_m \sin(m\theta),
     \end{equation*}
-    Notemos que a equação para \(R\) é uma equação diferencial de Euler, portanto tentamos uma solução do tipo \(R(s) = s^\nu\) e obtemos
+    com \(m \in \mathbb{N}\). Notemos que a equação para \(R\) é uma equação diferencial de Euler, portanto tentamos uma solução do tipo \(R(s) = s^\nu\) e obtemos
     \begin{equation*}
         \left[\nu(\nu - 1) + \nu - m\right]s^\nu = 0 \implies \nu = \pm m,
     \end{equation*}
@@ -28,7 +28,7 @@
     \end{equation*}
     uma vez que \(\set{s^m, s^{-m}}\) é um conjunto linearmente independente de soluções. Concluímos que
     \begin{equation*}
-        \phi(s, \theta) = \sum_{m \in \mathbb{N}} \left[a_m \cos(m\theta) + b_m\sin(m\theta)\right](c_m s^m + d_m s^{-m})
+        \phi(s, \theta) = \alpha + \beta \ln(s) + \sum_{m \in \mathbb{N}} \left[a_m \cos(m\theta) + b_m\sin(m\theta)\right](c_m s^m + d_m s^{-m})
     \end{equation*}
-    é a solução geral para a equação de Laplace com simetria de translação axial, onde \(a_m, b_m, c_m, d_m\) são famílias de constantes a serem determinadas por condições de contorno.
+    é a solução geral para a equação de Laplace com simetria de translação axial.
 \end{proof}
