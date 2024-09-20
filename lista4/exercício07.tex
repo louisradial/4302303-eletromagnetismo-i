@@ -2,5 +2,41 @@
     Uma quantidade de carga \(q\) é distribuída uniformemente sobre um disco de raio \(R\) cuja espessura é desprezível. Assuma que o plano do disco coincide com o plano \(xy\) e o centro do disco coincide com a origem do sistema de coordenadas. Encontre o potencial elétrico em qualquer ponto do espaço \(\vetor{\x}\), com \(\norm{\vetor{\x}} > R\). Faça isso resolvendo a equação de Laplace em coordenadas esféricas utilizando o potencial elétrico ao longo do eixo \(z\) como condição de contorno.
 \end{exercício}
 \begin{proof}[Resolução]
+    Seja \(\sigma = \frac{q}{\pi R^2}\) a densidade superficial de carga no disco, então
+    \begin{equation*}
+        \phi(z\vetor{e}_z) = \frac{1}{4\pi \epsilon_0} \int_0^R \dli{s}\int_0^{2\pi} s\dli{\theta}\frac{\sigma}{\sqrt{z^2 + s^2}} = \frac{\sigma}{4 \epsilon_0} \int_{z^2}^{R^2 + z^2} \dli{\xi} \xi^{-\frac12} =\frac{\sigma}{2 \epsilon_0} \left[\sqrt{R^2 + z^2} - \abs{z}\right]
+    \end{equation*}
+    é o potencial ao longo do eixo \(z\). Consideremos a expansão binomial\footnote{Ver \href{https://github.com/louisradial/4302307-fismat-ii/blob/main/lista de exercícios 2/lista2.pdf}{exercício 2.}} para \(\abs{z} > R\)
+    \begin{equation*}
+        \sqrt{1 + \left(\frac{R}{z}\right)^2} = \sum_{k=0}^\infty \frac{\Gamma\left(\frac32\right)}{\Gamma\left(\frac32- k\right)\Gamma(k+1)}\left(\frac{R}{z}\right)^{2k},
+    \end{equation*}
+    então
+    \begin{align*}
+        \phi(z \vetor{e}_z) &=\frac{\sigma \abs{z}}{2 \epsilon_0}\left[\sqrt{1 + \frac{R^2}{z^2}} - 1\right]\\
+                            &= \frac{\sigma \abs{z}}{2 \epsilon_0}\left[-1 + \sum_{k=0}^\infty \frac{\Gamma\left(\frac32\right)}{\Gamma\left(\frac32- k\right)\Gamma(k+1)}\left(\frac{R}{z}\right)^{2k}\right]\\
+                            &= \frac{\sigma \abs{z}}{2 \epsilon_0}\sum_{k = 1}^\infty \frac{\Gamma\left(\frac32\right)}{\Gamma\left(\frac32 - k\right) \Gamma(k + 1)}\left(\frac{R}{z}\right)^{2k}\\
+                            &= \frac{\sigma R \sgn{z}}{2 \epsilon_0} \sum_{k = 1}^\infty \frac{\Gamma\left(\frac32\right)}{\Gamma\left(\frac32 - k\right) \Gamma(k + 1)}\left(\frac{R}{z}\right)^{2k-1}
+    \end{align*}
+    é o potencial sempre que \(\abs{z} > R\).
 
+    Pela simetria azimutal, o potencial para \(r > R\) é dado por
+    \begin{equation*}
+        \phi(r, \theta) = \sum_{\ell = 0}^\infty \left(A_\ell r^\ell + B_\ell r^{-\ell -1}\right)P_\ell(\cos\theta)
+    \end{equation*}
+    para constantes \(A_\ell, B_\ell\) reais. Por ser uma distribuição de cargas localizada, o potencial é limitado, portanto concluímos que \(A_\ell = 0\) para todo \(\ell \in \mathbb{N}_0\). Para \(\theta = 0\) e \(\theta = \pi\), temos
+    \begin{align*}
+        \sum_{\ell = 0}^\infty B_\ell r^{-\ell - 1} &= \frac{\sigma R \sgn(\cos\theta)}{2 \epsilon_0} \sum_{k = 1}^\infty \frac{\Gamma\left(\frac32\right)}{\Gamma\left(\frac32 - k\right) \Gamma(k + 1)}\left(\frac{R}{r}\right)^{2k-1}\\
+                                                    &= \frac{\sigma R\sgn(\cos\theta)}{2 \epsilon_0} \sum_{k = 0}^\infty \frac{\Gamma\left(\frac32\right)}{\Gamma\left(\frac12 - k\right) \Gamma(k + 2)}\left(\frac{R}{r}\right)^{2k+1},
+    \end{align*}
+    portanto concluímos que \(B_{2\ell + 1} = 0\) para todo \(\ell \in \mathbb{N}\) e
+    \begin{equation*}
+        B_{2\ell} = \frac{\sigma R^{2\ell + 2}\Gamma\left(\frac32\right)\sgn(\cos\theta)}{2 \epsilon_0 \Gamma(\frac12 - \ell) \Gamma(\ell+2)}
+    \end{equation*}
+    para todo \(\ell \in \mathbb{N}_0\). Assim, sempre que \(r > R\) e \(\theta \in []\)
+    \begin{equation*}
+        \phi(r, \theta) = \begin{cases}
+            \displaystyle\frac{\sigma R}{2 \epsilon_0}\sum_{\ell = 0}^\infty \frac{\Gamma\left(\frac32\right)}{\Gamma\left(\frac12 - \ell\right)\Gamma(\ell + 2)} \left(\frac{R}{r}\right)^{2\ell + 1} P_{2\ell}(\cos\theta), &\text{se }\theta \in [0, \frac{\pi}{2})\\
+            \displaystyle-\frac{\sigma R}{2 \epsilon_0}\sum_{\ell = 0}^\infty \frac{\Gamma\left(\frac32\right)}{\Gamma\left(\frac12 - \ell\right)\Gamma(\ell + 2)} \left(\frac{R}{r}\right)^{2\ell + 1} P_{2\ell}(\cos\theta), &\text{se }\theta \in (\frac{\pi}{2}, \pi]\\
+        \end{cases}
+    \end{equation*}
 \end{proof}
