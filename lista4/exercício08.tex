@@ -2,5 +2,33 @@
     Resolva a equação de Laplace pela separação de variáveis em coordenadas cilíndricas assumindo que não há dependência em \(z,\) encontrando uma expressão para a solução geral.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Se o potencial é invariante por translações axiais, temos \(\phi = \phi(s, \theta)\). Buscando uma solução produto, \(\phi(s, \theta) = R(s)\Xi(\theta)\), temos
+    \begin{equation*}
+        0 = \nabla^2 \phi = \frac1s \diffp*{\left(s \diff{R}{s} \Xi(\theta)\right)}{s} + \frac{1}{s^2}R(s)\diff[2]{\Xi}{\theta} = \diff[2]{R}{s}\Xi(\theta) + \frac{1}{s} \diff{R}{s}\Xi(\theta) + \frac{1}{s^2} R(s) \diff[2]{\Xi}{\theta},
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \frac{s^2}{R(s)} \diff[2]{R}{s} + \frac{s}{R(s)} \diff{R}{s} = - \frac{1}{\Xi(\theta)} \diff[2]{\Xi}{\theta}.
+    \end{equation*}
+    Como o lado esquerdo é função só de \(s\) e o lado esquerdo é função só de \(\theta\), ambos devem ser constantes, isto é, existe \(m\in \mathbb{R}\) constante tal que
+    \begin{equation*}
+        s^2 \diff[2]{R}{s} + s\diff{R}{s} - m R(s) = 0 \quad\text{e}\quad \diff[2]{\Xi}{\theta} + m \Xi(\theta) = 0.
+    \end{equation*}
+    Como \(\Xi\) deve ser periódica, devemos ter \(m > 0\), caso contrário haveria apenas a solução trivial. Ainda, seu período deve ser \(2\pi\), donde concluímos que \(m \in \mathbb{N}\) e então
+    \begin{equation*}
+        \Xi_m(\theta) = a_m\cos(m\theta) + b_m \sin(m\theta).
+    \end{equation*}
+    Notemos que a equação para \(R\) é uma equação diferencial de Euler, portanto tentamos uma solução do tipo \(R(s) = s^\nu\) e obtemos
+    \begin{equation*}
+        \left[\nu(\nu - 1) + \nu - m\right]s^\nu = 0 \implies \nu = \pm m,
+    \end{equation*}
+    isto é,
+    \begin{equation*}
+        R(s) = c_ms^m + d_m s^{-m},
+    \end{equation*}
+    uma vez que \(\set{s^m, s^{-m}}\) é um conjunto linearmente independente de soluções. Concluímos que
+    \begin{equation*}
+        \phi(s, \theta) = \sum_{m \in \mathbb{N}} \left[a_m \cos(m\theta) + b_m\sin(m\theta)\right](c_m s^m + d_m s^{-m})
+    \end{equation*}
+    é a solução geral para a equação de Laplace com simetria de translação axial, onde \(a_m, b_m, c_m, d_m\) são famílias de constantes a serem determinadas por condições de contorno.
 \end{proof}
