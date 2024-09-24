@@ -1,7 +1,49 @@
 \begin{exercício}{Potencial para um cilindro longo na presença de um campo elétrico externo}{exercício9}
-    Um cilindro de raio \(R\) infinitamente longo feito de um material condutor é colocado em uma região do espaço onde há um campo elétrico uniforme \(\vetor{E}_0\) perpendicular ao eixo de simetria do cilindro. Calcule o potencial fora do cilindro e obtenha a densidade de carga superficial nem sua superfície.
+    Um cilindro de raio \(R\) infinitamente longo feito de um material condutor é colocado em uma região do espaço onde há um campo elétrico uniforme \(\vetor{E}_0\) perpendicular ao eixo de simetria do cilindro. Calcule o potencial fora do cilindro e obtenha a densidade de carga superficial em sua superfície.
 \end{exercício}
 \begin{proof}[Resolução]
+    Orientemos os eixos de coordenadas de forma que o eixo de simetria do cilindro coincida com o eixo \(z\) e que o campo uniforme seja dado por \(\vetor{E}_0 = E_0\vetor{e}_x\), com \(E_0 \in \mathbb{R}\). Sejam \(\Sigma = \setc{\vetor{\x} \in \mathbb{R}^3}{\inner{\vetor{e}_s}{\vetor{\x}} < R}\) a região interior ao cilindro, \(\partial \Sigma\) sua superfície, e \(\Omega = \mathbb{R}^3 \setminus (\Sigma \cup \partial \Sigma)\) a região exterior ao cilindro.
 
+    Notemos que longe do condutor, o campo elétrico deve ser \(\vetor{E}_0\), portanto temos a condição de contorno
+    \begin{equation*}
+        \phi(s, \theta) = \phi_0 - E_0 s\cos\theta, \quad\text{com}\quad \phi_0 \in \mathbb{R}
+    \end{equation*}
+    para \(s \gg R\), de forma que \(-\diffp{\phi}{x} = \vetor{E}_0\) nesta condição. Como há simetria longitudinal, segue do \cref{ex:exercício8} que
+    \begin{equation*}
+        \phi(s, \theta) = \alpha + \beta \ln(s) + \sum_{m=1}^\infty \left[a_m \cos(m\theta) + b_m \sin(m\theta)\right](c_m s^m + d_m s^{-m})
+    \end{equation*}
+    sempre que \(s > R\). Portanto, para \(s \gg R\), obtemos
+    \begin{equation*}
+        \alpha + \beta \ln(s) + \sum_{m=1}^\infty \left[a_m \cos(m\theta) + b_m \sin(m\theta)\right]c_m s^m = \phi_0 - E_0 s\cos\theta
+    \end{equation*}
+    da condição de contorno. Multiplicando por \(\cos(n\theta)\) ou por \(\sin(n\theta)\) e integrando em \([0,2\pi]\), temos que
+    \begin{equation*}
+        a_1c_1 = -E_0
+        \quad\text{e}\quad
+        b_nc_n = a_{n+1}c_{n+1} = 0,
+    \end{equation*}
+    para todo \(n \in \mathbb{N}\). Podemos inferir também que \(\alpha = \phi_0\) e \(\beta = 0\), portanto
+    \begin{equation*}
+        \phi(s, \theta) = \phi_0 - E_0s \cos\theta + \sum_{m = 1}^\infty \left[\tilde{a}_m \cos(m\theta) + \tilde{b}_m\sin(m\theta)\right]s^{-m}
+    \end{equation*}
+    é o potencial em \(\Omega\), restando determinar as constantes \(\tilde{a}_m = a_m d_m\) e \(\tilde{b}_m = b_m d_m\).
 
+    Como o condutor é uma equipotencial, existe \(\phi_c \in \mathbb{R}\) tal que \(\phi(\vetor{\x}) = \phi_c\) para todo \(\vetor{\x} \in \partial \Sigma\). Pela continuidade do potencial, temos
+    \begin{equation*}
+        \phi_0 - E_0R \cos\theta + \sum_{m = 1}^\infty \left[\tilde{a}_m \cos(m\theta) + \tilde{b}_m\sin(m\theta)\right]R^{-m} = \phi_c
+    \end{equation*}
+    para todo \(\theta \in [0,2\pi]\). Multiplicando por \(\cos(n\theta)\) ou por \(\sin(n\theta)\) e integrando em \([0,2\pi]\), obtemos
+    \begin{equation*}
+        \tilde{a}_1 = E_0R^2, \tilde{a}_{n+1}=\tilde{b}_n = 0,
+    \end{equation*}
+    para todo \(n \in \mathbb{N}\), e podemos concluir que \(\phi_c = \phi_0\). Assim,
+    \begin{align*}
+        \phi(s, \theta) &= \phi_0 - E_0s \cos\theta + E_0R^2s^{-1}\cos\theta\\
+                        &= \phi_0 + E_0 \left(R^2s^{-1} - s\right)\cos\theta
+    \end{align*}
+    é o potencial em \(\Omega\). Desse modo,
+    \begin{equation*}
+        \sigma = -\epsilon \diffp{\phi}{s}[s=R^+] = 2E_0\cos\theta
+    \end{equation*}
+    é a densidade superficial de carga na superfície do condutor.
 \end{proof}
