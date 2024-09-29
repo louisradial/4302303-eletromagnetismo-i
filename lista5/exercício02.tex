@@ -1,0 +1,63 @@
+\begin{exercício}{Adição de harmônicos esféricos}{exercício2}
+    A solução geral para a equação de Laplace em coordenadas esféricas é dada por
+    \begin{equation*}
+        \phi(r, \theta, \varphi) = \sum_{\ell = 0}^\infty \sum_{m = -\ell}^\ell \left(A_{\ell m}r^\ell + \frac{B_{\ell m}}{r^{\ell + 1}}\right) Y_{\ell m}(\theta, \varphi),
+    \end{equation*}
+    onde
+    \begin{equation*}
+        Y_{\ell m}(\theta, \varphi) = \sqrt{\frac{(2\ell + 1)(\ell - \abs{m})!}{4\pi \left(\ell + \abs{m}\right)!}} P_\ell^m(\cos\theta)e^{im\varphi}
+    \end{equation*}
+    são os harmônicos esféricos e \(P_\ell^m\) denota o polinômio associado de Legendre. Alguns dos primeiros harmônicos esféricos são
+    \begin{equation*}
+        Y_{00} = \frac{1}{\sqrt{4\pi}},\quad
+        Y_{1-1} = \sqrt{\frac{3}{8\pi}}\sin\theta e^{-i\phi},\quad
+        Y_{11} = -\sqrt{\frac{3}{8\pi}}\sin\theta e^{i\phi},\quad\text{e}\quad
+        Y_{10} = \sqrt{\frac{3}{4\pi}} \cos\theta.
+    \end{equation*}
+
+    \begin{center}
+
+        \tdplotsetmaincoords{60}{120}
+        \begin{tikzpicture}[scale=1.2,tdplot_main_coords]
+
+    % Axes
+    \draw[thick,->] (0,0,0) -- (0,3,0) node[anchor=north east] {\(y\)};  % y axis
+    \draw[thick,->] (0,0,0) -- (0,0,3) node[anchor=south east] {\(z\)};  % z axis
+    \draw[thick,->] (0,0,0) -- (3,0,0) node[anchor=south] {\(x\)};  % x axis
+
+    % vector 1
+    \pgfmathsetmacro{\ax}{1}
+    \pgfmathsetmacro{\ay}{2}
+    \pgfmathsetmacro{\az}{1.5}
+    \draw[very thick,->] (0,0,0) -- (\ax,\ay,\az) node[anchor=west]{\(\vetor{\x}\)};
+    % Dashed projection onto xy-plane
+    \draw[dashed] (\ax,\ay,0) -- (\ax,\ay,\az);  % Projection of r onto xy-plane
+    \draw[dashed] (0,0,0) -- (\ax,\ay,0);   % Origin to projection of r
+
+    % vector 2
+    \pgfmathsetmacro{\bx}{1}
+    \pgfmathsetmacro{\by}{2}
+    \pgfmathsetmacro{\bz}{2}
+    \draw[very thick,->] (0,0,0) -- (\bx,\by,\bz) node[anchor=west]{\(\vetor{\x'}\)};
+    % Dashed projection onto xy-plane
+    \draw[dashed] (\bx,\by,0) -- (\bx,\by,\bz);  % Projection of r onto xy-plane
+    \draw[dashed] (0,0,0) -- (\bx,\by,0);   % Origin to projection of r
+    %Polar angle theta
+    % \tdplotsetthetaplanecoords{45}
+    \tdplotdefinepoints(0,0,0)(0,0,0.7071)(0.3,0.4,0.5)
+    \tdplotdrawpolytopearc[->]{0.7}{anchor=south west}{$\theta$}
+    % \draw[->] (0,0.3,0) arc[start angle=90, end angle=20, radius=0.3] node[midway, above] {$\theta$};
+    %
+    % Azimuthal angle phi
+    % \tdplotsetthetaplanecoords{30}
+    \tdplotdefinepoints(0,0,0)(0.5,0,0)(0.3,0.4,0)
+    \tdplotdrawpolytopearc[->]{0.5}{anchor=north}{$\varphi$}
+    % \draw[->] (0,0,0) arc[start angle=0, end angle=45, radius=0.4] node[midway, below] {$\varphi$};
+
+\end{tikzpicture}
+
+    \end{center}
+\end{exercício}
+\begin{proof}[Resolução]
+
+\end{proof}
