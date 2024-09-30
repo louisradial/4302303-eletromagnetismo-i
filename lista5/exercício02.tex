@@ -30,34 +30,31 @@
     \pgfmathsetmacro{\ay}{2}
     \pgfmathsetmacro{\az}{1.5}
     \draw[very thick,->] (0,0,0) -- (\ax,\ay,\az) node[anchor=west]{\(\vetor{\x}\)};
-    % Dashed projection onto xy-plane
+    % dashed projection onto xy-plane
     \draw[dashed] (\ax,\ay,0) -- (\ax,\ay,\az);  % Projection of r onto xy-plane
     \draw[dashed] (0,0,0) -- (\ax,\ay,0);   % Origin to projection of r
-
-    % vector 2
-    \pgfmathsetmacro{\bx}{1}
-    \pgfmathsetmacro{\by}{2}
-    \pgfmathsetmacro{\bz}{2}
-    \draw[very thick,->] (0,0,0) -- (\bx,\by,\bz) node[anchor=west]{\(\vetor{\x'}\)};
-    % Dashed projection onto xy-plane
-    \draw[dashed] (\bx,\by,0) -- (\bx,\by,\bz);  % Projection of r onto xy-plane
-    \draw[dashed] (0,0,0) -- (\bx,\by,0);   % Origin to projection of r
-    %Polar angle theta
-    % \tdplotsetthetaplanecoords{45}
-    \tdplotdefinepoints(0,0,0)(0,0,0.7071)(0.3,0.4,0.5)
-    \tdplotdrawpolytopearc[->]{0.7}{anchor=south west}{$\theta$}
-    % \draw[->] (0,0.3,0) arc[start angle=90, end angle=20, radius=0.3] node[midway, above] {$\theta$};
-    %
-    % Azimuthal angle phi
-    % \tdplotsetthetaplanecoords{30}
-    \tdplotdefinepoints(0,0,0)(0.5,0,0)(0.3,0.4,0)
+    % polar angle
+    \pgfmathsetmacro{\ar}{(\ax^2 + \ay^2 + \az^2)^0.5};
+    \pgfmathsetmacro{\as}{(\ax^2 + \ay^2)/10}
+    \tdplotdefinepoints(0,0,0)(0,0,{\ar/10})({\ax/10},{\ay/10,{\az/10})
+    \tdplotdrawpolytopearc[->]{\ar/10}{anchor=south west}{$\theta$};
+    % azimuthal angle
+\tdplotdefinepoints(0,0,0)(\as/10,0,0)({\ax/10},{\ay/10},0)
     \tdplotdrawpolytopearc[->]{0.5}{anchor=north}{$\varphi$}
-    % \draw[->] (0,0,0) arc[start angle=0, end angle=45, radius=0.4] node[midway, below] {$\varphi$};
 
+    % % vector 2
+    % \pgfmathsetmacro{\bx}{1}
+    % \pgfmathsetmacro{\by}{2}
+    % \pgfmathsetmacro{\bz}{2}
+    % \draw[very thick,->] (0,0,0) -- (\bx,\by,\bz) node[anchor=west]{\(\vetor{\x'}\)};
+    % % Dashed projection onto xy-plane
+    % \draw[dashed] (\bx,\by,0) -- (\bx,\by,\bz);  % Projection of r onto xy-plane
+    % \draw[dashed] (0,0,0) -- (\bx,\by,0);   % Origin to projection of r
 \end{tikzpicture}
 
     \end{center}
 \end{exercício}
 \begin{proof}[Resolução]
+    test
 
 \end{proof}
