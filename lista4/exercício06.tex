@@ -16,19 +16,22 @@
     \end{equation*}
     Desse modo, temos
     \begin{equation*}
-        \frac{2 \ell + 1}{2}C_\ell = \frac{2\ell + 1}{2}\int_0^\pi \sin\psi \dli{\psi} \phi_0(\psi) P_\ell(\cos\psi) = \left(\frac{8}{5}\delta_{\ell 3} + \frac{3}{5}\delta_{\ell 1}\right)k
+        \frac{2 \ell + 1}{2}C_\ell = \frac{2\ell + 1}{2}\int_0^\pi \sin\psi \dli{\psi} \phi_0(\psi) P_\ell(\cos\psi) = \left(\frac{8}{5}\delta_{\ell 3} - \frac{3}{5}\delta_{\ell 1}\right)k
     \end{equation*}
     portanto o potencial elétrico em todo espaço é
     \begin{equation*}
         \phi(r, \theta) = \begin{cases}
-            \frac{4(5 \cos^3\theta - 3 \cos\theta)}{5}\left(\frac{r}{R}\right)^3 + \frac{3\cos\theta}{5}\left(\frac{r}{R}\right), &\text{se } r < R\\
+            k\left[\frac{4(5 \cos^3\theta - 3 \cos\theta)}{5}\left(\frac{r}{R}\right)^3 - \frac{3\cos\theta}{5}\left(\frac{r}{R}\right)\right], &\text{se } r < R\\
             \phi_0(\theta), &\text{se } r = R\\
-            \frac{4(5 \cos^3\theta - 3 \cos\theta)}{5}\left(\frac{R}{r}\right)^4 + \frac{3\cos\theta}{5}\left(\frac{R}{r}\right)^2, &\text{se } r > R
+            k\left[\frac{4(5 \cos^3\theta - 3 \cos\theta)}{5}\left(\frac{R}{r}\right)^4 - \frac{3\cos\theta}{5}\left(\frac{R}{r}\right)^2\right], &\text{se } r > R
         \end{cases}
     \end{equation*}
     e a densidade superficial de carga na superfície é
-    \begin{equation*}
-        \sigma = \frac{k\epsilon_0}{R} \left(28 \cos^3\theta -  15\cos\theta\right)
-    \end{equation*}
+    \begin{align*}
+    \sigma &= \frac{\epsilon_0}{2R}\sum_{\ell = 0}^\infty (2\ell + 1)^2C_\ell P_\ell(\cos\theta)\\
+           &= \frac{k\epsilon_0}{R} \sum_{\ell = 0}^\infty (2 \ell + 1) \left(\frac{8}{5}\delta_{\ell 3} - \frac{3}{5} \delta_{\ell 1}\right) P_\ell(\cos\theta)\\
+           &= \frac{k \epsilon_0}{5R}\left[56 P_3(\cos \theta) - 9 P_1(\cos\theta)\right]\\
+           &= \frac{k \epsilon_0}{5 R}\left[140 \cos^3\theta - 93\cos\theta\right],
+    \end{align*}
     pelo \cref{ex:exercício5}.
 \end{proof}
