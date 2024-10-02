@@ -1,20 +1,20 @@
 \begin{exercício}{Momento de dipolo de uma esfera carregada com cavidade}{exercício4}
     Considere um objeto esférico maciço de raio \(a\) contendo uma cavidade de raio \(b\), localizada a uma distância \(d\) de seu centro, como mostra a figura abaixo.
     \begin{center}
-        \begin{tikzpicture}[scale=0.8]
+        \begin{tikzpicture}[scale=0.7]
         % Shaded circles
-        \fill[gray!30] (0,0) circle (4cm);  % Outer shaded region
-        \fill[white] (2,0) circle (1cm);  % Inner white circle
+        \fill[Overlay0!95] (0,0) circle (4);  % Outer shaded region
+        \fill[Sky!5] (2,0) circle (1);  % Inner white circle
 
         % Axes
         \draw[-stealth] (-5,0) -- (5,0) node[anchor=north] {\(x\)}; % x-axis
         \draw[-stealth] (0,-5) -- (0,5) node[anchor=west] {\(y\)};  % y-axis
 
         % Outer radius
-        \draw (0,0) -- ({4*cos(135)},{4*sin(135)}) node[midway, above, anchor=south west] {\(a\)};  % Outer radius
+        \draw (0,0) -- ({4*cos(135)},{4*sin(135)}) node[midway, above] {\(a\)};  % Outer radius
 
         % Inner radius
-        \draw (2,0) -- ({2 + 1*cos(135)},{1*sin(135)}) node[midway, above, anchor=south west] {\(b\)};  % Inner radius
+        \draw (2,0) -- ({2 + 1*cos(135)},{1*sin(135)}) node[midway, above] {\(b\)};  % Inner radius
 
         % Distance label (d)
         \draw[<->] (0,-4.5) -- (2,-4.5) node[midway, anchor=north] {\(d\)};
@@ -24,5 +24,24 @@
     A região hachurada do objeto está carregada com uma densidade volumétrica de carga uniforme \(\rho\), enquanto não há cargas dentro da cavidade. Utilizando o sistema de coordenadas mostrado na figura, com a origem sobre o centro do objeto, calcule o momento de dipolo \(\vetor{p}\) do sistema. Refaça a conta agora colocando a origem do sistema de coordenadas sobre o centro da cavidade. Determine um sistema de coordenadas sob o qual o momento de dipolo é o vetor nulo.
 \end{exercício}
 \begin{proof}[Resolução]
+    Consideremos o problema auxiliar de uma esfera maciça de raio \(R\) uniformemente carregada com uma densidade volumétrica de carga \(\varrho\), então o momento de dipolo \(\vetor{\tilde{p}}\) desse sistema com a origem no centro da esfera é o vetor nulo. De fato, temos
+    \begin{align*}
+        \vetor{\tilde{p}} &= \int_{0}^R \dli{r} \int_{0}^\pi r\dli{\theta} \int_0^{2\pi} r\sin\theta \dli{\varphi} r \left(\cos\varphi \sin\theta \vetor{e}_1 + \sin\varphi\cos\theta \vetor{e}_2 + \cos\theta \vetor{e}_3\right) \varrho\\
+                          &= \pi \varrho \int_0^R \dli{r} r^3 \int_0^\pi \dli{\theta} 2\sin\theta \cos\theta \vetor{e}_3 = \vetor{0}.
+    \end{align*}
+    Assim, em um referencial em que o centro da esfera está na posição \(\vetor{\x}_e\), o momento de dipolo do sistema é \(\vetor{p} = \frac{4\pi R^3 \varrho}{3}\vetor{\x}_e\).
 
+    Consideremos agora o problema da esfera com cavidade. Podemos entender a distribuição de cargas como a superposição de uma esfera de raio \(a\) na posição \(\vetor{\x}_a\) uniformemente carregada com densidade de carga \(\rho\) e de uma esfera de raio \(b\) na posição \(\vetor{\x}_b = \vetor{\x}_a + d\vetor{e}_x\) uniformemente carregada com densidade de carga \(-\rho\). Assim, pelo que foi determinado no problema auxiliar, o momento de dipolo é
+    \begin{equation*}
+        \vetor{p}_a =-\frac{4\pi b^3d\rho}{3} \vetor{e}_x
+    \end{equation*}
+    quando utilizamos a origem como o centro da esfera de raio \(a\),
+    \begin{equation*}
+        \vetor{p}_b = -\frac{4\pi a^3d\rho}{3}\vetor{e}_x
+    \end{equation*}
+    quando utilizamos a origem como o centro da esfera de raio \(b\), e
+    \begin{equation*}
+        \vetor{p} = \frac{4\pi\rho}{3}\left(a^3\vetor{\x}_a + b^3\vetor{\x}_b \right) = \frac{4\pi \rho}{3}\left[(a^3 + b^3)\vetor{\x}_a + b^3 d \vetor{e}_x\right]
+    \end{equation*}
+    quando utilizamos a origem tal que a posição das esferas são \(\vetor{\x}_a\) e \(\vetor{\x}_b\). Escolhendo a origem de forma que \(\vetor{\x}_a = -\frac{b^3}{a^3 + b^3} d\vetor{e}_x\), vemos que o momento de dipolo se anula neste sistema de coordenadas.
 \end{proof}
