@@ -2,5 +2,13 @@
     No contexto da expansão multipolar do potencial elétrico, quais são as unidades de medida associadas aos momentos de monopolo, dipolo, e quadrupolo, no SI?
 \end{exercício}
 \begin{proof}[Resolução]
-
+    O momento de monopolo é a carga total de um sistema, portanto sua unidade é \(\unit{\coulomb} = \unit{\ampere \second}\) no SI. O momento de dipolo é dado por
+    \begin{equation*}
+        \vetor{p} = \int_{\mathbb{R}^3}  \dln3{\x'} \vetor{\x'}\rho(\vetor{\x'}),
+    \end{equation*}
+    portanto sua unidade é \(\unit{\coulomb \meter} = \unit{\ampere \meter \second}\) no SI. Os momentos de quadrupolo são dados por
+    \begin{equation*}
+        Q_{ij} = \int_{\mathbb{R}^3} \dln3{\x'} \left(3 \x'_i \x'_j - \norm{\vetor{\x'}}^2 \delta_{ij}\right)\rho(\vetor{\x'}),
+    \end{equation*}
+    portanto sua unidade é \(\unit{\coulomb \meter^2} = \unit{\ampere \meter^2 \second}\) no SI.
 \end{proof}
