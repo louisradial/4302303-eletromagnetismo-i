@@ -10,8 +10,8 @@
     são os harmônicos esféricos e \(P_\ell^m\) denota o polinômio associado de Legendre. Alguns dos primeiros harmônicos esféricos são
     \begin{equation*}
         Y_{00} = \frac{1}{\sqrt{4\pi}},\quad
-        Y_{1-1} = \sqrt{\frac{3}{8\pi}}\sin\theta e^{-i\phi},\quad
-        Y_{11} = -\sqrt{\frac{3}{8\pi}}\sin\theta e^{i\phi},\quad\text{e}\quad
+        Y_{1-1} = \sqrt{\frac{3}{8\pi}}\sin\theta e^{-i\varphi},\quad
+        Y_{11} = -\sqrt{\frac{3}{8\pi}}\sin\theta e^{i\varphi},\quad\text{e}\quad
         Y_{10} = \sqrt{\frac{3}{4\pi}} \cos\theta.
     \end{equation*}
 
@@ -19,7 +19,7 @@
     \begin{center}
 
         \tdplotsetmaincoords{60}{120}
-        \begin{tikzpicture}[scale=1.2,tdplot_main_coords]
+        \begin{tikzpicture}[scale=2,tdplot_main_coords]
 
     % Axes
     \draw[thick,->] (0,0,0) -- (0,3,0) node[anchor=north east] {\(y\)};  % y axis
@@ -76,4 +76,39 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+    Utilizando \(\ell = 1\) no teorema da adição, obtemos
+    \begin{align*}
+        \cos \gamma &= \frac{4\pi}{3} \sum_{m = -1}^{1} \conj{Y_{1m}}(\theta', \varphi') Y_{1m}(\theta,\varphi)\\
+                    &= \frac{4\pi}{3}\left[\frac{3}{8\pi} \sin\theta \sin\theta' e^{-i(\varphi-\varphi')} + \frac{3}{4\pi}\cos\theta \cos\theta' + \frac{3}{8\pi}\sin\theta \sin\theta' e^{i(\varphi - \varphi')}\right]\\
+                    &= \sin\theta\sin\theta'\frac{e^{i(\varphi - \varphi') + e^{-i(\varphi - \varphi')}}}{2} + \cos\theta \cos\theta'\\
+                    &= \sin\theta\sin\theta' \cos(\varphi - \varphi') + \cos\theta \cos\theta'
+    \end{align*}
+    como desejado.
+
+    Mostramos no \cref{ex:exercício1} que
+    \begin{equation*}
+        \frac{1}{\norm{\D}} = \frac{1}{r_>} \sum_{\ell = 0}^\infty \left(\frac{r_<}{r_>}\right)^\ell P_\ell(\cos \gamma),
+    \end{equation*}
+    portanto pelo teorema da adição de harmônicos esféricos podemos escrever
+    \begin{equation*}
+        \frac{1}{\norm{\D}} = \frac{1}{r_>} \sum_{\ell = 0}^\infty \left(\frac{r_<}{r_>}\right)^\ell \frac{4\pi}{2\ell + 1} \sum_{m = -\ell}^\ell \conj{Y_{\ell m}(\theta', \varphi')}Y_{\ell m}(\theta, \varphi).
+    \end{equation*}
+    Assim, o potencial de uma distribuição de cargas \(\rho(\vetor{\x})\) com suporte compacto contido na região esférica \(\Omega_q = \setc{\vetor{\x} \in \mathbb{R}^3}{\norm{\vetor{\x}} \leq \eta}\), com algum \(\eta > 0\), é
+    \begin{align*}
+        \phi(\vetor{\x}) = \frac{1}{4\pi \epsilon_0} \int_{\mathbb{R}^3} \dln3{\x'} \frac{\rho(\vetor{\x'})}{\norm{\D}}
+        &= \frac{1}{4\pi \epsilon_0} \int_{\Omega_q} \dln3{\x'} \frac{\rho(\vetor{\x'})}{\norm{\D}}\\
+        &= \frac{1}{\epsilon_0} \int_{\Omega_q} \dln3{\x'} \frac{\rho(\vetor{\x'})}{r_>}\sum_{\ell = 0}^\infty\left(\frac{r_<}{r_>}\right)^\ell \frac{1}{2\ell + 1} \sum_{m = -\ell}^\ell \conj{Y_{\ell m}(\theta', \varphi')} Y_{\ell m}(\theta, \varphi).
+    \end{align*}
+    No caso em que \(\vetor{\x} \in \mathbb{R}^3 \setminus \Omega_q\), temos \(r_> = \norm{\vetor{\x}} = r\) e \(r_< = \norm{\vetor{\x'}} = r'\), então
+    \begin{align*}
+        \phi(\vetor{\x})
+        &= \frac{1}{\epsilon_0} \int_{\Omega_q} \dln3{\x'} \frac{\rho(\vetor{\x'})}{\norm{\vetor{\x}}}\sum_{\ell = 0}^\infty\left(\frac{\norm{\vetor{\x'}}}{\norm{\vetor{\x}}}\right)^\ell \frac{1}{2\ell + 1} \sum_{m = -\ell}^\ell \conj{Y_{\ell m}(\theta', \varphi')} Y_{\ell m}(\theta, \varphi)\\
+        &= \frac{1}{\epsilon_0} \sum_{\ell = 0}^\infty \sum_{m = -\ell}^\ell \frac{Y_{\ell m}(\theta, \varphi)}{(2 \ell + 1)r^{\ell + 1}} \left[\int_{\Omega_q}\dln3{\x'} \conj{Y_{\ell m}(\theta', \varphi')}r'^\ell\rho(\vetor{\x'})\right]\\
+        &= \frac{1}{\epsilon_0} \sum_{\ell = 0}^\infty \sum_{m = -\ell}^\ell \frac{1}{2\ell + 1} q_{\ell m} \frac{Y_{\ell m}(\theta, \varphi)}{r^{\ell + 1}}
+    \end{align*}
+    é o potencial em \(\mathbb{R}^3 \setminus \Omega_q\), onde
+    \begin{equation*}
+        q_{\ell m} = \int_{\Omega_q} \dln3{\x'}\conj{Y_{\ell m}(\theta',\varphi')} r'^\ell \rho(\vetor{\x'})
+    \end{equation*}
+    são os momentos de multipolo.
 \end{proof}
