@@ -15,6 +15,7 @@
         Y_{10} = \sqrt{\frac{3}{4\pi}} \cos\theta.
     \end{equation*}
 
+    Considere dois vetores \(\vetor{\x}\) e \(\vetor{\x'}\) com um ângulo planar \(\gamma\) entre eles. Fixando eixos coordenados, sejam \(\theta, \theta'\) os ângulos polares e \(\varphi, \varphi'\) os ângulos azimutais de cada vetor, como na figura abaixo.
     \begin{center}
 
         \tdplotsetmaincoords{60}{120}
@@ -26,35 +27,53 @@
     \draw[thick,->] (0,0,0) -- (3,0,0) node[anchor=south] {\(x\)};  % x axis
 
     % vector 1
-    \pgfmathsetmacro{\ax}{1}
-    \pgfmathsetmacro{\ay}{2}
-    \pgfmathsetmacro{\az}{1.5}
-    \draw[very thick,->] (0,0,0) -- (\ax,\ay,\az) node[anchor=west]{\(\vetor{\x}\)};
-    % dashed projection onto xy-plane
-    \draw[dashed] (\ax,\ay,0) -- (\ax,\ay,\az);  % Projection of r onto xy-plane
-    \draw[dashed] (0,0,0) -- (\ax,\ay,0);   % Origin to projection of r
-    % polar angle
+    \pgfmathsetmacro{\ax}{1.0};
+    \pgfmathsetmacro{\ay}{3.0};
+    \pgfmathsetmacro{\az}{3.5};
     \pgfmathsetmacro{\ar}{(\ax^2 + \ay^2 + \az^2)^0.5};
-    \pgfmathsetmacro{\as}{(\ax^2 + \ay^2)/10}
-    \tdplotdefinepoints(0,0,0)(0,0,{\ar/10})({\ax/10},{\ay/10,{\az/10})
-    \tdplotdrawpolytopearc[->]{\ar/10}{anchor=south west}{$\theta$};
+    \pgfmathsetmacro{\as}{(\ax^2 + \ay^2)^0.5};
+    \pgfmathsetmacro{\aphi}{atan2(\ay,\ax)};
+    \draw[very thick,-stealth,Mauve] (0,0,0) -- (\ax,\ay,\az) node[anchor=west]{\(\vetor{\x}\)};
+    % dashed projection onto xy-plane
+    \draw[dashed, Mauve] (\ax,\ay,0) -- (\ax,\ay,\az);  % Projection of r onto xy-plane
+    \draw[dashed,Mauve] (0,0,0) -- (\ax,\ay,0);   % Origin to projection of r
+    % polar angle
+    \tdplotdefinepoints(0,0,0)(0,0,\ar)(\ax,\ay,\az)
+    \tdplotdrawpolytopearc[-,Mauve]{\ar/5}{anchor=south west}{\color{Mauve}\(\theta\)};
     % azimuthal angle
-\tdplotdefinepoints(0,0,0)(\as/10,0,0)({\ax/10},{\ay/10},0)
-    \tdplotdrawpolytopearc[->]{0.5}{anchor=north}{$\varphi$}
+    \tdplotdrawarc[tdplot_main_coords, Mauve]{(0,0,0)}{\as/5}{0}{\aphi}{anchor=north}{\(\varphi\)}
 
-    % % vector 2
-    % \pgfmathsetmacro{\bx}{1}
-    % \pgfmathsetmacro{\by}{2}
-    % \pgfmathsetmacro{\bz}{2}
-    % \draw[very thick,->] (0,0,0) -- (\bx,\by,\bz) node[anchor=west]{\(\vetor{\x'}\)};
-    % % Dashed projection onto xy-plane
-    % \draw[dashed] (\bx,\by,0) -- (\bx,\by,\bz);  % Projection of r onto xy-plane
-    % \draw[dashed] (0,0,0) -- (\bx,\by,0);   % Origin to projection of r
+    % vector 2
+    \pgfmathsetmacro{\bx}{3.5};
+    \pgfmathsetmacro{\by}{1.0};
+    \pgfmathsetmacro{\bz}{3.0};
+    \pgfmathsetmacro{\br}{(\bx^2 + \by^2 + \bz^2)^0.5};
+    \pgfmathsetmacro{\bs}{(\bx^2 + \by^2)^0.5};
+    \pgfmathsetmacro{\bphi}{atan2(\by,\bx)};
+    \draw[very thick,-stealth,Pink] (0,0,0) -- (\bx,\by,\bz) node[anchor=south east]{\(\vetor{\x'}\)};
+    % dashed projection onto xy-plane
+    \draw[dashed,Pink] (\bx,\by,0) -- (\bx,\by,\bz);  % Projection of r onto xy-plane
+    \draw[dashed,Pink] (0,0,0) -- (\bx,\by,0);   % Origin to projection of r
+    % polar angle
+    \tdplotdefinepoints(0,0,0)(0,0,\br)(\bx,\by,\bz)
+    \tdplotdrawpolytopearc[-,Pink]{\br/2.5}{anchor=south east}{\color{Pink}$\theta'$};
+    % azimuthal angle
+    \tdplotdrawarc[tdplot_main_coords,Pink]{(0,0,0)}{\bs/2}{0}{\bphi}{anchor=north}{\(\varphi'\)};
+
+    % planar angle
+    \tdplotdefinepoints(0,0,0)(3.5,1.0,3.0)(1.0,3.0,3.5)
+    \tdplotdrawpolytopearc[-]{4}{anchor=south west}{$\gamma$};
 \end{tikzpicture}
-
     \end{center}
+    O teorema da adição dos harmônicos esféricos estabelece que
+    \begin{equation*}
+        P_\ell(\cos \gamma) = \frac{4\pi}{2\ell + 1} \sum_{m = -\ell}^{\ell} \conj{Y_{\ell m}}(\theta', \varphi')Y_{\ell m}(\theta,\varphi)
+    \end{equation*}
+    para todo \(\ell \in \mathbb{N}_0\).
+    \begin{enumerate}[label=(\alph*)]
+        \item Verifique que \(\cos \gamma = \sin\theta \sin\theta' \cos(\varphi - \varphi') + \cos\theta \cos\theta'\) pelo teorema da adição dos harmônicos esféricos.
+        \item Utilize o teorema da adição dos harmônicos esféricos para escrever \(\norm{\D}^{-1}\) em termos dos ângulos \(\theta,\theta', \varphi\) e \(\varphi'\). Obtenha uma forma alternativa para a expansão multipolar de \(\phi(\vetor{\x})\).
+    \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-    test
-
 \end{proof}

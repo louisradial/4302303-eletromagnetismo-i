@@ -1,5 +1,30 @@
-\begin{exercício}{}{exercício8}
+\begin{exercício}{Placas condutoras}{exercício8}
+    Duas placas condutoras estão dispostas como mostrado no arranjo da figura abaixo. O eixo \(z\) é perpendicular ao plano da figura e as placas são infinitas na direção \(z\). O ângulo que o plano das placas faz com o eixo \(x\) é \(\varphi_0\) para a placa superior e \(-\varphi_0\) para a placa inferior. Além disso, a placa superior está mantida a um potencial \(\phi_0\) enquanto que a placa inferior está mantida a um potencial \(-\phi_0\).
+    \begin{center}
 
+\begin{tikzpicture}
+    % Axes
+    \draw[->] (-1,0) -- (5,0) node[right] {\(x\)};
+    \draw[->] (0,-3) -- (0,3) node[above] {\(y\)};
+
+    % Lines at phi_0
+    \draw[thick] ({1.0*cos(30)},{1.0*sin(30)}) -- ({5*cos(30)},{5*sin(30)}) node[anchor=south east] {\(\phi_0\)};
+    \draw[thick] ({1.0*cos(-30)},{1.0*sin(-30)}) -- ({5*cos(-30)},{5*sin(-30)}) node[anchor=north east] {\(-\phi_0\)};
+
+    % Dotted lines for angle indicators
+    \draw[dotted] (0,0) -- ({1.0*cos(30)},{1.0*sin(30)});
+    \draw[dotted] (0,0) -- ({1.0*cos(-30)},{1.0*sin(-30)});
+    \draw (1,0) arc (0:30:1) node[midway, right] {\(\varphi_0\)};
+\end{tikzpicture}
+    \end{center}
+    \begin{enumerate}[label=(\alph*)]
+        \item Desprezando-se efeitos de borda (suponha que a largura das placas seja suficientemente grande para isso), encontre o potencial na região entre as placas, isto é, para \(\varphi \in [-\varphi_0, \varphi_0]\). Utilize coordenadas cilíndricas e assuma que \(\phi = \phi(\varphi)\), ou seja, resolva a equação de Laplace para um potencial que só dependa da coordenada \(\varphi\). Repare que isso é consistente com linhas de campo elétrico que coincidem com arcos de circunferência que \enquote{same} da placa superior e \enquote{entram} na placa inferior. Encontre o campo elétrico a partir do potencial.
+        \item Agora, considere que um dipolo ideal do tipo
+            \begin{equation*}
+                \vetor{p} = p\left(\frac{\vetor{e}_1 + \vetor{e}_2}{\sqrt{2}}\right)
+            \end{equation*}
+            seja colocado na região entre as placas, na posição \(\vetor{\x}_p = d\vetor{e}_1\). A partir do resultado do item anterior, calcule a força e o torque sobre o dipolo. Calcule a energia de interação entre o dipolo e o campo gerado pelas placas.
+    \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
 

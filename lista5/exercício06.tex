@@ -1,5 +1,15 @@
-\begin{exercício}{}{exercício6}
+\begin{exercício}{Momento de quadrupolo de um núcleo atômico}{exercício6}
+    Em Física Nuclear, medidas experimentais do potencial elétrico gerado por um núcleo atômico podem ser utilizadas para se extrair propriedades desse núcleo, como, por exemplo, a forma como os prótons e nêutrons se arranjam (estamos considerando apenas núcleos atômicos, de forma que não há elétrons na configuração e a carga total é necessariamente positiva). A princípio, poderíamos pensar que em um núcleo as cargas elétricas estão, em média, distribuídas de forma esfericamente simétrica em uma \emph{pequena} região espacial. Naturalmente, se isso fosse uma boa aproximação, o potencial teria o mesmo comportamento daquele de uma carga pontual, proporcional à \(\frac1r\). No entanto, medidas mais precisas relevam que, para diversos núecloes com um \emph{número ímpar} de prótons, o comportamento do potencial desvia da forma \(\sim\frac1r\), sendo melhor descrito por combinações de \(\frac1r\) e \(\frac1{r^3}\). Isso aponta para uma distribuição não simétrica de cargas e sugere considerarmos um modelo um pouco mais acurado do núcleo, onde, numa expansão multipolar, termos de monopolo e quadrupolo são relevantes, enquanto termos de dipolo são nulos (em relação a um sistema de coordenadas cuja origem coincide com o centro do núcleo). Assim, modelos baseados em elipsoides de revolução foram propostos, em que a carga está uniformemente distribuída sobre um sólido descrito por
+    \begin{equation*}
+        \frac{x^2 + y^2}{a^2} + \frac{z^2}{b^2} \leq 1,
+    \end{equation*}
+    e a relação entre os semi-eixos \(a\) e \(b\) reflete o quão \enquote{achatado} (núcleos oblatos, caso \(a > b\)) ou \enquote{alongado} (núcleos prolatos, caso \(b > a\)) é a distribuição de cargas em relação a um eixo principal \(z\). É claro que esse modelo é sustentado por outras propriedades de núcleos, como momento angular, mas não precisamos nos alongar sobre isso.
 
+    O nosso objetivo nesse problema é estabelecer uma relação entre os momentos de quadrupolo e os parâmetros \(a\) e \(b\). Uma relação desse tipo é muito útil pois, se conseguimos obter os momentos de quadrupolo experimentalmente, podemos utilizá-la para extrair informações sobre esses parâmetros. Vamos nos concentrar apenas nos termos diagonais \(Q_{11}\), \(Q_{22}\), e \(Q_{33}\), pois os demais momentos são nulos. Além disso, temos que \(Q_{11} = Q_{22}\) por simetria, de sorte que o único momento de quadrupolo que precisamos calcular é \(Q_{33}\). De fato, mostre que
+    \begin{equation*}
+        Q_{33} = \frac25 Z e(b^2 - a^2),
+    \end{equation*}
+    em que \(Ze\) é a carga total do núcleo.
 \end{exercício}
 \begin{proof}[Resolução]
 
