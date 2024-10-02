@@ -37,5 +37,19 @@
     \begin{equation*}
         \phi(r, \theta) = \frac{\sigma R}{2 \epsilon_0}\sum_{\ell = 0}^\infty \frac{\Gamma\left(\frac32\right)}{\Gamma\left(\frac12 - \ell\right)\Gamma(\ell + 2)} \left(\frac{R}{r}\right)^{2\ell + 1} P_{2\ell}(\cos\theta),
     \end{equation*}
+    é o potencial sempre que \(r > R\) e \(\theta \in [0, \frac{\pi}{2}]\).
+
+    Para \(\theta = \pi\), temos
+    \begin{equation*}
+        \sum_{\ell=0}^\infty \tilde{B}_\ell r^{-\ell - 1} (-1)^\ell = -\frac{\sigma R}{2 \epsilon_0} \sum_{k = 0}^\infty \frac{\Gamma\left(\frac32\right)}{\Gamma\left(\frac12 - k\right) \Gamma\left(k+2\right)}\left(\frac{R}{-r}\right)^{2k + 1} = \frac{\sigma R}{2 \epsilon_0} \sum_{k = 0}^\infty \frac{\Gamma\left(\frac32\right)}{\Gamma\left(\frac12 - k\right) \Gamma\left(k+2\right)} \left(\frac{R}{r}\right)^{2k + 1},
+    \end{equation*}
+    portanto concluímos que \(\tilde{B}_{2\ell + 1} = 0\)  e
+    \begin{equation*}
+        \tilde{B}_{2\ell} = \frac{\sigma R^{2\ell + 2}\Gamma\left(\frac32\right)}{2 \epsilon_0 \Gamma \left(\frac12 - \ell\right) \Gamma(\ell + 2)}
+    \end{equation*}
+    para todo \(\ell \in \mathbb{N}_0\). Assim, \(\tilde{B}_{\ell} = B_{\ell}\), logo
+    \begin{equation*}
+        \phi(r, \theta) = \frac{\sigma R}{2 \epsilon_0}\sum_{\ell = 0}^\infty \frac{\Gamma\left(\frac32\right)}{\Gamma\left(\frac12 - \ell\right)\Gamma(\ell + 2)} \left(\frac{R}{r}\right)^{2\ell + 1} P_{2\ell}(\cos\theta),
+    \end{equation*}
     é o potencial sempre que \(r > R\).
 \end{proof}
