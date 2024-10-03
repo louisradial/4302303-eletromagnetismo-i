@@ -2,5 +2,16 @@
     Mostre que se a carga total e o momento de dipolo forem nulos para um certo sistema, então os momentos de quadrupolo independem da origem do sistema de coordenadas.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Seja \(S\) um sistema de coordenadas em que os momentos de monopolo, dipolo e de quadrupolo são \(q,\) \(\vetor{p}\), e \(Q_{ij}\), respectivamente. Escrevamos \(\xi_k = \inner{\vetor{e}_k}{\vetor{\xi}}\) para \(k \in \set{1,2,3}\) e um vetor \(\vetor{\xi} \in \mathbb{R}^3\). Consideremos o sistema de coordenadas \(\tilde{S}\) cuja origem no sistema \(S\) é descrita pelo vetor \(\vetor{R}\), então a relação entre as expressões para a distribuição de cargas  em \(S\) e em \(\tilde{S}\) é \(\tilde{\rho}(\vetor{\tilde{\x}}) = \tilde{\rho}(\vetor{\x} - \vetor{R}) = \rho(\vetor{\x})\). Assim, os momentos de quadrupolo \(\tilde{Q}_{ij}\) do sistema em \(\tilde{S}\) são dados por
+    \begin{equation*}
+        \tilde{Q}_{ij} = \int_{\mathbb{R}^3} \dln3{\tilde{\x}} \left(3 \tilde{\x}_i \tilde{\x}_j - \delta_{ij} \norm{\vetor{\tilde{\x}}}^2\right) \tilde{\rho}(\vetor{\tilde{\x}}),
+    \end{equation*}
+    onde assumimos que a distribuição de cargas tem suporte compacto. Com a mudança de coordenadas \(\tilde{\vetor{\x}} \mapsto \vetor{\x} - \vetor{R}\), temos
+    \begin{align*}
+        \tilde{Q}_{ij} &= \int_{\mathbb{R}^3} \dln3\x \left[3 (\x_i - R_i)(\x_j - R_j) - \delta_{ij} \left(\norm{\vetor{\x}}^2 + \norm{\vetor{R}}^2 - 2 \inner{\vetor{R}}{\vetor{\x}}\right)\right] \tilde{\rho}(\vetor{\x} - \vetor{R})\\
+                       &= \int_{\mathbb{R}^3} \dln3\x \left[\left(3\x_i \x_j - \norm{\vetor{\x}}^2 \delta_{ij}\right) + \left(3R_i R_j - \norm{\vetor{R}}^2 \delta_{ij}\right) - \left(3\x_i R_j + 3\x_j R_i - 2\delta_{ij}\inner{\vetor{R}}{\vetor{\x}}\right)\right]\rho(\vetor{\x})\\
+                       &= Q_{ij}+ \left(3 R_i R_j - \norm{\vetor{R}} \delta_{ij}\right)\left[\int_{\mathbb{R}} \dln3\x \rho(\vetor{\x})\right] - \inner*{3R_i\vetor{e}_j + 3R_j\vetor{e}_i - 2 \delta_{ij} \vetor{R}}{\int_{\mathbb{R}^3}\dln3\x \vetor{\x} \rho(\vetor{\x})}\\
+                       &= Q_{ij} + \left(3R_i R_j - \norm{\vetor{R}}^2 \delta_{ij}\right)q - \inner*{3R_i \vetor{e}_j + 3 R_j \vetor{e}_i - 2 \delta_{ij} \vetor{R}}{\vetor{p}}.
+    \end{align*}
+    No caso em que \(q = 0\) e \(\vetor{p} = \vetor{0}\), temos \(\tilde{Q}_{ij} = Q_{ij}\), isto é, se os momentos de monopolo e de quadrupolo forem nulos em um sistema, então os momentos de quadrupolos independem da origem do sistema de coordenadas.
 \end{proof}
