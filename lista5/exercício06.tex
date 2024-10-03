@@ -12,5 +12,30 @@
     em que \(Ze\) é a carga total do núcleo.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Seja
+    \begin{equation*}
+        \Omega = \setc*{(x,y,z) \in \mathbb{R}^3}{\frac{x^2 + y^2}{a^2} + \frac{z^2}{b^2} \leq 1},
+    \end{equation*}
+    então o momento de monopolo \(Ze\) para a distribuição de cargas
+    \begin{equation*}
+        \rho(\vetor{\x}) = \begin{cases}
+            \varrho,&\text{se }\vetor{\x} \in \Omega\\
+            0,&\text{se }\vetor{\x} \notin \Omega
+        \end{cases}
+    \end{equation*}
+    é
+    \begin{align*}
+        Ze &= \int_{\Omega} \dln3{\x'} \rho(\vetor{\x'})\\
+           &= a^2b\int_0^1 \dli{\xi} \int_0^\pi \xi \dli{\theta} \int_0^{2\pi} \xi \sin\theta \dli{\varphi} \varrho\\
+           &= \frac{4 \pi a^2 b \varrho}{3}.
+    \end{align*}
+    Assim,
+    \begin{align*}
+        Q_{33} &= \int_{\Omega}\dln3{\x'} \left[3(\x'_3)^2 - \norm{\vetor{\x'}}^2\right]\rho(\vetor{\x'}) = \int_{\Omega}\dln3{\x'} \left[2(\x'_3)^2 - (\x'_1)^2 - (\x'_2)^2\right]\varrho\\
+               &= a^2 b \varrho \int_0^1 \dli{\xi} \int_0^\pi \xi\dli{\theta} \int_0^{2\pi} \xi \sin\theta\dli{\varphi} \left(2b^2\xi^2 \cos^2\theta - a^2\xi^2 \sin^2\theta\right)\\
+               &= \frac{2\pi a^2 b\varrho}{5} \int_0^\pi \dli{\theta} \sin\theta \left[\left(2b^2 + a^2\right)\cos^2\theta - a^2\right]\\
+               &= \frac{3 Ze}{10} \left[-2a^2 + (2b^2 + a^2)\int_{-1}^1 \dli{u} u^2\right]\\
+               &= \frac{2Ze(b^2 - a^2)}{5}
+    \end{align*}
+    é o momento de quadrupolo \(Q_{33}\) para esta distribuição de cargas.
 \end{proof}
