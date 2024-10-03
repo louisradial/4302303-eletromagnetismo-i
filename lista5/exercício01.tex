@@ -6,5 +6,32 @@
     em que \(r_> = \max\set{\norm{\vetor{\x}}, \norm{\vetor{\x'}}}\), \(r_< = \min\set{\norm{\vetor{\x}}, \norm{\vetor{\x'}}}\) e \(\gamma\) é o ângulo entre os vetores \(\vetor{\x}\) e \(\vetor{\x'}\).
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Consideremos o problema de eletrostática em que há uma carga \(q\) fixa na posição \(\vetor{\x'}\). Sejam \(\Sigma = \setc{\vetor{\x} \in \mathbb{R}^3}{\norm{\vetor{\x}} < \norm{\vetor{\x'}}}\) e \(\Omega = \setc{\vetor{\x} \in \mathbb{R}^3}{\norm{\vetor{\x}} > \norm{\vetor{\x'}}}\) dois abertos nos quais o potencial satisfaz a equação de Laplace. Pela simetria azimutal em relação ao eixo definido por \(\vetor{\x'}\), pela bem-definição do potencial da origem, e pela distribuição de cargas ser localizada, o potencial no ponto \(\vetor{\x}\) é da forma
+    \begin{equation*}
+        \phi(\vetor{\x}) = \begin{cases}
+            \sum_{\ell = 0}^\infty A_\ell \norm{\vetor{\x}}^\ell P_{\ell}\left(\cos\gamma\right),&\text{se } \vetor{\x} \in \Sigma\\
+            \sum_{\ell = 0}^\infty B_\ell\norm{\vetor{\x}}^{-\ell - 1} P_{\ell}\left(\cos\gamma\right),&\text{se } \vetor{\x} \in \Omega
+        \end{cases}
+    \end{equation*}
+    onde \(\gamma\) é o ângulo planar entre \(\vetor{\x}\) e \(\vetor{\x'}\). Da continuidade do potencial, segue que
+    \begin{equation*}
+        \sum_{\ell = 0}^\infty A_\ell \norm{\vetor{\x'}}^\ell P_\ell(\cos \gamma) = \sum_{\ell = 0}^\infty \frac{B_\ell}{\norm{\vetor{\x'}}^{\ell + 1}} P_\ell(\cos\gamma) \implies B_{\ell} = A_\ell \norm{\vetor{\x'}}^{2\ell + 1}
+    \end{equation*}
+    para todo \(\ell \in \mathbb{N}_0\). Sabemos que o potencial é dado por
+    \begin{equation*}
+        \phi(\vetor{\x}) = \frac{q}{4\pi \epsilon_0 \norm{\D}}
+    \end{equation*}
+    para todo \(\vetor{\x} \in \mathbb{R}^3 \setminus \set{\vetor{\x'}}\), então para \(\alpha < 1\) temos
+    \begin{equation*}
+        \sum_{\ell = 0}^\infty A_\ell \alpha^\ell \norm{\vetor{\x'}}^\ell = \phi(\alpha\vetor{\x'}) =\frac{q}{4\pi \epsilon_0 (1 - \alpha) \norm{\vetor{\x'}}} = \frac{q}{4\pi \epsilon_0 \norm{\vetor{\x'}}}\sum_{\ell = 0}^\infty \alpha^\ell \implies A_\ell = \frac{q}{4\pi \epsilon_0 \norm{\vetor{\x'}}^{\ell + 1}}.
+    \end{equation*}
+    Desse modo, obtemos
+    \begin{equation*}
+        \frac{q}{4\pi \epsilon_0 \norm{\D}} = \frac{q}{4\pi \epsilon_0 r_>} \sum_{\ell = 0}^\infty \left(\frac{r_<}{r_>}\right)^\ell P_\ell(\cos \gamma),
+    \end{equation*}
+    onde \(r_> = \max\set{\norm{\vetor{\x}}, \norm{\vetor{\x'}}}\) e \(r_< = \min\set{\norm{\vetor{\x}}, \norm{\vetor{\x'}}}\). Isto é, mostramos que
+    \begin{equation*}
+        \frac{1}{\norm{\D}} = \frac{1}{r_>} \sum_{\ell = 0}^\infty \left(\frac{r_<}{r_>}\right)^\ell P_\ell(\cos \gamma),
+    \end{equation*}
+    como desejado.
 \end{proof}
