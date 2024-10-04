@@ -4,7 +4,7 @@
 \begin{proof}[Resolução]
     Sejam \(\Omega = \setc{\vetor{\x} \in \mathbb{R}^3}{\norm{\vetor{\x}} > R}\) e \(\Sigma = \setc{\vetor{\x} \in \mathbb{R}^3}{\norm{\vetor{\x}} < R}\) as regiões exterior e interior à superfície esférica \(\partial \Sigma = \setc{\vetor{\x} \in \mathbb{R}^3}{\norm{\vetor{\x}} = R}.\) Como o potencial satisfaz a equação de Laplace em \(\Omega\) com condições de contorno \(\phi(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \partial \Omega\), segue que \(\phi(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \Omega.\)
 
-    Em \(\Sigma\) o potencial satisfaz a equação de Laplace com condições de contorno dadas por \(\phi(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \partial \Sigma\) e \(\phi(\vetor{\x}) \sim \frac{\inner{\vetor{p}}{\vetor{\x}}}{4\pi \epsilon_0 \norm{\vetor{\x}}^3}\) para \(\norm{\vetor{\x}} \ll R\). Como há simetria azimutal, podemos escrever
+    Em \(\Sigma\setminus \set{\vetor{0}}\) o potencial satisfaz a equação de Laplace com condições de contorno dadas por \(\phi(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \partial \Sigma\) e \(\phi(\vetor{\x}) \sim \frac{\inner{\vetor{p}}{\vetor{\x}}}{4\pi \epsilon_0 \norm{\vetor{\x}}^3}\) para \(\norm{\vetor{\x}} \ll R\). Como há simetria azimutal, podemos escrever
     \begin{equation*}
         \phi(r,\theta) = \sum_{\ell = 0}^\infty \left(A_\ell r^\ell + \frac{B_{\ell}}{r^{\ell + 1}}\right) P_\ell(\cos\theta)
     \end{equation*}
@@ -28,10 +28,10 @@
     \begin{equation*}
         \phi(\vetor{\x}) = \begin{cases}
             0,&\text{se } \vetor{\x} \in \Omega \cup \partial \Sigma\\
-            \displaystyle \frac{\inner{\vetor{p}}{\vetor{\x}}}{4\pi \epsilon_0 R^2 \norm{\vetor{\x}}}\left[\left(\frac{R}{\norm{\vetor{\x}}}\right)^2 - \frac{\norm{\vetor{\x}}}{R}\right],&\text{se }\vetor{\x} \in \Sigma
+            \displaystyle \frac{\inner{\vetor{p}}{\vetor{\x}}}{4\pi \epsilon_0 R^2 \norm{\vetor{\x}}}\left[\left(\frac{R}{\norm{\vetor{\x}}}\right)^2 - \frac{\norm{\vetor{\x}}}{R}\right],&\text{se }\vetor{\x} \in \Sigma \setminus\set{\vetor{0}}
         \end{cases}
     \end{equation*}
-    é o potencial em todo o espaço.
+    é o potencial em todo o espaço, exceto na posição do dipolo ideal.
 
     Desse modo, a densidade de carga induzida na casca é dada por
     \begin{equation*}
@@ -43,5 +43,19 @@
     \end{equation*}
     é a carga total induzida na casca esférica.
 
-    \todo[Casca esférica a potencial constante.]
+    Caso a esfera estivesse mantida a um potencial constante \(\phi_0\), o potencial encontrado \(\phi(\vetor{\x})\) seria acrescido de um termo
+    \begin{equation*}
+        \tilde{\phi}(\vetor{\x}) = \begin{cases}
+            \phi_0, &\text{se }\vetor{\x} \in \Sigma\\
+            \frac{\phi_0 R}{\norm{\vetor{\x}}}, &\text{se }\vetor{\x} \in \Omega
+        \end{cases},
+    \end{equation*}
+    que corresponde a uma distribuição superficial uniforme \(\tilde{\sigma} = \frac{\phi_0 \epsilon_0}{R}\) de carga. Assim, o potencial é
+    \begin{equation*}
+        \phi(\vetor{\x}) = \begin{cases}
+            \displaystyle \frac{\phi_0 R}{\norm{\vetor{\x}}},&\text{se } \vetor{\x} \in \Omega \cup \partial \Sigma\\
+            \displaystyle \phi_0 + \frac{\inner{\vetor{p}}{\vetor{\x}}}{4\pi \epsilon_0 R^2 \norm{\vetor{\x}}}\left[\left(\frac{R}{\norm{\vetor{\x}}}\right)^2 - \frac{\norm{\vetor{\x}}}{R}\right],&\text{se }\vetor{\x} \in \Sigma \setminus\set{\vetor{0}},
+        \end{cases}
+    \end{equation*}
+    e satisfaz \(\phi(\vetor{\x}) \sim \frac{\inner{\vetor{p}{\vetor{\x}}}}{4\pi \epsilon_0 \norm{\vetor{\x}}^3}\) sempre que \(\frac{\norm{\vetor{\x}}}{R} \ll 1\) e \(\phi(\vetor{\x}) = \phi_0\) para todo \(\vetor{\x} \in \partial \Sigma\).
 \end{proof}
