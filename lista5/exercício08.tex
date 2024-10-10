@@ -50,10 +50,10 @@
     Se um dipolo ideal \(\vetor{p}\) é colocado na região entre as placas na posição \(\vetor{\x}_p\), a força sobre o dipolo é
     \begin{align*}
         \vetor{F} = \left(\vetor{p}\cdot \nabla\right)\vetor{E}(\vetor{\x}_p)
-        &= \frac{p\phi_0}{\sqrt{2}\varphi_0}\left(\diffp{}{x} + \diffp{}{y}\right)_{(x,y) = (d,0)}\left[\frac{\cos\varphi \vetor{e}_1 + \sin\varphi\vetor{e}_y}{s}\right]\\
-        &=\frac{p\phi_0}{\sqrt{2}\varphi_0}\left(\diffp{}{x} + \diffp{}{y}\right)_{(x,y)=(d,0)}\left[\frac{x \vetor{e}_1 + y \vetor{e}_2}{x^2 + y^2}\right]\\
-        &=  \frac{p \phi_0}{\sqrt{2}\varphi_0} \left[\left(\frac{-x^2 + y^2}{(x^2 + y^2)^2} - \frac{2yx}{(x^2 + y^2)^2}\right)\vetor{e}_1 + \left(- \frac{2xy}{(x^2 + y^2)^2} + \frac{x^2 - y^2}{(x^2 + y^2)^2}\right)\vetor{e}_2\right]_{(x,y) = (d,0)}\\
-        &=  \frac{p \phi_0}{\sqrt{2} \varphi_0d^2}\left(-\vetor{e}_1 + \vetor{e}_2\right)
+        &= \frac{p\phi_0}{\sqrt{2}\varphi_0}\left(\diffp{}{x} + \diffp{}{y}\right)_{(x,y) = (d,0)}\left[\frac{\sin\varphi \vetor{e}_1 - \cos\varphi\vetor{e}_2}{s}\right]\\
+        &=\frac{p\phi_0}{\sqrt{2}\varphi_0}\left(\diffp{}{x} + \diffp{}{y}\right)_{(x,y)=(d,0)}\left[\frac{y \vetor{e}_1 - x\vetor{e}_2}{x^2 + y^2}\right]\\
+        &=  \frac{p \phi_0}{\sqrt{2}\varphi_0} \left[\frac{x^2 - 2xy - y^2}{(x^2 + y^2)^2}\vetor{e}_1 + \frac{x^2 + 2xy - y^2}{(x^2 + y^2)^2}\vetor{e}_2\right]_{(x,y) = (d,0)}\\
+        &=  \frac{p \phi_0}{\sqrt{2} \varphi_0d^2}\left(\vetor{e}_1 + \vetor{e}_2\right) = \frac{\phi_0\vetor{p}}{\varphi_0 d^2}
     \end{align*}
     e o torque sobre o dipolo é
     \begin{align*}
