@@ -1,4 +1,4 @@
-\begin{exercício}{}{exercício3}
+\begin{exercício}{Capacitor de placas paralelas uniformemente carregadas}{exercício3}
     Considere duas placas metálicas paralelas infinitas separadas de uma distância \(d\) carregadas com densidades superficiais de carga uniformes \(\sigma_0\) (em \(z = d\)) e \(-\sigma_0\) (em \(z = 0\)).
     \begin{enumerate}[label=(\alph*)]
         \item Calcule o campo elétrico e o potencial elétrico na região entre as placas. Em seguida, calcule a densidade de energia \(u_\mathrm{E}\).
@@ -10,6 +10,128 @@
         \item Refaça o problema considerando agora que o dielétrico preenche apenas \emph{metade} do espaço entre as placas, na região \(0 < z < \frac{d}2\).
     \end{enumerate}
 \end{exercício}
-\begin{proof}[Resolução]
+\begin{proof}[Resolução do item (a)]
+    Pelo princípio da superposição, o campo elétrico é dado por
+    \begin{equation*}
+        \vetor{E}(\vetor{\x}) = \frac{\sigma_0}{2\epsilon_0}\sgn\left(\inner{\vetor{e}_z}{\vetor{\x}} - d\right)\vetor{e}_z - \frac{\sigma_0}{2 \epsilon_0}\sgn\left(\inner{\vetor{e}_z}{\vetor{\x}}\right)\vetor{e}_z = \begin{cases}
+            - \frac{\sigma_0}{\epsilon_0}\vetor{e}_z,&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (0,d)\\
+            \vetor{0}, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty, 0) \cup (d, \infty)
+        \end{cases},
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \phi(\vetor{\x}) = \begin{cases}
+            \phi_0 + \frac{\sigma_0}{\epsilon_0}d, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in(d, \infty)\\
+            \phi_0 + \frac{\sigma_0}{\epsilon_0}\inner{\vetor{e}_z}{\vetor{\x}},&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in [0,d]\\
+            \phi_0, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty, 0)
+        \end{cases}
+    \end{equation*}
+    é a expressão do potencial elétrico, onde \(\phi_0\) é uma constante. Dessa forma,
+    \begin{equation*}
+        u_\mathrm{E} = \frac12 \epsilon_0 \inner{\vetor{E}}{\vetor{E}} = \begin{cases}
+            \frac{\sigma_0^2}{2\epsilon_0},&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (0,d)\\
+            0, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty,0)\cup (d, \infty)
+        \end{cases}
+    \end{equation*}
+    é a densidade de energia.
+\end{proof}
+
+\begin{proof}[Resolução do item (b)]
+    Pela simetrias de translação em \(x\) e em \(y\), sabemos que \(\phi(\vetor{\x}) = \phi(\inner{\vetor{e}_z}{\vetor{\x}})\). Como o potencial satisfaz a equação de Laplace nas regiões definidas pelas placas, temos
+    \begin{equation*}
+        \phi(\vetor{\x}) = \begin{cases}
+            A\inner{\vetor{e}_z}{\vetor{\x}} + (B - A)d + \phi_0, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in(d, \infty)\\
+            B\inner{\vetor{e}_z}{\vetor{\x}} + \phi_0,&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in [0,d]\\
+            C\inner{\vetor{e}_z}{\vetor{\x}} + \phi_0, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty, 0)
+        \end{cases},
+    \end{equation*}
+    onde utilizamos a continuidade do potencial. Da condição de contorno para o potencial nas placas, obtemos
+    \begin{equation*}
+        -\epsilon B + \epsilon_0 C = -\sigma_0\quad\text{e}\quad -\epsilon_0 A + \epsilon B = \sigma_0 \implies A = C \quad \text{e}\quad B = \frac{\sigma_0}{\epsilon} + \frac{\epsilon_0}{\epsilon} A,
+    \end{equation*}
+    e, já que deve ser limitado no infinito, concluímos que
+    \begin{equation*}
+        \phi(\vetor{\x}) = \begin{cases}
+            \phi_0 + \frac{\sigma_0}{\epsilon}d, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in(d, \infty)\\
+            \phi_0 + \frac{\sigma_0}{\epsilon}\inner{\vetor{e}_z}{\vetor{\x}},&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in [0,d]\\
+            \phi_0, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty, 0)
+        \end{cases}
+    \end{equation*}
+    é o potencial elétrico, com \(\phi_0\) constante. Com isso, o campo elétrico é dado por
+    \begin{equation*}
+        \vetor{E}(\vetor{\x}) = \begin{cases}
+            - \frac{\sigma_0}{\epsilon}\vetor{e}_z,&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (0,d)\\
+            \vetor{0}, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty, 0) \cup (d, \infty)
+        \end{cases},
+    \end{equation*}
+    donde segue que
+    \begin{equation*}
+        \vetor{P}(\vetor{\x}) = \begin{cases}
+            - \frac{(\epsilon - \epsilon_0)\sigma_0}{\epsilon}\vetor{e}_z,&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (0,d)\\
+            \vetor{0}, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty, 0) \cup (d, \infty)
+        \end{cases}
+    \end{equation*}
+    e
+    \begin{equation*}
+        \vetor{D}(\vetor{\x}) = \begin{cases}
+            - \sigma_0\vetor{e}_z,&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (0,d)\\
+            \vetor{0}, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty, 0) \cup (d, \infty)
+        \end{cases}.
+    \end{equation*}
+    Logo,
+    \begin{equation*}
+        u_\mathrm{E} = \frac12 \inner{\vetor{D}}{\vetor{E}} = \begin{cases}
+            \frac{\sigma_0^2}{2\epsilon},&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (0,d)\\
+            0, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty,0)\cup (d, \infty)
+        \end{cases}
+    \end{equation*}
+    é a densidade de energia.
+\end{proof}
+
+\begin{proof}[Resolução do item (c)]
+    Pelos mesmos argumentos do item (b), sabemos que
+    \begin{equation*}
+        \phi(\vetor{\x}) = \begin{cases}
+            \phi_0 + (\frac{\sigma_0}{\epsilon_0} + \frac{\sigma_0}{\epsilon})\frac{d}{2}, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in(d, \infty)\\
+            \phi_0 + (\frac{\sigma_0}{\epsilon} - \frac{\sigma_0}{\epsilon_0})\frac{d}{2} + \frac{\sigma_0}{\epsilon_0}\inner{\vetor{e}_z}{\vetor{\x}},&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (\frac{d}{2}, d]\\
+            \phi_0 + \frac{\sigma_0}{\epsilon}\inner{\vetor{e}_z}{\vetor{\x}},&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in [0,\frac{d}{2}]\\
+            \phi_0, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty, 0)
+        \end{cases}
+    \end{equation*}
+    e concluímos que há uma densidade de carga livre
+    \begin{equation*}
+        \sigma_l = \frac{\sigma_0}{\epsilon} - \frac{\sigma_0}{\epsilon_0}
+    \end{equation*}
+    na interface entre o dielétrico e o vácuo. Com isso, o campo elétrico é dado por
+    \begin{equation*}
+        \vetor{E}(\vetor{\x}) = \begin{cases}
+            - \frac{\sigma_0}{\epsilon_0}\vetor{e}_z,&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (\frac{d}{2},d)\\
+            - \frac{\sigma_0}{\epsilon}\vetor{e}_z,&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (0,\frac{d}{2})\\
+            \vetor{0}, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty, 0) \cup (d, \infty)
+        \end{cases},
+    \end{equation*}
+    donde segue que
+    \begin{equation*}
+        \vetor{P}(\vetor{\x}) = \begin{cases}
+            - \frac{(\epsilon - \epsilon_0)\sigma_0}{\epsilon}\vetor{e}_z,&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (0,\frac{d}{2})\\
+            \vetor{0}, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty, 0) \cup (\frac{d}{2}, \infty)
+        \end{cases}
+    \end{equation*}
+    e
+    \begin{equation*}
+        \vetor{D}(\vetor{\x}) = \begin{cases}
+            - \sigma_0\vetor{e}_z,&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (0,d)\\
+            \vetor{0}, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty, 0) \cup (d, \infty)
+        \end{cases}.
+    \end{equation*}
+    Logo,
+    \begin{equation*}
+        u_\mathrm{E} = \frac12 \inner{\vetor{D}}{\vetor{E}} = \begin{cases}
+            \frac{\sigma_0^2}{2\epsilon_0},&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (\frac{d}{2},d)\\
+            \frac{\sigma_0^2}{2\epsilon},&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (0,\frac{d}{2})\\
+            0, &\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty,0)\cup (d, \infty)
+        \end{cases}
+    \end{equation*}
+    é a densidade de energia.
 
 \end{proof}
