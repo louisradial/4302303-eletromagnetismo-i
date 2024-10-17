@@ -2,5 +2,39 @@
     Um dielétrico linear muito grande de constante dielétrica \(k\) preenche todo o espaço onde há um campo elétrico uniforme \(\vetor{E}_0\). Uma cavidade esférica de raio \(R\) é então aberta em algum lugar desse dielétrico. Encontre o campo elétrico dentro da cavidade.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Podemos escolher os eixos de forma que \(\vetor{E}_0 = E_0 \vetor{e}_z\), utilizando uma rotação caso necessário. Assim, da simetria azimutal, segue que
+    \begin{equation*}
+        \phi(r\vetor{e}_r) = \begin{cases}
+            \displaystyle \sum_{\ell = 0}^\infty \left(A_\ell r^\ell + \frac{B_\ell}{r^{\ell + 1}}\right) P_\ell(\cos\theta), &\text{se }r \geq R\\
+            \displaystyle \sum_{\ell = 0}^\infty C_\ell r^\ell P_\ell(\cos\theta),&\text{se }r < R
+        \end{cases},
+    \end{equation*}
+    onde já utilizamos a a bem-definição em \(r = 0\). Para \(r \gg R\), devemos ter \(\phi(r\vetor{e}_r)\sim -E_0 r\cos\theta\), logo \(A_\ell = -\delta_{1\ell} E_0\). Como não há cargas livres na superfície da cavidade, temos
+    \begin{equation*}
+        -\epsilon\diffp{\phi}{r}[r = R^+] + \epsilon_0 \diffp{\phi}{r}[r = R^-] = 0 \implies \epsilon_0 \ell C_\ell R^{\ell - 1} = \epsilon \ell A_\ell R^{\ell - 1} - \epsilon (\ell + 1) B_\ell R^{-\ell - 2}
+    \end{equation*}
+    e como o potencial é contínuo, temos
+    \begin{equation*}
+        A_\ell R^\ell + B_\ell R^{-\ell - 1} = C_\ell R^\ell.
+    \end{equation*}
+    Multiplicando a primeira equação por \(R\) e subtraindo a segunda multiplicada por \(\epsilon_0 \ell\), obtemos
+    \begin{equation*}
+        (\epsilon_0 - \epsilon)\ell A_\ell R^\ell = -\left[\epsilon_0 \ell + \epsilon(\ell + 1)\right] B_\ell R^{-\ell - 1} \implies B_\ell = \frac{(\epsilon_0 - \epsilon)\ell E_0 R^{2\ell + 1}}{\left[\epsilon_0 \ell + \epsilon(\ell + 1)\right]}\delta_{\ell 1} = \frac{(\epsilon_0 - \epsilon) E_0 R^{3}}{\epsilon_0 + 2\epsilon}\delta_{\ell 1}
+    \end{equation*}
+    e, portanto,
+    \begin{equation*}
+        C_\ell = -\delta_{1\ell}\frac{3\epsilon}{\epsilon_0 + 2 \epsilon}E_0.
+    \end{equation*}
+    Assim, o potencial é dado por
+    \begin{equation*}
+        \phi(r\vetor{e}_r) = \begin{cases}
+            \displaystyle -\left[r + \frac{(\epsilon - \epsilon_0)R^3}{(\epsilon_0 + 2 \epsilon)r^2}\right]E_0 \cos\theta, &\text{se }r \geq R\\
+            \displaystyle -\left(\frac{3 \epsilon}{\epsilon_0 + 2 \epsilon}\right)E_0 r \cos\theta,&\text{se }r < R
+        \end{cases}
+    \end{equation*}
+    e
+    \begin{equation*}
+        \vetor{E} = \frac{3 \epsilon}{\epsilon_0 + 2 \epsilon} \vetor{E}_0
+    \end{equation*}
+    é o campo elétrico no interior da cavidade.
 \end{proof}
