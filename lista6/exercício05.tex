@@ -1,5 +1,21 @@
-\begin{exercício}{}{exercício5}
+\begin{exercício}{Cascas esféricas concêntricas preenchidas por um dielétrico linear}{exercício5}
     Considere duas cascas esféricas metálicas concêntricas de raios \(a\) e \(b\), com \(a < b\). A casca de raio \(b\) está aterrada enquanto que a casca de raio \(a\) encontra-se mantida a um potencial \(\phi_0 > 0\). Na região entre as cascas há um dielétrico linear de constante dielétrica \(k\) preenchando apenas metade da região, como mostra a figura abaixo, onde \(\epsilon = k \epsilon_0\).
+
+    \begin{center}
+        \begin{tikzpicture}[scale=0.6,every node/.style={scale=0.8}]
+            \def\a{1.5}
+            \def\b{3}
+            \def\t{0}
+            \path[fill=Lavender!20] +({180 - \t}:\b) arc[start angle={180-\t}, end angle={360+\t}, radius=\b]  -- ({\a*cos(\t)}, {\a*sin(\t)}) arc[start angle={360+\t}, end angle={180 - \t}, radius=\a] -- cycle;
+            \draw[thick] (0,0) circle (\b);
+            \draw[thick] (0,0) circle (\a);
+
+            \node at +({\t + 20}:{(\a + \b)/2}) {$\epsilon_0$};
+            \node at +({\t-20}:{(\a + \b)/2}) {$\epsilon$};
+            \draw (0,0) -- (45:\a) node[midway,above left] {$a$};
+            \draw (0,0) -- (135:\b) node[near end, above right] {$b$};
+        \end{tikzpicture}
+    \end{center}
 
     \begin{enumerate}[label=(\alph*)]
         \item Obtenha o potencial elétrico e o campo elétrico nas regiões \(r < a\) e \(r > b\).
@@ -8,6 +24,32 @@
         \item Com a resposta dos item anteriores, você é capaz de resolver \enquote{automaticamente} o problema ilustrado abaixo, onde o ângulo associado ao preenchimento do dielétrico não é \(\pi\)?
         \item Com a resposta dos itens anteriores, você é capaz de resolver \enquote{automaticamente} o problema ilustrado abaixo, onde há apenas uma casca esférica de raio \(a\) (mantida a um potencial \(\phi_0\)) e um dielétrico preenchendo \emph{todo} o hemisfério sul para \(r > a\)?
     \end{enumerate}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.6,every node/.style={scale=0.8}]
+                \def\a{1.5}
+                \def\b{3}
+                \def\t{30}
+                \path[fill=Lavender!20] +({180 - \t}:\b) arc[start angle={180-\t}, end angle={360+\t}, radius=\b]  -- ({\a*cos(\t)}, {\a*sin(\t)}) arc[start angle={360+\t}, end angle={180 - \t}, radius=\a] -- cycle;
+                \draw[thick] (0,0) circle (\b);
+                \draw[thick] (0,0) circle (\a);
+
+                \node at +({\t + 20}:{(\a + \b)/2}) {$\epsilon_0$};
+                \node at +({\t-20}:{(\a + \b)/2}) {$\epsilon$};
+                \draw[thick, dotted] (0,0) -- +(\t:\a);
+                \draw[thick, dotted] (0,0) -- +({180-\t}:\a);
+
+                \draw +(\t:{\a/3}) arc[start angle={\t},end angle={180-\t},radius={\a/3}] node[midway, above] {\(\theta\)};
+
+                \begin{scope}[xshift=12cm]
+
+                    \path[fill=Lavender!20] (-\a,0) -- (-\b,0) -- (-\b, -\b) -- (\b,-\b) -- ({\b}, 0) -- (\a, 0) arc[start angle=360, end angle=180, radius=\a] -- cycle;
+                    \draw[thick] (0,0) circle (\a);
+
+                    \node at +(20:{(\a + \b)/2}) {$\epsilon_0$};
+                    \node at +(-20:{(\a + \b)/2}) {$\epsilon$};
+                \end{scope}
+            \end{tikzpicture}
+        \end{center}
 \end{exercício}
 \begin{proof}[Resolução]
 
