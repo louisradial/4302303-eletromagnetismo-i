@@ -2,5 +2,78 @@
     Considere uma esfera (maciça) de raio \(R\) constituída de um material dielétrico com constante dielétrica \(k\). No centro desse objeto é colocado um dipolo (ideal) \(\vetor{p}\). Encontre o potencial elétrico em todo o espaço. Considere vácuo para \(r > R\). Calcule a densidade de carga superficial de polarização \(\sigma_p\) na borda \(r = R\) do dielétrico. Obtenha os campos \(\vetor{E},\) \(\vetor{D}\), e \(\vetor{P}\) para todo \(r > 0\).
 \end{exercício}
 \begin{proof}[Resolução]
+    Podemos escolher os eixos de forma que \(\vetor{p} = p \vetor{e}_z\), utilizando uma rotação, se preciso. Neste caso, o potencial tem simetria azimutal, de modo que podemos escrever
+    \begin{equation*}
+        \phi(r\vetor{e}_r) = \begin{cases}
+            \displaystyle\sum_{\ell = 0}^\infty \frac{A_{\ell}}{r^{\ell + 1}} P_\ell(\cos\theta),&\text{se }r > R\\
+            \displaystyle\sum_{\ell = 0}^\infty \left(B_\ell r^{\ell} + \frac{C_\ell}{r^{\ell + 1}}\right) P_\ell(\cos\theta),&\text{se }0 < r < R
+        \end{cases}
+    \end{equation*}
+    com \(A_\ell, B_\ell, C_\ell\) constantes reais. Da continuidade do potencial em \(r = R\), temos
+    \begin{equation*}
+        A_\ell R^{-\ell - 1} = B_\ell R^\ell + C_\ell R^{-\ell - 1}
+    \end{equation*}
+    e como não há cargas livres na superfície da esfera, segue que
+    \begin{equation*}
+        -\epsilon_0 \diffp{\phi}{r}[r = R^+] + \epsilon \diffp{\phi}{r}[r = R^-] = 0 \implies -\epsilon_0 (\ell + 1)A_\ell R^{-\ell - 2} = \epsilon \ell B_\ell R^{\ell - 1} - \epsilon (\ell + 1) C_\ell R^{-\ell - 2}
+    \end{equation*}
+    para todo \(\ell \in \mathbb{N}_0\). Multiplicando a primeira equação por \(-\epsilon \ell\) e somando à segunda multiplicada por \(R\), obtemos
+    \begin{equation*}
+        A_\ell = \frac{\epsilon(2\ell + 1)}{\epsilon \ell + \epsilon_0 (\ell + 1)}C_\ell \implies B_\ell = \frac{(\ell + 1)(\epsilon - \epsilon_0)}{\epsilon \ell + \epsilon_0 (\ell + 1)} C_\ell R^{-2\ell -1}.
+    \end{equation*}
+    Para \(r \ll R\) o potencial deve se reduzir ao de um dipolo ideal, então
+    \begin{equation*}
+        \sum_{\ell = 0}^\infty C_\ell r^{-\ell - 1}P_\ell(\cos\theta) = \frac{p \cos\theta}{4\pi \epsilon_0 r^2} \implies C_\ell = \delta_{\ell 1} \frac{p}{4\pi \epsilon_0},
+    \end{equation*}
+    e podemos concluir que
+    \begin{equation*}
+        A_\ell = \left(\frac{3 \epsilon}{\epsilon + 2\epsilon_0}\right) \frac{p}{4\pi \epsilon_0}\delta_{\ell 1}  \quad\text{e}\quad
+        B_\ell = 2\frac{\epsilon - \epsilon_0}{\epsilon + 2\epsilon_0 } \frac{p}{4\pi \epsilon_0 R^{3}} \delta_{\ell 1}.
+    \end{equation*}
+    para todo \(\ell \in \mathbb{N}_0\). Assim, escrevendo \(k = \frac{\epsilon}{\epsilon_0}\),
+    \begin{equation*}
+        \phi(\vetor{\x}) = \begin{cases}
+            \displaystyle \left(\frac{3 k}{k + 2}\right) \frac{\inner{\vetor{p}}{\vetor{\x}}}{4\pi \epsilon_0 \norm{\vetor{\x}}^3},&\text{se }\norm{\vetor{\x}} \geq R\\
+            \displaystyle \left[1 + 2\frac{k - 1}{k + 2}\left(\frac{\norm{\vetor{\x}}}{R}\right)^3\right]\frac{\inner{\vetor{p}}{\vetor{\x}}}{4\pi \epsilon_0\norm{\vetor{\x}}^3},&\text{se }0 < \norm{\x} < R
+        \end{cases}
+    \end{equation*}
+    é o potencial em todo o espaço.
 
+    Recordando que \(-\nabla \left(\frac{\inner{\vetor{p}}{\vetor{\x}}}{\norm{\vetor{\x}}^3}\right) = \frac{3\inner{\vetor{p}}{\vetor{\x}}\vetor{\x}}{\norm{\vetor{\x}}^5} - \frac{\vetor{p}}{\norm{\vetor{\x}}^3}\) e que \(\nabla(\norm{\vetor{\x}}^3) = 3\norm{\vetor{\x}}\vetor{\x}\), temos
+    \begin{align*}
+        % \textstyle
+        -\nabla\left\{\left[1 + 2\frac{k - 1}{k + 2}\left(\frac{\norm{\vetor{\x}}}{R}\right)^3\right]\frac{\inner{\vetor{p}}{\vetor{\x}}}{\norm{\vetor{\x}}^3}\right\}
+        &= \left[1 + 2\frac{k - 1}{k + 2}\left(\frac{\norm{\vetor{\x}}}{R}\right)^3\right]\left[\frac{3\inner{\vetor{p}}{\vetor{\x}}\vetor{\x}}{\norm{\vetor{\x}}^5} - \frac{\vetor{p}}{\norm{\vetor{\x}}^3}\right] - 6\frac{k - 1}{k+2}\frac{\inner{\vetor{p}}{\vetor{\x}}\vetor{\x}}{\norm{\vetor{\x}}^2 R^3}\\
+        &= \frac{3\inner{\vetor{p}}{\vetor{\x}}\vetor{\x}}{\norm{\vetor{\x}^5}} - \left[1 + 2\frac{k - 1}{k + 2}\left(\frac{\norm{\vetor{\x}}}{R}\right)^3\right]\frac{\vetor{p}}{\norm{\vetor{\x}}^3}.
+    \end{align*}
+    Com isso, o campo elétrico é dado por
+    \begin{equation*}
+        \vetor{E}(\vetor{\x}) = \begin{cases}
+            \displaystyle \frac{1}{4\pi\epsilon_0} \left(\frac{3k}{k+2}\right)  \left[\frac{3\inner{\vetor{p}}{\vetor{\x}}\vetor{\x}}{\norm{\vetor{\x}}^5} - \frac{\vetor{p}}{\norm{\vetor{\x}}^3}\right],&\text{se }\norm{\vetor{\x}} > R\\
+            \displaystyle \frac{3\inner{\vetor{p}}{\vetor{\x}}\vetor{\x}}{4\pi \epsilon_0\norm{\vetor{\x}^5}} - \left[1 + 2\frac{k - 1}{k + 2}\left(\frac{\norm{\vetor{\x}}}{R}\right)^3\right]\frac{\vetor{p}}{4\pi \epsilon_0\norm{\vetor{\x}}^3},&\text{se }0 < \norm{\vetor{\x}} < R
+        \end{cases},
+    \end{equation*}
+    donde segue que
+    \begin{equation*}
+        \vetor{D}(\vetor{\x}) = \begin{cases}
+            \displaystyle \frac{1}{4\pi} \left(\frac{3k}{k+2}\right)  \left[\frac{3\inner{\vetor{p}}{\vetor{\x}}\vetor{\x}}{\norm{\vetor{\x}}^5} - \frac{\vetor{p}}{\norm{\vetor{\x}}^3}\right],&\text{se }\norm{\vetor{\x}} > R\\
+            \displaystyle \frac{3k\inner{\vetor{p}}{\vetor{\x}}\vetor{\x}}{4\pi \norm{\vetor{\x}^5}} - \left[1 + 2\frac{k - 1}{k + 2}\left(\frac{\norm{\vetor{\x}}}{R}\right)^3\right]\frac{k\vetor{p}}{4\pi\norm{\vetor{\x}}^3},&\text{se }0 < \norm{\vetor{\x}} < R
+        \end{cases},
+    \end{equation*}
+    e
+    \begin{equation*}
+        \vetor{P}(\vetor{\x}) = \begin{cases}
+            \displaystyle \vetor{0},&\text{se }\norm{\vetor{\x}} > R\\
+            \displaystyle \frac{3(k-1)\inner{\vetor{p}}{\vetor{\x}}\vetor{\x}}{4\pi \norm{\vetor{\x}^5}} - \left[1 + 2\frac{k - 1}{k + 2}\left(\frac{\norm{\vetor{\x}}}{R}\right)^3\right]\frac{(k-1)\vetor{p}}{4\pi \norm{\vetor{\x}}^3},&\text{se }0 < \norm{\vetor{\x}} < R
+        \end{cases}.
+    \end{equation*}
+    Assim, para todo \(0 < \norm{\vetor{\x}} < R\), temos
+    \begin{equation*}
+        \inner{\vetor{\x}}{\vetor{P}(\vetor{\x})} = \frac{(k-1)\inner{\vetor{p}}{\vetor{\x}}}{4\pi \norm{\vetor{\x}}^3}\left\{3 - \left[1 + 2\frac{k - 1}{k + 2}\left(\frac{\norm{\vetor{\x}}}{R}\right)^3\right]\right\} = \frac{(k-1)\inner{\vetor{p}}{\vetor{\x}}}{2\pi\norm{\vetor{\x}}^3}\left[1 - \frac{k-1}{k+2}\left(\frac{\norm{\vetor{\x}}}{R}\right)^3\right],
+    \end{equation*}
+    e então tomando o limite em que \(\norm{\vetor{\x}} \to R\), concluímos que
+    \begin{equation*}
+        \sigma_p(\theta) = \lim_{\norm{\x} \to R^{-}} \inner{\vetor{\x}}{\vetor{P}(\vetor{\x})} = 3\left(\frac{k-1}{k+2}\right)\frac{p \cos\theta}{2\pi R^2}
+    \end{equation*}
+    é a densidade de carga superficial de polarização.
 \end{proof}
