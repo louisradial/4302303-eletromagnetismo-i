@@ -21,7 +21,7 @@
         \item Obtenha o potencial elétrico e o campo elétrico nas regiões \(r < a\) e \(r > b\).
         \item Encontre os campos \(\vetor{E}\), \(\vetor{D}\), e \(\vetor{P}\) na região entre as cascas \(a < r < b\).
         \item Calcule todas as densidades de carga livre e de polarização.
-        \item Com a resposta dos item anteriores, você é capaz de resolver \enquote{automaticamente} o problema ilustrado abaixo, onde o ângulo associado ao preenchimento do dielétrico não é \(\pi\)?
+        \item Com a resposta dos item anteriores, você é capaz de resolver \enquote{automaticamente} o problema ilustrado abaixo, onde o ângulo associado ao preenchimento do dielétrico é \(\vartheta\)?
         \item Com a resposta dos itens anteriores, você é capaz de resolver \enquote{automaticamente} o problema ilustrado abaixo, onde há apenas uma casca esférica de raio \(a\) (mantida a um potencial \(\phi_0\)) e um dielétrico preenchendo \emph{todo} o hemisfério sul para \(r > a\)?
     \end{enumerate}
         \begin{center}
@@ -52,12 +52,12 @@
         \end{center}
 \end{exercício}
 \begin{proof}[Resolução]
-    Como as cascas esféricas estão mantidas a potenciais constantes, temos \(\phi(\vetor{\x}) = 0\) sempre que \(\norm{\vetor{\x}} > b\) e temos \(\phi(\vetor{\x}) = \phi_0\) sempre que \(\norm{\vetor{\x}} < a\). Alinhando o eixo \(z\) com o eixo de simetria de modo que a região \(\theta \in (\frac{\pi}{2}, \pi]\) seja a preenchida com o dielétrico linear, vemos que o problema apresenta simetria azimutal. Dessa forma, podemos escrever
+    Como as cascas esféricas estão mantidas a potenciais constantes, temos \(\phi(\vetor{\x}) = 0\) sempre que \(\norm{\vetor{\x}} > b\) e temos \(\phi(\vetor{\x}) = \phi_0\) sempre que \(\norm{\vetor{\x}} < a\). Alinhando o eixo \(z\) com o eixo de simetria de modo que a região \(\theta \in (\vartheta, \pi]\) seja a preenchida com o dielétrico linear, vemos que o problema apresenta simetria azimutal. Dessa forma, podemos escrever
     \begin{equation*}
         \phi(r \vetor{e}_r) = \begin{cases}
             0,&\text{se }r \geq b\\
-            \sum_{\ell = 0}^\infty \left(A_\ell r^\ell + \frac{B_\ell}{r^{\ell + 1}}\right)P_\ell(\cos\theta),&\text{se }r \in (a,b)\text{ e }\theta \in [0, \frac{\pi}{2})\\
-            \sum_{\ell = 0}^\infty \left(\alpha_\ell r^\ell + \frac{\beta_\ell}{r^{\ell + 1}}\right)P_\ell(\cos\theta),&\text{se }r \in (a,b)\text{ e }\theta \in (\frac{\pi}{2},\pi]\\
+            \sum_{\ell = 0}^\infty \left(A_\ell r^\ell + \frac{B_\ell}{r^{\ell + 1}}\right)P_\ell(\cos\theta),&\text{se }r \in (a,b)\text{ e }\theta \in [0, \vartheta)\\
+            \sum_{\ell = 0}^\infty \left(\alpha_\ell r^\ell + \frac{\beta_\ell}{r^{\ell + 1}}\right)P_\ell(\cos\theta),&\text{se }r \in (a,b)\text{ e }\theta \in (\vartheta,\pi]\\
             \phi_0,&\text{se }r \leq a
         \end{cases}
     \end{equation*}
@@ -67,14 +67,87 @@
         &\implies B_\ell = -A_\ell b^{2\ell + 1} \quad\text{e}\quad A_\ell\left(a^\ell - \frac{b^{2\ell + 1}}{a^{\ell + 1}}\right) = \phi_0 \delta_{\ell 0}\\
         &\implies A_\ell = -\frac{a}{b - a} \phi_0 \delta_{\ell 0} \quad\text{e}\quad B_\ell = \frac{ab}{b - a} \phi_0 \delta_{\ell 0}
     \end{align*}
-    para todo \(\ell \in \mathbb{N}_0\). Mutatis mutandi obtemos \(\alpha_\ell\) e \(\beta_\ell\), e concluímos que \(\alpha_\ell = A_\ell\) e \(\beta_\ell = B_\ell\)
-    e que
+    para todo \(\ell \in \mathbb{N}_0\). Mutatis mutandi obtemos \(\alpha_\ell\) e \(\beta_\ell\), e concluímos que \(\alpha_\ell = A_\ell\) e \(\beta_\ell = B_\ell\), portanto
     \begin{equation*}
-        \phi(r \vetor{e}_r) = \begin{cases}
-            0,&\text{se }r \geq b\\
-            \frac{a\phi_0}{b - a}\left(\frac{b}{r} - 1\right),&\text{se }r \in (a,b)\\
-            \phi_0,&\text{se }r \leq a
+        \phi(\vetor{\x}) = \begin{cases}
+            0,&\text{se }\norm{\vetor{\x}} \geq b\\
+            \frac{a\phi_0}{b - a}\left(\frac{b}{\norm{\vetor{\x}}} - 1\right),&\text{se }\norm{\vetor{\x}} \in (a,b)\\
+            \phi_0,&\text{se }\norm{\vetor{\x}} \leq a
         \end{cases}
     \end{equation*}
-    é o potencial em todo o espaço.
+    é o potencial em todo o espaço. Desse modo, o campo elétrico é dado por
+    \begin{equation*}
+        \vetor{E}(\vetor{\x}) = \begin{cases}
+            \vetor{0},&\text{se }\norm{\vetor{\x}}\notin [a,b]\\
+            \frac{ab\phi_0}{b-a}\frac{\vetor{\x}}{\norm{\vetor{\x}}^3},&\text{se }\norm{\vetor{\x}}\in(a,b),
+        \end{cases}
+    \end{equation*}
+    a polarização por
+    \begin{equation*}
+        \vetor{P}(\vetor{\x}) = \begin{cases}
+            \vetor{0},&\text{se }\norm{\vetor{\x}}\notin[a,b]\\
+            \vetor{0},&\text{se }\norm{\vetor{\x}}\in(a,b)\land \theta \in [0, \vartheta)\\
+            \frac{(k-1)ab\epsilon_0 \phi_0}{b-a}\frac{\vetor{\x}}{\norm{\vetor{\x}}^3},&\text{se }\norm{\vetor{\x}}\in(a,b)\land \theta \in (\vartheta, \pi],
+        \end{cases}
+    \end{equation*}
+    e o vetor \(\vetor{D}\) por
+    \begin{equation*}
+        \vetor{D}(\vetor{\x}) = \begin{cases}
+            \vetor{0},&\text{se }\norm{\vetor{\x}}\notin[a,b]\\
+            \frac{ab\epsilon_0 \phi_0}{b-a}\frac{\vetor{\x}}{\norm{\vetor{\x}}^3},&\text{se }\norm{\vetor{\x}}\in(a,b)\land \theta \in [0,\vartheta)\\
+            \frac{ab\epsilon \phi_0}{b-a}\frac{\vetor{\x}}{\norm{\vetor{\x}}^3},&\text{se }\norm{\vetor{\x}}\in(a,b)\land \theta \in (\vartheta, \pi].
+        \end{cases}
+    \end{equation*}
+    Como a polarização é radial, há cargas polarizadas apenas nas superfícies esféricas, com
+    \begin{equation*}
+        \sigma_p(r = a) = \begin{cases}
+            0,&\text{se }\theta \in [0, \vartheta)\\
+            -\frac{(k - 1)b \epsilon_0 \phi_0}{(b - a)a}, &\text{se }\theta \in (\vartheta, \pi]
+        \end{cases}
+        \quad\text{e}\quad
+        \sigma_p(r = b) = \begin{cases}
+            0,&\text{se }\theta \in [0, \vartheta)\\
+            \frac{(k - 1)a \epsilon_0 \phi_0}{(b - a)b}, &\text{se }\theta \in (\vartheta, \pi].
+        \end{cases}
+    \end{equation*}
+    De forma similar, como o vetor \(\vetor{D}\) é radial, há cargas livres apenas nas superfícies esféricas, com
+    \begin{equation*}
+        \sigma_l(r = a) = \begin{cases}
+            \frac{b \epsilon_0 \phi_0}{(b-a)a},&\text{se }\theta \in [0, \vartheta)\\
+            \frac{b \epsilon \phi_0}{(b - a)a}, &\text{se }\theta \in (\vartheta, \pi]
+        \end{cases}
+        \quad\text{e}\quad
+        \sigma_l(r = b) = \begin{cases}
+            -\frac{a \epsilon_0 \phi_0}{(b - a)b},&\text{se }\theta \in [0, \vartheta)\\
+            -\frac{a \epsilon \phi_0}{(b - a)b}, &\text{se }\theta \in (\vartheta, \pi].
+        \end{cases}
+    \end{equation*}
+
+    No caso em que há uma casca esférica de raio \(a\) mantida a um potencial \(\phi_0\) na presença de um dielétrico preenchendo todo o hemisfério sul para \(r > a\), basta tomar \(\vartheta = \frac{\pi}{2}\) e verificar o limite \(b \to \infty\) nas expressões acima. Assim, o potencial é dado por
+    \begin{equation*}
+        \phi(\vetor{\x}) = \begin{cases}
+            \phi_0,&\text{se }\norm{\vetor{\x}} \leq a\\
+            \frac{a\phi_0}{\norm{\vetor{\x}}},&\text{se }\norm{\vetor{\x}} > a,
+        \end{cases}
+    \end{equation*}
+    o campo elétrico é
+    \begin{equation*}
+        \vetor{E}(\vetor{\x}) = \begin{cases}
+            \vetor{0},&\text{se }\norm{\vetor{\x}} < a\\
+            \frac{a\phi_0 \vetor{\x}}{\norm{\vetor{\x}}^3},&\text{se }\norm{\vetor{\x}} > a
+        \end{cases}
+    \end{equation*}
+    e
+    \begin{equation*}
+        \sigma_l = \begin{cases}
+            \frac{\epsilon_0 \phi_0}{a},&\text{se }\theta \in [0, \vartheta)\\
+            \frac{\epsilon \phi_0}{a}, &\text{se }\theta \in (\vartheta, \pi]
+        \end{cases}
+        \quad\text{e}\quad
+        \sigma_p = \begin{cases}
+            0,&\text{se }\theta \in [0, \vartheta)\\
+            -\frac{(\epsilon - \epsilon_0) \phi_0}{a}, &\text{se }\theta \in (\vartheta, \pi].
+        \end{cases}
+    \end{equation*}
+    são as densidades de carga livre e de polarização na superfície da esfera.
 \end{proof}
