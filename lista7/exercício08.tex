@@ -2,5 +2,79 @@
     Um longo cilindro de raio \(R\) está uniformemente carregado com uma densidade de carga \(\rho\). Além disso, o cilindro gira em torno de seu eixo de simetria com velocidade angular constante \(\omega\). Obtenha o campo magnético e o potencial vetor em todo o espaço.
 \end{exercício}
 \begin{proof}[Resolução]
+    Seja \(\Omega\) como no \cref{ex:exercício7}, então a densidade de corrente é dada por
+    \begin{equation*}
+        \vetor{J}(\vetor{\x}) = \begin{cases}
+            \rho \vetor{\omega}\times \vetor{\x},&\text{se }\vetor{\x}\in \Omega\\
+            \vetor{0},&\text{se }\vetor{\x}\notin \Omega,
+        \end{cases}
+    \end{equation*}
+    com \(\vetor{\omega} = \omega \vetor{e}_z\). Consideremos \(\vetor{\x'} = s' \vetor{e}_{s'} + z' \vetor{e}_z \in \Omega\), então para todo \(\vetor{\x} = x \vetor{e}_x + y\vetor{e}_y + z \vetor{e}_z\in \mathbb{R}^3\) temos
+    \begin{align*}
+        (\vetor{e}_z\times \vetor{\x'}) \times (\D)
+        &= -s'(\D)\times\vetor{e}_{\varphi'}\\
+        &=   -s' \left(\vetor{\x} \times\vetor{e}_{\varphi'} -   s' \vetor{e}_z + z' \vetor{e}_{s'}\right)\\
+        &=   -s' \left[-z\cos\varphi'\vetor{e}_x - z\sin\varphi'\vetor{e}_y + (x\cos\varphi' + y \sin\varphi')\vetor{e}_z - s'\vetor{e}_z + z' \vetor{e}_{s'}\right]\\
+        &=   -s' \left[(z'-z)\cos\varphi'\vetor{e}_x+(z'- z)\sin\varphi'\vetor{e}_y + (x\cos\varphi' + y \sin\varphi' - s')\vetor{e}_z\right]\\
+        &= -s' \left\{(z' - z) \vetor{e}_{s'} + \left[s \cos(\varphi - \varphi') - s'\right]\vetor{e}_z\right\},
+    \end{align*}
+    de modo que
+    \begin{equation*}
+        \vetor{J}(\vetor{\x'}) \times (\D) = -\rho\omega s' \left\{(z' - z) \vetor{e}_{s'} + \left[s \cos(\varphi - \varphi') - s'\right]\vetor{e}_z\right\}
+    \end{equation*}
+    para todo \(\vetor{\x'} \in \Omega\) e \(\vetor{\x} \in \mathbb{R}^3\). Com isso, pela lei de Biot-Savart temos
+    \begin{align*}
+        \vetor{B}(\vetor{\x})
+        &=-\frac{\mu_0}{4\pi} \int_{\Omega} \dln3{\x'} \frac{\vetor{J}(\vetor{\x})\times (\D)}{\norm{\D}^3} \\
+        &=-\frac{\mu_0 \rho \omega}{4\pi} \int_{0}^R \dli{s'} \int_{0}^{2\pi} s' \dli{\varphi} \int_{\mathbb{R}} \dli{z'} \frac{s'\left\{(z' - z) \vetor{e}_{s'} + \left[s \cos(\varphi - \varphi') - s'\right]\vetor{e}_z\right\}}{\left[s^2 + s'^2 + (z - z')^2 - 2s s' \cos(\varphi - \varphi')\right]^{\frac32}}\\
+        &=-\frac{\mu_0 \rho \omega}{4\pi} \int_0^R\dli{s'}\int_0^{2\pi} \dli{\tilde{\varphi}}\int_{\mathbb{R}}\dli{\tilde{z}} \frac{s'^2\left(s \cos\tilde{\varphi} - s'\right)\vetor{e}_z}{\left(s^2 + s'^2 + \tilde{z}^2 - 2s s' \cos\tilde{\varphi}\right)^{\frac32}}
+    \end{align*}
+    portanto o campo magnético é da forma \(\vetor{B} = B(s) \vetor{e}_z\), com \(\displaystyle\lim_{s \to \infty}{B(s)} = 0\).
 
+    Consideremos um retângulo \(\Sigma\) e seu perímetro \(\Gamma\), como no \cref{ex:exercício7}. A circulação de \(\vetor{B}\) por \(\Gamma\) é dada por
+    \begin{equation*}
+        \oint_{\Gamma}\dli{\vetor{\ell}}\cdot\vetor{B} = [B(d) - B(0)]h
+    \end{equation*}
+    e a corrente que atravessa o retângulo \(\Sigma\) é dada por
+    \begin{equation*}
+        \int_{\Omega} \dln2{\x'} \vetor{n'}\cdot \vetor{J}(\vetor{\x'}) = \begin{cases}
+            -\frac12\rho \omega h d^2,&\text{se }d < R\\
+            -\frac12 \rho \omega h R^2,&\text{se }d > R,
+        \end{cases}
+    \end{equation*}
+    portanto pela lei de Ampère temos
+    \begin{equation*}
+        \oint_{\Gamma}\dli{\vetor{\ell}}\cdot\vetor{B} =\mu_0 \int_{\Omega} \dln2{\x'} \vetor{n'}\cdot \vetor{J}(\vetor{\x'})  \implies B(d) = \begin{cases}
+            B(0)-\frac12\mu_0\rho \omega  d^2,&\text{se }d < R\\
+            B(0)-\frac12\mu_0\rho \omega  R^2,&\text{se }d > R.
+        \end{cases}
+    \end{equation*}
+    Como o campo se anula no infinito, temos \(B(0) = \frac12 \mu_0 \rho \omega\), e então
+    \begin{equation*}
+        \vetor{B} = \begin{cases}
+            \frac12 \mu_0 \rho \omega (R^2 - s^2)\vetor{e}_z,&\text{se }s < R\\
+            \vetor{0},&\text{se }s > R
+        \end{cases}
+    \end{equation*}
+    é o campo magnético em todo o espaço.
+
+    Consideremos o ansatz \(\vetor{A} = A(s) \vetor{e}_\varphi\) para o potencial vetor, compatível com \(\nabla \times \vetor{A} = \vetor{B}\) e com o gauge de Coulomb. Sejam \(\Theta\) e \(\gamma\) como no \cref{ex:exercício7}, então a circulação de \(\vetor{A}\) por \(\gamma\) é
+    \begin{equation*}
+        \oint_{\gamma} \dli{\vetor{\ell}}\cdot\vetor{A} = 2\pi r A(r)
+    \end{equation*}
+    e o fluxo de \(\vetor{B}\) por \(\Theta\) é
+    \begin{equation*}
+        \int_{\Theta}\dln2{\x'} \vetor{n'}\cdot \vetor{B} = \begin{cases}
+            \frac14\pi\mu_0 \rho \omega r^2 (2R^2 - r^2),&\text{se }r < R\\
+            \frac14\pi\mu_0 \rho \omega R^4,&\text{se }r > R.
+        \end{cases}
+    \end{equation*}
+    Assim, se tomarmos
+    \begin{equation*}
+        \vetor{A} = \begin{cases}
+            \frac18 \mu_0 \rho \omega s (2 R^2 - s^2)\vetor{e}_\varphi,&\text{se }s < R\\
+            \frac18 \mu_0 \rho \omega \frac{R^4}{s}\vetor{e}_\varphi,&\text{se }s > R
+        \end{cases}
+    \end{equation*}
+    vemos que \(\nabla \cdot \vetor{A} = 0\) e \(\nabla \times \vetor{A} = \vetor{B}\), portanto é um potencial vetor no gauge de Coulomb para o campo magnético.
 \end{proof}
