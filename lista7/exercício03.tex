@@ -6,5 +6,18 @@
     \end{equation*}
 \end{exercício}
 \begin{proof}[Resolução]
-
+    O campo magnético \(\vetor{B}_2(\vetor{\x})\) gerado pelo circuito 2 é dado por
+    \begin{equation*}
+        \vetor{B}_2(\vetor{\x}) = \frac{\mu_0 I_2}{4\pi} \oint_{\Gamma_2}\dli{\vetor{\ell}_2} \times\frac{\vetor{\x} - \vetor{\x}_2}{\norm{\vetor{\x} - \vetor{\x}_2}^3},
+    \end{equation*}
+    pela lei de Biot-Savart. Assim, a força magnética sobre o circuito 1 devido ao circuito 2 é
+    \begin{equation*}
+        \vetor{F}_{1(2)} = I_1\oint_{\Gamma_1}\dli{\vetor{\ell}_1} \times \vetor{B}_2(\vetor{\x}_1) = \frac{\mu_0 I_1 I_2}{4\pi}\oint_{\Gamma_1}\dli{\vetor{\ell}_1}\times \left(\oint_{\Gamma_2} \dli{\vetor{\ell}_2} \times \frac{\vetor{\x}_1 - \vetor{\x}_2}{\norm{\vetor{\x}_1 - \vetor{\x}_2}^3}\right).
+    \end{equation*}
+    Utilizando \(\vetor{a}\times(\vetor{b}\times \vetor{c}) = \inner{\vetor{c}}{\vetor{a}}\vetor{b} - \inner{\vetor{b}}{\vetor{a}}\vetor{c}\) e \(\frac{\vetor{\x}_1 - \vetor{\x}_2}{\norm{\vetor{\x}_1 - \vetor{\x}_2}^3} = \nabla_1\left(\frac{1}{\norm{\vetor{\x}_1 - \vetor{\x}_2}}\right)\), temos
+    \begin{align*}
+        \vetor{F}_{1(2)} &= \frac{\mu_0 I_1 I_2}{4\pi}\left[\oint_{\Gamma_2}\dli{\vetor{\ell}_2}\oint_{\Gamma_1} \inner*{\dl{\vetor{\ell}_1}}{\nabla_1\left(\frac{1}{\norm{\vetor{\x}_1 - \vetor{\x}_2}}\right)} - \oint_{\Gamma_1}\oint_{\Gamma_2} \dli{\vetor{\ell}_1}\cdot \dl{\vetor{\ell}_2} \frac{\vetor{\x}_1 - \vetor{\x}_2}{\norm{\vetor{\x}_1 - \vetor{\x}_2}}\right]\\
+                         &=-\frac{\mu_0 I_1 I_2}{4\pi} \oint_{\Gamma_1}\oint_{\Gamma_2}{\dl{\vetor{\ell}_1}\cdot \dli{\vetor{\ell}_2} \frac{\vetor{\x}_1 - \vetor{\x}_2}{\norm{\vetor{\x}_1 - \vetor{\x}_2}^3}},
+    \end{align*}
+    já que a integral de linha de um campo conservativo num caminho fechado é nula.
 \end{proof}
