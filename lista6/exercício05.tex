@@ -62,16 +62,19 @@
         \end{cases}
     \end{equation*}
     e vemos por continuidade em \(r = a\) e \(r = b\) que
-    \begin{equation*}
-        A_\ell b^\ell + \frac{B_\ell}{b^{\ell + 1}} = 0 \implies B_\ell = - A_\ell b^{2\ell + 1}
-    \end{equation*}
+    \begin{align*}
+        A_\ell b^\ell + \frac{B_\ell}{b^{\ell + 1}} = 0 \quad\text{e}\quad A_\ell a^\ell + \frac{B_\ell}{a^{\ell + 1}} = \phi_0 \delta_{\ell 0}
+        &\implies B_\ell = -A_\ell b^{2\ell + 1} \quad\text{e}\quad A_\ell\left(a^\ell - \frac{b^{2\ell + 1}}{a^{\ell + 1}}\right) = \phi_0 \delta_{\ell 0}\\
+        &\implies A_\ell = -\frac{a}{b - a} \phi_0 \delta_{\ell 0} \quad\text{e}\quad B_\ell = \frac{ab}{b - a} \phi_0 \delta_{\ell 0}
+    \end{align*}
+    para todo \(\ell \in \mathbb{N}_0\). Mutatis mutandi obtemos \(\alpha_\ell\) e \(\beta_\ell\), e concluímos que \(\alpha_\ell = A_\ell\) e \(\beta_\ell = B_\ell\)
     e que
     \begin{equation*}
-        \alpha_\ell a^\ell + \frac{\beta_\ell}{a^{\ell + 1}} = \phi_0 \delta_{\ell 0} \implies \beta_\ell = a^{\ell + 1}\phi_0 \delta_{\ell 0} - \alpha_\ell a^{2\ell + 1}
+        \phi(r \vetor{e}_r) = \begin{cases}
+            0,&\text{se }r \geq b\\
+            \frac{a\phi_0}{b - a}\left(\frac{b}{r} - 1\right),&\text{se }r \in (a,b)\\
+            \phi_0,&\text{se }r \leq a
+        \end{cases}
     \end{equation*}
-    para todo \(\ell \in \mathbb{N}_0\). Como não há cargas livres na interface com o dielétrico, temos
-    \begin{equation*}
-        -\epsilon \diffp{\phi}{\theta}[\theta = \frac{\pi}{2}^+] + \epsilon_0 \diffp{\phi}{\theta}[\theta = \frac{\pi}{2}^-] = 0 \implies \epsilon_0\sum_{\ell = 0}^\infty \left(A_\ell r^\ell + \frac{B_\ell}{r^{\ell + 1}}\right) P_\ell'(0) = \epsilon\sum_{\ell = 0}^\infty \left(\alpha_\ell r^\ell + \frac{\beta_\ell}{r^{\ell + 1}}\right)P_\ell'(0)
-    \end{equation*}
-    para todo \(r \in (a,b)\).
+    é o potencial em todo o espaço.
 \end{proof}
