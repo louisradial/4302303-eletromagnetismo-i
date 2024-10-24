@@ -11,5 +11,34 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Como nos \cref{ex:exercício7,ex:exercício8}, seja \(\Omega\) a região cilíndrica de raio \(R\). A distribuição de cargas de polarização no interior de \(\Omega\) é dada por
+    \begin{equation*}
+        \rho_p = - \nabla \cdot \vetor{P} = - \frac1s \diffp*{\left(\frac12 P_0 s^2\right)}{s} = - P_0
+    \end{equation*}
+    e a distribuição de cargas de polarização na superfície do cilindro \(\partial \Omega\) é
+    \begin{equation*}
+        \sigma_p = \inner{\vetor{e}_s}{\vetor{P}(R\vetor{e}_s + z\vetor{e}_z)} = \frac12 P_0 R.
+    \end{equation*}
+    Dessa forma, se o cilindro gira com velocidade angular \(\vetor{\omega} = \omega \vetor{e}_z\), a densidade de corrente é dada por
+    \begin{equation*}
+        \vetor{J}(s \vetor{e}_s + z\vetor{e}_z) = \begin{cases}
+            \vetor{0},&\text{se }s\vetor{e}_s + z\vetor{e}_z \notin \Omega \cup \partial \Omega\\
+            \omega\left[\sigma_p R\delta(s - R) +\rho_p s\right]\vetor{e}_\varphi,&\text{se }s\vetor{e}_s + z\vetor{e}_z \in \Omega \cup \partial \Omega
+        \end{cases}
+    \end{equation*}
+    e percebemos que é a superposição das densidades de corrente dos \cref{ex:exercício7,ex:exercício8}, trocando \(nI \to \omega\sigma_pR = \frac12 P_0 \omega R^2\) e \(\rho \to \rho_p = -P_0\). Dessa forma, o campo magnético é dado pela superposição dos campos magnéticos encontrados naqueles exercícios com as devidas modificações, obtendo
+    \begin{equation*}
+        \vetor{B}(s\vetor{e}_s + z\vetor{e}_z) = \begin{cases}
+            \frac12 \mu_0 \omega P_0 s^2\vetor{e}_z,&\text{se }s < R\\
+            \vetor{0},&\text{se }s > R,
+        \end{cases}
+    \end{equation*}
+    e, pelo mesmo argumento,
+    \begin{equation*}
+        \vetor{A}(s\vetor{e}_s + z\vetor{e}_z) = \begin{cases}
+            \frac18 \mu_0 P_0 \omega s^3 \vetor{e}_\varphi,&\text{se }s < R\\
+            \frac18 \mu_0 P_0 \omega\frac{R^4}{s}\vetor{e}_\varphi,&\text{se }s \geq R
+        \end{cases}
+    \end{equation*}
+    é um potencial vetor no gauge de Coulomb.
 \end{proof}
