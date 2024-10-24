@@ -1,0 +1,28 @@
+\begin{exercício}{Campo magnético de um fio longo com ângulo reto}{exercício1}
+    Um fio muito longo carrega uma corrente estacionária \(I\) e faz uma curva de ângulo reto como abaixo. Calcule o campo magnético no ponto \(P\) indicado em cada uma das duas situações indicadas abaixo.
+    \begin{center}
+        \begin{tikzpicture}
+            \node at (1,-2.5) {Configuração (a)};
+            \draw[thick] (0,-2) -- (0,0);
+            \draw[thick, -stealth] (0,-2) -- (0,-1);
+            \draw[thick, -stealth] (0,0) -- (1,0) node[above] {\(I\)};
+            \draw[thick] (0,0) -- (2,0);
+            \filldraw[thick] (0, 1) circle(0.01) node[anchor=west] {\(P\)};
+            \draw[dotted] (0,0) -- (0,1) node[midway,anchor=east] {\(d\)};
+            \begin{scope}[xshift=7cm]
+                \node at (1,-2.5) {Configuração (b)};
+                \draw[thick] (0,-2) -- (0,0);
+                \draw[thick, -stealth] (0,-2) -- (0,-1);
+                \draw[thick, -stealth] (0,0) -- (1,0) node[above] {\(I\)};
+                \draw[thick] (0,0) -- (2,0);
+                \filldraw[thick] +(135:1) circle(0.01) node[anchor=south] {\(P\)};
+                \draw[dotted] (0,0) -- +(135:1) node[midway,anchor=north] {\(d\)};
+                \draw[dotted] (0,0) -- +(315:0.5);
+                \draw[thick] (0.5,0) arc[start angle=360, end angle=315, radius=0.5]  node[anchor=west] {\(\frac{\pi}{4}\)};
+            \end{scope}
+        \end{tikzpicture}
+    \end{center}
+\end{exercício}
+\begin{proof}[Resolução]
+
+\end{proof}
