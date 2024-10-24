@@ -1,8 +1,8 @@
 \begin{exercício}{Campo magnético de um fio longo com ângulo reto}{exercício1}
-    Um fio muito longo carrega uma corrente estacionária \(I\) e faz uma curva de ângulo reto como abaixo. Calcule o campo magnético no ponto \(P\) indicado em cada uma das duas situações indicadas abaixo.
+    Um fio muito longo carrega uma corrente estacionária \(I\) e faz uma curva de ângulo reto como abaixo. Calcule o campo magnético no ponto \(P\) indicado em cada uma das duas situações indicadas.
     \begin{center}
-        \begin{tikzpicture}
-            \node at (1,-2.5) {Configuração (a)};
+        \begin{tikzpicture}[scale=0.7,every node/.style={scale=0.7}]
+            \node at (1,-2.5) {Situação (a)};
             \draw[thick] (0,-2) -- (0,0);
             \draw[thick, -stealth] (0,-2) -- (0,-1);
             \draw[thick, -stealth] (0,0) -- (1,0) node[above] {\(I\)};
@@ -10,7 +10,7 @@
             \filldraw[thick] (0, 1) circle(0.01) node[anchor=west] {\(P\)};
             \draw[dotted] (0,0) -- (0,1) node[midway,anchor=east] {\(d\)};
             \begin{scope}[xshift=7cm]
-                \node at (1,-2.5) {Configuração (b)};
+                \node at (1,-2.5) {Situação (b)};
                 \draw[thick] (0,-2) -- (0,0);
                 \draw[thick, -stealth] (0,-2) -- (0,-1);
                 \draw[thick, -stealth] (0,0) -- (1,0) node[above] {\(I\)};
@@ -24,5 +24,21 @@
     \end{center}
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Consideremos um ponto \(\vetor{\x} = d(\cos\varphi \vetor{e}_x + \sin\varphi \vetor{e}_y)\), então pela lei de Biot-Savart temos
+    \begin{align*}
+        \vetor{B}(\vetor{\x}) &= \frac{\mu_0I}{4\pi} \left[\int_{-\infty}^0\dli{y} \frac{\vetor{e}_y \times (\vetor{\x} -y\vetor{e}_y)}{\norm{\vetor{\x} - y\vetor{e}_y}^{\frac32}} + \int_{0}^\infty \dli{x}\frac{\vetor{e}_x \times (\vetor{\x} - x\vetor{e}_x)}{\norm{\vetor{\x} - x\vetor{e}_x}^{\frac32}}\right]\\
+                              &= \frac{\mu_0 I d}{4\pi} \left\{\int_{0}^{-\infty}\dli{y}\frac{\cos\varphi}{\left[(y - d\sin\varphi)^2 + d^2\cos^2\varphi\right]^{\frac32}} + \int_0^\infty\dli{x} \frac{\sin\varphi}{\left[(x - d\cos\varphi)^2 + d^2 \sin^2\varphi\right]^{\frac32}}\right\}\vetor{e}_z.
+    \end{align*}
+    Assim, para o ponto da situação (a) temos
+    \begin{equation*}
+        \vetor{B}(\vetor{\x}_{\mathrm{(a)}}) = \frac{\mu_0 I d}{4\pi} \int_0^\infty\dli{x}\frac{1}{(x^2 + d^2)^{\frac32}} = \frac{\mu_0 I d}{4\pi}\left[\int_{0}^{\frac{\pi}{2}}\dli{\theta} \frac{\cos\theta}{d^2}\right] \vetor{e}_z= \frac{\mu_0 I}{4\pi d} \vetor{e}_z
+    \end{equation*}
+    e
+    \begin{align*}
+        \vetor{B}(\vetor{\x}_\mathrm{(b)}) &= \frac{\mu_0 I d}{4\pi\sqrt{2}} \left\{ \int_{-\infty}^0\dli{y}\left[\left(y - \frac{d}{\sqrt{2}}\right)^2 + \frac{d^2}{2}\right]^{-\frac32} + \int_0^{\infty}\dli{x}\left[\left(x + \frac{d}{\sqrt{2}}\right)^2 + \frac{d^2}{2}\right]^{-\frac32}\right\}\vetor{e}_z\\
+                                           &= \frac{\mu_0 I d}{4\pi\sqrt{2}} \left\{-\int_{\infty}^0\dli{\tilde{y}}\left[\left(\tilde{y} + \frac{d}{\sqrt{2}}\right)^2 + \frac{d^2}{2}\right]^{-\frac32} + \int_0^{\infty}\dli{x}\left[\left(x + \frac{d}{\sqrt{2}}\right)^2 + \frac{d^2}{2}\right]^{-\frac32}\right\}\vetor{e}_z\\
+                                           &= \frac{\mu_0 I d}{2\pi \sqrt{2}} \left(\int_{\frac\pi4}^{\frac\pi2}\dli{\theta} \frac{\cos\theta}{\frac{d^2}{2}}\right)\vetor{e}_z\\
+                                           &= \frac{\mu_0 I}{\pi \sqrt{2}d} \left(1 - \frac{1}{\sqrt{2}}\right)\vetor{e}_z
+    \end{align*}
+    como as expressões do campo magnético nos pontos das duas situações.
 \end{proof}
