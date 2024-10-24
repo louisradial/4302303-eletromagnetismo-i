@@ -2,5 +2,73 @@
     Considere um solenoide infinito carregando uma corrente \(I\), com \(n\) voltas por unidade de comprimento. Encontre o potencial vetor \(\vetor{A}(\vetor{\x})\) em todo o espaço.
 \end{exercício}
 \begin{proof}[Resolução]
+    A densidade superficial de corrente é dada por
+    \begin{equation*}
+        \vetor{K} = n I \vetor{e}_{\varphi},
+    \end{equation*}
+    de modo que o potencial vetor é dado por
+    \begin{equation*}
+        \vetor{A}(\vetor{\x}) = \frac{\mu_0}{4\pi}\int_{\partial\Omega} \dln2{\x'} \frac{\vetor{K}}{\norm{\D}},
+    \end{equation*}
+    onde \(\Omega = \setc{\vetor{\x'} \in \mathbb{R}^3}{\inner{\vetor{e}_s}{\vetor{\x'}} < R}\), sendo \(R\) o raio do solenoide. Escrevendo \(\vetor{\x} = s \vetor{e}_s + z \vetor{e}_z\) temos
+    \begin{align*}
+        \vetor{A}(\vetor{\x}) &= \frac{\mu_0 n I}{4\pi} \left[\int_{\mathbb{R}} \dli{z'} \int_{0}^{2\pi} R \dli{\varphi'} \frac{1}{\sqrt{(z - z')^2 + s^2 + R^2 - 2 s R \cos(\varphi - \varphi')}}\right]\vetor{e}_\varphi\\
+                              &= \frac{\mu_0 n IR}{4\pi}\left[\int_{\mathbb{R}} \dli{\tilde{z}} \int_{0}^{2\pi}\dli{\tilde{\varphi}} \frac{1}{\sqrt{\tilde{z}^2 + s^2 + R^2 - 2 s R \cos\tilde{\varphi}}}\right]\vetor{e}_\varphi,
+    \end{align*}
+    portanto vemos que \(\vetor{A}(s \vetor{e}_s + z\vetor{e}_z) = A(s)\vetor{e}_\varphi\), que satisfaz o gauge de Coulomb. Dessa forma, temos
+    \begin{equation*}
+        \nabla\times \vetor{A} = \frac{1}{s} \diffp*{\left[s A(s)\right]}{s} \vetor{e}_z = \left[A'(s) + \frac{A(s)}{s}\right]\vetor{e}_z,
+    \end{equation*}
+    portanto o campo magnético é da forma \(\vetor{B} = \nabla\times \vetor{A} = B(s) \vetor{e}_z\).
 
+    Consideremos um retângulo \(\Sigma\) com um lado de largura \(h\) colocado no eixo de simetria do cilindro e se estende radialmente a uma distância \(d\) deste eixo, sendo \(\Gamma\) o caminho positivamente orientado que percorre os lados de \(\Sigma\). Então, a circulação de \(\vetor{B}\) por \(\Gamma\) é dada por
+    \begin{equation*}
+        \oint_{\Gamma} \dli{\vetor{\ell}}\cdot \vetor{B} = \left[B(d) - B(0)\right]h.
+    \end{equation*}
+    A corrente que atravessa o retângulo \(\Sigma\) é dada por
+    \begin{equation*}
+        \int_{\Omega} \dln2{\x'} \vetor{n'}\cdot \vetor{K}(\vetor{\x'}) \delta(\norm{\vetor{\x'}} - R) = \begin{cases}
+            -nIh,&\text{se }d > R\\
+            0,&\text{se }d < R,
+        \end{cases}
+    \end{equation*}
+    portanto pela lei de Ampère, temos
+    \begin{equation*}
+        \oint_{\Gamma} \dli{\vetor{\ell}}\cdot \vetor{B} = \mu_0\int_{\Omega} \dln2{\x'} \vetor{n'}\cdot \vetor{K}(\vetor{\x'}) \delta(\norm{\vetor{\x'}} - R)  \implies B(d) = \begin{cases}
+            B(0) - \mu_0nI,&\text{se }d > R\\
+            B(0),&\text{se }d < R.
+        \end{cases}
+    \end{equation*}
+    Para que o campo se anule no infinito, temos \(B(0) = \mu_0nI\) e, portanto,
+    \begin{equation*}
+        \vetor{B}(s \vetor{e}_s + z \vetor{e}_z) = \begin{cases}
+            \mu_0nI \vetor{e}_z,&\text{se }s < R\\
+            \vetor{0},&\text{se }s > R
+        \end{cases}
+    \end{equation*}
+    é o campo magnético em todo o espaço.
+
+    Seja \(\Theta\) o disco de raio \(r\) coaxial ao cilindro e seja \(\gamma\) a o caminho positivamente orientado definido pela circunferência de \(\Theta\), então a circulação de \(\vetor{A}\) por \(\gamma\) é
+    \begin{equation*}
+        \oint_{\gamma} \dli{\vetor{\ell}}\cdot\vetor{A} = 2\pi r A(r)
+    \end{equation*}
+    e o fluxo de \(\vetor{B}\) por \(\Theta\) é
+    \begin{equation*}
+        \int_{\Theta} \dln2{\x'}\vetor{n'}\cdot\vetor{B} = \begin{cases}
+            \pi \mu_0 n I r^2,&\text{se }r < R\\
+            \pi \mu_0 n I R^2, &\text{se }r > R.
+        \end{cases}
+    \end{equation*}
+    Desta forma, como \(\nabla \times \vetor{A} = \vetor{B}\), temos
+    \begin{equation*}
+        \oint_{\gamma}\dli{\vetor{\ell}}\cdot \vetor{A} = \int_{\Theta} \dln2{\x'} \vetor{n'}\cdot\vetor{B},
+    \end{equation*}
+    logo
+    \begin{equation*}
+        \vetor{A}(s\vetor{e}_s + z \vetor{e}_z) = \begin{cases}
+            \frac12 \mu_0nI s \vetor{e}_\varphi,&\text{se }s < R\\
+            \frac12 \mu_0 nI \frac{R^2}{s}\vetor{e}_\varphi,&\text{se }s \geq R
+        \end{cases}
+    \end{equation*}
+    pode ser tomado como potencial vetor para o sistema considerado.
 \end{proof}
