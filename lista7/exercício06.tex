@@ -2,5 +2,28 @@
     Se \(\vetor{B}\) é uniforme, mostre que \(\vetor{A}(\vetor{\x}) = \frac12\vetor{B}(\vetor{\x})\times \vetor{\x}\) é uma solução para \(\nabla \times \vetor{A} = \vetor{B}\) com \(\nabla \cdot \vetor{A} = 0\). Essa solução é única?
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Como \(\vetor{B}\) é uniforme, escrevemos \(\vetor{B} = B_i \vetor{e}_i\), então
+    \begin{equation*}
+        \vetor{A}(\vetor{\x}) = \frac12 \epsilon_{ijk} B_i \x_j \vetor{e}_k
+    \end{equation*}
+    satisfaz
+    \begin{align*}
+        \nabla \cdot \vetor{A} &= \diffp*{\inner{\vetor{e}_k}{\vetor{A}}}{\x_k} &
+        \nabla \times \vetor{A} &= \epsilon_{k\ell m} \diffp*{\inner{\vetor{e}_k}{\vetor{A}}}{\x_m}\vetor{e}_\ell \\
+                               &= \frac12 \epsilon_{ijk} B_i\diffp{\x_j}{\x_k} &
+                               &= \frac12 \epsilon_{ijk} \epsilon_{k\ell m} B_i \diffp{\x_j}{\x_m} \vetor{e}_\ell \\
+                               &= \frac12 \epsilon_{ijk} B_i \delta_{jk} &
+                               &= \frac12 B_i \delta_{jm} (\delta_{i \ell} \delta_{jm} - \delta_{im} \delta_{\ell j}) \vetor{e}_\ell \\
+                               &= \frac12 \epsilon_{ijj} B_i &
+                               &= \frac12 B_i (3 \delta_{i \ell} - \delta_{i\ell}) \vetor{e}_\ell \\
+                               &= 0&
+                               &= \vetor{B},
+    \end{align*}
+    portanto \(\vetor{A}(\vetor{\x})\) é um potencial vetor no gauge de Coulomb. Notemos que o potencial vetor proposto não é a única solução para \(\nabla \times \vetor{A} = \vetor{B}\) e \(\nabla \cdot \vetor{A} = 0\). De fato, seja a função escalar \(\psi\) com laplaciano nulo, então
+    \begin{equation*}
+        \nabla \cdot \vetor{\tilde{A}} = \nabla \cdot \vetor{A} + \nabla^2 \psi = 0
+        \quad\text{e}\quad
+        \nabla \times \vetor{\tilde{A}} = \nabla \times \vetor{A} + \nabla \times \nabla\psi = \vetor{B},
+    \end{equation*}
+    portanto \(\vetor{\tilde{A}}\) é também um potencial vetor para o campo uniforme \(\vetor{B}\).
 \end{proof}
