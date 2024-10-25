@@ -1,6 +1,39 @@
-\begin{exercício}{}{exercício8}
+\begin{exercício}{Método das imagens}{exercício8}
     Um dielétrico linear de constante dielétrica \(k\) preenche todo o semi-espaço \(z < 0\). Adicionalmente, uma carga pontual é posicionada em \(z = d > 0\), na região do espaço onde há vácuo. Determine o potencial em todo o espaço.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Sejam
+    \begin{equation*}
+        \Omega = \setc{\vetor{\x}\in \mathbb{R}^3}{\inner{\vetor{e}_z}{\vetor{\x}} < 0}
+        \quad\text{e}\quad
+        \Sigma = \setc{\vetor{\x}\in \mathbb{R}^3}{\inner{\vetor{e}_z}{\vetor{\x}} > 0}
+    \end{equation*}
+    as regiões com e sem dielétrico. Como não há cargas livres em \(\Omega\), toda carga de polarização é superficial na interface \(\Pi = \partial (\Omega \cup \Sigma)\) já que para um dielétrico linear temos
+    \begin{equation*}
+        \vetor{P} = (\epsilon - \epsilon_0)\vetor{E}\quad\text{e}\quad\vetor{D} = \epsilon \vetor{E} \implies -\rho_p = (k - 1)\rho\quad\text{e}\quad\rho_l = k \rho \implies \rho_p = \frac{k - 1}{k} \rho_l.
+    \end{equation*}
+    Seja então \(\vetor{E}(\vetor{\x}) = \vetor{E}_q(\vetor{\x}) + \vetor{E}_p(\vetor{\x})\), em que \(\vetor{E}_q\) é o campo devido apenas à carga pontual e \(\vetor{E}_p\) é o campo devido apenas à distribuição de cargas na interface \(\Pi\). \todo[Por simetria, a componente normal à interface do campo \(\vetor{E}_p\) nas regiões \(\Omega\) e \(\Sigma\) são iguais a menos de um sinal, portanto]
+    \begin{equation*}
+        \left.\inner*{\vetor{e}_z}{\vetor{E}_p}\right|_{z = 0^-} = -\frac{\sigma_p}{2 \epsilon_0}.
+    \end{equation*}
+    O campo na interface devido à carga pontual tem sua componente normal dada por
+    \begin{equation*}
+        \left.\inner{\vetor{e}_z}{\vetor{E}_p}\right|_{z = 0^-} =-\frac{q}{4\pi \epsilon_0} \frac{d}{(x^2 + y^2 + d^2)^{\frac32}},
+    \end{equation*}
+    de modo que o campo total em \(\Pi\) tem componente normal dada por
+    \begin{equation*}
+        \left.\inner{\vetor{e}_z}{\vetor{E}}\right|_{z = 0^{-}} =-\frac{\sigma_p}{2 \epsilon_0} - \frac{q}{4\pi \epsilon_0} \frac{d}{(x^2 + y^2 + d^2)^{\frac32}}.
+    \end{equation*}
+    Dessa forma, temos de \(\sigma_p = \left.\inner{\vetor{e}_z}{(\epsilon - \epsilon_0)\vetor{E}}\right|_{z = 0^-}\) que
+    \begin{equation*}
+        \sigma_p = -\frac{1}{2\pi}\left(\frac{\epsilon - \epsilon_0}{\epsilon + \epsilon_0}\right)\frac{qd}{(x^2 + y^2 + d^2)^{\frac32}}
+    \end{equation*}
+    é a densidade de cargas de polarização em \(\Pi\). Essa densidade de cargas é a mesma obtida para o problema clássico do método das imagens com uma carga \(\frac{\epsilon - \epsilon_0}{\epsilon + \epsilon_0}q\), de modo que podemos utilizar uma carga imagem \(- \frac{\epsilon - \epsilon_0}{\epsilon + \epsilon_0}q\) em \(-d\vetor{e}_z\) para obter o potencial em \(\Sigma\) e essa carga imagem em \(d\vetor{e}_z\) para obter o potencial em \(\Omega\). Isto é,
+    \begin{equation*}
+        \phi(\vetor{\x}) = \begin{cases}
+            \displaystyle \frac{1}{4\pi \epsilon_0}\left[\frac{q}{\norm{\vetor{\x} - d\vetor{e}_z}} - \frac{\epsilon - \epsilon_0}{\epsilon + \epsilon_0}\frac{q}{\norm{\vetor{\x} + d\vetor{e}_z}}\right],&\text{se }\vetor{\x} \in \Sigma\\
+            \displaystyle \frac{1}{2\pi(\epsilon_0+\epsilon)}\frac{q}{\norm{\vetor{\x} - d\vetor{e}_z}},&\text{se }\vetor{\x} \in \Omega
+        \end{cases}
+    \end{equation*}
+    é o potencial em todo o espaço.
 \end{proof}
