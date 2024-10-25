@@ -7,5 +7,36 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+    Consideremos uma placa \(\Pi\) no plano \(z = z_0\) uniformemente carregada com densidade de carga \(\sigma_0\) se movendo com velocidade constante \(\vetor{v} = v\vetor{e}_x\). Pela lei de Biot-Savart o campo magnético devido à placa é dado por
+    \begin{align*}
+        \vetor{B}_{\Pi}(x\vetor{e}_x + y\vetor{e}_y + z\vetor{e}_z)
+        &= \frac{\mu_0}{4\pi}\int_{\mathbb{R}}\dli{x'}\int_{\mathbb{R}}\dli{y'} \frac{\sigma_0 v \vetor{e}_x \times \left[(x - x')\vetor{e}_x + (y - y')\vetor{e}_y + (z - z_0)\vetor{e}_z\right]}{\left[(x - x')^2 + (y-y')^2 + (z - z_0)^2\right]^{\frac32}}\\
+        &= \frac{\mu_0 \sigma_0 v}{4\pi}\int_{\mathbb{R}}\dli{\tilde{x}}\int_{\mathbb{R}}\dli{\tilde{y}} \frac{\tilde{y}\vetor{e}_z - (z - z_0)\vetor{e}_y}{\left[\tilde{x}^2 + \tilde{y}^2 + (z - z_0)^2\right]^{\frac32}}\\
+        &= \frac{\mu_0 \sigma_0 v(z_0 - z)}{4\pi} \vetor{e}_y\int_{\mathbb{R}}\dli{\tilde{x}}\int_{\mathbb{R}}\dli{y} \left[\tilde{x}^2 + \tilde{y}^2 + (z - z_0)^2\right]^{-\frac32}\\
+        &=\frac{\mu_0 \sigma_0 v(z_0 - z)}{4\pi} \vetor{e}_y\int_{0}^\infty\dli{s'} \int_{0}^{2\pi} \dli{\varphi'} \frac{s'}{\left[s'^2 + (z - z_0)^2\right]^{\frac32}}\\
+        &= \frac{\mu_0 \sigma_0 v (z_0 - z)}{4} \vetor{e}_y \int_{(z - z_0)^2}^{\infty} \dli{\xi} \xi^{-\frac32}\\
+        % &=\frac{\mu_0 \sigma_0 v (z_0 - z)}{2} \frac{1}{\abs{z - z_0}} \vetor{e}_y \\
+        &=-\frac{\mu_0 \sigma_0 v \sgn(z - z_0)}{2} \vetor{e}_y.
+    \end{align*}
+    Dessa forma, o campo magnético devido a duas placas paralelas nos planos \(z = 0\), com carga \(-\sigma\), e \(z = d\), com carga \(\sigma\), que se movem com velocidade \(\vetor{v} = v \vetor{e}_x\) é dado por
+    \begin{equation*}
+        \vetor{B}(\vetor{\x}) =-\frac{\mu_0 \sigma v}{2}\left[\sgn(\inner{\vetor{e}_z}{\vetor{\x}}-d) - \sgn(\inner{\vetor{e}_z}{\vetor{\x}})\right]\vetor{e}_y = \begin{cases}
+            \vetor{0},&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (-\infty, 0)\cup (d, \infty)\\
+            \mu_0 \sigma v\vetor{e}_y,&\text{se }\inner{\vetor{e}_z}{\vetor{\x}} \in (0, d).
+        \end{cases}
+    \end{equation*}
 
+    Consideremos um elemento de área \(\delta S\) no ponto \(\vetor{\x}\) na placa superior. Neste ponto, o campo magnético resultante \(\vetor{B}\) devido à configuração é dado pela expressão acima e escrevemos \(\vetor{B} = \vetor{B}_{\delta S} + \vetor{B}_{\mathrm{resto}}\), onde \(\vetor{B}_{\delta S}\) é o campo devido ao elemento de área e \(\vetor{B}_{\mathrm{resto}}\) é o campo devido ao restante da configuração. Como vimos, o campo \(\vetor{B}_{\delta S}\) é descontínuo na interface com a placa superior e troca de sinal nas regiões acima e abaixo dela, de modo que
+    \begin{equation*}
+        \vetor{B}_{\delta S}(\vetor{\x} + \varepsilon \vetor{e}_z) + \vetor{B}_\mathrm{resto}(\vetor{\x} + \varepsilon \vetor{e}_z) = \vetor{0} \quad\text{e}\quad\vetor{B}_{\delta S}(\vetor{\x} - \varepsilon \vetor{e}_z) + \vetor{B}_{\mathrm{resto}}(\vetor{\x} - \varepsilon \vetor{e}_z) = \mu_0 \sigma v \vetor{e}_y,
+    \end{equation*}
+    e obtemos \(\vetor{B}_{\mathrm{resto}}(\vetor{\x}) = \frac12\mu_0 \sigma v \vetor{e}_y\). Assim, a força magnética \(\vetor{f}_\mathrm{mag}(\vetor{\x})\) por unidade de área é dada por
+    \begin{equation*}
+        \vetor{f}_{\mathrm{mag}}(\vetor{\x}) = \sigma \vetor{v} \times \vetor{B}_{\mathrm{resto}} = \frac12 \mu_0 \sigma^2 v^2 \vetor{e}_z.
+    \end{equation*}
+    Com o mesmo argumento, obtemos a força elétrica \(\vetor{f}_\mathrm{ele}(\vetor{\x})\) por unidade de área, dada por
+    \begin{equation*}
+        \vetor{f}_{\mathrm{ele}}(\vetor{\x}) =-\frac{\sigma^2}{2 \epsilon_0}\vetor{e}_z,
+    \end{equation*}
+    de modo que para que a força magnética equilibre a força elétrica, devemos ter \(v^2 = \frac{1}{\mu_0 \epsilon_0} = c^2\).
 \end{proof}
