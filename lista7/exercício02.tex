@@ -2,5 +2,38 @@
     Encontre o campo magnético em um ponto sobre o eixo \(z\) acima de um disco giratório de raio \(R\) carregado com densidade de carga superficial de carga \(\sigma\). Considere que o plano do disco coincide com o plano \(xy\) e que o mesmo gira em torno do eixo \(z\) com velocidade angular \(\omega\). Caso o problema tratasse de encontrar o campo magnético sobre o eixo \(z\) gerado por uma esfera maciça giratória de raio \(R\) (para pontos com \(z > R\)), carregada com densidade de carga volumétrica \(\rho\), você conseguiria propor uma estratégia que se aproveita da resposta anterior? Não é necessário resolver a conta, apenas deixe claro qual seria a estratégia, como os parâmetros \(\sigma\) e \(\rho\) se relacionam e como seria a integral.
 \end{exercício}
 \begin{proof}[Resolução]
+    Seja \(\Omega\) o disco de raio \(R\) no plano \(z = 0\). A densidade superficial de corrente é dada por
+    \begin{equation*}
+        \vetor{K}(\vetor{\x}) = \begin{cases}
+            \sigma \vetor{\omega}\times \vetor{\x},&\text{se }\vetor{\x}\in \Omega\\
+            \vetor{0},&\text{se }\vetor{\x}\notin \Omega,
+        \end{cases}
+    \end{equation*}
+    com \(\vetor{\omega} = \omega \vetor{e}_z\). Pela lei de Biot-Savart, o campo magnético no eixo \(z\) é dado por
+    \begin{align*}
+        \vetor{B}(z\vetor{e}_z) = \frac{\mu_0}{4\pi} \int_{\Omega} \dln2{\x'} \frac{\vetor{K}(\vetor{\x'}) \times (z\vetor{e}_z - \vetor{\x'})}{\norm{z\vetor{e}_z - \vetor{\x'}}^3}
+        &= \frac{\mu_0}{4\pi} \int_{0}^{R} \dli{s'}\int_{0}^{2\pi} s' \dli{\varphi'} \frac{\sigma \omega s'\vetor{e}_{\varphi'} \times (z\vetor{e}_z - s'\vetor{e}_{s'})}{(s'^2 + z^2)^{\frac32}}\\
+        &= \frac{\mu_0 \sigma \omega}{4\pi} \int_{0}^{R} \dli{s'}\int_{0}^{2\pi} \dli{\varphi'} \frac{s'^2 (z\vetor{e}_{s'} + s'\vetor{e}_{z})}{(s'^2 + z^2)^{\frac32}}\\
+        &= \frac{\mu_0 \sigma \omega}{2} \left[\int_{0}^{R} \dli{s'} \frac{s'^3}{(s'^2 + z^2)^{\frac32}}\right]\vetor{e}_z\\
+        &= \frac{\mu_0 \sigma \omega \abs{z}}{4} \left[\int_{z^2}^{R^2 + z^2}\dli{\zeta} \frac{\zeta - z^2}{\zeta^{\frac32}}\right]\vetor{e}_z\\
+        &= \frac{\mu_0 \sigma \omega \abs{z}}{2}\left[\frac{\zeta + z^2}{\zeta^{\frac12}}\right]_{z^2}^{R^2 + z^2}\vetor{e}_z\\
+        &= \frac{\mu_0 \sigma \omega}{2}\left[\frac{2z^2 + R^2}{\sqrt{R^2 + z^2}} - 2\abs{z}\right]\vetor{e}_z.
+    \end{align*}
 
+    Seja \(\Sigma = \setc{\vetor{\x}\in \mathbb{R}^3}{\norm{\vetor{\x}} < R}\) a esfera de raio \(R\). A densidade de corrente é dada por
+    \begin{equation*}
+        \vetor{J}(\vetor{\x}) = \begin{cases}
+            \rho \vetor{\omega}\times \vetor{\x},&\text{se }\vetor{\x}\in \Sigma\\
+            \vetor{0},&\text{se }\vetor{\x}\notin \Sigma.
+        \end{cases}
+    \end{equation*}
+    Utilizando coordenadas cilíndricas, obtemos pela lei de Biot-Savart que
+    \begin{align*}
+        \vetor{B}(z \vetor{e}_z)
+        &= \frac{\mu_0}{4\pi} \int_{\Sigma} \dln3{\x'} \frac{\vetor{J}(\vetor{\x'}) \times (z\vetor{e}_z - \vetor{\x'})}{\norm{z\vetor{e}_z - \vetor{\x'}}^3}\\
+        &= \frac{\mu_0}{4\pi} \int_{-R}^{R}\dli{z'} \int_{0}^{\sqrt{R^2 - z'^2}}\dli{s'} \int_0^{2\pi}s'\dli{\varphi'} \frac{\omega \rho s'\left[(z - z')\vetor{e}_{s'} + s'\vetor{e}_z\right]}{\left[s'^2 + (z - z')^2\right]^{\frac32}}\\
+        &=  \int_{z-R}^{z+R}\dli{z'} \frac{\mu_0}{4\pi}\int_{0}^{\sqrt{R^2 - (z - \tilde{z})^2}}\dli{s'} \int_0^{2\pi}s'\dli{\varphi'} \frac{\omega \rho s'\left[\tilde{z}\vetor{e}_{s'} + s'\vetor{e}_z\right]}{\left[s'^2 + \tilde{z}^2\right]^{\frac32}}\\
+        &= \frac{\mu_0 \rho\omega}{2}\int_{z - R}^{z + R} \dli{\tilde{z}} \left[\frac{2\tilde{z}^2 + R^2 - (z - \tilde{z})^2}{\sqrt{R^2 - (z - \tilde{z})^2 + \tilde{z}^2}} - 2\abs{\tilde{z}}\right]\vetor{e}_z,
+    \end{align*}
+    onde utilizamos o resultado obtido para o disco.
 \end{proof}
