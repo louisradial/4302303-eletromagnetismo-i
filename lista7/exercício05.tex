@@ -14,5 +14,76 @@
     \end{center}
 \end{exercício}
 \begin{proof}[Resolução]
+    Consideremos um cabo infinitamente longo de raio \(R\) e densidade de corrente constante \(\vetor{\tilde{J}} = \tilde{J}\vetor{e}_z\) cujo eixo de simetria passa pelo ponto \(\vetor{O}\). O potencial vetor no gauge de Coulomb é
+    \begin{align*}
+        \vetor{\tilde{A}}(\vetor{O} + s \vetor{e}_s + z \vetor{e}_z)
+        &= \frac{\mu_0}{4\pi} \int_0^R \dli{s'} \int_{\mathbb{R}}\dli{z'} \int_0^{2\pi}s' \dli{\varphi'} \frac{\tilde{J}\vetor{e}_z}{\sqrt{(z - z')^2 + s^2 + s'^2 - 2ss'\cos(\varphi' - \varphi)}}\\
+        &= \frac{\mu_0\tilde{J}}{4\pi} \int_0^R \dli{s'} \int_{\mathbb{R}}\dli{\tilde{z}} \int_0^{2\pi} \dli{\tilde{\varphi}} \left(\tilde{z}^2 + s^2 + s'^2 - 2ss'\cos\tilde\varphi\right)^{-\frac12}\vetor{e}_z,
+    \end{align*}
+    portanto vemos que \(\vetor{\tilde{A}}(\vetor{O} + s\vetor{e}_s + z\vetor{e}_z) = \tilde{A}(s)\vetor{e}_z\), com
+    \begin{equation*}
+        \lim_{s \to \infty} \tilde{A}(s) = 0
+        \quad\text{e}\quad
+        \lim_{s \to \infty} \diffp{\tilde{A}}{s} = 0.
+    \end{equation*}
+    Com isso, sabemos que \(\vetor{\tilde{B}}(\vetor{O} + s\vetor{e}_s + z\vetor{e}_z) = \tilde{B}(s)\vetor{e}_{\varphi},\) com \(B(s) \to 0\) conforme \(s \to \infty\). Consideremos um disco \(\Omega\) de raio \(r\) centrado em \(\vetor{O}\) e transversal ao cabo, e um caminho fechado \(\Gamma\) positivamente orientado que percorre a circunferência de raio \(r\) determinada por \(\Omega\). A corrente que atravessa \(\Omega\) é dada por
+    \begin{equation*}
+        \int_{\Omega}\dln2{\x'} \inner{\vetor{e}_z}{\vetor{\tilde{J}}(\vetor{\x'})} = \begin{cases}
+            \tilde{J}\pi R^2,&\text{se }r \geq R\\
+            \tilde{J}\pi r^2,&\text{se }r < R
+        \end{cases}
+    \end{equation*}
+    e a circulação de \(\vetor{B}\) por \(\Gamma\) é
+    \begin{equation*}
+        \oint_{\Gamma} \dli{\vetor{\ell}}\cdot \vetor{\tilde{B}} = 2\pi r \tilde{B}(r),
+    \end{equation*}
+    portanto pela lei de Ampère, temos
+    \begin{equation*}
+        \oint_{\Gamma} \dli{\vetor{\ell}}\cdot \vetor{\tilde{B}} = \mu_0\int_{\Omega}\dln2{\x'} \inner{\vetor{e}_z}{\vetor{\tilde{J}}(\vetor{\x'})}  \implies \tilde{B}(s) = \begin{cases}
+            \frac{\mu_0\tilde{J}R^2}{2r},&\text{se }r > R\\
+            \frac{\mu_0\tilde{J}r}{2},&\text{se }r < R.
+        \end{cases}
+    \end{equation*}
+    Isto é, o campo devido ao cabo é dado por
+    \begin{equation*}
+        \vetor{\tilde{B}}(\vetor{O} + x\vetor{e}_x + y \vetor{e}_y + z\vetor{e}_z) = \begin{cases}
+            \displaystyle\frac{\mu_0\tilde{J}R^2(- y\vetor{e}_x + x \vetor{e}_y)}{2 (x^2 + y^2)},&\text{se }x^2 + y^2 > R^2\\
+            \displaystyle\frac{\mu_0\tilde{J}}{2}( - y\vetor{e}_x + x \vetor{e}_y),&\text{se }x^2 + y^2 < R^2.
+        \end{cases}
+    \end{equation*}
 
+    Com isso, a configuração considerada pode ser entendida como a superposição de dois cabos infinitamente longos de raios \(a\) e \(b\), centrados na origem e na posição \(d\vetor{e}_x\), cujas densidades de corrente são \(\vetor{J}\) e \(-\vetor{J}\), e então
+    \begin{equation*}
+        \vetor{B}(\vetor{\x}) = \frac{\mu_0J}{2}
+        \left[\begin{cases}
+                \frac{a^2(- y\vetor{e}_x + x \vetor{e}_y)}{x^2 + y^2},&\text{se }x^2 + y^2 > a^2\\
+                - y\vetor{e}_x + x \vetor{e}_y,&\text{se }x^2 + y^2 < a^2
+            \end{cases}
+        -
+        \begin{cases}
+                \frac{b^2(- y\vetor{e}_x + (x - d) \vetor{e}_y)}{(x-d)^2 + y^2},&\text{se }(x-d)^2 + y^2 > b^2\\
+                - y\vetor{e}_x + (x-d) \vetor{e}_y,&\text{se }(x-d)^2 + y^2 < b^2
+            \end{cases}
+        \right]
+    \end{equation*}
+    é o campo magnético em todo o espaço, com \(\vetor{\x} = x\vetor{e}_x + y\vetor{e}_y + z\vetor{e}_z\). Em particular,
+    \begin{align*}
+        \vetor{B}(x\vetor{e}_x) &= \frac{\mu_0J}{2}
+        \left[\begin{cases}
+                \frac{a^2 }{x},&\text{se }\abs{x} > a\\
+                x,&\text{se }\abs{x} < a
+            \end{cases}
+        -
+        \begin{cases}
+                \frac{b^2}{x-d},&\text{se }\abs{x-d}> b\\
+                x-d,&\text{se }\abs{x-d}< b
+            \end{cases}
+        \right]\vetor{e}_y\\
+                                &= \begin{cases}
+                                    \frac{\mu_0Jd}{2}\vetor{e}_y,&\text{se }\abs{x - d} < b\\
+                                    \frac{\mu_0J}{2}\left(x - \frac{b^2}{x - d}\right)\vetor{e}_y,&\text{se }\abs{x - d} > b\text{ e }\abs{x} < a\\
+                                    \frac{\mu_0J}{2}\left(\frac{a^2}{x} - \frac{b^2}{x - d}\right)\vetor{e}_y,&\text{se }\abs{x} > a
+                                \end{cases}
+    \end{align*}
+    é o campo no eixo \(x\).
 \end{proof}
