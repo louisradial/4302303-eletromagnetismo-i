@@ -18,9 +18,8 @@
                               &= \frac{\mu_0 n IR}{4\pi}\int_{\mathbb{R}} \dli{\tilde{z}} \int_{-\varphi}^{2\pi - \varphi}\dli{\tilde{\varphi}} \frac{-\sin\tilde\varphi (\cos\varphi \vetor{e}_x + \sin\varphi \vetor{e}_y) + \cos\tilde\varphi(-\sin\varphi \vetor{e}_x + \cos\varphi \vetor{e}_y)}{\sqrt{\tilde{z}^2 + s^2 + R^2 - 2 s R \cos\tilde{\varphi}}}\\
                               &= \frac{\mu_0 n IR}{4\pi}\int_{\mathbb{R}} \dli{\tilde{z}} \int_{-\varphi}^{2\pi - \varphi}\dli{\tilde{\varphi}} \frac{-\sin\tilde\varphi \vetor{e}_s + \cos\tilde\varphi\vetor{e}_\varphi}{\sqrt{\tilde{z}^2 + s^2 + R^2 - 2 s R \cos\tilde{\varphi}}}\\
                               &= \frac{\mu_0 n IR}{4\pi}\int_{\mathbb{R}} \dli{\tilde{z}} \int_{0}^{2\pi}\dli{\tilde{\varphi}} \frac{-\sin\tilde\varphi \vetor{e}_s + \cos\tilde\varphi\vetor{e}_\varphi}{\sqrt{\tilde{z}^2 + s^2 + R^2 - 2 s R \cos\tilde{\varphi}}}\\
-                              &= \frac{\mu_0 n IR}{4\pi} \left[\int_{\mathbb{R}}\dli{\tilde{z}}\int_{\tilde{z}^2 + (s - R)^2}^{\tilde{z}^2 + (s - R)^2}\dli{u} \frac{\vetor{e}_s}{2sR\sqrt{u}} + \int_{\mathbb{R}} \dli{\tilde{z}} \int_{0}^{2\pi}\dli{\tilde{\varphi}} \frac{\cos\tilde\varphi\vetor{e}_\varphi}{\sqrt{\tilde{z}^2 + s^2 + R^2 - 2 s R \cos\tilde{\varphi}}}
-                              \right]\\
-                              &= \frac{\mu_0 n IR}{4\pi}\left[\int_{\mathbb{R}} \dli{\tilde{z}} \int_{0}^{2\pi}\dli{\tilde{\varphi}} \frac{\cos\tilde\varphi}{\sqrt{\tilde{z}^2 + s^2 + R^2 - 2 s R \cos\tilde{\varphi}}}\right]\vetor{e}_\varphi
+                              &= \frac{\mu_0 n IR}{4\pi}\int_{\mathbb{R}} \dli{\tilde{z}} \int_{-\pi}^{\pi}\dli{\tilde{\varphi}} \frac{-\sin\tilde\varphi \vetor{e}_s + \cos\tilde\varphi\vetor{e}_\varphi}{\sqrt{\tilde{z}^2 + s^2 + R^2 - 2 s R \cos\tilde{\varphi}}}\\
+                              &= \frac{\mu_0 n IR}{4\pi}\left[\int_{\mathbb{R}} \dli{\tilde{z}} \int_{-\pi}^{\pi}\dli{\tilde{\varphi}} \frac{\cos\tilde\varphi}{\sqrt{\tilde{z}^2 + s^2 + R^2 - 2 s R \cos\tilde{\varphi}}}\right]\vetor{e}_\varphi
     \end{align*}
     portanto vemos que \(\vetor{A}(s \vetor{e}_s + z\vetor{e}_z) = A(s)\vetor{e}_\varphi\), que satisfaz o gauge de Coulomb. Dessa forma, temos
     \begin{equation*}
