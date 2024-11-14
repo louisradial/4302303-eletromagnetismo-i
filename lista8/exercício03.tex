@@ -2,7 +2,12 @@
     Calcule o campo magnético associado ao termo de dipolo \(\vetor{A}_\mathrm{dip}\).
 \end{exercício}
 \begin{proof}[Resolução]
-    \begin{equation*}
-        \vetor{B}(\vetor{\x}) = \frac{\mu_0}{4\pi \norm{\vetor{\x}}^5}\left[3\inner{\vetor{m}}{\vetor{\x}}\vetor{\x} - \norm{\vetor{\x}}^2 \vetor{m}\right]
-    \end{equation*}
+    Temos
+    \begin{align*}
+        \vetor{B}_\mathrm{dip}(\vetor{\x}) = \nabla \times \vetor{A}_{\mathrm{dip}}(\vetor{\x})
+        &= \frac{\mu_0}{4\pi} \left[\nabla\left(\frac{1}{\norm{\vetor{\x}}^3}\right)\times (\vetor{m} \times \vetor{\x}) + \frac{1}{\norm{\vetor{\x}}^3} \nabla \times (\vetor{m}\times\vetor{\x})\right]\\
+        &= \frac{\mu_0}{4\pi\norm{\vetor{\x}}^5}\left[\norm{\vetor{\x}}^2 \left(\nabla \cdot \vetor{\x}\right)\vetor{m} - \norm{\vetor{\x}}^2 (\vetor{m}\cdot \nabla)\vetor{\x} -3 \vetor{\x} \times (\vetor{m} \times \vetor{\x})\right]\\
+        &= \frac{\mu_0}{4\pi \norm{\vetor{\x}}^5} \left[3 \inner{\vetor{\x}}{\vetor{m}}\vetor{\x} - \norm{\vetor{\x}}^2 \vetor{m}\right]
+    \end{align*}
+    como o campo magnético associado ao termo de dipolo.
 \end{proof}
