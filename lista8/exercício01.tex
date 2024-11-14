@@ -1,14 +1,57 @@
+\begin{lemma}{Corolário do teorema de Stokes}{corolário_stokes}
+    Seja \(\Gamma\) uma curva simples fechada, \(\vetor{F}\) um campo vetorial suave, então
+    \begin{equation*}
+        \oint_{\Gamma}\dl{\vetor{\ell}} \times \vetor{F} = \int_{S} \dln2\x n_j \nabla F_j - \int_{S} \dln2\x (\nabla \cdot \vetor{F}) \vetor{n}
+    \end{equation*}
+    para toda superfície \(S\) cuja borda é \(\Gamma\).
+\end{lemma}
+\begin{proof}
+    Seja \(\vetor{c}\) um campo vetorial constante, então pelo teorema de Stokes temos
+    \begin{equation*}
+        \vetor{c} \cdot \oint_{\Gamma} \dl{\vetor{\ell}} \times \vetor{F} = \oint_{\Gamma}\dl{\vetor{\ell}} \cdot (\vetor{F}\times\vetor{c}) = \int_{S}\dln2\x \vetor{n} \cdot \nabla \times (\vetor{F} \times \vetor{c})
+    \end{equation*}
+    para toda superfície \(S\) cuja borda é \(\Gamma\). Segue que
+    \begin{align*}
+        \vetor{n} \cdot \nabla \times (\vetor{F} \times \vetor{c})
+        &= n_s \vetor{e}_s \cdot \epsilon_{klm} \partial_k (\epsilon_{ijl}F_i c_j) \vetor{e}_m\\
+        &= n_m c_j\epsilon_{ijl}\epsilon_{lmk} \partial_k F_i\\
+        &= n_mc_j (\delta_{im}\delta_{jk} - \delta_{ik}\delta_{jm}) \partial_k F_i\\
+        &= n_i c_j \partial_j F_i - n_j c_j \partial_{i}F_i\\
+        &= \vetor{c} \cdot (n_i \nabla F_i) - (\vetor{c} \cdot \vetor{n}) (\nabla \cdot \vetor{F}),
+    \end{align*}
+    portanto obtemos
+    \begin{equation*}
+        \vetor{c} \cdot \oint_{\Gamma} \dl{\vetor{\ell}} \times \vetor{F} = \vetor{c} \cdot \int_S \dln2\x n_i \nabla F_i - \vetor{c} \cdot \int_S \dln2\x (\nabla \cdot \vetor{F}) \vetor{n} = \vetor{c} \cdot \left[\int_S \dln2\x n_i \nabla F_i - \int_S \dln2\x (\nabla \cdot \vetor{F})\vetor{n}\right].
+    \end{equation*}
+    Notando que \(\vetor{c}\) é arbitrário, concluímos a demonstração.
+\end{proof}
 \begin{exercício}{Momento de dipolo}{exercício1}
     No contexto da expansão multipolar, o potencial vetor do termo de dipolo é dado por
     \begin{equation*}
         \vetor{A}_{\mathrm{dip}}(\vetor{\x}) = \frac{\mu_0}{4\pi} \frac{\vetor{m}\times\vetor{\x}}{\norm{\vetor{\x}}^3}.
     \end{equation*}
-    Faça um resumo das três diferentes expressões para o momento de dipolo \(\vetor{m}\), a depender do tipo de distribuição de corrente. Para o último caso, utilize que o vetor área de uma superfície \(S\) cercada por um acurva fechada \(\Gamma\) pode ser escrito como
+    Faça um resumo das três diferentes expressões para o momento de dipolo \(\vetor{m}\), a depender do tipo de distribuição de corrente. Para o último caso, utilize que o vetor área de uma superfície \(S\) cercada por uma curva fechada \(\Gamma\) pode ser escrito como
     \begin{equation*}
         \vetor{a} = \int_S \dln2{\x'} \vetor{n'} =-\frac12 \oint_{\Gamma} \dli{\vetor{\ell}} \times \vetor{\x}
     \end{equation*}
     para mostrar que podemos escrever o momento de dipolo \(\vetor{m}\) como \(I\vetor{a}\).
 \end{exercício}
 \begin{proof}[Resolução]
-
+    O momento de dipolo é definido por
+    \begin{equation*}
+        \vetor{m} = \frac12 \int_{\Omega} \dln3{\x} \vetor{\x}\times \vetor{J}(\vetor{\x}),
+    \end{equation*}
+    para uma distribuição de corrente \(\vetor{J}(\vetor{\x})\) contida na região \(\Omega \subset \mathbb{R}^3\). Se a distribuição é superficial \(\vetor{K}(\vetor{\x})\) definida na superfície \(\Sigma\), temos
+    \begin{equation*}
+        \vetor{m} = \frac12 \int_{\Sigma} \dln2{\x} \vetor{\x}\times \vetor{K}(\vetor{\x}).
+    \end{equation*}
+    Por fim, se a distribuição de corrente se dá numa curva fechada \(\Gamma\) com corrente \(I\), temos
+    \begin{equation*}
+        \vetor{m} = \frac12 \oint_{\Gamma} \vetor{\x} \times I\dl{\vetor{\ell}} = -\frac12 I\oint_{\Gamma} \dli{\vetor{\ell}}\times\vetor{\x}.
+    \end{equation*}
+    Se \(S\) é uma superfície com borda dada por \(\Gamma\), temos pelo \cref{lem:corolário_stokes} que
+    \begin{equation*}
+        \oint_{\Gamma} \dli{\vetor{\ell}} \times \vetor{\x} = \int_S \dln{2}{\x} n_j \nabla \x_j - \int_{S} \dln2\x (\nabla \cdot \vetor{\x})\vetor{n} = -2\int_S \dln2\x \vetor{n} = -2\vetor{a},
+    \end{equation*}
+    onde \(\vetor{a}\) é o vetor área de \(S\). Com isso, temos \(\vetor{m} = I\vetor{a}\), como desejado.
 \end{proof}
