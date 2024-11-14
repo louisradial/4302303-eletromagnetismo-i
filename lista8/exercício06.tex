@@ -1,4 +1,4 @@
-\begin{exercício}{Condições de contorno para meios lineares}{exercício6}
+\begin{exercício}{Refração das linhas de campo magnético em meios lineares}{exercício6}
     Ao atravessarem a interface entre dois meios lineares de permeabilidades \(\mu_1\) e \(\mu_2\), as linhas de campo magnético sofrem um desvio, como mostra os ângulos \(\theta_1\) e \(\theta_2\) na figura abaixo.
     \begin{center}
         \begin{tikzpicture}[scale = 0.8, every node/.style={scale = 0.8}]
@@ -17,5 +17,9 @@
     Assumindo que não há correntes livres na interface, utilize as condições de contorno para os campos \(\vetor{B}\) e \(\vetor{H}\) para mostrar que \(\mu_1\tan\theta_2 = \mu_2 \tan\theta_1\).
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Seja \(\vetor{n}\) a normal da interface tal que \(\inner{\vetor{n}}{\vetor{B}_2} = B_2 \cos\theta_2\) e \(\inner{\vetor{n}}{\vetor{B}_1} = B_1 \cos\theta_1\), então pela continuidade de \(\vetor{B}\) na direção normal, segue que \(B_1 \cos\theta_1 = B_2 \cos\theta_2\). Se não há correntes livres na interface, então a componente tangencial de \(\vetor{H}\) é contínua, isto é, \(\frac{B_1 \sin\theta_1}{\mu_1} = \frac{B_2 \sin\theta_2}{\mu_2}\). Assim, concluímos que
+    \begin{equation*}
+        \frac{\tan\theta_1}{\mu_1} = \frac{\tan\theta_2}{\mu_2}
+    \end{equation*}
+    como desejado.
 \end{proof}
