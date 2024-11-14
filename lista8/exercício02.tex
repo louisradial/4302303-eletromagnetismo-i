@@ -7,5 +7,40 @@
     Expresse o potencial vetor \(\vetor{A}_\mathrm{dip}\) em cada um dos casos.
 \end{exercício}
 \begin{proof}[Resolução]
+    Em ambos os casos, a distribuição de corrente é dada por
+    \begin{equation*}
+        \vetor{K}(\vetor{\x}) = \sigma \vetor{\omega} \times \vetor{\x},
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \vetor{\x} \times \vetor{K}(\vetor{\x}) = \sigma \vetor{\x} \times (\vetor{\omega} \times \vetor{\x}) = \sigma \left[\norm{\vetor{\x}}^2 \vetor{\omega} - \inner{\vetor{\x}}{\vetor{\omega}}\vetor{\x}\right],
+    \end{equation*}
+    logo temos
+    \begin{equation*}
+        \vetor{\x} \times \vetor{K}_\mathrm{disco}(\vetor{\x}) = \sigma \norm{\vetor{\x}}^2 \vetor{\omega}
+    \end{equation*}
+    e
+    \begin{equation*}
+        \vetor{\x} \times \vetor{K}_\mathrm{esfera}(\vetor{\x}) = \sigma \left[R^2 \vetor{\omega} - (\omega R \cos\theta) \vetor{\x}\right]
+    \end{equation*}
+    para todo \(\vetor{\x}\) pertencente às devidas superfícies.
 
+    Com isso, o momento de dipolo para o disco é dado por
+    \begin{equation*}
+        \vetor{m}_\mathrm{disco} = \frac12 \int_0^R \dli{s} \int_0^{2\pi} s \dli{\varphi} \sigma s^2 \vetor{\omega} = \frac{\pi \sigma R^4 }{4}\vetor{\omega}
+    \end{equation*}
+    e para a esfera é
+    \begin{align*}
+        \vetor{m}_\mathrm{esfera} &= \frac12 \int_0^{\pi} R\dli{\theta}\int_{0}^{2\pi} R \sin\theta \dli{\varphi} \sigma\left[R^2 \vetor{\omega} - \omega R^2 \cos\theta \vetor{e}_r\right]\\
+                                  &= \sigma \omega \pi R^4 \int_0^\pi \sin\theta\dli{\theta} \left[1 - \cos^2\theta\right]\vetor{e}_z\\
+                                  &= \sigma \omega \pi R^4 \int_{-1}^{1} \dli{u} (1 - u^2) \vetor{e}_z\\
+                                  &= \frac{4 \sigma \pi R^4}{3}\vetor{\omega}.
+    \end{align*}
+    Dessa forma,
+    \begin{equation*}
+        \vetor{A}_\mathrm{dip}^\mathrm{disco}(\vetor{\x}) = \frac{\mu_0 \sigma R^4}{16\norm{\vetor{\x}}^3} (\vetor{\omega} \times \vetor{\x})
+        \quad\text{e}\quad
+        \vetor{A}_\mathrm{dip}^\mathrm{esfera}(\vetor{\x}) = \frac{\mu_0 \sigma R^4}{3 \norm{\vetor{\x}}^3} (\vetor{\omega}\times \vetor{\x})
+    \end{equation*}
+    são os termos de dipolo para cada uma das distribuições.
 \end{proof}
