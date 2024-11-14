@@ -1,50 +1,48 @@
-\begin{exercício}{}{exercício9}
+\begin{exercício}{Ímã cilíndrico}{exercício9}
+    Um cilindro maciço de raio \(R\) e comprimento \(L\) possui uma magnetização constante \(\vetor{M} = M \vetor{e}_z\), onde o eixo \(z\) e a origem coincidem, respectivamente, com o eixo de simetria e o centro do cilindro. Você pode pensar nessa estrutura como um modelo de um ímã cilíndrico de comprimento finito.
+    \begin{enumerate}[label=(\alph*)]
+        \item Encontre todas as correntes de magnetização do objeto. Em seguida, considerando que não há correntes livres, encontre o campo magnético sobre o eixo \(z\).
+        \item Considere agora que um pequeno segundo objeto é posicionado acima do cilindro, exatamente sobre seu eixo de simetria, a uma distância \(d\) de sua extremidade superior, como mostra a figura abaixo. Esse pequeno objeto possui uma certa magnetização tal que o mesmo pode ser caracterizado por um momento de dipolo \(\vetor{m} = m_0 \vetor{e}_z\). Calcule a força e o torque sobre esse pequeno objeto.
+
     \begin{center}
         \begin{tikzpicture}
-            % Cylinder
-            \fill[gray!70] (-1,-3) rectangle (1,0); % Cylinder side
-            \fill[gray!50] (0,0) ellipse (1 and 0.3); % Top ellipse
-            \fill[gray!70] (0,-3) ellipse (1 and 0.3); % Bottom ellipse
+            \fill[Subtext1!70] (-1,-3) rectangle (1,0);
+            \fill[Subtext1!50] (0,0) ellipse (1 and 0.3);
+            \fill[Subtext1!70] (0,-3) ellipse (1 and 0.3);
 
-            % Dimension L
-            \draw[<->, thick] (-1.5,0) -- (-1.5,-3) node[midway,left] {\(L\)};
+            \draw[stealth-stealth, thick] (-1.5,0) -- (-1.5,-3) node[midway,left] {\(L\)};
 
-            % Dimension d
-            \draw[<->, thick] (1.5,-0.5) -- (1.5,0) node[midway,right] {\(d\)};
+            \draw[stealth-stealth, thick] (-1.5,0) -- (-1.5,1.1) node[midway,right] {\(d\)};
 
-            % z axis
-            \draw[->, dashed] (0,-3.5) -- (0,2.5) node[above] {$z$};
+            \draw[dashed] (0,-3.5) -- (0,0.2);
+            \draw[-stealth] (0,0) -- (0,2.5) node[above] {$z$};
 
-            % Magnetic moment vector m
-            \fill[red] (0,1.1) circle (1.5pt);
-            \draw[-stealth, thick, red] (0,0.85) -- (0,1.35) node[right] {\textbf{m}};
+            \fill[Red] (0,1.1) circle (1.5pt);
+            \draw[-stealth, thick, Red] (0,0.85) -- (0,1.35) node[right] {\(\vetor{m}\)};
 
-            % Zoom lines to indicate enlargement
-            \draw[dotted, thick] (0.2,1.2) -- (4,2);
-            \draw[dotted, thick] (-0.2,1.2) -- (3,2);
+            \draw[densely dotted, thin, Sky] (0,1.15) -- ({5.5 + 1.5*cos(88)},{-0.5 + 1.5*sin(88)});
+            \draw[densely dotted, thin, Sky] (0,1.05) -- ({5.5 - 1.5*cos(60)},{-0.5 - 1.5*sin(60)});
 
-            % Zoomed-in circle (zoom view)
-            \begin{scope}[shift={(3.5,2.5)}, scale=1]
-                % Outer circle for the zoomed view
-                \draw[thick, blue] (0,0) circle (1.2);
+            \begin{scope}[shift={(5.5,-0.5)}, scale=0.75, every node/.style={scale=0.6}]
+                \draw[Sky] (0,0) circle (2);
 
-                % Red shaded circular area in the background
-                \fill[red, opacity=0.2] (0,0) circle (0.6);
+                \fill[Red!20] (0,0) circle (0.8);
 
-                % Magnetic moment vector m
-                \fill[red] (0,0) circle (2pt); % Central point of the magnetic moment
-                \draw[->, thick, red] (0,0) -- (0,0.8) node[above right, black] {\textbf{m}};
+                \fill[Text,opacity=0.3] (0,0) ellipse (1.2 and 0.3);
+                \draw[thick] (0,0) ellipse (1.2 and 0.3);
 
-                % Elliptical path for current I_m with directional arrows
-                \draw[->, thick] (-0.8,0) arc[start angle=180, end angle=0, x radius=0.8, y radius=0.3];
-                \draw[->, thick] (0.8,0) arc[start angle=0, end angle=180, x radius=0.8, y radius=0.3];
+                \draw[-stealth] plot [domain=280:330, samples=100] ({0.2 + 1.1*cos(\x)}, {-0.1 + 0.3*sin(\x)}) node[auto, below] {\(I_m\)};
+                \draw[-stealth] plot [domain=-140:45, samples=100] ({1.2*cos(\x)}, {0.3*sin(\x)});
+                \draw[-stealth] plot [domain=30:225, samples=100] ({1.2*cos(\x)}, {0.3*sin(\x)});
 
-                % Label for current I_m
-                \node at (0,-0.6) {\(\mathbf{I_m}\)};
+                \draw[-stealth, thick, Red] (0,0) -- (0,1.5);
+                \node[right, Red] at (0,1.5) {\( \vetor{m} \)};
             \end{scope}
 
         \end{tikzpicture}
     \end{center}
+        \item Suponha que, para todos os fins práticos, o objeto possa ser entendido como uma pequena espira circular de raio \(a \ll d, L, R\) conduzindo uma corrente de intensidade \(I_m\). Obtenha uma relação entre \(I_m,\) \(a,\) e \(m_0,\) e calcule o fluxo magnético \(\Phi_B\) que atravessa a pequena espira devido ao campo magnético gerado pelo ímã. Considere que esse campo magnético é aproximadamente uniforme sobre toda a área da pequena espira e é descrito pela expressão encontrada no item (a).
+    \end{enumerate}
 
 \end{exercício}
 \begin{proof}[Resolução]
