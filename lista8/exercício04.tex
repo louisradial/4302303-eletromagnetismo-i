@@ -3,17 +3,15 @@
 \end{exercício}
 \begin{proof}[Resolução]
     Pelo \cref{ex:exercício3}, o campo total é dado por
-    \begin{equation*}
-        \vetor{B}(\vetor{\x}) = B_0 \vetor{e}_z + \frac{\mu_0}{4\pi \norm{\vetor{\x}}^5} \left[3 \inner{\vetor{\x}}{\vetor{m}}\vetor{\x} - \norm{\vetor{\x}}^2 \vetor{m}\right] = \left(B_0+\frac{\mu_0m_0}{4\pi \norm{\vetor{\x}}^3}\right)\vetor{e}_z - \frac{3\mu_0\inner{\vetor{\x}}{\vetor{e}_z}m_0 \vetor{\x}}{4\pi \norm{\vetor{\x}}^5}.
-    \end{equation*}
-    Assim, o fluxo de campo magnético pela superfície esférica \(\Omega_R\) de raio \(R\) centrada na origem é
     \begin{align*}
-        \Phi(R) = \int_{\Omega_R} \dln3\x \vetor{n} \cdot \vetor{B}(\vetor{\x})
-        &= \int_{0}^{\pi} R \dli{\theta} \int_0^{2\pi}R \sin\theta \dli{\varphi} \left[\left(B_0 + \frac{\mu_0 m_0}{4\pi R^3}\right) \cos\theta - \frac{3\mu_0m_0 \cos\theta}{4\pi R^3}\right]\\
-        &= \frac{1}{2R} \int_0^\pi \sin\theta \dli{\theta} \left[4\pi R^3 B_0 - 2\mu_0 m_0\right]\cos\theta\\
-        &= \frac{1}{2R} \left(4\pi R^3 B_0 - 2\mu_0 m_0\right).
+        \vetor{B}(\vetor{\x}) &= B_0 \vetor{e}_z + \frac{2\mu_0}{3}\vetor{m} \delta(\vetor{\x}) +  \frac{\mu_0}{4\pi \norm{\vetor{\x}}^5} \left[3 \inner{\vetor{\x}}{\vetor{m}}\vetor{\x} - \norm{\vetor{\x}}^2 \vetor{m}\right]\\
+                              &= \left[B_0+\frac{\mu_0m_0}{4\pi \norm{\vetor{\x}}^3}-\frac{2\mu_0 m_0}{3} \delta(\vetor{\x})\right]\vetor{e}_z - \frac{3\mu_0\inner{\vetor{\x}}{\vetor{e}_z}m_0 \vetor{\x}}{4\pi \norm{\vetor{\x}}^5}.
     \end{align*}
-    Dessa forma, para \(R_0 = \left(\frac{\mu_0 m_0}{2\pi B_0}\right)^{\frac13}\), temos \(\Phi(R_0) = 0\).
+    Dessa forma, para \(\vetor{\x} \neq \vetor{0}\), temos
+    \begin{equation*}
+        \frac{\vetor{\x}}{\norm{\vetor{\x}}} \cdot \vetor{B}(\vetor{\x}) = \left(B_0 - \frac{\mu_0 m_0}{2\pi \norm{\vetor{\x}}^3}\right)\inner{\vetor{e}_z}{\vetor{\x}},
+    \end{equation*}
+    isto é, não há fluxo de campo magnético por trechos da superfície esférica de raio \(R = \left(\frac{\mu_0 m_0}{2\pi B_0}\right)^{\frac13}\) centrada na origem.
 
     \todo[Linhas de campo.]
 \end{proof}
