@@ -2,20 +2,20 @@
     Um cilindro maciço de raio \(R\) e comprimento \(L\) possui uma magnetização constante \(\vetor{M} = M \vetor{e}_z\), onde o eixo \(z\) e a origem coincidem, respectivamente, com o eixo de simetria e o centro do cilindro. Você pode pensar nessa estrutura como um modelo de um ímã cilíndrico de comprimento finito.
     \begin{enumerate}[label=(\alph*)]
         \item Encontre todas as correntes de magnetização do objeto. Em seguida, considerando que não há correntes livres, encontre o campo magnético sobre o eixo \(z\).
-        \item Considere agora que um pequeno segundo objeto é posicionado acima do cilindro, exatamente sobre seu eixo de simetria, a uma distância \(d\) de sua extremidade superior, como mostra a figura abaixo. Esse pequeno objeto possui uma certa magnetização tal que o mesmo pode ser caracterizado por um momento de dipolo \(\vetor{m} = m_0 \vetor{e}_z\). Calcule a força e o torque sobre esse pequeno objeto.
+        \item Considere agora que um pequeno segundo objeto é posicionado acima do cilindro, exatamente sobre seu eixo de simetria, a uma distância \(d\) de sua extremidade superior, como mostra a figura abaixo. Esse pequeno objeto possui uma certa magnetização tal que possa ser caracterizado por um momento de dipolo \(\vetor{m} = m_0 \vetor{e}_z\). Calcule a força e o torque sobre esse pequeno objeto.
 
     \begin{center}
         \begin{tikzpicture}
-            \fill[Subtext1!70] (-1,-3) rectangle (1,0);
-            \fill[Subtext1!50] (0,0) ellipse (1 and 0.3);
-            \fill[Subtext1!70] (0,-3) ellipse (1 and 0.3);
+            \draw (0,-3.5) -- (0,0.2);
+            \fill[Subtext1] (-1,-3) rectangle (1,0);
+            \fill[Overlay0] (0,0) ellipse (1 and 0.3);
+            \fill[Subtext1] (0,-3) ellipse (1 and 0.3);
 
             \draw[stealth-stealth, thick] (-1.5,0) -- (-1.5,-3) node[midway,left] {\(L\)};
 
-            \draw[stealth-stealth, thick] (-1.5,0) -- (-1.5,1.1) node[midway,right] {\(d\)};
+            \draw[stealth-stealth, thick] (-1.5,0) -- (-1.5,1.1) node[midway,left] {\(d\)};
 
-            \draw[dashed] (0,-3.5) -- (0,0.2);
-            \draw[-stealth] (0,0) -- (0,2.5) node[above] {$z$};
+            \draw[-stealth] (0,0) -- (0,2) node[above] {$z$};
 
             \fill[Red] (0,1.1) circle (1.5pt);
             \draw[-stealth, thick, Red] (0,0.85) -- (0,1.35) node[right] {\(\vetor{m}\)};
