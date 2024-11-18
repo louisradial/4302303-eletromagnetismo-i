@@ -3,13 +3,41 @@
     \begin{enumerate}[label=(\alph*)]
         \item Obtenha \(\vetor{H}\) para \(r > 0\).
         \item Mostre que \(\nabla \times \vetor{H} = 0\) para todo \(r > 0\).
-        \item Determine um potencial escalar \(\phi_M\) para este problema.
+        \item Determine um potencial escalar \(\Phi_M\) para este problema.
         \item O que mudaria caso o espaço todo fosse inteiramente preenchido por um material magnético linear de permeabilidade \(\mu\)?
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
     Seja \(\Omega = \mathbb{R}^3 \setminus \set{\vetor{0}}\), então  para todo \(\vetor{\x} \in \Omega\), temos
     \begin{equation*}
-        \vetor{H}(\vetor{\x}) = \frac{1}{\mu_0}\vetor{B}(\vetor{\x}) = \frac{1}{4\pi \norm{\vetor{\x}}^5}\left[3\inner{\vetor{\x}}{\vetor{m}}\vetor{\x} - \norm{\vetor{\x}}^2 \vetor{m}\right]
+        \vetor{H}(\vetor{\x}) = \frac{1}{\mu_0}\vetor{B}(\vetor{\x}) = \frac{3\inner{\vetor{\x}}{\vetor{m}}\vetor{\x} - \norm{\vetor{\x}}^2 \vetor{m}}{4\pi \norm{\vetor{\x}}^5}
     \end{equation*}
+    pelo \cref{ex:exercício3}. Em coordenadas esféricas, temos
+    \begin{equation*}
+        H(r\vetor{e}_r) = \frac{3 m \cos\theta \vetor{e}_r - m (\cos\theta \vetor{e}_r - \sin\theta \vetor{e}_\theta)}{4\pi r^3} = \frac{2m \cos\theta \vetor{e}_r + m\sin\theta \vetor{e}_\theta}{4\pi r^3},
+    \end{equation*}
+    portanto
+    \begin{align*}
+        \nabla \times H(r \vetor{e}_r) &= \frac{1}{r} \left[\diffp*{\left(\frac{m\sin\theta}{4\pi r^2}\right)}{r} - \diffp*{\left(\frac{2m \cos\theta}{4\pi r^3}\right)}{\theta}\right]\\
+                                       &= \frac1r\left[-\frac{m\sin\theta}{2\pi r^3} + \frac{m \sin\theta}{2\pi r^3}\right]\\
+                                       &= 0
+    \end{align*}
+    sempre que \(r > 0\). Isto é, \(\nabla \times \vetor{H}(\vetor{\x}) = \vetor{0}\) para todo \(\vetor{\x} \in \Omega\). Como \(\Omega\) é simplesmente conexo, isso implica que existe um potencial escalar \(\Phi_M\) definido em \(\Omega\) tal que \(\vetor{H} =-\nabla \Phi_M.\)
+
+    Consideremos dois pontos \(\vetor{\x}, \vetor{\tilde{\x}} \in \Omega\) descritos em coordenadas esféricas pelas triplas \((r, \theta, \varphi)\) e \((\tilde{r}, \tilde{\theta}, \tilde{\varphi})\). Seja \(\Gamma_1\) o caminho radial do ponto \(\vetor{\tilde{\x}}\) até a esfera de raio \(r\), seja \(\Gamma_2\) o caminho azimutal contido na esfera de raio \(r\) do ângulo \(\tilde{\varphi}\) até \(\varphi\), e seja \(\Gamma_3\) o caminho tangencial contido na esfera de raio \(r\) do ângulo \(\tilde{\theta}\) ao ângulo \(\theta\), então
+    \begin{equation*}
+        \Phi_M(\vetor{\x}) - \Phi_M(\vetor{\tilde{\x}}) = - \int_{\Gamma_1 + \Gamma_2 + \Gamma_3} \dl{\vetor{\ell}}\cdot \vetor{H},
+    \end{equation*}
+    uma vez que a escolha de caminho é arbitrária. Como \(\vetor{H}\) não tem componente azimutal, a contribuição do caminho \(\Gamma_2\) é nula e temos
+    \begin{align*}
+        \Phi_M(\vetor{\tilde{\x}}) - \Phi_M(\vetor{\x})
+        &= \int_{\tilde{r}}^r \dli{r'} \frac{m \cos\tilde{\theta}}{2\pi r'^3} + \int_{\tilde\theta}^\theta r \dli{\theta'} \frac{m \sin\theta'}{4\pi r^3}\\
+        &= -\frac{m \cos\tilde{\theta}}{4\pi}\left(\frac1{r^2} - \frac1{\tilde{r}^2}\right) - \frac{m}{4\pi r^2}\left(\cos\theta - \cos\tilde\theta\right)\\
+        &= \frac{m \cos\tilde{\theta}}{4\pi \tilde{r}^2} - \frac{m \cos\theta}{4\pi r^2}.
+    \end{align*}
+    Dessa forma, tomando \(\tilde{r} \to \infty\), identificamos
+    \begin{equation*}
+        \Phi_M(\vetor{\x}) = \frac{\inner{\vetor{m}}{\vetor{\x}}}{4\pi \norm{\vetor{\x}}^3}
+    \end{equation*}
+    como o potencial escalar para o vetor \(\vetor{H}\) para todo \(\vetor{\x}\in \Omega\). Notamos ainda que no caso em que o espaço todo fosse preenchido por um material magnético linear de permeabilidade \(\mu\) o campo magnético \(\vetor{B}\) seria diferente, mas o vetor \(\vetor{H}\) seria o mesmo que aqui determinamos.
 \end{proof}
