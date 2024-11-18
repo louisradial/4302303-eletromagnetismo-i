@@ -1,10 +1,73 @@
 \begin{exercício}{Dipolo magnético no centro de uma esfera de material magnético linear}{exercício8}
     Um dipolo magnético ideal do tipo \(\vetor{m} = m\vetor{e}_z\) está localizado no centro de uma esfera maciça de raio \(R\) feita de um material magnético linear de permeabilidade \(\mu\). Mostre que o campo magnético na região \(r \in (0,R)\) é dado por
     \begin{equation*}
-        \vetor{B}(\vetor{\x}) = \frac{\mu}{4\pi\norm{\vetor{\x}}^5}\left[3\inner{\vetor{m}}{\vetor{\x}}\vetor{\x} - \norm{\vetor{\x}}^2\vetor{m}\right] + \frac{\mu(\mu_0 - \mu)}{2\pi R^3(2\mu_0 + \mu)}\vetor{m}.
+        \vetor{B}(\vetor{\x}) = \frac{\mu\left[3\inner{\vetor{m}}{\vetor{\x}}\vetor{\x} - \norm{\vetor{\x}}^2\vetor{m}\right]}{4\pi\norm{\vetor{\x}}^5} + \frac{\mu(\mu_0 - \mu)}{2\pi R^3(2\mu_0 + \mu)}\vetor{m}.
     \end{equation*}
     Qual é o campo fora da esfera?
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Seja \(\Omega = \setc{\vetor{\x} \in \mathbb{R}^3}{0 < \norm{\vetor{\x}} < R}\) e \(\Sigma = \setc{\vetor{\x}\in \mathbb{R}^3}{\norm{\vetor{\x}} > R}\). Como não há correntes livres, temos \(\nabla \times \vetor{H}(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \Omega \cup \Sigma\). Como \(\Omega\) e \(\Sigma\) são simplesmente conexos, podemos escrever \(\vetor{H}(\vetor{\x}) = - \nabla \Phi_M\) para algum potencial escalar \(\Phi_M\) definido em \(\Omega \cup \bar{\Sigma} = \mathbb{R}^3 \setminus \set{\vetor{0}}\). Pela simetria azimutal escrevemos
+    \begin{equation*}
+        \Phi_M(r, \theta) = \begin{cases}
+            \displaystyle\sum_{\ell = 0}^\infty \left(A_\ell r^\ell + \frac{B_\ell}{r^{\ell + 1}}\right) P_\ell (\cos\theta),&\text{se }0 < r < R\\
+            \displaystyle\sum_{\ell = 0}^\infty \left(\tilde{A}_\ell r^\ell + \frac{\tilde{B}_\ell}{r^{\ell + 1}}\right) P_\ell (\cos\theta),&\text{se }r  > R.
+        \end{cases}
+    \end{equation*}
+    No limite \(r \ll R\), o potencial deve se aproximar ao potencial para um dipolo magnético, portanto pelo \cref{ex:exercício7}, temos
+    \begin{equation*}
+        \sum_{\ell = 0}^\infty \frac{B_\ell}{r^{\ell + 1}}P_\ell(\cos\theta) = \frac{m \cos\theta}{4\pi r^2} \implies  B_{\ell} = \frac{m}{4\pi} \delta_{\ell 1},
+    \end{equation*}
+    para todo \(\ell \in \mathbb{N}_0\). Da continuidade do potencial em \(r = R\), temos
+    \begin{equation*}
+        A_\ell R^\ell + \frac{m}{4\pi R^2} \delta_{\ell 1} = \tilde{A}_\ell R^\ell + \frac{\tilde{B}}{R^{\ell + 1}} \implies \tilde{B}_\ell = \left(A_\ell - \tilde{A}_\ell\right)R^{2\ell + 1} + \frac{m}{4\pi} \delta_{\ell1}
+    \end{equation*}
+    para todo \(\ell \in \mathbb{N}_0\). A descontinuidade de \(\vetor{H}\) em \(r = R\) é dada por
+    \begin{equation*}
+        \inner*{\vetor{e}_r}{\vetor{H}_\Sigma - \vetor{H}_\Omega} = \inner*{\vetor{e}_r}{\vetor{M}_\Omega} = \inner*{\vetor{e}_r}{\chi_M \vetor{H}_\Omega} \implies \inner{\vetor{e}_r}{\vetor{H}_\Sigma} = \inner*{\vetor{e}_r}{\frac{\mu}{\mu_0}\vetor{H}_\Omega},
+    \end{equation*}
+    portanto em termos do potencial temos
+    \begin{align*}
+        \diffp{\Phi_M}{r}[r=R^+] = \frac{\mu}{\mu_0}\diffp{\Phi_M}{r}[r=R^-]
+        &\implies \frac{\mu}{\mu_0}\left(\ell A_\ell R^{\ell - 1} - \frac{m}{2\pi R^{3}}\delta_{\ell 1}\right) = \ell\tilde{A}_\ell R^{\ell - 1} - \frac{(\ell + 1)\tilde{B}_\ell}{R^{\ell + 2}}\\
+        &\implies \frac{\mu}{\mu_0}\left(\frac{\ell}{\ell + 1}A_\ell R^{2\ell + 1} - \frac{m}{4\pi}\delta_{\ell 1}\right) = \frac{\ell}{\ell + 1}\tilde{A}_{\ell}R^{2\ell + 1} - \tilde{B}_\ell\\
+        &\implies \tilde{B}_\ell = \frac{\mu m}{4\pi \mu_0} \delta_{\ell 1} + \frac{\ell R^{2\ell + 1}}{\ell + 1} \left(\tilde{A}_\ell - \frac{\mu}{\mu_0}A_\ell\right)
+    \end{align*}
+    para todo \(\ell \in \mathbb{N}_0\). Para que o potencial seja limitado, devemos ter \(\tilde{A}_\ell = 0\) para todo \(\ell \in \mathbb{N}_0\), logo
+    \begin{equation*}
+        \left[\frac{\ell}{\ell + 1}\frac{\mu}{\mu_0} + 1\right]A_\ell R^{2\ell + 1} = \frac{(\mu - \mu_0) m}{4\pi \mu_0} \delta_{\ell 1}\implies A_\ell = \frac{2(\mu - \mu_0)m}{4\pi(\mu + 2\mu_0)R^3} \delta_{\ell 1},
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \Phi_M(r, \theta) = \begin{cases}
+            \displaystyle\frac{m \cos\theta}{4\pi}\left[\frac{2(\mu - \mu_0)r}{(\mu + 2\mu_0)R^3} + \frac{1}{r^2}\right],&\text{se }0 < r < R,\\
+            \displaystyle\frac{3\mu m \cos\theta}{4\pi (\mu + 2\mu_0)r^2},&\text{se }r \geq R
+        \end{cases}
+    \end{equation*}
+    é o potencial escalar em \(\mathbb{R}^3 \setminus \set{\vetor{0}}\), ou então em notação livre de sistema de coordenadas temos
+    \begin{equation*}
+        \Phi_M(\vetor{\x}) =
+        \begin{cases}
+            \displaystyle\frac{\inner{\vetor{m}}{\vetor{\x}}}{4\pi}\left[\frac{1}{\norm{\vetor{\x}}^3} + \frac{2(\mu - \mu_0)}{(\mu + 2\mu_0)R^3}\right],&\text{se }\vetor{\x} \in \Omega\\
+            \displaystyle\frac{3\mu \inner{\vetor{m}}{\vetor{\x}}}{4\pi (\mu + 2\mu_0) \norm{\vetor{\x}}^3},&\text{se }\vetor{\x}\in \bar{\Sigma}.
+        \end{cases}
+    \end{equation*}
+    No \cref{ex:exercício7} mostramos que
+    \begin{equation*}
+        -\nabla \left(\frac{\inner{\vetor{m}}{\vetor{\x}}}{\norm{\vetor{\x}}^3}\right) = \frac{3\inner{\vetor{m}}{\vetor{\x}}\vetor{\x} - \norm{\vetor{\x}}^2\vetor{m}}{\norm{\vetor{\x}}^5}
+    \end{equation*}
+    para todo \(\vetor{\x} \neq \vetor{0}\), portanto de \(\nabla {\inner{\vetor{m}}{\vetor{\x}}} = \vetor{m}\), temos que o vetor \(\vetor{H}\) é dado por
+    \begin{equation*}
+        \vetor{H}(\vetor{\x}) = \begin{cases}
+            \displaystyle\frac{3\inner{\vetor{m}}{\vetor{\x}}\vetor{\x} - \norm{\vetor{\x}}^2\vetor{m}}{4\pi \norm{\vetor{\x}}^5} - \frac{(\mu - \mu_0)\vetor{m}}{2\pi(\mu + 2\mu_0)R^3},&\text{se }\vetor{\x} \in \Omega\\
+            \displaystyle\frac{3\mu \left[3\inner{\vetor{m}}{\vetor{\x}} - \norm{\vetor{\x}}^2\vetor{m}\right]}{4\pi (\mu + 2\mu_0)\norm{\vetor{\x}}^5},&\text{se }\vetor{\x} \in \Sigma,
+        \end{cases}
+    \end{equation*}
+    logo
+    \begin{equation*}
+        \vetor{B}(\vetor{\x}) = \begin{cases}
+            \displaystyle\frac{\mu\left[3\inner{\vetor{m}}{\vetor{\x}}\vetor{\x} - \norm{\vetor{\x}}^2\vetor{m}\right]}{4\pi \norm{\vetor{\x}}^5} + \frac{\mu(\mu_0 - \mu)\vetor{m}}{2\pi(\mu + 2\mu_0)R^3},&\text{se }\vetor{\x} \in \Omega\\
+            \displaystyle\frac{3\mu\mu_0 \left[3\inner{\vetor{m}}{\vetor{\x}} - \norm{\vetor{\x}}^2\vetor{m}\right]}{4\pi (\mu + 2\mu_0)\norm{\vetor{\x}}^5},&\text{se }\vetor{\x} \in \Sigma,
+        \end{cases}
+    \end{equation*}
+    é o campo magnético para todo \(\vetor{\x} \neq \vetor{0}\).
 \end{proof}
