@@ -3,7 +3,6 @@
     \begin{enumerate}[label=(\alph*)]
         \item Encontre todas as correntes de magnetização do objeto. Em seguida, considerando que não há correntes livres, encontre o campo magnético sobre o eixo \(z\).
         \item Considere agora que um pequeno segundo objeto é posicionado acima do cilindro, exatamente sobre seu eixo de simetria, a uma distância \(d\) de sua extremidade superior, como mostra a figura abaixo. Esse pequeno objeto possui uma certa magnetização tal que possa ser caracterizado por um momento de dipolo \(\vetor{m} = m_0 \vetor{e}_z\). Calcule a força e o torque sobre esse pequeno objeto.
-
     \begin{center}
         \begin{tikzpicture}
             \draw (0,-3.5) -- (0,0.2);
@@ -43,7 +42,28 @@
     \end{center}
         \item Suponha que, para todos os fins práticos, o objeto possa ser entendido como uma pequena espira circular de raio \(a \ll d, L, R\) conduzindo uma corrente de intensidade \(I_m\). Obtenha uma relação entre \(I_m,\) \(a,\) e \(m_0,\) e calcule o fluxo magnético \(\Phi_B\) que atravessa a pequena espira devido ao campo magnético gerado pelo ímã. Considere que esse campo magnético é aproximadamente uniforme sobre toda a área da pequena espira e é descrito pela expressão encontrada no item (a).
     \end{enumerate}
-
 \end{exercício}
 \begin{proof}[Resolução]
+    Como a magnetização é uniforme, temos \(\nabla \times \vetor{M} = \vetor{0}\) em todo o espaço, isto é, \(\vetor{J}_M = \vetor{0}\). A superfície plana do cilindro tem normal paralela à direção da magnetização, portanto não há corrente superficial de magnetização nesta superfície. Na superfície lateral do cilindro temos
+    \begin{equation*}
+        \vetor{K}_M = \vetor{M} \times \vetor{e}_s = M \vetor{e}_\varphi
+    \end{equation*}
+    como a distribuição de corrente de magnetização. Considerando que não há correntes livres, temos
+    \begin{align*}
+        \vetor{B}(z \vetor{e}_z) &= \frac{\mu_0}{4\pi} \int_{-\frac{L}{2}}^{\frac{L}{2}}\dli{z'}\int_{0}^{2\pi} R \dli{\varphi'} \frac{M \vetor{e}_{\varphi'} \times \left[(z - z')\vetor{e}_z- R \vetor{e}_{s'}\right]}{\left[R^2 + (z - z')^2\right]^{\frac32}}\\
+                                 &= \frac{\mu_0 M R}{4\pi} \int_{-\frac{L}{2}}^{\frac{L}{2}} \dli{z'} \int_0^{2\pi} \dli{\varphi'} \frac{(z - z')\vetor{e}_{s'} + R \vetor{e}_z}{\left[R^2 + (z - z')^2\right]^{\frac32}}\\
+                                 &= \frac{\mu_0 M}{2} \int_{-\frac{L}{2}}^{\frac{L}{2}} \dli{z'}  \frac{R^2}{\left[R^2 + (z - z')^2\right]^{\frac32}}\vetor{e}_z
+    \end{align*}
+    pela lei de Biot-Savart. Com a mudança de variável \(z - z' = R \tan\psi,\) temos
+    \begin{equation*}
+        \vetor{B}(z\vetor{e}_z) = \frac{\mu_0 M}{2} \int_{\arctan\left(\frac{z - \frac{L}{2}}{R}\right)}^{\arctan\left(\frac{z + \frac{L}{2}}{R}\right)} \dli{\psi} \cos\psi \vetor{e}_z = \frac{\mu_0 M}{2}\left[\frac{z + \frac{L}{2}}{\sqrt{R^2 + \left(z + \frac{L}{2}\right)^2}} - \frac{z - \frac{L}{2}}{\sqrt{R^2 + \left(z - \frac{L}{2}\right)^2}}\right]\vetor{e}_z
+    \end{equation*}
+    como a expressão do campo magnético no eixo \(z\). Dessa forma, a força magnética sobre um dipolo \(\vetor{m} = m_0\vetor{e}_z\) na posição \(z = d\) é dada por
+    \begin{align*}
+        \vetor{F} &= \nabla \inner{\vetor{m}}{\vetor{B}(d\vetor{e}_z)}\\
+                  &= \frac{\mu_0 M}{2}\left\{\frac{1}{\sqrt{R^2 + \left(z + \frac{L}{2}\right)^2}} - \frac{1}{\sqrt{R^2 + \left(z - \frac{L}{2}\right)^2}} - \frac{\left(z + \frac{L}{2}\right)^2}{\left[R^2 + \left(z + \frac{L}{2}\right)^2\right]^{\frac32}} + \frac{\left(z - \frac{L}{2}\right)^2}{\left[R^2 + \left(z - \frac{L}{2}\right)^2\right]^{\frac32}}\right\}_{z = d}\vetor{e}_z\\
+                  &= \frac{\mu_0 M R^2}{2}\left\{\frac{1}{\left[R^2 + \left(z + \frac{L}{2}\right)^2\right]^{\frac32}} - \frac{1}{\left[R^2 + \left(z - \frac{L}{2}\right)^2\right]^{\frac32}}\right\}_{z = d}\vetor{e}_z\\
+                  &= \frac{\mu_0 M R^2}{2}\left\{\frac{1}{\left[R^2 + \left(d + \frac{L}{2}\right)^2\right]^{\frac32}} - \frac{1}{\left[R^2 + \left(d - \frac{L}{2}\right)^2\right]^{\frac32}}\right\}\vetor{e}_z
+    \end{align*}
+    e o torque sobre o dipolo é nulo.
 \end{proof}
