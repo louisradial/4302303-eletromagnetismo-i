@@ -6,7 +6,7 @@
     Qual é o campo fora da esfera?
 \end{exercício}
 \begin{proof}[Resolução]
-    Seja \(\Omega = \setc{\vetor{\x} \in \mathbb{R}^3}{0 < \norm{\vetor{\x}} < R}\) e \(\Sigma = \setc{\vetor{\x}\in \mathbb{R}^3}{\norm{\vetor{\x}} > R}\). Como não há correntes livres, temos \(\nabla \times \vetor{H}(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \Omega \cup \Sigma\). Como \(\Omega\) e \(\Sigma\) são simplesmente conexos, podemos escrever \(\vetor{H}(\vetor{\x}) = - \nabla \Phi_M\) para algum potencial escalar \(\Phi_M\) definido em \(\Omega \cup \bar{\Sigma} = \mathbb{R}^3 \setminus \set{\vetor{0}}\). Pela simetria azimutal escrevemos
+    Seja \(\Omega = \setc{\vetor{\x} \in \mathbb{R}^3}{0 < \norm{\vetor{\x}} < R}\) e \(\Sigma = \setc{\vetor{\x}\in \mathbb{R}^3}{\norm{\vetor{\x}} > R}\). Como não há correntes livres, temos \(\nabla \times \vetor{H}(\vetor{\x}) = 0\) para todo \(\vetor{\x} \in \Omega \cup \Sigma\). Como \(\Omega\) e \(\Sigma\) são simplesmente conexos, podemos escrever \(\vetor{H}(\vetor{\x}) = - \nabla \Phi_M\) para algum potencial escalar \(\Phi_M\) definido em \(\Omega \cup \bar{\Sigma} = \mathbb{R}^3 \setminus \set{\vetor{0}}\). Notemos que \(\Phi_M\) satisfaz a equação de Laplace em \(\Omega\) e em \(\Sigma\), uma vez que em \(\Sigma\) temos \(\mu_0 \vetor{H} = \vetor{B}\) e em \(\Omega\) temos \(\mu \vetor{H} = \vetor{B}\), logo de \(\nabla \cdot \vetor{B} = 0\) segue que \(\nabla^2 \Phi_M = 0\) em ambos os abertos. Pela simetria azimutal escrevemos
     \begin{equation*}
         \Phi_M(r, \theta) = \begin{cases}
             \displaystyle\sum_{\ell = 0}^\infty \left(A_\ell r^\ell + \frac{B_\ell}{r^{\ell + 1}}\right) P_\ell (\cos\theta),&\text{se }0 < r < R\\
