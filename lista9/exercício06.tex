@@ -1,0 +1,31 @@
+\begin{exercício}{O teorema de Poynting}{exercício6}
+    O vetor de Poynting, dado por \(\vetor{S} = \frac1{\mu_0}\vetor{E}\times\vetor{B}\), foi obtido a partir da análise do balanço energético em um sistema cujos constituintes estão sujeitos a forças eletromagnéticas. As manipulações foram feitas a partir da expressão
+    \begin{equation*}
+        \diff{W}{t} = \int \dln3\x \vetor{J} \cdot \vetor{E}
+    \end{equation*}
+    para a taxa de trabalho realizado sobre cargas \emph{totais} por unidade de tempo, obtendo o teorema de Poynting,
+    \begin{equation*}
+        \nabla \cdot \vetor{S} + \diffp{u_{\mathrm{EM}}}{t} = - \vetor{J} \cdot \vetor{E},
+    \end{equation*}
+    onde \(u_{\mathrm{EM}} = \frac{\epsilon_0}2\norm{\vetor{E}}^2 + \frac1{2\mu_0}\norm{\vetor{B}}^2\). Podemos determinar uma outra expressão para o balanço energético baseada no trabalho por unidade de tempo realizado sobre as cargas \emph{livres}. Mostre que
+    \begin{equation*}
+        \nabla \cdot \vetor{\tilde{S}} + \diffp{\tilde{u}_{\mathrm{EM}}}{t} = - \vetor{J}_l \cdot \vetor{E},
+    \end{equation*}
+    onde \(\tilde{u}_{\mathrm{EM}} = \frac12 \left(\vetor{E} \cdot \vetor{D} + \vetor{B} \cdot \vetor{H}\right)\) e \(\vetor{\tilde{S}} = \vetor{E} \times \vetor{H}\).
+
+    Consideremos um capacitor de placas paralelas circulares de raio \(a\) e separadas por uma distância \(h\) sendo carregado por uma corrente elétrica constante \(I\), como mostra a figura abaixo.
+    \begin{center}
+        \todo[tikz]
+    \end{center}
+    O interior do capacitor -- chamemos essa região de \(\Omega\) e sua fronteira de \(\partial \Omega\) -- é preenchido por um material linear caracterizado por uma permissividade elétrica \(\epsilon = \epsilon_0 (1 + \chi_e)\) e uma permeabilidade magnética \(\mu = \mu_0 (1 + \chi_m)\). Despreze quaisquer efeitos de borda e trabalhe no regime \emph{quasi-estacionário}.
+    \begin{enumerate}[label=(\alph*)]
+        \item Calcule o campo \(\vetor{D}\) gerado pelo acúmulo de cargas livres nas placas como função do tempo, e em seguida calcule \(\vetor{E}\) e \(\vetor{P}\).
+        \item Notando que não há cargas ou correntes livres em \(\Omega\), use o campo \(\vetor{D}\) para calcular o campo \(\vetor{H}\), e em seguida calcule \(\vetor{B}\) e \(\vetor{M}\)\footnote{\todo[Tente obter \(\vetor{B}\) diretamente]}.
+        \item Observe que como o campo magnético gerado, por sua vez, não depende do tempo, não haverá campos elétricos subsequentemente induzidos. Calcule todas as cargas e correntes de polarização e magnetização. \todo[(incluindo Jp)]
+        \item Verifique a validade do teorema de Poynting avaliando cada um dos termos e calcule o fluxo do vetor de Poynting \(\vetor{S}\) sobre \(\partial \Omega\).
+        \item Verifique a validade do teorema de Poynting para cargas livres e calcule o fluxo do vetor de Poynting \(\vetor{\tilde{S}}\) sobre \(\partial \Omega\).
+    \end{enumerate}
+\end{exercício}
+\begin{proof}[Resolução]
+
+\end{proof}
