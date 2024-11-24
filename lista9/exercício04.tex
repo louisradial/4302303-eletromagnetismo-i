@@ -1,6 +1,18 @@
 \begin{exercício}{Espira quadrada girando em um campo magnético uniforme}{exercício4}
-    Uma espira quadrada de lado \(a\) gira em torno de uma haste vertical (eixo \(z\)) com velocidade angular \(\omega\) constante apontando na direção \(x\). Encontre a força eletromotriz induzida \(\varepsilon(t)\) na espira e, assumindo que o fio da espira tenha uma resistência \(R\), calcule a corrente elétrica induzida.
+    Uma espira quadrada de lado \(a\) gira em torno de uma haste vertical (eixo \(z\)) com velocidade angular \(\omega\) constante, em uma região onde há um campo magnético uniforme \(\vetor{B} = B \vetor{e}_x\). Encontre a força eletromotriz induzida \(\varepsilon(t)\) na espira e, assumindo que o fio da espira tenha uma resistência \(R\), calcule a corrente elétrica induzida.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    O vetor normal à superfície plana \(\Sigma\) delimitada pela espira pode ser escrito como
+    \begin{equation*}
+        \vetor{n}(t) = \cos(\omega t - \delta)\vetor{e}_x + \sin(\omega t - \delta) \vetor{e}_y,
+    \end{equation*}
+    onde \(\delta\) depende apenas da orientação da espira no instante \(t = 0\). Portanto, o fluxo magnético pela espira é dado por
+    \begin{equation*}
+        \Phi_B(t) = \int_{\Sigma} \dln2\x \vetor{n}(t) \cdot \vetor{B} = B \cos(\omega t - \delta)\int_{\Sigma} \dln2\x  = a^2 B \cos(\omega t - \delta)
+    \end{equation*}
+    e então a força eletromotriz induzida \(\epsilon(t)\) na espira é dada por
+    \begin{equation*}
+        \varepsilon(t) = -\diff{\Phi_B}{t} = a^2 B \omega\sin(\omega t - \delta).
+    \end{equation*}
+    No regime estacionário, a corrente no circuito é \(I(t) = \frac{\epsilon(t)}{R} = \frac{a^2 B\omega}{R}\sin(\omega t - \delta)\).
 \end{proof}
