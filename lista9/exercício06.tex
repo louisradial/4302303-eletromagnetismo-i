@@ -15,17 +15,138 @@
 
     Consideremos um capacitor de placas paralelas circulares de raio \(a\) e separadas por uma distância \(h\) sendo carregado por uma corrente elétrica constante \(I\), como mostra a figura abaixo.
     \begin{center}
-        \todo[tikz]
+        \begin{tikzpicture}
+            \draw[-stealth] (0.7,0.2) -- (1.3,0.2) node[midway,above] {\(I\)};
+            \draw (0,0) -- (2,0);
+            \fill[Yellow, opacity=0.7] (2,-2) rectangle (3,2);
+            \filldraw[thick,fill=Overlay0] (2,0) ellipse (0.4 and 2);
+            \fill[Yellow,opacity=0.6] (2.05,0) ellipse (0.4 and 2);
+            \filldraw[thick, fill=Subtext1] (3,0) ellipse (0.4 and 2);
+            \draw (3,0) -- (5,0);
+            \draw[stealth-stealth] (3.7,0) -- (3.7,2) node [midway, right] {\(a\)};
+            \draw[stealth-stealth] (2,2.2) -- (3,2.2) node [midway, above] {\(h\)};
+            \node at (2.5,-2.3) {\(\mu, \epsilon\)};
+        \end{tikzpicture}
     \end{center}
     O interior do capacitor -- chamemos essa região de \(\Omega\) e sua fronteira de \(\partial \Omega\) -- é preenchido por um material linear caracterizado por uma permissividade elétrica \(\epsilon = \epsilon_0 (1 + \chi_e)\) e uma permeabilidade magnética \(\mu = \mu_0 (1 + \chi_m)\). Despreze quaisquer efeitos de borda e trabalhe no regime \emph{quasi-estacionário}.
     \begin{enumerate}[label=(\alph*)]
         \item Calcule o campo \(\vetor{D}\) gerado pelo acúmulo de cargas livres nas placas como função do tempo, e em seguida calcule \(\vetor{E}\) e \(\vetor{P}\).
-        \item Notando que não há cargas ou correntes livres em \(\Omega\), use o campo \(\vetor{D}\) para calcular o campo \(\vetor{H}\), e em seguida calcule \(\vetor{B}\) e \(\vetor{M}\)\footnote{\todo[Tente obter \(\vetor{B}\) diretamente]}.
-        \item Observe que como o campo magnético gerado, por sua vez, não depende do tempo, não haverá campos elétricos subsequentemente induzidos. Calcule todas as cargas e correntes de polarização e magnetização. \todo[(incluindo Jp)]
+        \item Notando que não há cargas ou correntes livres em \(\Omega\), use o campo \(\vetor{D}\) para calcular o campo \(\vetor{H}\), e em seguida calcule \(\vetor{B}\) e \(\vetor{M}\).
+        \item Observe que como o campo magnético gerado, por sua vez, não depende do tempo, não haverá campos elétricos subsequentemente induzidos. Calcule todas as cargas e correntes de polarização e magnetização.
         \item Verifique a validade do teorema de Poynting avaliando cada um dos termos e calcule o fluxo do vetor de Poynting \(\vetor{S}\) sobre \(\partial \Omega\).
         \item Verifique a validade do teorema de Poynting para cargas livres e calcule o fluxo do vetor de Poynting \(\vetor{\tilde{S}}\) sobre \(\partial \Omega\).
     \end{enumerate}
 \end{exercício}
+\begin{proof}[Demonstração do teorema de Poynting para cargas livres]
+    Consideremos uma região \(\Sigma\) em que há uma distribuição de correntes livre \(\vetor{J}_l\), então o trabalho realizado sobre cargas livres por unidade de tempo é
+    \begin{equation*}
+        \diff{W_l}{t} = \int_{\Sigma} \dln3\x \vetor{J}_l \cdot \vetor{E}.
+    \end{equation*}
+    Utilizando a lei de Ampère-Maxwell, temos \(\vetor{J}_l = \nabla \times \vetor{H} - \diffp{\vetor{D}}{t}\), portanto segue da lei de Faraday que
+    \begin{align*}
+        \vetor{J}_l \cdot \vetor{E} &= \inner{\nabla \times \vetor{H}}{\vetor{E}} - \inner*{\diffp{\vetor{D}}{t}}{\vetor{E}}\\
+                                    &= \inner{\vetor{H}}{\nabla \times \vetor{E}} + \nabla\cdot (\vetor{H} \times \vetor{E}) - \inner*{\diffp{\vetor{D}}{t}}{\vetor{E}}\\
+                                    &= - \nabla \cdot \vetor{\tilde{S}} - \inner*{\vetor{H}}{\diffp{\vetor{B}}{t}} - \inner*{\diffp{\vetor{D}}{t}}{\vetor{E}},
+    \end{align*}
+    onde definimos o vetor de Poynting como \(\vetor{\tilde{S}} = \vetor{E} \times \vetor{H}\). O termo restante é a variação de densidade de energia armazenada nos campos, que podemos simplificar no caso de meios lineares. De fato, temos
+    \begin{equation*}
+        \inner*{\vetor{H}}{\diffp{\vetor{B}}{t}} + \inner*{\diffp{\vetor{D}}{t}}{\vetor{E}} = \frac1{2\mu}\diffp*{\inner{\vetor{B}}{\vetor{B}}}{t} + \frac{\epsilon}{2}\diffp*{\inner{\vetor{E}}{\vetor{E}}}{t} = \diffp*{\left[\frac12\left(\inner{\vetor{H}}{\vetor{B}} + \inner{\vetor{D}}{\vetor{E}}\right)\right]}{t} = \diffp{\tilde{u}_\mathrm{EM}}{t},
+    \end{equation*}
+    onde \(\tilde{u}_\mathrm{EM} = \frac12\left(\inner{\vetor{H}}{\vetor{B}} + \inner{\vetor{D}}{\vetor{E}}\right)\) é a densidade de energia armazenada nos campos para meios lineares. Assim, temos
+    \begin{equation*}
+        \nabla\cdot\vetor{\tilde{S}} + \diffp{\tilde{u}_\mathrm{EM}}{t} = -\inner{\vetor{J}_l}{\vetor{E}}
+    \end{equation*}
+    como a equação para o balanço energético em meios lineares.
+\end{proof}
 \begin{proof}[Resolução]
+    Sendo \(\sigma_l(t)\) a densidade superficial de cargas livres na placa do capacitor, temos
+    \begin{equation*}
+        \vetor{D} = \sigma_l(t) \vetor{e}_z
+    \end{equation*}
+    pela lei de Gauss, portanto \(\vetor{E} = \frac{\sigma_l(t)}{\epsilon}\vetor{e}_z\) e \(\vetor{P} = \frac{\chi_e \epsilon_0\sigma_l(t)}{\epsilon}\vetor{e}_z\). Dessa forma, como \(\vetor{P}\cdot\vetor{e}_z = -\sigma_p,\) temos
+    \begin{equation*}
+        \sigma = \left(1 - \frac{\epsilon_0\chi_e}{\epsilon}\right)\sigma_l = \frac{\epsilon_0}{\epsilon} \sigma_l \implies \sigma_l = \frac{\epsilon}{\epsilon_0} \sigma,
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \vetor{E} = \frac{\sigma(t)}{\epsilon_0}\vetor{e}_z\quad\text{e}\quad
+        \vetor{P} = \chi_e \sigma(t) \vetor{e}_z.
+    \end{equation*}
+    Sem correntes livres em \(\Omega\), o campo \(\vetor{H}\) é dado por
+    \begin{equation*}
+        \nabla \times \vetor{H} = \diffp{\vetor{D}}{t} = \diff{\sigma_l}{t}\vetor{e}_z = \frac{\epsilon}{\epsilon_0}\diff{\sigma}{t}\vetor{e}_z =  \frac{\epsilon I}{\epsilon_0 \pi a^2} \vetor{e}_z
+        \quad\text{e}\quad
+        \nabla \cdot \vetor{H} = \frac{1}{\mu} \nabla \cdot \vetor{B} = 0,
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \vetor{H} = \frac{\epsilon I s}{2 \epsilon_0\pi a^2}\vetor{e}_\varphi
+    \end{equation*}
+    e temos \(\vetor{B} = \frac{\epsilon \mu I s}{2 \epsilon_0\pi a^2}\vetor{e}_\varphi\) e \(\vetor{M} = \frac{\epsilon \chi_m I s}{2 \epsilon_0 \pi a^2}\vetor{e}_\varphi\). Alternativamente, notemos que
+    \begin{equation*}
+        \vetor{J}_M = \nabla \times \vetor{M} = \chi_m \nabla \times \vetor{H} = \frac{\chi_m}{\mu} \nabla \times \vetor{B}
+        \quad\text{e}\quad
+        \vetor{J}_P = \diffp{\vetor{P}}{t} = \chi_e \epsilon_0 \diffp{\vetor{E}}{t},
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \nabla \times \vetor{B} = \frac{\chi_m\mu_0}{\mu}\vetor \nabla\times \vetor{B} + \mu_0\chi_e \epsilon_0 \diffp{\vetor{E}}{t} + \mu_0 \epsilon_0 \diffp{\vetor{E}}{t} \implies  \nabla \times \vetor{B} = \mu \epsilon \diffp{\vetor{E}}{t} = \frac{\mu \epsilon}{\epsilon_0} \diff{\sigma}{t}\vetor{e}_z = \frac{\mu \epsilon I}{\epsilon_0 \pi a^2}\vetor{e}_z
+    \end{equation*}
+    e temos
+    \begin{equation*}
+        \vetor{B} = \frac{\mu \epsilon I s}{2 \epsilon_0 \pi a^2} \vetor{e}_\varphi,
+    \end{equation*}
+    como antes.
 
+    Como o campo magnético encontrado é estático, os campos encontrados são a solução quasi-estacionária para este sistema. Desse modo, as correntes encontradas em \(\Omega\) são dadas por
+    \begin{equation*}
+        \vetor{J}_M = \frac{\chi_m \epsilon I}{\epsilon_0 \pi a^2}\vetor{e}_z\quad\text{e}\quad
+        \vetor{J}_P = \frac{\chi_e I}{\pi a^2}\vetor{e}_z \implies \vetor{J} = \frac{(\chi_m \epsilon + \chi_e \epsilon_0)I}{\epsilon_0 \pi a^2}\vetor{e}_z = \frac{(\chi_m + \chi_e + \chi_m \chi_e)I}{\pi a^2}\vetor{e}_z
+    \end{equation*}
+    e as densidades superficiais de carga nas placas por
+    \begin{equation*}
+        \sigma_l(t) = \frac{\epsilon}{\epsilon_0} \sigma(t) = \frac{\epsilon It}{\epsilon_0 \pi a^2},\quad
+        \sigma_p(t) = - \chi_e \sigma(t) = -\frac{\chi_e It}{\pi a^2},\quad\text{e}\quad
+        \sigma(t) = \frac{It}{\pi a^2},
+    \end{equation*}
+    assumindo que as placas estejam descarregadas em \(t = 0\).
+
+    Em \(\Omega,\) o vetor de Poynting é dado por
+    \begin{equation*}
+        \vetor{S} = \frac1{\mu_0}\vetor{E}\times \vetor{B} = -\frac{\mu \epsilon I^2t s}{2\mu_0 \epsilon_0^2 \pi^2 a^4 }\vetor{e}_s
+        \quad\text{e}\quad
+        \vetor{\tilde{S}} = \vetor{E}\times \vetor{H} = -\frac{\epsilon I^2t s}{2\epsilon_0^2 \pi^2 a^4 }\vetor{e}_s,
+    \end{equation*}
+    e a densidade de energia armazenada nos campos por
+    \begin{equation*}
+    u_\mathrm{EM} = \frac{\frac1{\mu_0} \norm{\vetor{B}}^2 + \epsilon_0 \norm{\vetor{E}}^2}{2} = \frac{\mu^2 \epsilon^2 I^2 s^2}{8 \mu_0 \epsilon_0^2 \pi^2 a^4} + \frac{I^2 t^2}{2\epsilon_0 \pi^2 a^4}
+        \quad\text{e}\quad
+        \tilde{u}_\mathrm{EM} = \frac{\inner{\vetor{H}}{\vetor{B}} + \inner{\vetor{D}}{\vetor{E}} }{2} = \frac{\mu \epsilon^2 I^2 s^2}{8 \epsilon_0^2 \pi^2 a^4}+\frac{\epsilon I^2 t^2}{2 \epsilon_0^2\pi^2a^4}.
+    \end{equation*}
+    Assim, temos
+    \begin{equation*}
+        \nabla\cdot \vetor{S} = -\frac{\mu \epsilon I^2 t}{\mu_0 \epsilon_0^2 \pi^2 a^4}\quad\text{e}\quad
+        \nabla\cdot \vetor{\tilde{S}} = -\frac{\epsilon I^2 t}{\epsilon_0^2 \pi^2 a^4},
+    \end{equation*}
+    \begin{equation*}
+        \diffp{u_\mathrm{EM}}{t} = \frac{I^2 t}{\epsilon_0 \pi^2 a^4}
+        \quad\text{e}\quad
+        \diffp{\tilde{u}_\mathrm{EM}}{t} = \frac{\epsilon I^2 t}{\epsilon_0^2 \pi^2 a^4},
+    \end{equation*}
+    e
+    \begin{equation*}
+        \inner{\vetor{J}}{\vetor{E}} = \frac{(\chi_m + \chi_e + \chi_m \chi_e)I^2t}{\epsilon_0 \pi^2 a^4}
+        \quad\text{e}\quad
+        \inner{\vetor{J}_l}{\vetor{E}} = 0,
+    \end{equation*}
+    em concordância ao teorema de Poynting, já que
+    \begin{equation*}
+        \frac{\mu \epsilon}{\mu_0 \epsilon_0} - 1 = (1 + \chi_m)(1 + \chi_e) - 1 = \chi_e + \chi_m + \chi_e\chi_m.
+    \end{equation*}
+    Por fim
+    \begin{equation*}
+        \Phi_S = \int_{\partial\Omega} \dln2\x \inner{\vetor{S}}{\vetor{n}} = -\frac{\mu \epsilon I^2 t h}{\mu_0 \epsilon_0^2 \pi a^2}\quad\text{e}\quad
+        \Phi_{\tilde{S}} = \int_{\partial \Omega} \dln2\x \inner{\vetor{\tilde{S}}}{\vetor{n}} = - \frac{\epsilon I^2 t h}{\epsilon_0^2 \pi a^2}
+    \end{equation*}
+    é o fluxo do vetor de Poynting sobre \(\partial \Omega\).
 \end{proof}
