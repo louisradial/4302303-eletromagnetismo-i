@@ -6,5 +6,16 @@
     em que \(\vetor{\x}_i\) é a posição do dipolo de momento \(\vetor{m}_i\).
 \end{exercício}
 \begin{proof}[Resolução]
-
+    O campo magnético associado ao dipolo magnético \(\vetor{m}_1\) na posição \(\vetor{\x}_1\) é dado por
+    \begin{equation*}
+        \vetor{B}_1(\vetor{\x}) = \frac{2\mu_0}{3}\vetor{m}_1 \delta(\vetor{\x} - \vetor{\x}_1) + \frac{\mu_0}{4\pi} \frac{3\inner{\vetor{m}_1}{\vetor{\x}-\vetor{\x}_1}(\vetor{\x} - \vetor{\x}_1) - \norm{\vetor{\x} - \vetor{\x}_1}^2 \vetor{m}_1}{\norm{\vetor{\x} - \vetor{\x}_1}^5},
+    \end{equation*}
+    segundo o \cref{ex:exercício3}. Assim,
+    \begin{align*}
+        U &= -\inner{\vetor{m}_2}{\vetor{B}_1(\vetor{\x}_2)}\\
+          &= -\inner*{\vetor{m}_2}{\frac{2\mu_0}{3}\vetor{m}_1 \delta(\vetor{\x}_2- \vetor{\x}_1) + \frac{\mu_0}{4\pi} \frac{3\inner{\vetor{m}_1}{\vetor{\x}-\vetor{\x}_1}(\vetor{\x}_2- \vetor{\x}_1) - \norm{\vetor{\x}_2- \vetor{\x}_1}^2 \vetor{m}_1}{\norm{\vetor{\x}_2- \vetor{\x}_1}^5}}\\
+          &= \frac{\mu_0}{4\pi} \frac{\inner{\vetor{m}_1}{\vetor{m}_2}}{\norm{\vetor{\x}_2 - \vetor{\x}_1}^3} - \frac{3\mu_0}{4\pi}\frac{\inner{\vetor{m}_1}{\vetor{\x}_2 - \vetor{\x}_1}\inner{\vetor{m}_2}{\vetor{\x_2} - \vetor{\x}_1}}{\norm{\vetor{\x}_2 - \vetor{\x}_1}^5}- \frac{2\mu_0}{3} \inner{\vetor{m}_1}{\vetor{m}_2} \delta(\vetor{\x}_2 - \vetor{\x}_1)\\
+          &= \frac{\mu_0}{4\pi \norm{\vetor{\x}_2 - \vetor{\x}_1}^3}\left[\inner{\vetor{m}_1}{\vetor{m}_2} - 3\inner*{\vetor{m}_1}{\frac{\vetor{\x}_2 - \vetor{\x}_1}{\norm{\vetor{\x}_2 - \vetor{\x}_1}}}\inner*{\vetor{m}_2}{\frac{\vetor{\x}_2 - \vetor{\x}_1}{\norm{\vetor{\x}_2 - \vetor{\x}_1}}}\right] - \frac{2\mu_0}{3}\inner{\vetor{m}_1}{\vetor{m}_2} \delta(\vetor{\x}_2 - \vetor{\x}_1)
+    \end{align*}
+    é a energia de interação entre os dois dipolos magnéticos.
 \end{proof}
