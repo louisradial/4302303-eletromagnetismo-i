@@ -60,10 +60,16 @@
     \end{equation*}
     como a expressão do campo magnético no eixo \(z\). Dessa forma, a força magnética sobre um dipolo \(\vetor{m} = m_0\vetor{e}_z\) na posição \(z = d\) é dada por
     \begin{align*}
-        \vetor{F} &= \nabla \inner{\vetor{m}}{\vetor{B}(d\vetor{e}_z)}\\
-                  &= \frac{\mu_0 M}{2}\left\{\frac{1}{\sqrt{R^2 + \left(z + \frac{L}{2}\right)^2}} - \frac{1}{\sqrt{R^2 + \left(z - \frac{L}{2}\right)^2}} - \frac{\left(z + \frac{L}{2}\right)^2}{\left[R^2 + \left(z + \frac{L}{2}\right)^2\right]^{\frac32}} + \frac{\left(z - \frac{L}{2}\right)^2}{\left[R^2 + \left(z - \frac{L}{2}\right)^2\right]^{\frac32}}\right\}_{z = d}\vetor{e}_z\\
-                  &= \frac{\mu_0 M R^2}{2}\left\{\frac{1}{\left[R^2 + \left(z + \frac{L}{2}\right)^2\right]^{\frac32}} - \frac{1}{\left[R^2 + \left(z - \frac{L}{2}\right)^2\right]^{\frac32}}\right\}_{z = d}\vetor{e}_z\\
-                  &= \frac{\mu_0 M R^2}{2}\left\{\frac{1}{\left[R^2 + \left(d + \frac{L}{2}\right)^2\right]^{\frac32}} - \frac{1}{\left[R^2 + \left(d - \frac{L}{2}\right)^2\right]^{\frac32}}\right\}\vetor{e}_z
+        \vetor{F} &= \nabla \inner*{\vetor{m}}{\vetor{B}\left(\left(d+\frac{L}{2}\right)\vetor{e}_z\right)}\\
+                  &= \frac{\mu_0m_0 M}{2}\left\{\frac{1}{\sqrt{R^2 + \left(z + \frac{L}{2}\right)^2}} - \frac{1}{\sqrt{R^2 + \left(z - \frac{L}{2}\right)^2}} - \frac{\left(z + \frac{L}{2}\right)^2}{\left[R^2 + \left(z + \frac{L}{2}\right)^2\right]^{\frac32}} + \frac{\left(z - \frac{L}{2}\right)^2}{\left[R^2 + \left(z - \frac{L}{2}\right)^2\right]^{\frac32}}\right\}_{z = d +\frac{L}{2}}\vetor{e}_z\\
+                  &= \frac{\mu_0 m_0M R^2}{2}\left\{\frac{1}{\left[R^2 + \left(z + \frac{L}{2}\right)^2\right]^{\frac32}} - \frac{1}{\left[R^2 + \left(z - \frac{L}{2}\right)^2\right]^{\frac32}}\right\}_{z = d +\frac{L}{2}}\vetor{e}_z\\
+                  &= \frac{\mu_0 m_0M R^2}{2}\left\{\frac{1}{\left[R^2 + \left(d + L\right)^2\right]^{\frac32}} - \frac{1}{\left(R^2 + d^2\right)^{\frac32}}\right\}\vetor{e}_z
     \end{align*}
     e o torque sobre o dipolo devido à interação com o campo é nulo.
+
+    Por fim, considerando o objeto de momento de dipolo \(\vetor{m} = m_0 \vetor{e}_z\) como uma pequena espira circular de raio \(a\) com uma corrente \(I_m\), temos \(m_0 = I_m \pi a^2\) pelo \cref{ex:exercício1}. Assim, tomando o campo magnético uniforme face ao raio \(a\), temos
+    \begin{equation*}
+        \Phi_B = \frac{\mu_0 \pi a^2 M}{2}\left[\frac{d + L}{\sqrt{R^2 + \left(d + L\right)^2}} - \frac{d}{\sqrt{R^2 + d^2}}\right]\vetor{e}_z
+    \end{equation*}
+    é o fluxo magnético pelo objeto.
 \end{proof}
