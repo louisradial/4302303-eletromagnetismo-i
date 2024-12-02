@@ -1,0 +1,38 @@
+\begin{exercício}{Onda evanescente}{exercício05}
+    Segundo a lei de Snell, quando a luz passa de um meio oticamente denso para outro menos denso \((n_1 > n_2)\), o vetor de onda associado a onda transmitida desvia-se \emph{afastando-se} da normal. Em particular, se a luz incide no ângulo crítico
+    \begin{equation*}
+        \theta_I \to \theta_c = \arcsin\left(\frac{n_2}{n_1}\right),
+    \end{equation*}
+    então \(\theta_T = \frac{\pi}{2}\), e o raio transmitido simplesmente passa rasante à superfície. Agora, se \(\theta_I\) \emph{exceder} \(\theta_c\), não haverá onda transmitida de forma alguma, somente uma onda refletida (esse é o fenômeno da reflexão interna total, no qual os tubos de luz e as fibras óticas se baseiam). Contudo, mesmo nesse caso, os \emph{campos} não são nulos no meio 2: o que obtemos é a chamada \emph{onda evanescente}, que é rapidamente atenuada e não transporta energia para o meio 2.
+
+    Uma maneira de construir uma expressão para a onda evanescente -- assumindo-se o caso onda há reflexão interna total -- é simplesmente escrever o vetor de onda da onda transmitida como \(\vetor{k}_T = k_T\left(\sin\theta_T \vetor{e}_1 + \cos\theta_T\vetor{e}_3\right)\), onde assumimos que o plano de incidência é o plano \(xz\) e que \(k_T = \frac{\omega n_2}{c}\). Essa estrutura de \(\vetor{k}_T\) pode parecer a mesma que no caso onde não há reflexão interna total. A diferença crucial é que, agora,
+    \begin{equation*}
+        \sin\theta_T = \frac{n_1}{n_2} \sin\theta_I > \frac{n_1}{n_2} \sin\theta_c = 1.
+    \end{equation*}
+    Isso pode paracer um absurdo num primeiro momento, e as coisas só se encaixam quando paramos de interpretar \(\theta_T\), nessa particular situação, como um ângulo planar. Mais do que isso, a análise só se torna consistente quando permitimos que \(\theta_T\) seja uma quantidade \emph{complexa}. Muitos textos utilizam notações como \(\tilde{\theta}_T\) para deixar isso claro nesse tipo de contexto. A partir da última relação, temos que
+    \begin{equation*}
+        \cos\theta_T = i \sqrt{\sin^2\theta_T - 1}
+    \end{equation*}
+    é uma quantidade puramente imaginária. É importante ressaltar que os campos reais associados à onda evanescente ainda são obtidos tomando as partes reais dos respectivos campos complexos.
+    \begin{enumerate}[label=(\alph*)]
+        \item Simplesmente utilize a expressão para \(\vetor{k}_T\) para mostrar que
+            \begin{equation*}
+                \vetor{\tilde{E}}_T = \vetor{\tilde{E}}_T^0 e^{- \kappa z} e^{i(kx - \omega t)},
+            \end{equation*}
+            onde
+            \begin{equation*}
+                \kappa = \frac{\omega}{c}\sqrt{(n_1\sin\theta_I)^2 - n_2^2}\quad\text{e}
+                k = \frac{\omega n_1}{c}\sin\theta_I.
+            \end{equation*}
+            Repare que isso representa uma onda que parece se propagar na direção \(x\) (paralela à interface!) e atenuada -- dentro do meio 2 -- na direção \(z\).
+        \item Utilizando as relações de Fresnel que você obteve no \cref{ex:exercício04}, no caso da polarização perpendicular ao plano de incidência, calcule o coeficiente de reflexão para uma situação onde há reflexão interna total num problema de incidência com essa mesma polarização. Interprete fisicamente.
+        \item Ainda no mesmo contexto do item (b), mostre que os campos reais associados à onda evanescente são
+            \begin{align*}
+                \vetor{E}_T(\vetor{\x},t) &= E_0^T e^{- \kappa z} \cos(kx - \omega t) \vetor{e}_2\\
+                \quad\text{e}\quad
+                \vetor{B}_T(\vetor{\x},t) &=\frac{E_0^T}{\omega}e^{- \kappa z} \left[\kappa \sin(kx - \omega)t \vetor{e}_1 + k\cos(kx - \omega t) \vetor{e}_3\right],
+            \end{align*}
+            e verifique que eles satisfazem todas as equações de Maxwell.
+        \item Considerando os campos acima, construa o vetor de Poynting e mostre que, na média sobre o período de uma oscilação, não há transmissão de energia na direção \(z\).
+    \end{enumerate}
+\end{exercício}
