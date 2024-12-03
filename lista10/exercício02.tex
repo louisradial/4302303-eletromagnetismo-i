@@ -4,5 +4,36 @@
         \vetor{\tilde{E}}_I(\vetor{\x},t) = \tilde{E}^0_I e^{i(k_i z - \omega t)}\vetor{e}_1\quad\text{e}\quad
         \vetor{\tilde{B}}_I(\vetor{\x}, t) = \frac{1}{\omega} \vetor{k}_I \times \vetor{\tilde{E}}_I(\vetor{\x},t).
     \end{equation*}
-    Porém, ao escrever expressões para os campos refletido (no meio 1) e transmitido (no meio 2), assumimos que a polarização dos campos elétricos \(\vetor{\tilde{E}}_R\) e \(\vetor{\tilde{E}}_T\) eram também paralelas à \(\vetor{e}_1\). É claro que, sendo as condas eletromagnéticas transversais, as polarizações dessas duas ondas não podem ter componentes \(z\). Mas não é imediatamente claro porque não há, por exemplo, componentes \(y\). Use as condições de contorno para provar que esse é \emph{necessariamente} o caso. Isto é, mostre que se os campos incidentes são dados pelas expressões acima, então só haverá componentes \(x\) dos campos \(\vetor{\tilde{E}}_R\) e \(\vetor{\tilde{E}}_T\).
+    Porém, ao escrever expressões para os campos refletido (no meio 1) e transmitido (no meio 2), assumimos que a polarização dos campos elétricos \(\vetor{\tilde{E}}_R\) e \(\vetor{\tilde{E}}_T\) eram também paralelas à \(\vetor{e}_1\). É claro que, sendo as ondas eletromagnéticas transversais, as polarizações dessas duas ondas não podem ter componentes \(z\). Mas não é imediatamente claro porque não há, por exemplo, componentes \(y\). Use as condições de contorno para provar que esse é \emph{necessariamente} o caso. Isto é, mostre que se os campos incidentes são dados pelas expressões acima, então só haverá componentes \(x\) dos campos \(\vetor{\tilde{E}}_R\) e \(\vetor{\tilde{E}}_T\).
 \end{exercício}
+\begin{proof}[Resolução]
+    Das condições de contorno para meios lineares, temos
+    \begin{equation*}
+        \inner{\epsilon_2 \tilde{\vetor{E}}_2 - \epsilon_1 \tilde{\vetor{E}}_1}{\vetor{n}} = 0,
+        \quad
+        \left(\vetor{\tilde{E}}_2 - \vetor{\tilde{E}}_1\right)\times \vetor{n}  = 0,
+        \quad
+        \inner{\vetor{\tilde{B}}_2 - \vetor{\tilde{B}}_1}{\vetor{n}} = 0\quad\text{e}\quad
+        \left(\frac{1}{\mu_2}\vetor{\tilde{B}}_2 - \frac{1}{\mu_1}\vetor{\tilde{B}}_1\right)\times \vetor{n}  = 0,
+    \end{equation*}
+    pela ausência de fontes livres, onde \(\vetor{n}\) é a normal à interface, coincidente com a direção de propagação da onda incidente. Como os campos são transversais à direção de propagação, as equações que não são trivialmente satisfeitas são as das direções paralelas à interface, que se traduzem a
+    \begin{equation*}
+        \vetor{\tilde{E}}_1 = \vetor{\tilde{E}}_2\quad\text{e}\quad\frac{1}{\mu_2} \vetor{\tilde{B}}_2 = \frac1{\mu_1}\vetor{\tilde{B}}_1
+    \end{equation*}
+    já que não há componente desses campos na direção \(\vetor{n}\). Escolhendo os eixos de forma que \(\vetor{n} = \vetor{e}_3\) e a direção de polarização da onda incidente é \(\vetor{e}_1\), escrevamos \(\vetor{e}_R = \alpha_R^1\vetor{e}_1 + \alpha_R^2\vetor{e}_2\) e \(\vetor{e}_T = \alpha_T^1\vetor{e}_1 + \alpha_T^2\vetor{e}_2\) como as direções de polarização das ondas refletida e incidente, com \(\norm{\vetor{e}_R} = \norm{\vetor{e}_T} = 1\). Assim, as condições de contorno são dadas pelas relações
+    \begin{equation*}
+        \tilde{E}_I^0 \vetor{e}_1 + \tilde{E}_R^0 \vetor{e}_R = \tilde{E}_T^0\vetor{e}_T\quad\text{e}\quad
+        \frac{k_I}{\omega \mu_1}\tilde{E}_I^0\vetor{e}_2 - \frac{k_R}{\omega \mu_1} \tilde{E}_R^0 \vetor{e}_3\times \vetor{e}_R = \frac{k_T}{\omega\mu_2}\tilde{E}_T^0\vetor{e}_3 \times \vetor{e}_T.
+    \end{equation*}
+    Por independência linear, obtemos as equações
+    \begin{equation*}
+        \tilde{E}_R^0 \alpha^2_R = \tilde{E}_T^0 \alpha^2_T
+        \quad\text{e}\quad
+        -\frac{k_R}{\omega \mu_1}\tilde{E}_R^0 \alpha^2_R = \frac{k_T}{\omega \mu_2}\tilde{E}_T^0 \alpha^2_T,
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \left(\frac{k_R}{\omega \mu_1} + \frac{k_T}{\omega \mu_2}\right)\tilde{E}_T^0 \alpha_T^2 = 0.
+    \end{equation*}
+    Assim, concluímos que \(\tilde{E}_T^0\alpha_T^2 = \tilde{E}_R^0 \alpha_R^2 = 0\), portanto como há ondas transmitida e refletida, temos \(\alpha_T^2 = 0\), isto é, a direção de polarização das ondas é coincidente com a da onda incidente.
+\end{proof}
