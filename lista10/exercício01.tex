@@ -11,5 +11,26 @@
     \end{equation*}
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Notemos que
+    \begin{align*}
+        f g = \Re(\tilde{f})\Re(\tilde{g}) &= \frac14(\tilde{f} + \conj{\tilde{f}})(\tilde{g} + \conj{\tilde{g}})\\
+                                           &= \frac14(\tilde{f} \tilde{g} + \conj{\tilde{f}}\tilde{g} + \tilde{f}\conj{\tilde{g}} + \conj{\tilde{f}}\conj{\tilde{g}})\\
+                                           &= \frac14 ( \tilde{f} \tilde{g} + \conj{\tilde{f}}\conj{\tilde{g}}) + \frac14 (\conj{\tilde{f}}\tilde{g} + \tilde{f} \conj{\tilde{g}}).
+    \end{align*}
+    Fatoremos a dependência temporal de forma que \(\tilde{F}(\vetor{\x}) = \tilde{f}(\vetor{\x}, t)e^{i\omega t}\) e analogamente para \(\tilde{g}\), então
+    \begin{equation*}
+        \conj{\tilde{f}}(\vetor{\x}, t)\tilde{g}(\vetor{\x}, t) + \tilde{f}(\vetor{\x}, t) \conj{\tilde{g}}(\vetor{\x}, t) = \conj{\tilde{F}}(\vetor{\x}) \tilde{G}(\vetor{\x}) + \tilde{F}(\vetor{\x})\conj{\tilde{G}}(\vetor{\x})
+    \end{equation*}
+    independe do tempo e
+    \begin{align*}
+        \tilde{f}(\vetor{\x}, t) \tilde{g}(\vetor{\x}, t) + \conj{\tilde{f}}(\vetor{\x}, t)\conj{\tilde{g}}(\vetor{\x}, t)
+        &= \tilde{F}(\vetor{\x}) \tilde{G}(\vetor{\x}) e^{-2i\omega t} + \conj{\tilde{F}}(\vetor{\x}) \conj{\tilde{G}}(\vetor{\x})e^{2i\omega t}\\
+        &= 2\Re\left(\tilde{F}(\vetor{\x})\tilde{G}(\vetor{\x})e^{-2i\omega t}\right)\\
+        &= 2\Re\left(\tilde{F}(\vetor{\x})\tilde{G}(\vetor{\x})\right)\cos(2\omega t) + 2\Im\left(\tilde{F}(\vetor{\x})\tilde{G}(\vetor{\x})\right)\sin(2\omega t).
+    \end{align*}
+    Isto é, temos \(\mean{\tilde{f} \tilde{g} + \conj{\tilde{f}}\conj{\tilde{g}}} = 0\), já que \(\mean{\cos(2\omega t)} = \mean{\sin(2\omega t)} = 0\), donde segue que
+    \begin{equation*}
+        \mean{f g} = \frac14 (\conj{\tilde{f}}\tilde{g} + \tilde{f}\conj{\tilde{g}}) = \frac12 \Re(\tilde{f}\conj{\tilde{g}}),
+    \end{equation*}
+    como desejado.
 \end{proof}
