@@ -1,5 +1,20 @@
 \begin{exercício}{Onda evanescente}{exercício05}
-    Segundo a lei de Snell, quando a luz passa de um meio oticamente denso para outro menos denso \((n_1 > n_2)\), o vetor de onda associado a onda transmitida desvia-se \emph{afastando-se} da normal. Em particular, se a luz incide no ângulo crítico
+    Segundo a lei de Snell, quando a luz passa de um meio oticamente denso para outro menos denso \((n_1 > n_2)\), o vetor de onda associado a onda transmitida desvia-se \emph{afastando-se} da normal.
+    \begin{center}
+        \begin{tikzpicture}[scale = 0.8, every node/.style={scale = 0.8}]
+            \fill[Lavender!10] (-2,-2) rectangle (0,2);
+            \fill[Pink!10] (0,-2) rectangle (2,2);
+            \draw[-stealth] (-2,0) -- (2,0) node[anchor = north east] {\(z\)};
+            \draw[-stealth] (0,-2) -- (0,2) node[anchor = north east] {\(x\)};
+            \draw[very thick, -stealth] (0,0) -- +(55:2) node[right] {\(\vetor{k}_T\)};
+            \draw[very thick, stealth-] (0,0) -- +(210:2) node[below] {\(\vetor{k}_I\)};
+            \draw (0.8,0) arc[start angle=0,end angle=55,radius=0.8] node[midway,right] {\(\theta_T\)};
+            \draw (-0.8,0) arc[start angle=180,end angle=210,radius=0.8] node[midway, left] {\(\theta_I\)};
+            \node at (-1,1) {\(\epsilon_1,\mu_1\)};
+            \node at (1,-1) {\(\epsilon_2,\mu_2\)};
+        \end{tikzpicture}
+    \end{center}
+    Em particular, se a luz incide no ângulo crítico
     \begin{equation*}
         \theta_I \to \theta_c = \arcsin\left(\frac{n_2}{n_1}\right),
     \end{equation*}
