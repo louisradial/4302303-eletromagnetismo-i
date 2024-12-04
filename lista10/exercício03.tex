@@ -1,7 +1,41 @@
-\begin{exercício}{Coeficiente de transmissão de incidência normal}{exercício03}
+\begin{lemma}{Relações de Fresnel na incidência normal}{incidência_normal}
+    As relações para a incidência normal de um meio \(A\) para um meio \(B\) são dados por
+    \begin{equation*}
+        \tilde{E}^0_T = \frac{2}{1 + \beta} \tilde{E}^0_I \quad\text{e}\quad
+        \tilde{E}^0_R = \frac{1 - \beta}{1 + \beta}\tilde{E}^0_I,
+    \end{equation*}
+    onde \(\beta = \frac{\mu_A v_A}{\mu_B v_B}\).
+\end{lemma}
+\begin{proof}
+    Para uma onda incidente segundo a direção de propagação \(\vetor{e}_3\),
+    \begin{equation*}
+        \vetor{\tilde{E}}_I = \tilde{E}^0_I e^{i(k_Iz - \omega t)} \vetor{e}_1,
+    \end{equation*}
+    temos as ondas refletida e transmitida dadas por
+    \begin{equation*}
+        \vetor{\tilde{E}}_R = \tilde{E}^0_R e^{i(k_Rz - \omega t)} \vetor{e}_1\quad\text{e}\quad
+        \vetor{\tilde{E}}_T = \tilde{E}^0_T e^{i(k_Tz - \omega t)} \vetor{e}_1.
+    \end{equation*}
+    Das condições de contorno temos
+    \begin{equation*}
+        \tilde{E}^0_I + \tilde{E}^0_R = \tilde{E}^0_T\quad\text{e}\quad\frac{1}{v_A\mu_A} (\tilde{E}^0_I - \tilde{E}^0_R) = \frac{1}{v_B\mu_B} \tilde{E}^0_T,
+    \end{equation*}
+    isto é,
+    \begin{equation*}
+        \tilde{E}^0_T - \tilde{E}^0_R = \tilde{E}^0_I\quad\text{e}\quad \beta \tilde{E}^0_T + \tilde{E}^0_R = \tilde{E}^0_I,
+    \end{equation*}
+    donde segue que
+    \begin{equation*}
+        \tilde{E}^0_T = \frac{2}{1 + \beta} \tilde{E}^0_I\quad\text{e}\quad \tilde{E}^0_R = \frac{1 - \beta}{1 + \beta} \tilde{E}^0_I,
+    \end{equation*}
+    como desejado.
+\end{proof}
+\begin{exercício}{Transmissão em cascata}{exercício03}
     Uma luz monocromática de frequência \(\omega\) passa de uma meio \(1\) para um meio \(3\), atravessando um meio \(2\) de espessura \(d\). Assumindo que os três meios são lineares, mostre que o coeficiente de transmissão para \emph{incidência normal} é dado por
     \begin{equation*}
         T^{-1} = \frac{1}{4n_1n_3} \left[(n_1 + n_3)^2 + \frac{(n_1^2 - n_2^2)(n_3^2 - n_2^2)}{n_2^2}\sin^2\left(\frac{n_2\omega d}{c}\right)\right].
     \end{equation*}
     \todo[Tomar \(\mu_1 \approx \mu\)].
 \end{exercício}
+\begin{proof}[Resolução]
+\end{proof}
