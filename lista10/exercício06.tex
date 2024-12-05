@@ -1,10 +1,78 @@
 \begin{exercício}{Onda eletromagnética plana monocromática em um condutor}{exercício06}
     Calcule a média temporal (sobre um período de oscilação) da densidade de energia de uma onda eletromagnética plana monocromática de frequência \(\omega\) em um meio condutor de permissividade elétrica \(\epsilon\), permeabilidade magnética \(\mu\) e condutividade \(\sigma\). Mostre que a contribuição magnética é sempre dominante em relação à contribuição elétrica. Em seguida, mostre que a intensidade pode ser escrita como
     \begin{equation*}
-        I = \frac{\kappa_+}{2\mu \omega} E_0^2 e^{-2 \kappa_-z},
+        I = \frac{k}{2\mu \omega} E_0^2 e^{-2 \kappa z},
     \end{equation*}
     em que
     \begin{equation*}
-        \kappa_\pm = \omega \sqrt{\frac{\epsilon \mu}{2}}\left[\sqrt{1 + \left(\frac{\sigma}{\epsilon \omega}\right)^2} \pm 1\right]^{\frac12}.
+        k = \omega \sqrt{\frac{\epsilon \mu}{2}}\left[\sqrt{1 + \left(\frac{\sigma}{\epsilon \omega}\right)^2} + 1\right]^{\frac12}\quad\text{e}\quad
+        \kappa = \omega \sqrt{\frac{\epsilon \mu}{2}}\left[\sqrt{1 + \left(\frac{\sigma}{\epsilon \omega}\right)^2} - 1\right]^{\frac12}.
     \end{equation*}
 \end{exercício}
+\begin{proof}
+    As equações de Maxwell para este meio são dadas por
+    \begin{equation*}
+        \nabla \cdot \vetor{E} = 0,\quad
+        \nabla \times \vetor{E} = -\diffp{\vetor{B}}{t},\quad
+        \nabla \cdot \vetor{B} = 0,\quad\text{e}\quad
+        \nabla \times \vetor{B} = \mu \sigma \vetor{E} + \mu \epsilon \diffp{\vetor{E}}{t},
+    \end{equation*}
+    portanto temos
+    \begin{equation*}
+        \nabla^2 \vetor{B} = \nabla ( \nabla \cdot \vetor{B}) - \nabla \times (\nabla \times \vetor{B}) = - \nabla \times \left(\mu \sigma \vetor{E} + \mu \epsilon \diffp{\vetor{E}}{t}\right) = \mu \sigma \diffp{\vetor{B}}{t} + \mu \epsilon \diffp[2]{\vetor{B}}{t}
+    \end{equation*}
+    e
+    \begin{equation*}
+        \nabla^2 \vetor{E} = \nabla ( \nabla \cdot \vetor{E}) - \nabla \times (\nabla \times \vetor{E}) = \nabla \times \diffp{\vetor{B}}{t} = \mu \sigma \diffp{\vetor{E}}{t} + \mu \epsilon \diffp[2]{\vetor{E}}{t}.
+    \end{equation*}
+    Consideremos as mesmas relações agora para os campos complexos que satisfazem \(\Re{\vetor{\tilde{E}}}= \vetor{E}\) e \(\Re{\vetor{\tilde{B}}}= \vetor{B}\), e tentemos a solução do tipo \(\vetor{\tilde{E}} = \vetor{\tilde{E}}_0e^{i(\vetor{\tilde{k}}\cdot\vetor{\x} - \omega t)}\), com \(\vetor{\tilde{E}}_0, \vetor{\tilde{k}}\) e \(\omega\) constantes, então
+    \begin{equation*}
+        \nabla \cdot \to i\vetor{\tilde{k}} \cdot,\quad
+        \nabla \times \to i \vetor{\tilde{k}} \times,\quad
+        \nabla^2 \to - \norm{\vetor{\tilde{k}}}^2,\quad
+        \diffp{}{t} \to -i\omega,\quad \text{e}\quad
+        \diffp[2]{}{t} \to -\omega^2,
+    \end{equation*}
+    obtendo \(\vetor{\tilde{B}} = \frac{1}{\omega} \vetor{\tilde{k}} \times \vetor{\tilde{E}}\) e
+    \begin{equation*}
+        \norm{\vetor{\tilde{k}}}^2 = \mu \epsilon \omega^2+i\mu \sigma \omega.
+    \end{equation*}
+    Devemos então ter que \(\norm{\vetor{\tilde{k}}} = \tilde{k}\) é uma quantidade complexa, então escrevendo \(\tilde{k} = k + i \kappa\), com \(k, \kappa \in \mathbb{R}\), temos
+    \begin{equation*}
+        k^2 + 2ik \kappa - \kappa^2 = \mu \epsilon \omega^2 + i\mu \sigma \omega \implies k^2 - \kappa^2 = \mu \epsilon \omega^2 \quad\text{e}\quad 2 k \kappa = \mu \sigma \omega,
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        k^2 - \frac{\mu^2 \sigma^2 \omega^2}{4k^2} = \mu \epsilon \omega^2 \implies k^4 - \mu \epsilon \omega^2 k^2 - \frac{\mu^2 \sigma^2 \omega^2}{4} = 0 \implies k^2 = \frac{\mu \epsilon \omega^2}{2}\left[1 + \sqrt{1 + \left(\frac{\sigma}{\epsilon \omega}\right)^2}\right]
+    \end{equation*}
+    e então
+    \begin{equation*}
+        \kappa^2 = \frac{\mu \epsilon \omega^2}{2}\left[\sqrt{1 + \left(\frac{\sigma}{\epsilon \omega}\right)^2}- 1\right].
+    \end{equation*}
+    Dessa forma, temos para \(\vetor{\tilde{k}} = \tilde{k} \vetor{e}_3\) e \(\vetor{\tilde{E}}_0 = \tilde{E}_0 \vetor{e}_1\) que
+    \begin{equation*}
+        \vetor{\tilde{E}} = \tilde{E}_0 e^{- \kappa z} e^{i(k z - \omega t)} \vetor{e}_1 \implies \vetor{\tilde{B}} = \frac{\tilde{k}\tilde{E}_0}{\omega}e^{- \kappa z} e^{i(k z - \omega t)} \vetor{e}_2,
+    \end{equation*}
+    e então
+    \begin{equation*}
+        \mean{u_E} = \frac14 \Re\left(\epsilon \vetor{\tilde{E}}\cdot \conj{\vetor{\tilde{E}}}\right) = \frac{\epsilon E_0^2 e^{-2 \kappa z}}{4}\quad\text{e}\quad
+        \mean{u_M} = \frac{1}{4\mu} \Re\left(\vetor{\tilde{B}}\cdot\conj{\vetor{\tilde{B}}}\right) = \frac{\abs{\tilde{k}}^2 E_0^2 e^{-2 \kappa z}}{4\mu\omega^2},
+    \end{equation*}
+    com
+    \begin{equation*}
+        \frac{\mean{u_M}}{\mean{u_E}} = \frac{\abs{\tilde{k}}^2}{\epsilon \mu \omega^2} = \sqrt{1 + \left(\frac{\sigma}{\epsilon \omega}\right)^2} > 1.
+    \end{equation*}
+    Assim, a média temporal da densidade de energia é
+    \begin{equation*}
+        \mean{u} = \mean{u_E} + \mean{u_M} = \left[1 + \sqrt{1 + \left(\frac{\sigma}{\epsilon \omega}\right)^2}\right] \mean{u_E} = \frac{k^2}{2 \mu \omega^2}E_0^2 e^{-2 \kappa z}.
+    \end{equation*}
+    Temos também
+    \begin{equation*}
+        \mean{\vetor{S}} = \frac{1}{2\mu} \Re\left(\vetor{\tilde{E}}\times \conj{\vetor{\tilde{B}}}\right) = \Re\left(\frac{\tilde{k} E_0^2e^{-2 \kappa z}}{2\mu \omega} \vetor{e}_3\right) = \frac{k}{2 \mu \omega}E_0^2 e^{-2 \kappa z}\vetor{e}_3,
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        I = \frac{k}{2\mu \omega} E_0^2 e^{-2 \kappa z}
+    \end{equation*}
+    é a intensidade desta onda.
+\end{proof}
