@@ -35,7 +35,63 @@
     \begin{equation*}
         T^{-1} = \frac{1}{4n_1n_3} \left[(n_1 + n_3)^2 + \frac{(n_1^2 - n_2^2)(n_3^2 - n_2^2)}{n_2^2}\sin^2\left(\frac{n_2\omega d}{c}\right)\right].
     \end{equation*}
-    \todo[Tomar \(\mu_1 \approx \mu\)].
 \end{exercício}
 \begin{proof}[Resolução]
+    Escrevamos as ondas no meio 1 como
+    \begin{equation*}
+        \vetor{\tilde{E}}^1_I = \tilde{E}^1_I e^{i(k_1z - \omega t)} \vetor{e}_1,\quad\text{e}\quad
+        \vetor{\tilde{E}}^1_R = \tilde{E}^1_R e^{i(-k_1z - \omega t)} \vetor{e}_1,
+    \end{equation*}
+    nos meios 2 como
+    \begin{equation*}
+        \vetor{\tilde{E}}^2_I = \tilde{E}^2_I e^{i(k_2z - \omega t)} \vetor{e}_1,\quad\text{e}\quad
+        \vetor{\tilde{E}}^2_R = \tilde{E}^2_R e^{i(-k_2z - \omega t)} \vetor{e}_1
+    \end{equation*}
+    e a onda transmitida no meio 3 como
+    \begin{equation*}
+        \vetor{\tilde{E}}_T = \tilde{E}^3_T e^{i(k_3z - \omega t)} \vetor{e}_1.
+    \end{equation*}
+    Como mostrado no \cref{lem:incidência_normal}, para a interface em \(z = d\) temos
+    \begin{equation*}
+        \tilde{E}_R^2 e^{-i k_2 d} = \frac{1 - \beta_{23}}{1 + \beta_{23}} \tilde{E}_I^2 e^{ik_2 d}
+        \quad\text{e}\quad
+        \tilde{E}_T^3 e^{ik_3 d} = \frac{2}{1 + \beta_{23}} \tilde{E}_I^2 e^{ik_2 d},
+    \end{equation*}
+    onde \(\beta_{23} = \frac{\mu_2 v_2}{\mu_3 v_3}\), isto é,
+    \begin{equation*}
+        \tilde{E}_I^2  = \frac{1 + \beta_{23}}{2} e^{i(k_3 - k_2) d} \tilde{E}_T^3
+        \quad\text{e}\quad
+        \tilde{E}_R^2  = \frac{1 - \beta_{23}}{2} e^{i(k_3 + k_2) d} \tilde{E}_T^3
+    \end{equation*}
+    Das condições de contorno para a interface em \(z = 0\) segue que
+    \begin{equation*}
+        \tilde{E}^1_I + \tilde{E}^1_R = \tilde{E}^2_I + \tilde{E}^2_R\quad\text{e}\quad \tilde{E}^1_I - \tilde{E}^1_R = \beta_{12} \left(\tilde{E}^2_I - \tilde{E}^2_R\right),
+    \end{equation*}
+    onde \(\beta_{12}=\frac{\mu_1v_1}{\mu_2 v_2}\). Com isso, obtemos
+    \begin{align*}
+        \tilde{E}_I^1 &= \frac{1 + \beta_{12}}{2} \tilde{E}_I^2 + \frac{1 - \beta_{12}}{2} \tilde{E}_R^2 \\
+                      &= \frac12\left[\frac{(1 + \beta_{12})(1 + \beta_{23})}{2} e^{-i k_2 d} + \frac{(1 - \beta_{12})(1 - \beta_{23})}{2}e^{ik_2d}\right]e^{ik_3 d}\tilde{E}_T^3\\
+                      &= \frac12\left[\frac{1 + \beta_{12} + \beta_{23} + \beta_{12}\beta_{23}}{2}e^{-ik_2 d} + \frac{1 - \beta_{12} - \beta_{23} + \beta_{12}\beta_{23}}{2}e^{ik_2d}\right]e^{ik_3 d}\tilde{E}_T^3\\
+                      &= \frac12\left[\left(1 + \beta_{12} \beta_{23}\right)\frac{e^{ik_2 d} + e^{-ik_2d}}{2} - i\left(\beta_{12} + \beta_{23}\right)\frac{e^{ik_2d} - e^{-ik_2d}}{2i}\right]e^{ik_3 d}\tilde{E}_T^3\\
+                      &= \frac12\left[\left(1 + \beta_{12} \beta_{23}\right)\cos(k_2 d) - i\left(\beta_{12} + \beta_{23}\right)\sin(k_2 d)\right]e^{ik_3 d}\tilde{E}_T^3,
+    \end{align*}
+    e temos
+    \begin{align*}
+        \abs*{\frac{\tilde{E}_I^1}{\tilde{E}_T^3}}
+        &= \frac14 \left[(1 + \beta_{12} \beta_{23})^2 \cos^2(k_2 d) + (\beta_{12} + \beta_{23})^2 \sin^2(k_2d)\right]\\
+        &= \frac14 \left\{(1 + \beta_{12} \beta_{23})^2 + \left[\left(\beta_{12} + \beta_{23}\right)^2 - (1 + \beta_{12} \beta_{23})^2\right]\sin^2(k_2 d)\right\}\\
+        &= \frac14 \left[(1 + \beta_{12} \beta_{23})^2 + \left(\beta_{12}^2 + \beta_{23}^2 - 1 - \beta_{12}^2 \beta_{23}^2\right)\sin^2(k_2d)\right]\\
+        &= \frac14 \left[(1 + \beta_{12} \beta_{23})^2 - (1 - \beta_{12}^2)(1 - \beta_{23}^2)\sin^2(k_2d)\right],
+    \end{align*}
+    logo, o coeficiente de transmissão é dado por
+    \begin{equation*}
+        T^{-1} = \frac{v_1 \epsilon_1 (E_I^1)^2}{v_3 \epsilon_3 (E_T^3)^2} = \frac{\mu_1v_1 \mu_3\epsilon_1}{\mu_3v_3 \mu_1\epsilon_3}\abs*{\frac{\tilde{E}_I^1}{\tilde{E}_T^3}} = \frac{\mu_3 \epsilon_1 \beta_{12} \beta_{23}}{4 \mu_1 \epsilon_3} \left[(1 + \beta_{12} \beta_{23})^2 - (1 - \beta_{12}^2)(1 - \beta_{23}^2)\sin^2(k_2d)\right].
+    \end{equation*}
+    Se \(\mu_1 \approx \mu_2 \approx \mu_3 \approx \mu_0\), temos \(\beta_{12} = \frac{n_2}{n_1}\) e \(\beta_{23} = \frac{n_3}{n_2}\), portanto
+    \begin{align*}
+        T^{-1} &\approx \frac{\mu_1 \epsilon_1 n_3}{4 \mu_3 \epsilon_3 n_1} \left[\left(1 + \frac{n_3}{n_1}\right)^2 - \left(1 - \frac{n_2^2}{n_1^2}\right)\left(1 - \frac{n_3^2}{n_2^2}\right)\sin^2\left(\frac{n_2 \omega d}{c}\right)\right]\\
+               &= \frac{v_3^2 n_3}{4v_1^2 n_1} \left[\frac{1}{n_1^2}(n_1 + n_3)^2 + \frac{1}{n_1^2n_2^2} (n_1^2 - n_2^2)(n_3^2 - n_2^2)\sin^2\left(\frac{n_2 \omega d}{c}\right)\right]\\
+               &= \frac{1}{4 n_1 n_3} \left[(n_1 + n_3)^2 + \frac{(n_1^2 - n_2^2) (n_3^2 - n_2^2)}{n_2^2} \sin^2\left(\frac{n_2 \omega d}{c}\right)\right]
+    \end{align*}
+    como desejado.
 \end{proof}
