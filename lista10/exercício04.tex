@@ -1,6 +1,140 @@
+\begin{lemma}{Consequência da independência linear de exponenciais}{exponenciais}
+    Sejam \(A, B, C, \alpha, \beta, \gamma \in \mathbb{R}\) constantes não nulas. Então se para todo \(x \in \mathbb{R}\) vale que
+    \begin{equation*}
+        A e^{i\alpha x} + B e^{i \beta x} = C e^{i \gamma x},
+    \end{equation*}
+    então \(A + B = C\) e \(\alpha = \beta = \gamma\).
+\end{lemma}
+\begin{proof}
+    Em \(x = 0\), temos \(A + B = C\). Derivando e avaliando em \(x = 0\), temos
+    \begin{equation*}
+        \alpha A + \beta B = \gamma C \quad\text{e}\quad \alpha^2A + \beta^2B = \gamma^2C.
+    \end{equation*}
+    Assim, obtemos as relações
+    \begin{equation*}
+        \alpha^2 A + \beta^2 B = \gamma^2 C = \gamma (\gamma C) = \alpha\gamma A + \beta \gamma B
+    \end{equation*}
+    e
+    \begin{equation*}
+        (A + B)(\alpha^2 A + \beta^2 B) = \gamma^2 C^2 = (\alpha A + \beta B)^2.
+    \end{equation*}
+    Desta última, temos
+    \begin{equation*}
+        \alpha^2 A^2 + (\alpha^2 + \beta^2) AB + \beta^2 B^2 = \alpha^2 A^2 + 2 \alpha \beta AB + \beta^2 B^2 \implies (\alpha - \beta)^2 AB = 0 \implies \alpha = \beta,
+    \end{equation*}
+    portanto substituindo na equação anterior obtemos
+    \begin{equation*}
+        (A + B)(\alpha \gamma A + \alpha \gamma B) = (\alpha A + \alpha B)^2 \implies \alpha \gamma = \alpha^2 \implies \alpha = \gamma,
+    \end{equation*}
+    como desejado.
+\end{proof}
+
 \begin{exercício}{Incidência oblíqua em interface de meios materiais}{exercício04}
     Em aula, resolvemos o problema de incidência \emph{oblíqua} sobre uma interface que divide dois meios materiais lineares 1 e 2 para o caso onde a polarização é \emph{paralela} ao plano de incidência. Analise agora o caso onde a polarização é \emph{perpendicular} ao plano de incidência. Obtenha as relações de Fresnel para as amplitudes \(\tilde{E}_R^0\) e \(\tilde{E}_T^0\). Esboce gráficos das quantidades \(\tilde{E}_R^0/\tilde{E}_I^0\) e \(\tilde{E}_T^0/\tilde{E}_I^0\) em função do ângulo  de incidência \(\theta_I\) para o caso particular \(\beta = n_2/n_1 = \frac32\). Mostre que a menos que \(n_2 = n_1\) e \(\mu_2 = \mu_1\) (o que significa que os meios são indistinguíveis), não existe um ângulo de Brewster para o caso da polarização perpendicular. Por fim, calcule os coeficientes de transmissão e reflexão e verifique que \(T + R = 1\).
 \end{exercício}
 \begin{proof}[Resolução]
+    Consideramos as ondas de incidência, de reflexão, e de transmissão dadas por
+    \begin{align*}
+        \vetor{\tilde{E}}_I &= \vetor{\tilde{E}}_I^0 e^{i(\vetor{k}_I\cdot \vetor{\x} - \omega t)}&
+        \vetor{\tilde{E}}_R &= \vetor{\tilde{E}}_R^0 e^{i(\vetor{k}_R\cdot \vetor{\x} - \omega t)}&
+        \vetor{\tilde{E}}_T &= \vetor{\tilde{E}}_T^0 e^{i(\vetor{k}_T\cdot \vetor{\x} - \omega t)}\\
+        \vetor{\tilde{B}}_I &= \frac{1}{\omega}\vetor{k}_I\times \vetor{\tilde{E}}_I^0 e^{i(\vetor{k}_I \cdot \vetor{\x} - \omega t)}&
+        \vetor{\tilde{B}}_R &= \frac{1}{\omega}\vetor{k}_R\times \vetor{\tilde{E}}_R^0 e^{i(\vetor{k}_R \cdot \vetor{\x} - \omega t)}&
+        \vetor{\tilde{B}}_T &= \frac{1}{\omega}\vetor{k}_T\times \vetor{\tilde{E}}_T^0 e^{i(\vetor{k}_T \cdot \vetor{\x} - \omega t)}
+    \end{align*}
+    sujeitas as condições de contorno na interface em \(z = 0\)
+    \begin{equation*}
+        \inner{\epsilon_2 \tilde{\vetor{E}}_T - \epsilon_1 \tilde{\vetor{E}}_1}{\vetor{n}} = 0,
+        \quad
+        \left(\vetor{\tilde{E}}_2 - \vetor{\tilde{E}}_1\right)\times \vetor{n}  = 0,
+        \quad
+        \inner{\vetor{\tilde{B}}_2 - \vetor{\tilde{B}}_1}{\vetor{n}} = 0\quad\text{e}\quad
+        \left(\frac{1}{\mu_2}\vetor{\tilde{B}}_2 - \frac{1}{\mu_1}\vetor{\tilde{B}}_1\right)\times \vetor{n}  = 0,
+    \end{equation*}
+    onde \(\vetor{\tilde{E}}_1 = \vetor{\tilde{E}}_I + \vetor{\tilde{E}}_R\), \(\vetor{\tilde{E}}_2 = \vetor{\tilde{E}}_T\), e analogamente para o campo magnético. Para uma dada condição de contorno, teremos expressões semelhantes à expressão de hipótese do \cref{lem:exponenciais}, portanto podemos aplicá-lo. Dessa forma, na interseção da interface com o plano \(x = 0\) obtemos \(\inner{\vetor{e}_2}{\vetor{k}_I} = \inner{\vetor{e}_2}{\vetor{k}_R} = \inner{\vetor{e}_2}{\vetor{k}_T}\) e com o plano \(y = 0\) obtemos \(\inner{\vetor{e}_1}{\vetor{k}_I} = \inner{\vetor{e}_1}{\vetor{k}_R} = \inner{\vetor{e}_1}{\vetor{k}_T}\). Com uma rotação em torno do eixo \(\vetor{e}_3\), definido pela normal à interface, podemos orientar os eixos de forma que \(\inner{\vetor{e}_2}{\vetor{k}_I} = 0\), donde segue que todos os vetores de onda estão contidos no plano gerado por \(\vetor{e}_3\) e \(\vetor{e}_1\), o qual doravante nos referimos por plano de incidência. Como as ondas têm a mesma frequência, temos \(\norm{\vetor{k}_I} v_1 = \norm{\vetor{k}_R} v_1 = \norm{\vetor{k}_T} v_2 = \omega\), donde segue que \(\norm{\vetor{k}_I} = \norm{\vetor{k}_R}\) e \(\norm{\vetor{k}_T} = \frac{n_2}{n_1} \norm{\vetor{k}_I}\). Sendo \(\theta_I \in [0, \frac{\pi}{2})\) o ângulo definido por \(\vetor{k}_I\) e \(\vetor{e}_3\), temos então
+    \begin{equation*}
+        \inner{\vetor{e}_1}{\vetor{k}_I} = \inner{\vetor{e}_1}{\vetor{k}_R} = \inner{\vetor{e}_1}{\vetor{k}_T} \implies \norm{\vetor{k}_I}\sin\theta_I = \norm{\vetor{k}_R} \sin\theta_R = \norm{\vetor{k}_T}  \sin\theta_T,
+    \end{equation*}
+    onde definimos os ângulos \(\theta_R, \theta_T \in [0,\frac{\pi}{2})\) analogamente. Desse modo, segue que \(\theta_R = \theta_I\) e \(n_1 \sin\theta_I = n_2 \sin\theta_T\).
 
+    Consideramos agora o caso de incidência com polarização perpendicular ao plano de incidência, isto é, assumimos que \(\vetor{\tilde{E}}_I^0 = \tilde{E}_I^0 \vetor{e}_2\). Dessa forma, os campos elétricos são paralelos ao plano da interface e temos \(\vetor{\tilde{E}}_2 = \vetor{\tilde{E}}_1\), portanto temos
+    \begin{equation*}
+        \tilde{E}_I^0 = \tilde{E}_R^0 + \tilde{E}_T^0,
+    \end{equation*}
+    onde consideramos que \(\vetor{\tilde{E}}_R^0 = - \tilde{E}_R^0 \vetor{e}_2\) e \(\vetor{\tilde{E}}_T^0 = \tilde{E}_T^0 \vetor{e}_2\). Com essa escolha, temos
+    \begin{equation*}
+        \vetor{\tilde{B}}_I = \frac{\tilde{E}_I^0e^{i(\vetor{k}_I\cdot\vetor{\x} - \omega t)}}{v_1} (-\cos\theta_I \vetor{e}_1 + \sin\theta_I \vetor{e}_3)
+    \end{equation*}
+    para o campo magnético da onda incidente,
+    \begin{equation*}
+        \vetor{\tilde{B}}_R = -\frac{\tilde{E}_R^0e^{i(\vetor{k}_R\cdot\vetor{\x} - \omega t)}}{v_1} (\cos\theta_I \vetor{e}_1 + \sin\theta_I \vetor{e}_3)
+    \end{equation*}
+    para o campo magnético da onda refletida, e
+    \begin{equation*}
+        \vetor{\tilde{B}}_T = \frac{\tilde{E}_T^0e^{i(\vetor{k}_T\cdot\vetor{\x} - \omega t)}}{v_2} (-\cos\theta_T \vetor{e}_1 + \sin\theta_T \vetor{e}_3)
+    \end{equation*}
+    para o campo magnético da onda transmitida. Como \(\frac1{\mu_2}\vetor{\tilde{B}}_2\times \vetor{e}_3 = \frac1{\mu_1}\vetor{\tilde{B}}_1\times \vetor{e}_3\), segue que
+    \begin{equation*}
+        \frac{\tilde{E}_I^0 + \tilde{E}_R^0}{\mu_1 v_1} \cos\theta_I = \frac{\tilde{E}_T^0}{\mu_2 v_2} \cos\theta_T \implies \tilde{E}_I^0 = - \tilde{E}_R^0 + \alpha \beta \tilde{E}_T^0,
+    \end{equation*}
+    onde \(\alpha = \frac{\cos\theta_T}{\cos\theta_I}\) e \(\beta = \frac{\mu_1 v_1}{\mu_2 v_2}\). Assim, temos
+    \begin{equation*}
+        \tilde{E}_T^0 = \frac{2}{1 + \alpha \beta} \tilde{E}_I^0\quad\text{e}\quad \tilde{E}_R^0 = \frac{\alpha \beta - 1}{1 + \alpha \beta} \tilde{E}_I^0
+    \end{equation*}
+    como as relações de Fresnel.
+
+    \begin{figure}[!ht]
+         \centering
+        \begin{tikzpicture}
+            \def\b{3/2};
+            \def\n{3/2}
+            \begin{axis}[
+                width=0.95\linewidth,
+                height=0.20\textheight,
+                xmin=0, xmax={5 * pi/8},
+                ymin=0,ymax=1.12,
+                domain=0:{pi/2},
+                samples=450,
+                axis lines=middle,
+                xlabel={\(\theta_I\)},
+                xlabel style = {anchor=north east},
+                % ylabel near ticks,
+                ylabel={},
+                legend pos=south east,
+                ytick={0,1/4, 1/2, 3/4, 1},
+                xtick={0, pi/8, pi/4, 3*pi/8, pi/2},
+                smooth,
+                grid,
+                xticklabels={0, \(\frac{\pi}{8}\), \(\frac{\pi}{4}\), \(\frac{3\pi}{8}\), \(\frac{\pi}{2}\)},
+                yticklabels={0, \(\frac{1}{4}\), \(\frac12\), \(\frac34\), 1},
+                ]
+                \addplot[thick, Mauve] {2/(1 + \b*(sqrt(1 - \n^2 * (sin(deg(x))^2))/cos(deg(x))))};
+                \addlegendentry{\(\tilde{E}^0_R/\tilde{E}_I^0\)};
+                \addplot[thick, Pink] {(-1 + \b*(sqrt(1 - \n^2 * (sin(deg(x))^2))/cos(deg(x))))/(1 + \b*(sqrt(1 - \n^2 * (sin(deg(x))^2))/cos(deg(x))))};
+                \addlegendentry{\(\tilde{E}^0_T/\tilde{E}_I^0\)};
+                % \addplot[Pink, dotted] {1};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Coeficientes das relações de Fresnel em função do ângulo de incidência com \(\beta = \frac{n_2}{n_1} = \frac32\).}
+    \end{figure}
+
+    Notemos que se \(\alpha \beta = 1\), não há onda refletida, o que ocorre no caso de polarização paralela ao plano de incidência quando o ângulo de incidência é igual ao ângulo de Brewster. Verifiquemos as condições para que não haja onda refletida no caso de polarização que estamos considerando. Claramente quando \(n_1 = n_2\) e \(\mu_1 = \mu_2\), temos \(\alpha \beta = 1\), mas esta situação descreve que os meios 1 e 2 são indistinguíveis, portanto precisamos determinar se há outra solução. Para que não haja reflexão, devemos ter
+    \begin{equation*}
+        \alpha \beta = 1 \implies \mu_1 n_2 \cos\theta_T = \mu_2 n_1 \cos\theta_I \implies \mu_1^2 n_2^2 \left[1 - \left(\frac{n_1}{n_2}\right)^2 \sin^2\theta_I\right] = \mu_2^2 n_1^2 \left(1 - \sin^2 \theta_I\right)
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \left(\mu_2^2 - \mu_1^2\right)\sin^2\theta_I = \mu_2^2 - \left(\frac{n_2}{n_1}\right)^2\mu_1^2.
+    \end{equation*}
+    Vemos que se \(\mu_1 = \mu_2\) devemos ter \(n_1 = n_2\), portanto os meios são indistinguíveis. \todo
+
+    Calculemos agora os coeficientes de reflexão e transmissão. Temos
+    \begin{equation*}
+        R = \frac{\frac12 \epsilon_1 v_1 (E_R^0)^2}{\frac12 \epsilon_1 v_1 (E_I^0)^2} = \abs*{\frac{\tilde{E}_R^0}{\tilde{E}_I^0}}^2 = \frac{(\alpha \beta - 1)^2}{(1 + \alpha\beta)^2} = \frac{1 + \alpha^2\beta^2 - 2 \alpha \beta}{1 + \alpha^2\beta^2 + 2 \alpha \beta} = 1 -  \frac{4 \alpha \beta}{(1 + \alpha \beta)^2}
+    \end{equation*}
+    e
+    \begin{equation*}
+        T = \frac{\frac12 \epsilon_2 v_2 (E_T^0)^2 \cos\theta_T}{\frac12 \epsilon_1 v_1 (E_I^0)^2\cos\theta_I} = \frac{\epsilon_2 \mu_1 \mu_2 v_2}{\epsilon_1 v_1 \mu_1 \mu_2}\alpha\abs*{\frac{\tilde{E}_T^0}{\tilde{E}_I^0}}^2 = \frac{\mu_1 v_1}{v_2 \mu_2} \alpha \frac{4}{(1 + \alpha \beta)^2} = \frac{4 \alpha \beta}{(1 + \alpha \beta)^2},
+    \end{equation*}
+    portanto satisfazem \(T + R = 1\).
 \end{proof}
