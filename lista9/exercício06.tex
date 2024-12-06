@@ -74,15 +74,15 @@
     \end{equation*}
     Sem correntes livres em \(\Omega\), o campo \(\vetor{H}\) é dado por
     \begin{equation*}
-        \nabla \times \vetor{H} = \diffp{\vetor{D}}{t} = \diff{\sigma_l}{t}\vetor{e}_z = \frac{\epsilon}{\epsilon_0}\diff{\sigma}{t}\vetor{e}_z =  \frac{\epsilon I}{\epsilon_0 \pi a^2} \vetor{e}_z
+        \nabla \times \vetor{H} = \diffp{\vetor{D}}{t} = \diff{\sigma_l}{t}\vetor{e}_z = \frac{I}{\pi a^2} \vetor{e}_z
         \quad\text{e}\quad
         \nabla \cdot \vetor{H} = \frac{1}{\mu} \nabla \cdot \vetor{B} = 0,
     \end{equation*}
     portanto
     \begin{equation*}
-        \vetor{H} = \frac{\epsilon I s}{2 \epsilon_0\pi a^2}\vetor{e}_\varphi
+        \vetor{H} = \frac{I s}{2 \pi a^2}\vetor{e}_\varphi
     \end{equation*}
-    e temos \(\vetor{B} = \frac{\epsilon \mu I s}{2 \epsilon_0\pi a^2}\vetor{e}_\varphi\) e \(\vetor{M} = \frac{\epsilon \chi_m I s}{2 \epsilon_0 \pi a^2}\vetor{e}_\varphi\). Alternativamente, notemos que
+    e temos \(\vetor{B} = \frac{\mu I s}{2 \pi a^2}\vetor{e}_\varphi\) e \(\vetor{M} = \frac{\chi_m I s}{2 \pi a^2}\vetor{e}_\varphi\). Alternativamente, notemos que
     \begin{equation*}
         \vetor{J}_M = \nabla \times \vetor{M} = \chi_m \nabla \times \vetor{H} = \frac{\chi_m}{\mu} \nabla \times \vetor{B}
         \quad\text{e}\quad
@@ -90,52 +90,52 @@
     \end{equation*}
     portanto
     \begin{equation*}
-        \nabla \times \vetor{B} = \frac{\chi_m\mu_0}{\mu}\vetor \nabla\times \vetor{B} + \mu_0\chi_e \epsilon_0 \diffp{\vetor{E}}{t} + \mu_0 \epsilon_0 \diffp{\vetor{E}}{t} \implies  \nabla \times \vetor{B} = \mu \epsilon \diffp{\vetor{E}}{t} = \frac{\mu \epsilon}{\epsilon_0} \diff{\sigma}{t}\vetor{e}_z = \frac{\mu \epsilon I}{\epsilon_0 \pi a^2}\vetor{e}_z
+        \nabla \times \vetor{B} = \frac{\chi_m\mu_0}{\mu}\vetor \nabla\times \vetor{B} + \mu_0\chi_e \epsilon_0 \diffp{\vetor{E}}{t} + \mu_0 \epsilon_0 \diffp{\vetor{E}}{t} \implies  \nabla \times \vetor{B} = \mu \diffp{\vetor{D}}{t} = \mu \diff{\sigma_l}{t}\vetor{e}_z = \frac{\mu I}{\pi a^2}\vetor{e}_z
     \end{equation*}
     e temos
     \begin{equation*}
-        \vetor{B} = \frac{\mu \epsilon I s}{2 \epsilon_0 \pi a^2} \vetor{e}_\varphi,
+        \vetor{B} = \frac{\mu I s}{2 \pi a^2} \vetor{e}_\varphi,
     \end{equation*}
     como antes.
 
     Como o campo magnético encontrado é estático, os campos encontrados são a solução quasi-estacionária para este sistema. Desse modo, as correntes encontradas em \(\Omega\) são dadas por
     \begin{equation*}
-        \vetor{J}_M = \frac{\chi_m \epsilon I}{\epsilon_0 \pi a^2}\vetor{e}_z\quad\text{e}\quad
-        \vetor{J}_P = \frac{\chi_e I}{\pi a^2}\vetor{e}_z \implies \vetor{J} = \frac{(\chi_m \epsilon + \chi_e \epsilon_0)I}{\epsilon_0 \pi a^2}\vetor{e}_z = \frac{(\chi_m + \chi_e + \chi_m \chi_e)I}{\pi a^2}\vetor{e}_z
+        \vetor{J}_M = \frac{\chi_m I}{\pi a^2}\vetor{e}_z\quad\text{e}\quad
+        \vetor{J}_P = \frac{\chi_e \epsilon_0 I}{\epsilon\pi a^2}\vetor{e}_z \implies \vetor{J} = \frac{(\chi_m \epsilon + \chi_e \epsilon_0)I}{\epsilon \pi a^2}\vetor{e}_z% = \frac{(\chi_m + \chi_e + \chi_m \chi_e)I}{\pi a^2}\vetor{e}_z
     \end{equation*}
     e as densidades superficiais de carga nas placas por
     \begin{equation*}
-        \sigma_l(t) = \frac{\epsilon}{\epsilon_0} \sigma(t) = \frac{\epsilon It}{\epsilon_0 \pi a^2},\quad
-        \sigma_p(t) = - \chi_e \sigma(t) = -\frac{\chi_e It}{\pi a^2},\quad\text{e}\quad
-        \sigma(t) = \frac{It}{\pi a^2},
+        \sigma_l(t) = \frac{It}{\pi a^2},\quad
+        \sigma_p(t) = - \chi_e \sigma(t) = -\frac{\chi_e \epsilon_0It}{\epsilon\pi a^2},\quad\text{e}\quad
+        \sigma(t) = \frac{\epsilon_0It}{\epsilon\pi a^2},
     \end{equation*}
     assumindo que as placas estejam descarregadas em \(t = 0\).
 
     Em \(\Omega,\) o vetor de Poynting é dado por
     \begin{equation*}
-        \vetor{S} = \frac1{\mu_0}\vetor{E}\times \vetor{B} = -\frac{\mu \epsilon I^2t s}{2\mu_0 \epsilon_0^2 \pi^2 a^4 }\vetor{e}_s
+        \vetor{S} = \frac1{\mu_0}\vetor{E}\times \vetor{B} = -\frac{\mu I^2t s}{2\mu_0 \epsilon \pi^2 a^4 }\vetor{e}_s
         \quad\text{e}\quad
-        \vetor{\tilde{S}} = \vetor{E}\times \vetor{H} = -\frac{\epsilon I^2t s}{2\epsilon_0^2 \pi^2 a^4 }\vetor{e}_s,
+        \vetor{\tilde{S}} = \vetor{E}\times \vetor{H} = -\frac{I^2t s}{2\epsilon \pi^2 a^4 }\vetor{e}_s,
     \end{equation*}
     e a densidade de energia armazenada nos campos por
     \begin{equation*}
-    u_\mathrm{EM} = \frac{\frac1{\mu_0} \norm{\vetor{B}}^2 + \epsilon_0 \norm{\vetor{E}}^2}{2} = \frac{\mu^2 \epsilon^2 I^2 s^2}{8 \mu_0 \epsilon_0^2 \pi^2 a^4} + \frac{I^2 t^2}{2\epsilon_0 \pi^2 a^4}
+    u_\mathrm{EM} = \frac{\frac1{\mu_0} \norm{\vetor{B}}^2 + \epsilon_0 \norm{\vetor{E}}^2}{2} = \frac{\mu^2  I^2 s^2}{8 \mu_0  \pi^2 a^4} + \frac{\epsilon_0 I^2 t^2}{2\epsilon^2 \pi^2 a^4}
         \quad\text{e}\quad
-        \tilde{u}_\mathrm{EM} = \frac{\inner{\vetor{H}}{\vetor{B}} + \inner{\vetor{D}}{\vetor{E}} }{2} = \frac{\mu \epsilon^2 I^2 s^2}{8 \epsilon_0^2 \pi^2 a^4}+\frac{\epsilon I^2 t^2}{2 \epsilon_0^2\pi^2a^4}.
+        \tilde{u}_\mathrm{EM} = \frac{\inner{\vetor{H}}{\vetor{B}} + \inner{\vetor{D}}{\vetor{E}} }{2} = \frac{\mu  I^2 s^2}{8  \pi^2 a^4}+\frac{I^2 t^2}{2 \epsilon\pi^2a^4}.
     \end{equation*}
     Assim, temos
     \begin{equation*}
-        \nabla\cdot \vetor{S} = -\frac{\mu \epsilon I^2 t}{\mu_0 \epsilon_0^2 \pi^2 a^4}\quad\text{e}\quad
-        \nabla\cdot \vetor{\tilde{S}} = -\frac{\epsilon I^2 t}{\epsilon_0^2 \pi^2 a^4},
+        \nabla\cdot \vetor{S} = -\frac{\mu I^2 t}{\mu_0 \epsilon \pi^2 a^4}\quad\text{e}\quad
+        \nabla\cdot \vetor{\tilde{S}} = -\frac{I^2 t}{\epsilon \pi^2 a^4},
     \end{equation*}
     \begin{equation*}
-        \diffp{u_\mathrm{EM}}{t} = \frac{I^2 t}{\epsilon_0 \pi^2 a^4}
+        \diffp{u_\mathrm{EM}}{t} = \frac{\epsilon_0I^2 t}{\epsilon^2 \pi^2 a^4}
         \quad\text{e}\quad
-        \diffp{\tilde{u}_\mathrm{EM}}{t} = \frac{\epsilon I^2 t}{\epsilon_0^2 \pi^2 a^4},
+        \diffp{\tilde{u}_\mathrm{EM}}{t} = \frac{I^2 t}{\epsilon \pi^2 a^4},
     \end{equation*}
     e
     \begin{equation*}
-        \inner{\vetor{J}}{\vetor{E}} = \frac{(\chi_m + \chi_e + \chi_m \chi_e)I^2t}{\epsilon_0 \pi^2 a^4}
+        \inner{\vetor{J}}{\vetor{E}} = \frac{\epsilon_0(\chi_m + \chi_e + \chi_m \chi_e)I^2t}{\epsilon^2 \pi^2 a^4}
         \quad\text{e}\quad
         \inner{\vetor{J}_l}{\vetor{E}} = 0,
     \end{equation*}
@@ -145,8 +145,8 @@
     \end{equation*}
     Por fim
     \begin{equation*}
-        \Phi_S = \int_{\partial\Omega} \dln2\x \inner{\vetor{S}}{\vetor{n}} = -\frac{\mu \epsilon I^2 t h}{\mu_0 \epsilon_0^2 \pi a^2}\quad\text{e}\quad
-        \Phi_{\tilde{S}} = \int_{\partial \Omega} \dln2\x \inner{\vetor{\tilde{S}}}{\vetor{n}} = - \frac{\epsilon I^2 t h}{\epsilon_0^2 \pi a^2}
+        \Phi_S = \int_{\partial\Omega} \dln2\x \inner{\vetor{S}}{\vetor{n}} = -\frac{\mu I^2 t h}{\mu_0 \epsilon \pi a^2}\quad\text{e}\quad
+        \Phi_{\tilde{S}} = \int_{\partial \Omega} \dln2\x \inner{\vetor{\tilde{S}}}{\vetor{n}} = - \frac{I^2 t h}{\epsilon \pi a^2}
     \end{equation*}
     é o fluxo do vetor de Poynting sobre \(\partial \Omega\).
 \end{proof}
