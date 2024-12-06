@@ -10,5 +10,107 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+    Das relações constitutivas temos
+    \begin{equation*}
+        \vetor{D} = \epsilon_0 \vetor{E} + \vetor{P} \implies \nabla\cdot \vetor{E} = -\nabla\cdot \vetor{P} = 0 \quad\text{e}\quad \nabla \times \vetor{E} = - \epsilon_0 \diffp{\vetor{B}}{t} = 0
+    \end{equation*}
+    e
+    \begin{equation*}
+        \vetor{H} = \frac1{\mu_0}\vetor{B} - \vetor{M} \implies \nabla\cdot \vetor{H} = -\nabla\cdot \vetor{M} = 0 \quad\text{e}\quad \nabla \times \vetor{H} = \diffp{\vetor{D}}{t} = 0
+    \end{equation*}
+    onde assumimos um regime estático e ausência de cargas livres. Seja \(\Omega = \setc{\vetor{\x} \in \mathbb{R}^3}{\norm{\vetor{\x}}< R}\) o aberto no interior da esfera e \(\Sigma = \setc{\vetor{\x} \in \mathbb{R}^3}{\norm{\vetor{\x}}> R}\) o aberto exterior à esfera, então como ambos são simplesmente conexos, existem potenciais escalares \(\phi_E, \phi_M\) tais que em \(\Omega\cup \Sigma\) temos \(\vetor{E} = - \nabla \phi_E\) e \(\vetor{H} = - \nabla \phi_M\) com \(\nabla\).
 
+    Orientemos o eixo \(\vetor{e}_z\) de forma que \(\vetor{P} = P \vetor{e}_z\), então pela simetria azimutal temos
+    \begin{equation*}
+        \phi_E(r, \theta) = \begin{cases}
+            \sum_{\ell = 0}^\infty \frac{A_\ell}{r^{\ell + 1}} P_\ell(\cos\theta),&\text{se }r > R\\
+            \sum_{\ell = 0}^\infty B_\ell r^\ell P_\ell (\cos\theta),&\text{se }r \leq R
+        \end{cases},
+    \end{equation*}
+    onde utilizamos que o potencial deve ser limitado tanto na origem quanto no infinito. Assim, da condição de contorno de continuidade, obtemos
+    \begin{equation*}
+        A_\ell = B_\ell R^{2\ell + 1},
+    \end{equation*}
+    e pela distribuição de cargas de polarização na superfície, temos
+    \begin{equation*}
+        \frac{\sigma_p}{\epsilon_0} = \frac{P \cos\theta}{\epsilon_0} = - \diffp{\Phi_E}{r}[r= R^+] + \diffp{\Phi_E}{r}[r = R^-] \implies (\ell + 1) A_\ell r^{- \ell - 2} + \ell B_\ell R^{\ell - 1} = \frac{P}{\epsilon_0} \delta_{\ell 1},
+    \end{equation*}
+    portanto \( B_{\ell} = \frac{P}{3\epsilon_0} \delta_{\ell 1} \). Assim, segue que
+    \begin{equation*}
+        \phi_E(r, \theta) = \begin{cases}
+            \frac{P R^3 \cos\theta}{3\epsilon_0 r^2},&\text{se }r > R\\
+            \frac{P r \cos\theta}{3\epsilon_0},&\text{se }r \leq R
+        \end{cases},
+    \end{equation*}
+    ou então
+    \begin{equation*}
+        \phi_E(\vetor{\x}) = \begin{cases}
+            \frac{R^3\inner{\vetor{P}}{\vetor{\x}}}{3 \epsilon_0 \norm{\vetor{\x}}^3},&\text{se } \vetor{\x} \in \bar{\Sigma}\\
+            \frac{\inner{\vetor{P}}{\vetor{\x}}}{3 \epsilon_0},&\text{se } \vetor{\x} \in \Omega
+        \end{cases}
+    \end{equation*}
+    e obtemos
+    \begin{equation*}
+        \vetor{E}(\vetor{\x}) = \begin{cases}
+            \frac{R^3\inner{\vetor{P}}{\vetor{\x}}\vetor{\x}}{\epsilon_0 \norm{\vetor{\x}}^5} - \frac{R^3\vetor{P}}{3 \epsilon_0 \norm{\vetor{\x}}^3},&\text{se }\vetor{\x} \in \Sigma\\
+            -\frac{\vetor{P}}{3 \epsilon_0},&\text{se } \vetor{\x} \in \Omega
+        \end{cases}.
+    \end{equation*}
+
+    Orientemos agora o eixo \(\vetor{e}_z\) de modo que \(\vetor{M} = M \vetor{e}_z\), então pela simetria azimutal temos
+    \begin{equation*}
+        \phi_M(r, \theta) = \begin{cases}
+            \sum_{\ell = 0}^\infty \frac{\tilde{A}_\ell R^{2\ell + 1}}{r^{\ell + 1}} P_\ell(\cos\theta),&\text{se }r > R\\
+            \sum_{\ell = 0}^\infty \tilde{A}_\ell r^\ell P_\ell (\cos\theta),&\text{se }r \leq R
+        \end{cases},
+    \end{equation*}
+    onde já utilizamos a continuidade do potencial. Temos
+    \begin{equation*}
+        -\diffp{\phi_M}{r}[r=R^+] - \diffp{\phi_M}{r}[r = R^{-}] = M\cos\theta,
+    \end{equation*}
+    portanto concluímos por analogia que
+    \begin{equation*}
+        \vetor{H}(\vetor{\x}) = \begin{cases}
+            \frac{R^3\inner{\vetor{M}}{\vetor{\x}}\vetor{\x}}{\norm{\vetor{\x}}^5} - \frac{R^3\vetor{M}}{3 \norm{\vetor{\x}}^3},&\text{se }\vetor{\x} \in \Sigma\\
+            - \frac{\vetor{M}}{3},&\text{se }\vetor{\x} \in \Omega.
+        \end{cases}
+    \end{equation*}
+    Assim, o campo magnético é dado por
+    \begin{equation*}
+        \vetor{B}(\vetor{\x}) = \begin{cases}
+            \frac{R^3\mu_0\inner{\vetor{M}}{\vetor{\x}}\vetor{\x}}{\norm{\vetor{\x}}^5} - \frac{R^3\mu_0\vetor{M}}{3 \norm{\vetor{\x}}^3},&\text{se }\vetor{\x} \in \Sigma\\
+            \frac{2\mu_0\vetor{M}}{3},&\text{se }\vetor{\x} \in \Omega.
+        \end{cases}
+    \end{equation*}
+
+    Neste regime, o vetor de Poynting é, portanto,
+    \begin{equation*}
+        \vetor{S} = \begin{cases}
+            -\frac{R^6\inner{\vetor{P}}{\vetor{\x}}(\vetor{\x}\times\vetor{M})}{3 \epsilon_0\norm{\vetor{\x}}^8} - \frac{R^6\inner{\vetor{M}}{\vetor{\x}}(\vetor{P}\times \vetor{\x})}{3 \epsilon_0 \norm{\vetor{\x}}^8} + \frac{R^6 \vetor{P}\times\vetor{M}}{9 \epsilon_0 \norm{\vetor{\x}}^6},&\text{se }\vetor{\x} \in \Sigma\\
+            -\frac{2 \vetor{P}\times\vetor{M}}{9 \epsilon_0},&\text{se }\vetor{\x} \in \Omega
+        \end{cases}.
+    \end{equation*}
+    Assim, o momento linear armazenado no campo eletromagnético dentro da esfera é dado por
+    \begin{equation*}
+        \vetor{p}_\mathrm{EM}^{\Omega} = \epsilon_0 \mu_0 \int_{\Omega} \dln3\x \vetor{S}(\vetor{\x}) = \frac{8\mu_0 \pi R^3}{27}\vetor{M}\times\vetor{P}.
+    \end{equation*}
+    Notemos que
+    \begin{align*}
+        \inner{\vetor{P}}{\vetor{\x}}(\vetor{M}\times\vetor{\x}) - \inner{\vetor{M}}{\vetor{\x}}(\vetor{P}\times\vetor{\x})
+        &= \left(\inner{\vetor{P}}{\vetor{\x}}\vetor{M} - \inner{\vetor{M}}{\vetor{\x}}\vetor{P}\right)\times\vetor{\x}\\
+        &= \left[\vetor{\x} \times (\vetor{M}\times \vetor{P})\right]\times \vetor{\x}\\
+        &= \norm{\vetor{\x}}^2 (\vetor{M}\times \vetor{P}) - \inner{\vetor{\x}}{\vetor{M}\times\vetor{P}}\vetor{\x},
+    \end{align*}
+    portanto temos
+    \begin{equation*}
+        \vetor{S}(\vetor{\x}) = \frac{R^6}{3 \epsilon_0 \norm{\vetor{\x}}^6}\left[\frac43\vetor{M}\times\vetor{P} - \inner*{\frac{\vetor{\x}}{\norm{\vetor{\x}}}}{\vetor{M}\times \vetor{P}}\frac{\vetor{\x}}{\norm{\vetor{\x}}}\right]
+    \end{equation*}
+    para todo \(\vetor{\x} \in \Sigma\). Assim, orientando o eixo \(\vetor{e}_z\) de modo que \(\vetor{M} \times \vetor{P} = \norm{\vetor{M} \times \vetor{P}}\vetor{e}_z\), temos
+    \begin{align*}
+        \vetor{p}_{\mathrm{EM}}^\Sigma &= \frac{\norm{\vetor{M \times \vetor{P}}}\mu_0 R^6}{3} \int_R^\infty \dli{r} \int_0^{\pi} r\dli{\theta} \int_0^{2\pi}r\sin\theta\dli{\varphi} r^{-6}\left[\frac43\vetor{e}_z - \cos\theta \vetor{e}_r\right]\\
+                                       &= \frac{2\pi \mu_0 R^6}{3}\int_R^\infty\dli{r} \int_0^\pi \dli{\theta}r^{-4} \sin\theta\left(\frac{4}{3} - \cos^2\theta\right)(\vetor{M}\times \vetor{P})\\
+                                       &= \frac{2\pi \mu_0 R^3}{9} \int_{-1}^1\dli{u} \left(\frac{4}{3} - u^2\right)(\vetor{M}\times \vetor{P})\\
+                                       &= \frac{4\pi\mu_0 R^3}{9}(\vetor{M} \times \vetor{P}),
+    \end{align*}
+    portanto \(\vetor{p}_\mathrm{EM} = \vetor{p}_\mathrm{EM}^\Omega + \vetor{p}_\mathrm{EM}^\Sigma = \frac{20\pi \mu_0 R^3}{27}\vetor{M}\times\vetor{P}\) é o momento linear armazenado no campo eletromagnético em todo o espaço.
 \end{proof}
