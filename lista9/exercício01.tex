@@ -1,4 +1,4 @@
-\begin{exercício}{}{exercício1}
+\begin{exercício}{Esfera acoplada em placas paralelas separadas por material ôhmico}{exercício1}
     Duas placas metálicas paralelas estão distantes de uma quantidade \(d\) em uma configuração onde, entre elas, há um material de condutividade \(\sigma\). Uma das placas é mantida a um potencial \(\phi_0 > 0\), enquanto que a outra encontra-se aterrada. Adicionalmente, uma pequena esfera metálica de raio \(a\ll d\) é cortada ao meio e acoplada -- com contato elétrico -- na placa aterrada, como mostra a figura abaixo.
     \begin{center}
         \begin{tikzpicture}
@@ -8,8 +8,8 @@
             \filldraw[fill=Sky!5, very thick] (3.5,0) arc[start angle=0, end angle=180, radius=1];
             \draw[thick] (2.5,0) -- ++(45:1);
             \node at (.5,2) {\( \sigma \)};
-            \node[right] at (5,3) {\( \varphi = \varphi_0 \)};
-            \node[right] at (5,0) {\( \varphi = 0 \)};
+            \node[right] at (5,3) {\( \phi = \phi_0 \)};
+            \node[right] at (5,0) {\( \phi = 0 \)};
             \node[above left] at (3,0.3) {\( a \)};
             \draw[<->] (-0.3,0) -- (-0.3,3) node[midway,left] {\( d \)};
         \end{tikzpicture}
@@ -17,5 +17,31 @@
     Considerando que a condutividade do material é pequena o suficiente para que a Lei de Ohm seja válida e desprezando-se quaisquer efeitos de borda nas laterais, obtenha a corrente elétrica que atravessa (apenas) a superfície da pequena semi-esfera.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Como o condutor é neutro, temos \(\nabla \cdot \vetor{E} = 0\), então supondo um regime quasi-estacionário temos \(\nabla \times \vetor{E} = 0\) e podemos escrever \(\vetor{E} = -\nabla \phi\). Pela simetria azimutal, escrevemos
+    \begin{equation*}
+        \phi(r, \theta) = \sum_{\ell = 0}^\infty \left(A_\ell r^{\ell} + \frac{B_\ell}{r^{\ell + 1}}\right)P_\ell(\cos\theta)
+    \end{equation*}
+    para a região entre as placas e \(r > a\). Como em \(r = a\) temos \(\phi = 0\), segue que \(B_\ell = -A_\ell a^{2\ell + 1}\). Próximo à placa de potencial \(\phi_0\), devemos ter \(\phi \sim \frac{\phi_0}{d} r \cos\theta\), portanto
+    \begin{equation*}
+        A_\ell = \frac{\phi_0}{d} \delta_{\ell 1}
+    \end{equation*}
+    para todo \(\ell \in \mathbb{N}_0\). Assim, determinamos que
+    \begin{equation*}
+        \phi(r, \theta) = \frac{\phi_0 r\cos\theta}{d}\left(1 - \frac{a^3}{r^3}\right),
+    \end{equation*}
+    isto é,
+    \begin{equation*}
+        \phi(\vetor{\x}) = \frac{\phi_0\inner{\vetor{e}_z}{\vetor{\x}}}{d}\left(1 - \frac{a^3}{\norm{\vetor{\x}}^3}\right) \implies \vetor{E}(\vetor{\x}) = -\frac{\phi_0\vetor{e}_z}{d}\left(1 - \frac{a^3}{\norm{\vetor{\x}}^3}\right) - \frac{3\phi_0 a^3\inner{\vetor{e_z}}{\vetor{\x}}\vetor{\x}}{d\norm{\vetor{\x}}^5}.
+    \end{equation*}
+    Como é válida a lei de Ohm, a densidade de corrente em \(r = a\) é dada por
+    \begin{equation*}
+        \vetor{J}(\theta) = - \frac{3\phi_0 \sigma \cos\theta}{d}\vetor{e}_r,
+    \end{equation*}
+    logo
+    \begin{align*}
+        I &= -\frac{3\phi_0 \sigma a^2}{d} \int_0^{\frac{\pi}{2}} \dli{\theta} \int_0^{2\pi} \sin\theta \dli{\varphi} \cos\theta \vetor{e}_r \cdot \vetor{e}_r\\
+          &= - \frac{6\pi \phi_0 \sigma a^2}{d} \int_0^{\frac{\pi}{2}} \dli{\theta} \sin\theta \cos\theta\\
+          &= - \frac{3\pi \phi_0 \sigma a^2}{d}
+    \end{align*}
+    é a corrente que atravessa a semi-esfera.
 \end{proof}
